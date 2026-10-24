@@ -1,0 +1,55 @@
+[
+  {
+    "module": "Backpropagation",
+    "formulas": [
+      { "name": "Sigmoid + BCE Simplified Gradient", "latex": "$$\\frac{\\partial L}{\\partial z} = \\hat y - y$$" },
+      { "name": "Weight-Gradient Outer Product", "latex": "$$\\frac{\\partial L}{\\partial W_2} = \\delta_2\\, a_1^T$$" },
+      { "name": "ReLU Backward Pass", "latex": "$$\\delta_1 = (W_2^T \\delta_2) \\odot \\mathbb{1}[z_1 > 0]$$" },
+      { "name": "Sigmoid Derivative", "latex": "$$\\sigma'(z) = \\sigma(z)\\,(1-\\sigma(z))$$" }
+    ]
+  },
+  {
+    "module": "Optimizers & Regularization",
+    "formulas": [
+      { "name": "Adam Moment Estimates", "latex": "$$m_t = \\beta_1 m_{t-1} + (1-\\beta_1) g_t, \\qquad v_t = \\beta_2 v_{t-1} + (1-\\beta_2) g_t^2$$" },
+      { "name": "Adam Bias Correction", "latex": "$$\\hat m_t = \\frac{m_t}{1-\\beta_1^t}, \\qquad \\hat v_t = \\frac{v_t}{1-\\beta_2^t}$$" },
+      { "name": "Adam Parameter Update", "latex": "$$\\theta_t = \\theta_{t-1} - \\frac{\\eta}{\\sqrt{\\hat v_t}+\\epsilon}\\,\\hat m_t$$" },
+      { "name": "AdamW Decoupled Weight Decay", "latex": "$$\\theta_t = (1-\\eta\\lambda)\\theta_{t-1} - \\eta\\,\\frac{\\hat m_t}{\\sqrt{\\hat v_t}+\\epsilon}$$" },
+      { "name": "Adagrad Accumulator", "latex": "$$G_t = G_{t-1} + g_t^2$$" },
+      { "name": "RMSprop Moving Average", "latex": "$$v_t = \\beta v_{t-1} + (1-\\beta) g_t^2$$" },
+      { "name": "SGD with Momentum", "latex": "$$v_t \\leftarrow \\beta v_{t-1} - \\eta \\nabla L, \\qquad \\theta_t \\leftarrow \\theta_{t-1} + v_t$$" },
+      { "name": "Inverted Dropout Scaling", "latex": "$$a^{(train)} = a \\cdot \\frac{1}{1-p}$$" }
+    ]
+  },
+  {
+    "module": "CNN Architectures & Normalization",
+    "formulas": [
+      { "name": "Convolution Output Size", "latex": "$$O = \\left\\lfloor \\frac{W - F + 2P}{S} \\right\\rfloor + 1$$" },
+      { "name": "ResNet Residual Connection", "latex": "$$y = F(x) + x$$" },
+      { "name": "BatchNorm Axes", "latex": "$$\\text{normalize over } (N, H, W) \\text{ per channel } C$$" }
+    ]
+  },
+  {
+    "module": "RNN, LSTM, GRU",
+    "formulas": [
+      { "name": "Vanilla RNN Recurrence", "latex": "$$h_t = \\tanh(W_h h_{t-1} + W_x x_t + b)$$" },
+      { "name": "LSTM Forget / Input / Candidate Gates", "latex": "$$f_t=\\sigma(W_f[h_{t-1},x_t]+b_f), \\quad i_t=\\sigma(W_i[h_{t-1},x_t]+b_i), \\quad \\tilde C_t=\\tanh(W_C[h_{t-1},x_t]+b_C)$$" },
+      { "name": "LSTM Cell State Update (additive)", "latex": "$$C_t = f_t \\odot C_{t-1} + i_t \\odot \\tilde C_t$$" },
+      { "name": "LSTM Output Gate & Hidden State", "latex": "$$o_t=\\sigma(W_o[h_{t-1},x_t]+b_o), \\qquad h_t = o_t \\odot \\tanh(C_t)$$" }
+    ]
+  },
+  {
+    "module": "Knowledge Distillation",
+    "formulas": [
+      { "name": "Temperature-Scaled Softmax", "latex": "$$q_i = \\frac{\\exp(z_i/T)}{\\sum_j \\exp(z_j/T)}$$" },
+      { "name": "Distillation Loss", "latex": "$$\\mathcal{L} = (1-\\alpha)\\mathcal{L}_{CE}(y_{hard}, p_{student}) + \\alpha T^2\\, \\text{KL}(q_{teacher}\\,\\|\\,q_{student})$$" }
+    ]
+  },
+  {
+    "module": "Transformer Architecture",
+    "formulas": [
+      { "name": "Scaled Dot-Product Attention", "latex": "$$\\text{Attention}(Q,K,V) = \\text{softmax}\\!\\left(\\frac{QK^T}{\\sqrt{d_k}}\\right)V$$" },
+      { "name": "Self-Attention Complexity", "latex": "$$O(n^2 \\cdot d) \\text{ in sequence length } n$$" }
+    ]
+  }
+]

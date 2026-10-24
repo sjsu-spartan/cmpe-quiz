@@ -1,0 +1,177 @@
+[
+  {
+    "num": 1,
+    "type": "sa",
+    "question": "**Given:** $w=[1.5,-2]$, $b=0.3$, $x=[0.40,0.30]$, $y=1$, $\\epsilon=0.05$, BCE loss $J=-\\ln p$.\n\n**Task:** Compute $z$, $p=\\sigma(z)$, $J$; compute $\\nabla_x J$ and its sign; compute $x_{adv}$, new $p'$; state whether the class flips.",
+    "answerText": "$z=1.5(0.4)+(-2)(0.3)+0.3=0.3$; $p=\\sigma(0.3)\\approx0.5744$; $J=-\\ln(0.5744) \\approx0.5545$. $\\nabla_x J=(p-y)w=(0.5744-1)[1.5,-2]=[-0.6384,0.8512]\\to\\text{sign}=[-1,+1]$. $x_{adv}=x+0.05\\cdot[-1,1]=[0.35,0.35]$. New $z'=1.5(0.35)-2(0.35)+0.3=0.125$, $p'=\\sigma(0.125) \\approx0.5312$ \u2014 still $>0.5$, no flip yet. **Trap:** $\\nabla_x J$ uses $w$, not $x$; don't swap with the weight-gradient formula.",
+    "tier": "Tier A \u2014 Highest Probability"
+  },
+  {
+    "num": 2,
+    "type": "sa",
+    "question": "**Given:** $x=[0.20,0.55,0.95]$, $\\nabla_x J=[-0.7,0.0,1.2]$, $\\epsilon=0.08$, valid range $[0,1]$.\n\n**Task:** Write $\\text{sign}(\\nabla_x J)$ and $\\delta=\\epsilon\\cdot\\text{sign}(\\nabla_x J)$; compute $x_{adv}$ after clipping to $[0,1]$.",
+    "answerText": "$\\text{sign}=[-1,0,+1]$ (note: sign of exactly 0.0 is 0, not $\\pm1$ \u2014 a common mis-step). $\\delta=[-0.08,0,0.08]$. $x_{adv}=[0.12,0.55,1.03]\\to\\text{clip}\\to[0.12,0.55,1.00]$. **Trap:** The zero-gradient coordinate gets zero perturbation; forgetting to clip the third coordinate back to 1.0 is the main error.",
+    "tier": "Tier A \u2014 Highest Probability"
+  },
+  {
+    "num": 3,
+    "type": "sa",
+    "question": "**Given:** $x_0=[0.50,0.30]$, $\\epsilon=0.10$, $\\alpha=0.04$, 4 steps of given gradient signs ($t1$:$[+1,-1]$, $t2$:$[+1,-1]$, $t3$:$[+1,+1]$, $t4$:$[+1,+1]$).\n\n**Task:** Write the projection box around $x_0$; trace $x_1\\ldots x_4$ projecting after every step; state which step first hits the box edge, compared to $\\lceil\\epsilon/\\alpha\\rceil$.",
+    "answerText": "Box: $[0.40,0.60]\\times[0.20,0.40]$. $x_1=[0.54,0.26]$; $x_2=[0.58,0.22]$; $x_3=[0.60,0.26]\\to$ already clipped on coord 1 ($0.62\\to0.60$); $x_4$ stays at the edge for coord 1. $\\lceil0.10/0.04\\rceil=3$ \u2014 matches when the first coordinate hits the edge. **Trap:** Projection is always relative to $x_0$, never the current iterate.",
+    "tier": "Tier A \u2014 Highest Probability"
+  },
+  {
+    "num": 4,
+    "type": "sa",
+    "question": "**Given:** $f(x)=w\\cdot x+b$, $w=(1,-2)$, $b=0.3$, $x_0=(0.40,0.30)$, $y=1$, $\\epsilon=0.2$, $\\alpha=0.1$, 3 steps, $\\nabla_x J=(p-y)\\cdot w$.\n\n**Task:** Find $f(x_0),p_0$; tabulate $x_t,f,p,J$ for $t=0\\ldots3$; state when first misclassified and when the point hits the box edge.",
+    "answerText": "$f(x_0)=0.4-0.6+0.3=0.1$, $p_0=\\sigma(0.1)\\approx0.525$. Since $p<1$ always and $y=1$, $(p-y)$ stays negative every step, so with $w=(1,-2)$ the gradient sign is constant: $\\text{sign}(\\nabla_x J)=[-1,+1]$ for all $t$ (a linear model has a fixed attack direction \u2014 no need to recompute the sign each iteration). Box: $x_1\\in[0.20,0.60]$, $x_2\\in[0.10,0.50]$. $x_1=(0.30,0.40)\\to f=-0.20$ (first misclassified, $p\\approx0.450$). $x_2=(0.20,0.50)\\to f=-0.50$ ($p\\approx0.378$) \u2014 **both coordinates hit their box edges simultaneously here** ($x_1=0.20=$lower bound, $x_2=0.50=$upper bound). $x_3$ is then frozen at $(0.20,0.50)$, $f=-0.50$ (unchanged from $t=2$), since the next unclipped step would move both coordinates further outside the box. **Trap:** don't assume $f$ keeps decreasing linearly for all 3 steps \u2014 always check each coordinate against its own box bound every iteration; here the attack saturates one step earlier than a naive \"$-0.3$ per step\" extrapolation would suggest.",
+    "tier": "Tier A \u2014 Highest Probability"
+  },
+  {
+    "num": 5,
+    "type": "sa",
+    "question": "**Given:** $x_1=(1,2),y_1=1$; $x_2=(-1,-1),y_2=0$; $w_0=(0,0),b_0=0,\\eta=1.0$.\n\n**Task:** Compute $p_1,p_2,J_0$; compute $\\nabla_w J,\\nabla_b J$; compute $w_1,b_1,J_1$.",
+    "answerText": "$z_1=z_2=0\\Rightarrow p_1=p_2=0.5$. $J_0=\\ln2\\approx0.6931$. Errors $(p_i-y_i)=(-0.5,+0.5)$. $\\nabla_w J=\\frac12[(-0.5)(1,2)+(0.5)(-1,-1)]=(-0.5,-0.75)$. $\\nabla_b J=\\frac12(-0.5+0.5)=0$. $w_1=(0.5,0.75)$, $b_1=0$. **Trap:** divide the gradient sum by $n$; subtract (not add) $\\eta\\nabla J$.",
+    "tier": "Tier A \u2014 Highest Probability"
+  },
+  {
+    "num": 6,
+    "type": "sa",
+    "question": "**Given:** Same data, $\\eta=1.0$, start $w_1=(0.5,0.75)$, $b_1=0$, $p=(0.8808,0.2227)$ at $w_1$.\n\n**Task:** Compute $\\nabla_w J,\\nabla_b J$ at $w_1$; compute $w_2,b_2,J_2$; classify test point $(0.5,-0.2)$ using $w_2,b_2$.",
+    "answerText": "Errors $(0.8808-1, 0.2227-0)=(-0.1192,0.2227)$. $\\nabla_w J=\\frac12[(-0.1192)(1,2)+ (0.2227)(-1,-1)]\\approx(-0.1710,-0.2310)$. $\\nabla_b J=\\frac12(-0.1192+0.2227)=0.0518$. $w_2\\approx(0.6710,0.9810)$, $b_2\\approx-0.0518$. Test point: $z=0.6710(0.5)+0.9810(-0.2)-0.0518 \\approx0.0169>0\\to$ class 1.",
+    "tier": "Tier A \u2014 Highest Probability"
+  },
+  {
+    "num": 7,
+    "type": "sa",
+    "question": "**Given:** Baseline: 95.0/42.0/30.0 (clean/FGSM/PGD) \u00b7 1k calls. FGSM-trained: 94.0/80.0/70.0 \u00b7 2k. PGD-trained: 93.5/78.0/76.0 \u00b7 8k, at $\\epsilon=0.1$.\n\n**Task:** State the baseline PGD drop; PGD accuracy recovered by each defense; PGD-trained's own clean-to-PGD gap; cost multipliers and which model to deploy against a PGD adversary.",
+    "answerText": "Baseline drop under PGD $=95.0-30.0=65.0$ points. FGSM-trained recovers $70.0-30.0 =40.0$ pts; PGD-trained recovers $76.0-30.0=46.0$ pts. PGD-trained's own gap (clean vs PGD) $=93.5-76.0=17.5$ pts. Cost multipliers: FGSM-trained $2\\times$, PGD-trained $8\\times$ baseline calls. Deploy PGD-trained against a PGD adversary (highest PGD accuracy, 76.0), accepting the 8\u00d7 training cost. **Trap:** always validate with PGD, not FGSM \u2014 training robust only at a given $\\epsilon$ doesn't generalize to other budgets.",
+    "tier": "Tier B \u2014 High Probability"
+  },
+  {
+    "num": 8,
+    "type": "sa",
+    "question": "**Given:** $n=10$ points, $k=4$ outer iterations, each retrain = 200 GD steps = 0.5s. Validation losses per candidate flip given for iterations 1\u20132.\n\n**Task:** State which flip is committed each iteration; compute total retrains and total compute time for $k=4$; explain why greedy isn't globally optimal.",
+    "answerText": "Commit the flip with max $L_{val}$ each round (greedy). Total retrains for $k=4$ out of $n=10$: $10+9+8+7=34$ retrains $\\to 34\\times200=6800$ GD steps $\\to 34\\times0.5=17.0$s. Greedy is locally exact per step but never revisits earlier flips, so it can miss a globally better combination that requires an early \"suboptimal-looking\" flip.",
+    "tier": "Tier D \u2014 Lower Probability"
+  },
+  {
+    "num": 9,
+    "type": "sa",
+    "question": "**Given:** $w_{sub}=(1.5,-1)$, $b_{sub}=0.2$. Pool: $P_1(1,1)$, $P_2(0.4,1.0)$, $P_3(-0.5,0.2)$, $P_4(2,2)$. Also: $d=60$ dims, 120 queries/dim random sampling, $0.003/query, 4\u00d7 more query-efficient active learning.\n\n**Task:** Compute $|f_{sub}(x)|$ for each pool point; identify the queried point and whose label is used; compute random-sampling cost vs. active-learning cost.",
+    "answerText": "$f_{sub}(P_1)=1.5-1+0.2=0.7$; $f_{sub}(P_2)=0.6-1+0.2=-0.2\\to|{-0.2}|=0.2$; $f_{sub}(P_3)=-0.75-0.2+0.2=-0.75\\to0.75$; $f_{sub}(P_4)=3-2+0.2=1.2$. Query $P_2$ (smallest $|f_{sub}|$, most uncertain). Use the **target's** label, not the substitute's guess. Random: $60\\times120=7200$ queries $\\times\\$0.003=\\$21.60$. Active learning: $7200/4=1800$ queries $\\times\\$0.003=\\$5.40$.",
+    "tier": "Tier B \u2014 High Probability"
+  },
+  {
+    "num": 10,
+    "type": "sa",
+    "question": "**Given:** Members: 0.98, 0.96, 0.91, 0.89, 0.85, 0.80. Non-members: 0.93, 0.70, 0.65, 0.50, 0.45, 0.30. Threshold: member if confidence $>0.88$ (strict).\n\n**Task:** Build the confusion matrix (TP,FN,FP,TN); compute accuracy, precision, recall, F1.",
+    "answerText": "Members $>0.88$: 0.98,0.96,0.91,0.89 $\\to TP=4$; 0.85,0.80 $\\le0.88\\to FN=2$. Non-members $>0.88$: 0.93 $\\to FP=1$; the other 5 $\\to TN=5$. Accuracy$=(4+5)/12=0.75$. Precision$=4/(4+1)=0.80$. Recall$=4/(4+2)=0.667$. F1$=2(0.80)(0.667)/(0.80+0.667)\\approx0.727$. **Trap:** threshold comparison is strict `>`; the exact threshold value is never flagged as member.",
+    "tier": "Tier B \u2014 High Probability"
+  },
+  {
+    "num": 11,
+    "type": "sa",
+    "question": "**Given:** Same confidences, new threshold 0.90; a loss-threshold audit reports AUC$=0.62$.\n\n**Task:** New confusion matrix and accuracy/precision/recall/F1; compute membership advantage $=2(\\text{AUC}-0.5)$; name two defenses.",
+    "answerText": "Members $>0.90$: 0.98,0.96,0.91 $\\to TP=3$; 0.89,0.85,0.80 $\\le0.90\\to FN=3$. Non-members $>0.90$: 0.93 $\\to FP=1$ (this is the trap \u2014 0.93 exceeds 0.90 even though it's a non-member); the other 5 $\\le0.90\\to TN=5$. Accuracy$=(3+5)/12\\approx0.667$. Precision$=3/(3+1)=0.75$. Recall$=3/6=0.5$. F1$=2(0.75)(0.5)/(0.75+0.5)=0.6$. Membership advantage$=2(0.62-0.5)=0.24$. Defenses: DP-SGD (reduces confidence gap via clipping+noise), label smoothing, early stopping, or confidence vector masking (name any two). **Trap:** raising the threshold does not guarantee FP=0 \u2014 always re-check every non-member value against the new threshold rather than assuming the previous question's FP count carries over.",
+    "tier": "Tier B \u2014 High Probability"
+  },
+  {
+    "num": 12,
+    "type": "sa",
+    "question": "**Given:** $q=[0.6,0.8,0,0]$ ($\\|q\\|=1$). $D_1(\\text{legit})=[0.5,0.7,0.1,0.2]$, $D_2(\\text{legit})=[0.1,0.2,0.9,0.4]$, $D_M(\\text{poison})=[0.6,0.78,0.05,0.05]$, top-$k=2$.\n\n**Task:** Compute $q\\cdot d$, $\\|d\\|$, $\\cos(q,d)$ for each document; rank and state which are retrieved; state the security consequence.",
+    "answerText": "$D_1$: $q\\cdot D_1=0.3+0.56=0.86$, $\\|D_1\\|=\\sqrt{0.25+0.49+0.01+0.04}=\\sqrt{0.79} \\approx0.889$, $\\cos\\approx0.86/0.889\\approx0.968$. $D_2$: $q\\cdot D_2=0.06+0.16=0.22$, $\\|D_2\\|=\\sqrt{0.01+0.04+0.81+0.16}=\\sqrt{1.02}\\approx1.010$, $\\cos\\approx0.218$. $D_M$: $q\\cdot D_M=0.36+0.624=0.984$, $\\|D_M\\|=\\sqrt{0.36+0.6084+0.0025+0.0025}\\approx0.986$, $\\cos\\approx0.998$. Ranking: $D_M(0.998) > D_1(0.968) > D_2(0.218)$. Top-2 retrieved: $D_M, D_1$ \u2014 the poisoned doc ranks #1, so its hidden instructions reach the LLM as trusted context. **Trap:** higher dot product $\\ne$ higher cosine similarity; must normalize by both vector norms.",
+    "tier": "Tier B \u2014 High Probability"
+  },
+  {
+    "num": 13,
+    "type": "sa",
+    "question": "**Given:** Historical similarity $\\mu=0.68,\\sigma=0.07$; new top-1 similarity$=0.95$; inspect if $z>3$. Output classifier $P(\\text{sensitive})=0.76$; block threshold $T=0.80$.\n\n**Task:** Compute the z-score and decide whether to inspect; decide whether the output gate blocks the answer; name two more RAG controls.",
+    "answerText": "$z=(0.95-0.68)/0.07\\approx3.857>3\\to$ flag for inspection. Output gate: $0.76<0.80 \\to$ does NOT block (passes through) \u2014 note this is a near-miss, worth flagging for monitoring even though it technically passes the hard gate. Additional controls: provenance/allowlisting of source documents, retrieval diversity constraints (cap how much weight any single source gets), or periodic re-indexing/review of the document corpus (any two reasonable controls).",
+    "tier": "Tier B \u2014 High Probability"
+  },
+  {
+    "num": 14,
+    "type": "sa",
+    "question": "**Given:** Clip norm $C=1.5$, batch $B=3$, $\\eta=0.1$. $g_1=[0.6,0.8]$, $g_2=[3,4]$, $g_3=[-1.2,0.9]$. Noise added to the sum $=[0.3,-0.6]$. $\\theta=[1.0,1.0]$.\n\n**Task:** Compute $\\|g_i\\|$ and each clipped gradient; sum, add noise, divide by $B$; compute updated $\\theta$.",
+    "answerText": "$\\|g_1\\|=1.0\\le1.5\\to$ unchanged: $[0.6,0.8]$. $\\|g_2\\|=5.0>1.5\\to$ factor $=1.5/5.0=0.3\\to$ clipped $=[0.9,1.2]$. $\\|g_3\\|=\\sqrt{1.44+0.81}=1.5=1.5\\to$ unchanged (exactly at the clip norm): $[-1.2,0.9]$. Sum$=[0.6+0.9-1.2,\\ 0.8+1.2+0.9]=[0.3,2.9]$. $+$noise$= [0.6,2.3]$. $\\div B=3\\to[0.2,0.767]$. Updated $\\theta=\\theta-\\eta\\cdot\\text{grad}=[1.0-0.1(0.2), 1.0-0.1(0.767)]=[0.98,0.923]$. **Trap:** clip each gradient individually BEFORE summing; the clipped norm is at most $C$ (exactly $C$ when the original exceeded it).",
+    "tier": "Tier A \u2014 Highest Probability"
+  },
+  {
+    "num": 15,
+    "type": "sa",
+    "question": "**Given:** $\\delta=10^{-5}$, $\\Delta=1$: $\\sigma=\\Delta\\sqrt{2\\ln(1.25/\\delta)}/\\epsilon$. DP-SGD: $\\sigma=1.1,C=1,B=64$. Basic composition: 0.02/step, $T=900$. Tight accountant: $\\epsilon=k\\sqrt{T}$ with $\\epsilon(100)=1.2$.\n\n**Task:** Compute $\\sigma$ for $\\epsilon=2$ and $\\epsilon=0.25$; compute per-coordinate noise std $\\sigma C/B$; compute $\\epsilon_{basic}$ and $\\epsilon_{tight}$ at $T=900$ and their ratio.",
+    "answerText": "$\\ln(1.25/10^{-5})=\\ln(125000)\\approx11.736$; $\\sqrt{2\\times11.736}=\\sqrt{23.47}\\approx4.845$. $\\epsilon=2\\to\\sigma\\approx2.42$; $\\epsilon=0.25\\to\\sigma\\approx19.38$. Per-coordinate noise std $=\\sigma C/B=1.1\\times1/64 \\approx0.0172$ (using the given DP-SGD $\\sigma=1.1$). $\\epsilon_{basic}=0.02\\times900=18.0$. $k=1.2/\\sqrt{100}=0.12$; $\\epsilon_{tight}=0.12\\times\\sqrt{900}=0.12\\times30=3.6$. Ratio $=18.0/3.6=5.0$ \u2014 basic composition overstates privacy loss 5\u00d7 relative to the tight accountant. **Trap:** halving $\\epsilon$ doubles $\\sigma$ (inverse relationship); basic composition grows linearly in $T$, tight accounting grows as $\\sqrt{T}$, so the overstatement grows with more training steps.",
+    "tier": "Tier A \u2014 Highest Probability"
+  },
+  {
+    "num": 16,
+    "type": "sa",
+    "question": "**Given:** Expected $e=[0.20,0.30,0.30,0.20]$, Actual $a=[0.15,0.25,0.35,0.25]$, $n=500$ per sample, KS critical $=1.36\\sqrt{2/n}$.\n\n**Task:** Compute PSI bin-by-bin and total; compute the KS statistic and the bin where it occurs; compute the critical value and state both verdicts.",
+    "answerText": "Bin1: $(0.15-0.20)\\ln(0.15/0.20)=(-0.05)(-0.2877)=0.0144$. Bin2: $(0.25-0.30)\\ln(0.25/0.30)=(-0.05)(-0.1823)=0.0091$. Bin3: $(0.35-0.30)\\ln(0.35/0.30) =(0.05)(0.1542)=0.0077$. Bin4: $(0.25-0.20)\\ln(0.25/0.20)=(0.05)(0.2231)=0.0112$. PSI$\\approx0.0144+0.0091+0.0077+0.0112=0.0424\\to<0.1\\to$ stable. Cumulative expected: 0.20,0.50,0.80,1.00. Cumulative actual: 0.15,0.40,0.75,1.00. Gaps: 0.05,0.10,0.05,0.00. KS$=0.10$ at bin 2. Critical $=1.36\\sqrt{2/500}=1.36\\times0.0632\\approx0.0860$. $0.10>0.086\\to$ KS flags drift even though PSI says stable. **Trap:** PSI and KS can disagree; PSI ignores sample size, KS's critical value depends on $n$ and becomes more sensitive as $n$ grows.",
+    "tier": "Tier C \u2014 Moderate Probability"
+  },
+  {
+    "num": 17,
+    "type": "sa",
+    "question": "**Given:** KS statistic $=0.10$ (from Q16); critical value $1.36\\sqrt{2/n}$ at $\\alpha=0.05$.\n\n**Task:** State the verdict if $n=200$ per sample; find the smallest $n$ at which 0.10 is significant; explain why PSI and KS can disagree.",
+    "answerText": "$n=200$: critical$=1.36\\sqrt{2/200}=1.36\\times0.1=0.136>0.10\\to$ NOT significant at this smaller sample size (verdict flips vs. $n=500$!). Smallest $n$: solve $1.36\\sqrt{2/n}=0.10 \\to\\sqrt{2/n}=0.0735\\to2/n=0.0054\\to n\\approx370$. PSI and KS disagree because PSI applies fixed cutoffs (0.1/0.2) regardless of $n$, while KS's significance threshold shrinks as $n$ grows, making KS increasingly sensitive to small, consistent distributional shifts at large sample sizes.",
+    "tier": "Tier C \u2014 Moderate Probability"
+  },
+  {
+    "num": 18,
+    "type": "sa",
+    "question": "**Given:** Group G: approved 60, rejected 140 (N=200). Group H: approved 90, rejected 110 (N=200). $N_{total}=400$; weight$=P(g)\\cdot P(y)\\cdot N/\\text{observed}$.\n\n**Task:** Compute $P(G),P(H),P(\\text{approved}),P(\\text{rejected})$; compute expected count and weight for all 4 cells; state which cell is boosted most and what that does.",
+    "answerText": "$P(G)=0.5$, $P(H)=0.5$. $P(\\text{approved})=(60+90)/400=0.375$, $P(\\text{rejected})=0.625$. G-approved expected$=0.5\\times0.375\\times400=75$; observed$=60\\to$ weight$=75/60=1.25$. G-rejected expected$=0.5\\times0.625\\times400=125$; observed$=140\\to$ weight$=125/140\\approx0.893$. H-approved expected$=75$; observed$=90\\to$ weight$=75/90 \\approx0.833$. H-rejected expected$=125$; observed$=110\\to$ weight$=125/110\\approx1.136$. Largest weight: G-approved (1.25) \u2014 this cell is most under-represented and gets boosted most, counteracting the fact that G is approved less often than its population share would predict.",
+    "tier": "Tier D \u2014 Lower Probability"
+  },
+  {
+    "num": 19,
+    "type": "sa",
+    "question": "**Given:** (exposure, exploitability): prompt(1.0,0.7), api(0.8,0.8), upload(0.7,0.9), agent_tools(0.9,0.6), weights(0.2,0.5). Budget: harden top 3. Separately: Risk bands $\\le6$Low/$\\le12$Med/$>12$High; a component $L=4,I=4$. Triage: $\\min(5,1+\\lfloor \\text{users}/1000\\rfloor)\\times\\text{sensitivity}\\times(2\\text{ if active})$; 4200 users, sensitivity 4, active.\n\n**Task:** Score and rank all five surfaces; identify the hardened top 3 and the % of risk they cover; compute the risk band for $L=4,I=4$; compute the triage score and priority tier.",
+    "answerText": "Scores: prompt$=0.70$, api$=0.64$, upload$=0.63$, agent_tools$=0.54$, weights$=0.10$. Ranked: prompt$>$api$>$upload$>$agent_tools$>$weights. Top 3 = prompt, api, upload. Total$=0.70+0.64+0.63+0.54+0.10=2.61$. Top-3 sum$=0.70+0.64+0.63=1.97\\to1.97/2.61 \\approx75.5\\%$. Risk$=4\\times4=16>12\\to$ High. Triage: $\\min(5,1+\\lfloor4200/1000\\rfloor)=\\min(5,1+4)=5$; $5\\times4\\times2=40\\ge30\\to$ **P1**. **Trap:** compute scores before ranking; `users//1000` is integer floor division (800 users $\\to\\lfloor800/1000\\rfloor=0$, so the term inside is $1+0=1$, not $1.8$).",
+    "tier": "Tier A \u2014 Highest Probability"
+  },
+  {
+    "num": 20,
+    "type": "sa",
+    "question": "**Given:** Bands: $\\le6$Low, $\\le12$Med, else High. Chatbot $L5,I3,w=0.3$; Fraud $L2,I4,w=0.4$; Search $L3,I2,w=0.2$; HR tool $L1,I5,w=0.1$.\n\n**Task:** Compute risk score and band per component; compute the weighted index $\\sum \\text{score}\\times w$ and its overall band; state which component is escalated first.",
+    "answerText": "Chatbot$=5\\times3=15\\to$High. Fraud$=2\\times4=8\\to$Med. Search$=3\\times2=6\\to$Low. HR$=1\\times5=5\\to$Low. Weighted index$=15(0.3)+8(0.4)+6(0.2)+5(0.1)=4.5+3.2+1.2+0.5=9.4\\to$Med overall (despite one High component). Escalate Chatbot first (highest individual risk band, High).",
+    "tier": "Tier A \u2014 Highest Probability"
+  },
+  {
+    "num": 21,
+    "type": "sa",
+    "question": "**Given:** base$=\\min(5,1+\\lfloor\\text{users}/1000\\rfloor)$; score$=\\text{base}\\times \\text{sensitivity}\\times(2\\text{ if active else }1)$; P1$\\ge30$, P2$\\ge15$, else P3. A(2500,3, active), B(12000,2,inactive), C(900,5,active), D(3999,4,active).\n\n**Task:** Compute base, score, severity for A\u2013D; sort by score and count P1s; explain why D gets base 4, not 5.",
+    "answerText": "A: base$=\\min(5,1+2)=3$, score$=3\\times3\\times2=18\\to$P2. B: base$=\\min(5,1+12)=5$, score$=5\\times2\\times1=10\\to$P3. C: base$=\\min(5,1+0)=1$, score$=1\\times5\\times2=10\\to$P3. D: base$=\\min(5,1+\\lfloor3999/1000\\rfloor)=\\min(5,1+3)=4$, score$=4\\times4\\times2=32\\to$P1. Sorted by score: D(32,P1) $>$ A(18,P2) $>$ B(10,P3) $\\approx$ C(10,P3). P1 count$=1$. D gets base 4 (not 5) because $\\lfloor3999/1000\\rfloor=3$ (floor/integer division truncates 3.999 to 3), so base$=1+3=4$ \u2014 not 5, because 3999 users is just under the 4000-user threshold needed to reach base 5.",
+    "tier": "Tier A \u2014 Highest Probability"
+  },
+  {
+    "num": 22,
+    "type": "sa",
+    "question": "**Given:** Group C: $TP=72,FP=18,TN=140,FN=30$. Group D: $TP=50,FP=40,TN=90,FN=20$.\n\n**Task:** Compute selection rate, TPR, FPR, precision for both groups; compute all four gaps (D\u2212C); state which fairness criterion is closest to satisfied and which is most severely violated.",
+    "answerText": "$N_C=260$, $N_D=200$. C: selection$=90/260=0.3462$, TPR$=72/102=0.7059$, FPR$=18/158=0.1139$, precision$=72/90=0.8000$. D: selection$=90/200=0.4500$, TPR$=50/70=0.7143$, FPR$=40/130=0.3077$, precision$=50/90=0.5556$. Gaps: selection $+0.1038$, TPR $+0.0084$, FPR $+0.1938$, precision $-0.2444$. Closest to satisfied: **equal opportunity** (TPR gap only 0.84 points). Most severely violated: **predictive parity** (precision gap 24.4 points) \u2014 a \"select\" decision for D is correct only 55.6% of the time vs. 80.0% for C.",
+    "tier": "Tier B \u2014 High Probability"
+  },
+  {
+    "num": 23,
+    "type": "sa",
+    "question": "**Given:** Same Group C/D confusion matrices as Q22 (or any two-proportion comparison). Formula: $SE=\\sqrt{p_1(1-p_1)/n_1+p_2(1-p_2)/n_2}$, $z=\\text{gap}/SE$, two-sided $p=2(1-\\Phi(|z|))$.\n\n**Task:** For the selection-rate gap, compute the standard error, z-statistic, and state whether the gap is statistically significant at $\\alpha=0.05$.",
+    "answerText": "$p_1(1-p_1)/n_1=0.3462\\times0.6538/260\\approx0.000871$; $p_2(1-p_2)/n_2=0.4500\\times0.5500/200\\approx0.001238$. $SE=\\sqrt{0.002108}\\approx0.0459$. $z=0.1038/0.0459\\approx2.262$. $|z|>1.96\\to$ significant at $\\alpha=0.05$ (two-sided $p\\approx0.0237$). **Note:** the FPR gap test (same method, different n and p) yields the strongest result ($z\\approx4.08$); the TPR gap is NOT significant ($p\\approx0.90$) despite a nonzero raw difference \u2014 distinguishing \"a gap exists\" from \"a gap is statistically significant\" is the core skill this question type tests.",
+    "tier": "Tier B \u2014 High Probability"
+  },
+  {
+    "num": 24,
+    "type": "sa",
+    "question": "**Given:** Group G: $TPR_G(t)=1-t^2$ (or an empirical score distribution). Target TPR = another group's TPR at a reference threshold (e.g., Group H's TPR at $t=0.5$). Start bracket $[0,1]$ (or $[0.01,0.99]$); run ~5\u201310 iterations.\n\n**Task:** Tabulate lo, hi, mid, $TPR(\\text{mid})$, and the bracket-update direction at each iteration; report the final threshold; state the exact solution and the approximation error.",
+    "answerText": "mid$=0.5\\to TPR=0.75<0.80\\to$ TPR too low $\\to$ threshold too high $\\to hi=mid=0.5$. mid$=0.25\\to TPR=0.9375>0.80\\to lo=0.25$. mid$=0.375\\to TPR=0.8594>0.80\\to lo=0.375$. mid$=0.4375\\to TPR=0.8086>0.80\\to lo=0.4375$. mid$=0.46875\\to TPR=0.7803<0.80\\to hi=0.46875$. Converges toward the exact solution $1-t^2=0.80\\to t^*=\\sqrt{0.20}\\approx0.4472$. **Trap (the single most important rule for this algorithm):** TPR falls as the threshold rises. If current TPR is too HIGH, the threshold is too LOW, so you must RAISE it ($lo=mid$) \u2014 not lower it. Getting this direction backward is the classic bisection-fairness exam trap.",
+    "tier": "Tier B \u2014 High Probability"
+  },
+  {
+    "num": 25,
+    "type": "sa",
+    "question": "**Given:** Two groups' confusion-matrix counts (e.g., Group C: $72,18,140,30$; Group D: $50,40,90,20$). Conceptual bootstrap procedure: resample each group's outcome counts via a multinomial draw preserving each group's total $N$, recompute the metric gap many times (e.g., $B=20{,}000$), then take the 2.5th/97.5th percentiles as a 95% CI.\n\n**Task:** Explain what the bootstrap resampling procedure estimates and why it should roughly match the analytic z-test's standard error; state how to decide significance from the bootstrap CI alone (no z-test needed); explain why a wider CI occurs for a metric with a smaller denominator (e.g., FPR, which only uses $FP+TN$, not the full $N$).",
+    "answerText": "The bootstrap repeatedly resamples synthetic datasets consistent with the observed per-group rates and sample sizes, builds an empirical distribution of the metric gap (D\u2212C), and reports the 2.5\u201397.5 percentile range as the 95% CI. This should closely match the analytic normal-approximation SE used in the z-test (both reflect the same underlying sampling variability). Decide significance directly: if 0 lies outside the 95% CI, the gap is significant at $\\alpha=0.05$ (equivalent to $|z|>1.96$). A metric like FPR, computed over a smaller denominator ($FP+TN$ rather than the full $N$), has higher sampling variance and thus a wider bootstrap CI/SE than a metric computed over the full population \u2014 but a larger raw gap can still dominate and produce a more decisively significant result despite the wider spread.",
+    "tier": "Tier B \u2014 High Probability"
+  }
+]

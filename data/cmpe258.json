@@ -1,0 +1,692 @@
+[
+  {
+    "num": 1,
+    "type": "tf",
+    "question": "Deep learning is a subset of machine learning, which is a subset of artificial intelligence.",
+    "tier": "Tier 3 \u2014 Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The nesting is AI \u2283 ML \u2283 DL \u2283 Generative AI, with LLMs spanning the DL/GenAI boundary depending on scale."
+  },
+  {
+    "num": 2,
+    "type": "sa",
+    "question": "Explain what is meant by \"emergence\" in the context of LLMs, and contrast it with how the term is used elsewhere in computer science.",
+    "tier": "Tier 3 \u2014 Low Probability",
+    "answerText": "In most of computer science, emergence (unplanned behavior from component interaction) is treated as a bug. In deep learning, emergence is necessary and expected: every capability a trained network exhibits is emergent, since only the architecture and training algorithm are designed, not the learned weights. In LLMs specifically, \"emergent abilities\" refers to capabilities (e.g., 3-digit addition) that appear suddenly once model scale crosses a threshold, even though the underlying loss (perplexity) decreases smoothly with scale."
+  },
+  {
+    "num": 3,
+    "type": "mcq",
+    "question": "Which activation function is defined as $x \\cdot \\sigma(\\beta x)$?",
+    "tier": "Tier 2 \u2014 Medium Probability",
+    "options": {
+      "A": "ReLU",
+      "B": "GELU",
+      "C": "Swish$_\\beta$",
+      "D": "Leaky ReLU"
+    },
+    "answer": "C",
+    "explanation": "As $\\beta \\to 0$, Swish$_\\beta(x) \\to 0.5x$ (linear); as $\\beta \\to \\infty$, Swish$_\\beta(x) \\to \\max(0,x)$ (ReLU). At $\\beta=1$ it is the SiLU function."
+  },
+  {
+    "num": 4,
+    "type": "tf",
+    "question": "SwiGLU replaces ReLU in modern LLM feed-forward blocks primarily because it normalizes the input to $[0,1]$.",
+    "tier": "Tier 2 \u2014 Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "SwiGLU is $(xW) \\otimes \\text{Swish}(xV)$ \u2014 a gated unit. It replaces ReLU because the smooth, non-monotonic Swish gate preserves small negative gradient information that a hard ReLU threshold discards, and the gating lets the network learn input-dependent activation rather than a fixed cutoff. It has nothing to do with normalizing to $[0,1]$."
+  },
+  {
+    "num": 5,
+    "type": "sa",
+    "question": "Write the Gated Linear Unit (GLU) formula and explain what the two paths compute.",
+    "tier": "Tier 2 \u2014 Medium Probability",
+    "answerText": "$\\text{GLU}(x) = (xW+b) \\otimes \\sigma(xV+c)$. The first path $(xW+b)$ is a standard linear content transformation; the second path $\\sigma(xV+c)$ is a sigmoid gate in $(0,1)$ that learns to suppress (near 0) or pass (near 1) each dimension of the content path element-wise."
+  },
+  {
+    "num": 6,
+    "type": "sa",
+    "question": "Derive why minimizing mean squared error is equivalent to maximum likelihood estimation under a Gaussian noise assumption.",
+    "tier": "Tier 2 \u2014 Medium Probability",
+    "answerText": "Assume $y = f(x;w) + \\epsilon$, $\\epsilon \\sim \\mathcal{N}(0,\\sigma^2)$. Then $p(y\\mid x;w) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}}\\exp\\left(-\\frac{(y-f(x;w))^2}{2\\sigma^2}\\right)$. Summing log-likelihoods over $N$ i.i.d. points: $\\ln L(w) = -\\frac{N}{2}\\ln(2\\pi\\sigma^2) - \\frac{1}{2\\sigma^2}\\sum_i (y_i - f(x_i;w))^2$. Maximizing this w.r.t. $w$ is equivalent to minimizing $\\sum_i (y_i - f(x_i;w))^2$, i.e., ordinary least squares / MSE."
+  },
+  {
+    "num": 7,
+    "type": "mcq",
+    "question": "Why is Newton's method ($\\theta \\leftarrow \\theta - H^{-1}\\nabla L$) infeasible for training deep networks with $d \\approx 100$M parameters?",
+    "tier": "Tier 2 \u2014 Medium Probability",
+    "options": {
+      "A": "It only works for convex losses",
+      "B": "Computing/storing $H$ is $O(d^2)$ and inverting it is $O(d^3)$",
+      "C": "It requires labeled data",
+      "D": "It cannot use mini-batches"
+    },
+    "answer": "B",
+    "explanation": "For $d=100$M, the Hessian alone would need on the order of tens of thousands of TB of memory; full inversion is computationally intractable. This is why DL uses first-order methods (and Adam approximates curvature cheaply via the second-moment estimate instead)."
+  },
+  {
+    "num": 8,
+    "type": "tf",
+    "question": "A single-layer perceptron can solve the XOR problem.",
+    "tier": "Tier 2 \u2014 Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "XOR is not linearly separable, which historically motivated the move to multi-layer networks with nonlinear activations."
+  },
+  {
+    "num": 9,
+    "type": "sa",
+    "question": "State the sigmoid derivative formula and the logistic-neuron forward equations.",
+    "tier": "Tier 2 \u2014 Medium Probability",
+    "answerText": "$\\sigma(z) = \\frac{1}{1+e^{-z}}$, $\\sigma'(z) = \\sigma(z)(1-\\sigma(z))$. Forward: $z = w\\cdot x + b$, $p = \\sigma(z)$."
+  },
+  {
+    "num": 10,
+    "type": "mcq",
+    "question": "In a 2-layer MLP ($z_1=W_1x+b_1 \\to a_1=\\text{ReLU}(z_1) \\to z_2 = W_2a_1+b_2 \\to \\hat y = \\sigma(z_2) \\to \\text{BCE}$), the simplified form of $\\partial L/\\partial z_2$ is",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "$\\hat y(1-\\hat y)$",
+      "B": "$\\hat y - y$",
+      "C": "$y - \\hat y$",
+      "D": "$-\\ln\\hat y$"
+    },
+    "answer": "B",
+    "explanation": "The sigmoid-derivative term cancels against the BCE derivative, leaving $\\delta_2 = \\hat y - y$."
+  },
+  {
+    "num": 11,
+    "type": "sa",
+    "question": "Derive $\\partial L/\\partial z = \\hat y - y$ starting from $L = -[y\\ln\\hat y + (1-y)\\ln(1-\\hat y)]$ and $\\hat y = \\sigma(z)$.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "$\\partial L/\\partial \\hat y = -y/\\hat y + (1-y)/(1-\\hat y) = (\\hat y - y) / [\\hat y(1-\\hat y)]$. Chain rule: $\\partial L/\\partial z = \\partial L/\\partial \\hat y \\cdot \\sigma'(z) = \\frac{\\hat y-y}{\\hat y(1-\\hat y)} \\cdot \\hat y(1-\\hat y) = \\hat y - y$."
+  },
+  {
+    "num": 12,
+    "type": "mcq",
+    "question": "For the weight-gradient outer product $\\partial L/\\partial W_2$, with $\\delta_2 \\in \\mathbb{R}^{d_{out}\\times 1}$ and $a_1 \\in \\mathbb{R}^{d_{in}\\times 1}$, the correct shape-preserving formula is",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "$a_1 \\delta_2^T$",
+      "B": "$\\delta_2 a_1^T$",
+      "C": "$\\delta_2^T a_1$",
+      "D": "$a_1^T \\delta_2$"
+    },
+    "answer": "B",
+    "explanation": "$\\delta_2 a_1^T$ has shape $(d_{out}, d_{in})$, matching $W_2$. Reversing the order ($a_1\\delta_2^T$) is the single most common exam error."
+  },
+  {
+    "num": 13,
+    "type": "tf",
+    "question": "The ReLU backward pass requires multiplying the upstream gradient by the indicator $\\mathbb{1}[z_1 > 0]$.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "$\\delta_1 = (W_2^T\\delta_2) \\odot \\mathbb{1}[z_1>0]$ \u2014 the mask zeroes out gradient flow through units that were inactive (negative pre-activation) in the forward pass."
+  },
+  {
+    "num": 14,
+    "type": "sa",
+    "question": "Explain why sigmoid/tanh activations cause vanishing gradients across many layers, and name two architectural mitigations.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "$\\sigma'(z)$ has a maximum of 0.25 (tanh similarly caps below 1); multiplying $L$ such terms via the chain rule across $L$ layers gives a product that shrinks roughly like $0.25^L$, driving early-layer gradients toward zero. Mitigations: ReLU (gradient exactly 1 for positive inputs, no multiplicative decay), skip/residual connections (additive gradient path bypasses the multiplicative chain), and normalization layers that keep activations in a well-scaled regime."
+  },
+  {
+    "num": 15,
+    "type": "mcq",
+    "question": "Exploding gradients in RNNs are most directly caused by",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "ReLU dead units",
+      "B": "Large eigenvalues of the recurrent weight matrix compounding across time steps",
+      "C": "Small batch size",
+      "D": "High dropout rate"
+    },
+    "answer": "B",
+    "explanation": "Fix: gradient clipping \u2014 rescale $\\nabla L$ by $\\text{threshold}/\\|\\nabla L\\|$ when the norm exceeds a threshold."
+  },
+  {
+    "num": 16,
+    "type": "tf",
+    "question": "For $f: \\mathbb{R}^n \\to \\mathbb{R}^m$, the Jacobian $J$ has shape $m \\times n$, and backprop chains these Jacobians via vector-Jacobian products for a scalar loss.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": ""
+  },
+  {
+    "num": 17,
+    "type": "sa",
+    "question": "Given $w=[1.5,-2]$, $b=0.3$, $x=[0.40,0.30]$, $y=1$, BCE loss $J=-\\ln p$: compute $z$, $p=\\sigma(z)$, and the input gradient $\\nabla_x J = (p-y)\\cdot w$.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "$z = 1.5(0.40) + (-2)(0.30) + 0.3 = 0.60 - 0.60 + 0.3 = 0.30$. $p = \\sigma(0.30) \\approx 0.5744$. $\\nabla_x J = (0.5744-1)\\cdot[1.5,-2] = (-0.4256)\\cdot[1.5,-2] \\approx [-0.6384, 0.8512]$."
+  },
+  {
+    "num": 18,
+    "type": "mcq",
+    "question": "Which statement about the computational graph in PyTorch is correct?",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "It is built statically before any forward pass",
+      "B": "`loss.backward()` triggers reverse-mode automatic differentiation over the dynamically recorded graph",
+      "C": "Gradients are computed in forward order",
+      "D": "The graph stores only the final loss value"
+    },
+    "answer": "B",
+    "explanation": ""
+  },
+  {
+    "num": 19,
+    "type": "tf",
+    "question": "Forgetting to simplify sigmoid+BCE to $\\hat y - y$ and instead computing the raw quotient form is mathematically wrong.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "it is mathematically equivalent, just needlessly error-prone under time pressure; the simplification is the expected/standard shortcut, not a separate \"correct\" formula."
+  },
+  {
+    "num": 20,
+    "type": "sa",
+    "question": "List, in order, the four backward-pass quantities computed for $W_1, b_1$ in the 2-layer MLP template (given $\\delta_1$ and input $x$).",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "$\\partial L/\\partial W_1 = \\delta_1 x^T$ (outer product, shape $[d_{hidden}, d_{in}]$); $\\partial L/\\partial b_1 = \\delta_1$."
+  },
+  {
+    "num": 21,
+    "type": "mcq",
+    "question": "The most common transcription error students make when writing $\\partial L/\\partial W$ formulas on an exam is",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "Forgetting the learning rate",
+      "B": "Reversing the order of the outer product (e.g. writing $a\\delta^T$ instead of $\\delta a^T$)",
+      "C": "Using the wrong loss function",
+      "D": "Omitting the bias term"
+    },
+    "answer": "B",
+    "explanation": ""
+  },
+  {
+    "num": 22,
+    "type": "sa",
+    "question": "Write the full Adam update including bias correction, and state the four default hyperparameter values.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "$m_t=\\beta_1 m_{t-1}+(1-\\beta_1)g_t$; $v_t=\\beta_2 v_{t-1}+(1-\\beta_2)g_t^2$; $\\hat m_t = m_t/(1-\\beta_1^t)$; $\\hat v_t = v_t/(1-\\beta_2^t)$; $\\theta_t = \\theta_{t-1} - \\frac{\\eta}{\\sqrt{\\hat v_t}+\\epsilon}\\hat m_t$. Defaults: $\\beta_1=0.9$, $\\beta_2=0.999$, $\\epsilon=10^{-8}$, plus the learning rate $\\eta$."
+  },
+  {
+    "num": 23,
+    "type": "mcq",
+    "question": "Why does Adagrad eventually stall during long training runs?",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "The learning rate oscillates",
+      "B": "$G_t = G_{t-1}+g_t^2$ grows monotonically without bound, driving the effective step size to zero",
+      "C": "It diverges due to large updates",
+      "D": "It requires second-order derivatives"
+    },
+    "answer": "B",
+    "explanation": ""
+  },
+  {
+    "num": 24,
+    "type": "sa",
+    "question": "Explain how RMSprop fixes Adagrad's flaw.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "RMSprop replaces the ever-growing cumulative sum $G_t$ with an exponential moving average $v_t = \\beta v_{t-1} + (1-\\beta)g_t^2$. Because old squared-gradient history is exponentially forgotten rather than accumulated forever, the effective learning rate $\\eta/\\sqrt{v_t+\\epsilon}$ does not decay to zero."
+  },
+  {
+    "num": 25,
+    "type": "mcq",
+    "question": "The key difference between AdamW and \"Adam + L2 regularization\" is",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "AdamW uses a higher learning rate",
+      "B": "AdamW subtracts weight decay directly from the parameters at a fixed rate, decoupled from the adaptive second-moment scaling, whereas Adam+L2 folds the penalty into the gradient before adaptive scaling",
+      "C": "AdamW does not use momentum",
+      "D": "They are mathematically identical"
+    },
+    "answer": "B",
+    "explanation": "In Adam+L2, the penalty $\\lambda\\theta$ is added to $g_t$ and then divided by $\\sqrt{\\hat v_t}$, so parameters with large gradient history get under-decayed. AdamW applies $\\theta_t = (1-\\eta\\lambda)\\theta_{t-1} - \\eta\\hat m_t/(\\sqrt{\\hat v_t}+\\epsilon)$ instead."
+  },
+  {
+    "num": 26,
+    "type": "tf",
+    "question": "L1 regularization tends to drive small weights exactly to zero (promoting sparsity), while L2 shrinks weights proportionally without usually zeroing them out.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "L1 gradient contribution is $\\lambda\\cdot\\text{sign}(w)$ (constant magnitude); L2 gradient contribution is $\\lambda w$ (proportional, vanishing as $w\\to0$)."
+  },
+  {
+    "num": 27,
+    "type": "mcq",
+    "question": "During inverted dropout at training time with keep probability $1-p$, surviving activations are",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "Left unchanged",
+      "B": "Multiplied by $p$",
+      "C": "Multiplied by $1/(1-p)$",
+      "D": "Set to zero"
+    },
+    "answer": "C",
+    "explanation": "\u2014 this keeps the expected activation magnitude unchanged so no rescaling is needed at test time (dropout is simply turned off at test time)."
+  },
+  {
+    "num": 28,
+    "type": "tf",
+    "question": "Large batch sizes tend to converge to sharper minima with weaker generalization, while small batches introduce noise that acts as an implicit regularizer.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": ""
+  },
+  {
+    "num": 29,
+    "type": "sa",
+    "question": "Given $w_0=[0,0]$, $b_0=0$, two points $x_1=(1,2),y_1=1$ and $x_2=(-1,-1),y_2=0$, $\\eta=1.0$: compute $p_1, p_2$, the gradient $\\nabla_w J$, and the updated $w_1$.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "$z_1=0\\Rightarrow p_1=0.5$; $z_2=0\\Rightarrow p_2=0.5$. $\\nabla_w J = \\frac{1}{2}[(0.5-1)(1,2) + (0.5-0)(-1,-1)] = \\frac{1}{2}[(-0.5,-1)+(-0.5,-0.5)] = (-0.5,-0.75)$. $w_1 = w_0 - 1.0\\cdot\\nabla_w J = (0.5, 0.75)$."
+  },
+  {
+    "num": 30,
+    "type": "mcq",
+    "question": "SGD with momentum update is",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "$\\theta \\leftarrow \\theta - \\eta g_t$",
+      "B": "$v_t \\leftarrow \\beta v_{t-1} - \\eta\\nabla L$; $\\theta_t \\leftarrow \\theta_{t-1}+v_t$",
+      "C": "$\\theta \\leftarrow \\theta - \\eta/\\sqrt{G_t}\\cdot g_t$",
+      "D": "$\\theta \\leftarrow (1-\\eta\\lambda)\\theta - \\eta g_t$"
+    },
+    "answer": "B",
+    "explanation": ", with $\\beta\\approx0.9$ damping oscillations by accumulating consistent-direction gradients."
+  },
+  {
+    "num": 31,
+    "type": "tf",
+    "question": "The linear scaling rule says: when you multiply the batch size by $k$, you should divide the learning rate by $k$.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "the linear scaling rule says to multiply (scale up) the learning rate by $k$ when batch size scales by $k$, not divide."
+  },
+  {
+    "num": 32,
+    "type": "sa",
+    "question": "Why is bias correction necessary in Adam at early training steps?",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "$m_t$ and $v_t$ are initialized at 0, so early estimates are biased toward zero (especially when $\\beta_1,\\beta_2$ are close to 1). Dividing by $(1-\\beta_1^t)$ and $(1-\\beta_2^t)$ corrects this bias; omitting it makes the denominator $\\sqrt{\\hat v_t}$ artificially small at $t=1$, producing an oversized first update."
+  },
+  {
+    "num": 33,
+    "type": "sa",
+    "question": "Compute the output spatial size for input $W=224$, filter $F=7$, padding $P=3$, stride $S=2$.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "$\\lfloor(224-7+2\\cdot3)/2\\rfloor+1 = \\lfloor223/2\\rfloor+1 = 111+1 = 112$."
+  },
+  {
+    "num": 34,
+    "type": "sa",
+    "question": "Compute the output size for $W=32$, $F=3$, $P=1$, $S=1$.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "$\\lfloor(32-3+2)/1\\rfloor+1 = 31+1 = 32$ (same-padding convolution preserves spatial size)."
+  },
+  {
+    "num": 35,
+    "type": "tf",
+    "question": "ResNet's skip connection $F(x)+x$ allows gradients to bypass the learned transformation entirely via an additive identity path, enabling training of 100+ layer networks.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": ""
+  },
+  {
+    "num": 36,
+    "type": "mcq",
+    "question": "BatchNorm normalizes across which axes of an $(N,C,H,W)$ tensor?",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "$(C,H,W)$ per sample $N$",
+      "B": "$(N,H,W)$ per channel $C$",
+      "C": "$(H,W)$ per $(N,C)$ pair",
+      "D": "$(C/G,H,W)$ per $(N,\\text{group})$"
+    },
+    "answer": "B",
+    "explanation": ""
+  },
+  {
+    "num": 37,
+    "type": "mcq",
+    "question": "Which normalization method is batch-size independent and normalizes across $(C,H,W)$ for each sample, making it standard in Transformers?",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "BatchNorm",
+      "B": "LayerNorm",
+      "C": "InstanceNorm",
+      "D": "GroupNorm"
+    },
+    "answer": "B",
+    "explanation": ""
+  },
+  {
+    "num": 38,
+    "type": "sa",
+    "question": "You are training a Faster R-CNN detector with batch size 2. Which normalization layer should you use, and why do the other three fail or underperform here?",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "GroupNorm. BatchNorm fails at small batch sizes ($N\\le4$) because batch statistics become noisy/unreliable; LayerNorm is designed for sequence models (normalizes per-sample across features, not ideal for spatial detection feature maps); InstanceNorm destroys the spatial/channel statistics needed for object detection (it's designed to remove style/contrast, which detection needs to keep). GroupNorm divides channels into groups and normalizes per-sample, independent of batch size, making it the standard choice for small-batch vision tasks like detection."
+  },
+  {
+    "num": 39,
+    "type": "tf",
+    "question": "At test time, BatchNorm uses the current batch's mean and variance rather than running averages accumulated during training.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "it uses running (exponential moving average) statistics accumulated during training, since test-time batches may be size 1 or statistically different."
+  },
+  {
+    "num": 40,
+    "type": "mcq",
+    "question": "Which of the following is NOT one of the four normalization variants discussed",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "GroupNorm",
+      "B": "InstanceNorm",
+      "C": "WeightNorm",
+      "D": "LayerNorm"
+    },
+    "answer": "C",
+    "explanation": "\u2014 WeightNorm was not covered; the four-way comparison is BatchNorm, LayerNorm, InstanceNorm, GroupNorm."
+  },
+  {
+    "num": 41,
+    "type": "sa",
+    "question": "State the common mistake in applying the conv output-size formula and the common mistake with BatchNorm at inference.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "(1) Using ceiling instead of floor division, or forgetting the trailing $+1$. (2) Applying training-batch statistics at test time instead of the accumulated running mean/var."
+  },
+  {
+    "num": 42,
+    "type": "tf",
+    "question": "InstanceNorm removes instance-specific contrast and style while preserving content, which is why it is standard in style-transfer models and GAN discriminators.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": ""
+  },
+  {
+    "num": 43,
+    "type": "sa",
+    "question": "Write the basic RNN recurrence and output equation.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "$h_t = \\tanh(W_h h_{t-1} + W_x x_t + b)$; $\\hat y_t = W_y h_t$."
+  },
+  {
+    "num": 44,
+    "type": "tf",
+    "question": "BPTT unrolls the RNN across $T$ time steps, and the gradient at step $t$ is the product of $T$ Jacobians, which can vanish (tanh saturation) or explode (large recurrent weight eigenvalues).",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": ""
+  },
+  {
+    "num": 45,
+    "type": "sa",
+    "question": "Write all 6 LSTM gate equations.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "$f_t=\\sigma(W_f[h_{t-1},x_t]+b_f)$ (forget); $i_t=\\sigma(W_i[h_{t-1},x_t]+b_i)$ (input); $\\tilde C_t=\\tanh(W_C[h_{t-1},x_t]+b_C)$ (candidate); $C_t=f_t\\odot C_{t-1}+i_t\\odot\\tilde C_t$ (cell update, additive); $o_t=\\sigma(W_o[h_{t-1},x_t]+b_o)$ (output); $h_t=o_t\\odot\\tanh(C_t)$ (hidden state)."
+  },
+  {
+    "num": 46,
+    "type": "mcq",
+    "question": "The cell state update $C_t$ is best described as",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "$f_t \\times i_t \\times \\tilde C_t$ (product of all three gates)",
+      "B": "$f_t \\odot C_{t-1} + i_t \\odot \\tilde C_t$ (additive combination)",
+      "C": "$\\tanh(f_t + i_t)$",
+      "D": "$o_t \\odot C_{t-1}$"
+    },
+    "answer": "B",
+    "explanation": "This is the critical trap \u2014 $C_t$ is a sum, not a product, of the forget-gated previous state and the input-gated candidate."
+  },
+  {
+    "num": 47,
+    "type": "tf",
+    "question": "The additive cell-state update in LSTM is the key mechanism that mitigates vanishing gradients over long sequences, because gradients can flow through the addition without being repeatedly squashed by $\\tanh$.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": ""
+  },
+  {
+    "num": 48,
+    "type": "mcq",
+    "question": "GRU differs from LSTM by",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "Having more gates",
+      "B": "Merging the forget and input gates into a single update gate and merging cell/hidden state",
+      "C": "Using ReLU instead of sigmoid",
+      "D": "Requiring bidirectional processing"
+    },
+    "answer": "B",
+    "explanation": "\u2014 GRU uses 3 equations (fewer parameters) vs. LSTM's 6."
+  },
+  {
+    "num": 49,
+    "type": "sa",
+    "question": "Explain the common mistake where students write $h_t$ as a direct function of $C_t$ without the $\\tanh$.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "The correct hidden-state equation is $h_t = o_t \\odot \\tanh(C_t)$ \u2014 the cell state must be squashed through $\\tanh$ before being gated by $o_t$; omitting the $\\tanh$ is a common error."
+  },
+  {
+    "num": 50,
+    "type": "tf",
+    "question": "A forget gate value $f_t \\approx 1$ helps gradients survive across many time steps.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "when $f_t\\approx1$, the additive cell-state path carries gradient almost unattenuated across steps."
+  },
+  {
+    "num": 51,
+    "type": "mcq",
+    "question": "Which statement about vanilla RNNs vs. LSTMs is correct?",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "Vanilla RNNs have no vanishing gradient problem",
+      "B": "LSTMs solve vanishing gradients via the additive cell-state highway; vanilla RNNs multiply the hidden state through $\\tanh$ at every step, causing exponential decay",
+      "C": "LSTMs are strictly faster to train than vanilla RNNs",
+      "D": "GRU has strictly more parameters than LSTM"
+    },
+    "answer": "B",
+    "explanation": ""
+  },
+  {
+    "num": 52,
+    "type": "sa",
+    "question": "Why does GRU use fewer parameters than LSTM while achieving comparable performance on many tasks?",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "GRU merges the forget and input gates into one \"update\" gate and eliminates the separate cell state (using the hidden state directly), reducing the parameter count relative to LSTM's 4 separate gate weight matrices, while still retaining a gated mechanism that controls information flow across time steps."
+  },
+  {
+    "num": 53,
+    "type": "mcq",
+    "question": "The temperature-scaled softmax $q_i = \\exp(z_i/T)/\\sum_j\\exp(z_j/T)$ with high $T$ produces",
+    "tier": "Tier 2 \u2014 Medium Probability",
+    "options": {
+      "A": "A sharper (more confident) distribution",
+      "B": "A softer distribution revealing inter-class similarity (\"dark knowledge\")",
+      "C": "The same distribution as $T=1$",
+      "D": "An undefined output"
+    },
+    "answer": "B",
+    "explanation": ""
+  },
+  {
+    "num": 54,
+    "type": "sa",
+    "question": "Write the distillation loss and explain the role of $T^2$.",
+    "tier": "Tier 2 \u2014 Medium Probability",
+    "answerText": "$\\mathcal{L} = (1-\\alpha)\\mathcal{L}_{CE}(y_{hard}, p_{student}) + \\alpha T^2 \\text{KL}(q_{teacher}\\|q_{student})$. $T^2$ rescales the gradient magnitude of the soft-target term back to its original scale, since dividing logits by $T$ before the softmax shrinks the gradient of the KL term by a factor of roughly $1/T^2$."
+  },
+  {
+    "num": 55,
+    "type": "tf",
+    "question": "A higher temperature $T$ in distillation makes the teacher's output distribution sharper, concentrating almost all probability mass on the top class.",
+    "tier": "Tier 2 \u2014 Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "higher $T$ softens the distribution (flattens it), revealing more information about relative class similarities, not less."
+  },
+  {
+    "num": 56,
+    "type": "sa",
+    "question": "Write the scaled dot-product attention formula and explain the purpose of the $\\sqrt{d_k}$ scaling.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "$\\text{Attention}(Q,K,V) = \\text{softmax}\\left(\\frac{QK^T}{\\sqrt{d_k}}\\right)V$. Without scaling, dot products grow with dimension $d_k$, pushing the softmax into a saturated regime with vanishing gradients (near one-hot outputs). Dividing by $\\sqrt{d_k}$ keeps the pre-softmax scores in a well-behaved range."
+  },
+  {
+    "num": 57,
+    "type": "mcq",
+    "question": "Scaling attention scores by $d_k$ instead of $\\sqrt{d_k}$ would",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "Have no effect",
+      "B": "Over-shrink the scores excessively as $d_k$ grows, degrading the signal",
+      "C": "Fix the vanishing-gradient problem better",
+      "D": "Make attention permutation-equivariant"
+    },
+    "answer": "B",
+    "explanation": "\u2014 this is a classic exam trap; the correct denominator is $\\sqrt{d_k}$, not $d_k$."
+  },
+  {
+    "num": 58,
+    "type": "tf",
+    "question": "Multi-head attention runs several attention computations in parallel with different learned projections, then concatenates and projects the results, allowing the model to attend to different representation subspaces simultaneously.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": ""
+  },
+  {
+    "num": 59,
+    "type": "sa",
+    "question": "Why is positional encoding necessary in a Transformer, and what breaks without it?",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "Self-attention is a set operation \u2014 permutation invariant \u2014 so without positional encoding the model cannot distinguish \"the cat sat on the mat\" from \"the mat sat on the cat.\" Positional encoding (sinusoidal or learned) injects a position-dependent signal into each token embedding so the model can learn order-sensitive relationships."
+  },
+  {
+    "num": 60,
+    "type": "mcq",
+    "question": "The decoder's masked self-attention enforces",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "Bidirectional context",
+      "B": "Causal masking, so position $i$ can only attend to positions $\\le i$",
+      "C": "No attention at all",
+      "D": "Attention only to the encoder output"
+    },
+    "answer": "B",
+    "explanation": ""
+  },
+  {
+    "num": 61,
+    "type": "tf",
+    "question": "Self-attention has $O(n^2 \\cdot d)$ complexity in sequence length $n$, which motivates sparse/efficient variants like Longformer or Performer for long sequences.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": ""
+  },
+  {
+    "num": 62,
+    "type": "sa",
+    "question": "Describe the two attention sub-layers in a Transformer decoder block and what each attends over.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "answerText": "(1) Masked (causal) self-attention over the decoder's own previous outputs; (2) cross-attention over the encoder's output (keys/values come from the encoder, query from the decoder), allowing the decoder to incorporate source-sequence information."
+  },
+  {
+    "num": 63,
+    "type": "mcq",
+    "question": "A common exam trap is confusing which temperature",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "Attention's $\\sqrt{d_k}$ scaling with Adam's learning rate",
+      "B": "Attention's $\\sqrt{d_k}$ scaling with knowledge distillation's temperature $T$",
+      "C": "LayerNorm's $\\epsilon$ with dropout rate $p$",
+      "D": "BPTT with backprop"
+    },
+    "answer": "B",
+    "explanation": "\u2014 both involve a scaling/softening effect on a softmax, but they serve entirely different purposes (numerical stability for attention vs. soft-target generation for distillation)."
+  },
+  {
+    "num": 64,
+    "type": "tf",
+    "question": "The encoder in a Transformer uses self-attention to produce keys and values that feed into the decoder's cross-attention sub-layer.",
+    "tier": "Tier 1 \u2014 High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": ""
+  }
+]
