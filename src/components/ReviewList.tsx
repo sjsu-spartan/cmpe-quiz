@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect, useRef } from 'react';
 import type { Answer } from '../types';
 import { formatTime } from '../utils/formatTime';
 import { typesetMath } from '../utils/mathjax';
+import { renderMarkdown } from '../utils/markdown';
 
 interface ReviewListProps {
   answers: Answer[];
@@ -73,22 +74,47 @@ export function ReviewList({ answers }: ReviewListProps) {
                 {a.question.tier?.replace(/^Tier \d+ — /, '') || 'General'}
               </span>
             </div>
-            <p className="review-q-text">{a.question.question}</p>
-            <div className="review-answers">
-              <div className="review-answer-row">
-                <span className="review-answer-label">Your answer:</span>
-                <span className={a.isCorrect ? 'text-correct' : 'text-wrong'}>
-                  {a.selected}) {a.question.options[a.selected]}
-                </span>
-              </div>
-              {!a.isCorrect && (
+            {a.question.type === 'sa' ? (
+              <div
+                className="review-q-text"
+                dangerouslySetInnerHTML={{ __html: renderMarkdown(a.question.question) }}
+              />
+            ) : (
+              <p className="review-q-text">{a.question.question}</p>
+            )}
+            {a.question.type === 'sa' ? (
+              <div className="review-answers">
                 <div className="review-answer-row">
-                  <span className="review-answer-label">Correct:</span>
-                  <span className="text-correct">{a.correct}) {a.question.options[a.correct]}</span>
+                  <span className="review-answer-label">Self-graded:</span>
+                  <span className={a.isCorrect ? 'text-correct' : 'text-wrong'}>
+                    {a.isCorrect ? 'Got it right' : 'Missed it'}
+                  </span>
                 </div>
-              )}
-            </div>
-            <p className="review-explanation">{a.question.explanation}</p>
+              </div>
+            ) : (
+              <div className="review-answers">
+                <div className="review-answer-row">
+                  <span className="review-answer-label">Your answer:</span>
+                  <span className={a.isCorrect ? 'text-correct' : 'text-wrong'}>
+                    {a.selected}) {a.question.options?.[a.selected]}
+                  </span>
+                </div>
+                {!a.isCorrect && (
+                  <div className="review-answer-row">
+                    <span className="review-answer-label">Correct:</span>
+                    <span className="text-correct">{a.correct}) {a.question.options?.[a.correct]}</span>
+                  </div>
+                )}
+              </div>
+            )}
+            {a.question.type === 'sa' ? (
+              <div
+                className="review-explanation"
+                dangerouslySetInnerHTML={{ __html: renderMarkdown(a.question.answerText || '') }}
+              />
+            ) : (
+              a.question.explanation && <p className="review-explanation">{a.question.explanation}</p>
+            )}
             {a.question.optionContext && Object.keys(a.question.optionContext).length > 0 && (
               <div className="review-breakdown">
                 <div className="breakdown-title">💡 Why each choice:</div>
@@ -101,7 +127,7 @@ export function ReviewList({ answers }: ReviewListProps) {
                       <div key={letter} className={`breakdown-row ${isOptCorrect ? 'breakdown-row-correct' : 'breakdown-row-distractor'}`}>
                         <span className="breakdown-tag">{letter}</span>
                         <div className="breakdown-info">
-                          <span className="breakdown-choice-text">{a.question.options[letter]}</span>
+                          <span className="breakdown-choice-text">{a.question.options?.[letter]}</span>
                           <span className="breakdown-reason">{ctx}</span>
                         </div>
                       </div>

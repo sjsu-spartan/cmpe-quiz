@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import type { Question, Answer } from '../types';
 import { QuestionCard } from './QuestionCard';
+import { SACard } from './SACard';
 import { formatTime } from '../utils/formatTime';
 
 interface QuizScreenProps {
@@ -12,6 +13,7 @@ interface QuizScreenProps {
   elapsed: number;
   courseTitle: string;
   onSelectAnswer: (selected: string, timeSpent: number) => void;
+  onSelfGrade: (isCorrect: boolean, timeSpent: number) => void;
   onNext: () => void;
   onPrev: () => void;
   onExit: () => void;
@@ -27,6 +29,7 @@ export function QuizScreen({
   answered,
   elapsed,
   onSelectAnswer,
+  onSelfGrade,
   onNext,
   onPrev,
   onExit,
@@ -34,9 +37,11 @@ export function QuizScreen({
 }: QuizScreenProps) {
   const total = questions.length;
   const q = questions[currentIndex];
+  const isSA = q?.type === 'sa';
   const prevAnswer = answers.find((a) => a.qIndex === currentIndex) ?? null;
   const progress = ((currentIndex + (prevAnswer ? 1 : 0)) / total) * 100;
   const [hasAnswered, setHasAnswered] = useState(!!prevAnswer);
+  const [saRevealed, setSaRevealed] = useState(!!prevAnswer);
   const prevIndexRef = useRef(currentIndex);
   const questionStartRef = useRef(Date.now());
 
@@ -44,6 +49,7 @@ export function QuizScreen({
     if (prevIndexRef.current !== currentIndex) {
       prevIndexRef.current = currentIndex;
       setHasAnswered(false);
+      setSaRevealed(false);
       questionStartRef.current = Date.now();
     }
   }, [currentIndex]);
@@ -66,6 +72,17 @@ export function QuizScreen({
     onSelectAnswer(letter, timeSpent);
   }, [hasAnswered, onSelectAnswer]);
 
+  const handleSaReveal = useCallback(() => {
+    setSaRevealed(true);
+  }, []);
+
+  const handleSaGrade = useCallback((isCorrect: boolean) => {
+    if (hasAnswered) return;
+    setHasAnswered(true);
+    const timeSpent = Math.floor((Date.now() - questionStartRef.current) / 1000);
+    onSelfGrade(isCorrect, timeSpent);
+  }, [hasAnswered, onSelfGrade]);
+
   if (!q) return null;
 
   return (
@@ -83,17 +100,27 @@ export function QuizScreen({
         </div>
       </div>
 
-      <QuestionCard
-        question={q}
-        index={currentIndex}
-        total={total}
-        selectedAnswer={prevAnswer?.selected ?? null}
-        correctAnswer={prevAnswer?.correct ?? null}
-        onSelect={handleSelect}
-        showResult={hasAnswered}
-      />
+      {isSA ? (
+        <SACard
+          question={q}
+          revealed={saRevealed}
+          gotIt={prevAnswer ? prevAnswer.isCorrect : null}
+          onReveal={handleSaReveal}
+          onGrade={handleSaGrade}
+        />
+      ) : (
+        <QuestionCard
+          question={q}
+          index={currentIndex}
+          total={total}
+          selectedAnswer={prevAnswer?.selected ?? null}
+          correctAnswer={prevAnswer?.correct ?? null}
+          onSelect={handleSelect}
+          showResult={hasAnswered}
+        />
+      )}
 
-      {hasAnswered && prevAnswer && (
+      {!isSA && hasAnswered && prevAnswer && (
         <div className={`feedback ${prevAnswer.isCorrect ? 'feedback-correct' : 'feedback-wrong'}`}>
           <div className="feedback-header">
             <span className="feedback-icon">{prevAnswer.isCorrect ? '✅' : '❌'}</span>
@@ -102,7 +129,7 @@ export function QuizScreen({
             </span>
             <span className="feedback-time">⏱ {formatTime(prevAnswer.timeSpent)}</span>
           </div>
-          <p className="feedback-explanation">{q.explanation}</p>
+          {q.explanation && <p className="feedback-explanation">{q.explanation}</p>}
           {q.optionContext && Object.keys(q.optionContext).length > 0 && (
             <div className="feedback-breakdown">
               <div className="breakdown-title">💡 Why each choice:</div>
@@ -115,7 +142,7 @@ export function QuizScreen({
                     <div key={letter} className={`breakdown-row ${isOptCorrect ? 'breakdown-row-correct' : 'breakdown-row-distractor'}`}>
                       <span className="breakdown-tag">{letter}</span>
                       <div className="breakdown-info">
-                        <span className="breakdown-choice-text">{q.options[letter]}</span>
+                        <span className="breakdown-choice-text">{q.options?.[letter]}</span>
                         <span className="breakdown-reason">{ctx}</span>
                       </div>
                     </div>

@@ -93,5 +93,38 @@
         "latex": "$$\\text{AR} = 2 \\int_{0.5}^{1.0} \\text{recall}(o) \\, do$$"
       }
     ]
+  },
+  {
+    "module": "Modern YOLO (v8+), DETR, and Sensor Calibration",
+    "formulas": [
+      {
+        "name": "Faster R-CNN Anchor Count (worked example)",
+        "latex": "$$N_{\\text{anchors}} = \\left\\lfloor \\frac{800}{16} \\right\\rfloor \\times \\left\\lfloor \\frac{600}{16} \\right\\rfloor \\times 9 = 50 \\times 37 \\times 9 = 16{,}650$$"
+      },
+      {
+        "name": "Task-Aligned Assigner (TAL) Score",
+        "latex": "$$t = s^\\alpha \\times \\text{IoU}^\\beta \\quad (\\alpha=0.5,\\ \\beta=6.0 \\text{ in YOLOv8})$$"
+      },
+      {
+        "name": "YOLOv8 Total Loss", 
+        "latex": "$$\\mathcal{L} = \\lambda_{cls}\\mathcal{L}_{BCE} + \\lambda_{box}\\mathcal{L}_{CIoU} + \\lambda_{dfl}\\mathcal{L}_{DFL}$$"
+      },
+      {
+        "name": "DETR Bipartite Matching Cost",
+        "latex": "$$L_{match} = \\lambda_{cls}L_{cls} + \\lambda_{bbox}L_{bbox} + \\lambda_{giou}L_{GIoU}$$"
+      },
+      {
+        "name": "ViT Patch Token Count",
+        "latex": "$$N_{\\text{tokens}} = \\left(\\frac{\\text{image size}}{\\text{patch size}}\\right)^2 + 1 \\ \\text{[CLS]}$$"
+      },
+      {
+        "name": "KITTI Multi-Sensor Projection (order matters)",
+        "latex": "$$\\mathbf{y} = P_{rect}^{(2)}\\, R_{rect}^{(0)}\\, T_{velo}^{cam}\\, \\mathbf{x}_{velo}$$"
+      },
+      {
+        "name": "Pixel Recovery from Homogeneous Coords",
+        "latex": "$$(u, v) = \\left(\\frac{y_1}{y_3}, \\ \\frac{y_2}{y_3}\\right) \\ \\text{for } \\mathbf{y} = [y_1, y_2, y_3]^T = [u z, v z, z]^T$$"
+      }
+    ]
   }
 ]

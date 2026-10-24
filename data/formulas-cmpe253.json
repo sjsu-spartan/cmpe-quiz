@@ -1,0 +1,62 @@
+[
+  {
+    "module": "Adversarial Attacks — FGSM, PGD, Batch GD",
+    "formulas": [
+      { "name": "FGSM Perturbation", "latex": "$$x_{adv} = x + \\epsilon \\cdot \\text{sign}(\\nabla_x J)$$" },
+      { "name": "Input Gradient (linear model + BCE)", "latex": "$$\\nabla_x J = (p - y) \\cdot w$$" },
+      { "name": "PGD Iterative Update (projected)", "latex": "$$x_{t+1} = \\text{Proj}_{\\epsilon}\\left[x_t + \\alpha \\cdot \\text{sign}(\\nabla_x J)\\right]$$" },
+      { "name": "Weight Gradient (batch, logistic loss)", "latex": "$$\\nabla_w J = \\frac{1}{n}\\sum_i (p_i - y_i)\\, x_i$$" },
+      { "name": "Gradient Descent Update", "latex": "$$w \\leftarrow w - \\eta \\, \\nabla_w J$$" }
+    ]
+  },
+  {
+    "module": "Privacy — Membership Inference, DP-SGD",
+    "formulas": [
+      { "name": "Membership Advantage", "latex": "$$\\text{Advantage} = 2(\\text{AUC} - 0.5)$$" },
+      { "name": "DP-SGD Gradient Clipping", "latex": "$$g_i \\leftarrow g_i \\cdot \\min\\left(1,\\ \\frac{C}{\\|g_i\\|}\\right)$$" },
+      { "name": "Gaussian Mechanism Noise Scale", "latex": "$$\\sigma = \\frac{\\Delta \\sqrt{2\\ln(1.25/\\delta)}}{\\epsilon}$$" },
+      { "name": "DP-SGD Per-Coordinate Noise Std", "latex": "$$\\text{std} = \\frac{\\sigma C}{B}$$" }
+    ]
+  },
+  {
+    "module": "RAG Security — Retrieval, Z-Scores",
+    "formulas": [
+      { "name": "Cosine Similarity", "latex": "$$\\cos(q, d) = \\frac{q \\cdot d}{\\|q\\|\\, \\|d\\|}$$" },
+      { "name": "Z-Score (anomaly detection)", "latex": "$$z = \\frac{\\text{score} - \\mu}{\\sigma}$$" }
+    ]
+  },
+  {
+    "module": "Drift Detection — PSI, KS Test",
+    "formulas": [
+      { "name": "Population Stability Index", "latex": "$$PSI = \\sum_i (a_i - e_i)\\, \\ln\\!\\left(\\frac{a_i}{e_i}\\right)$$" },
+      { "name": "Kolmogorov–Smirnov Statistic", "latex": "$$KS = \\max_i \\left|\\Delta\\text{CDF}_i\\right|$$" },
+      { "name": "KS Critical Value (\\(\\alpha=0.05\\))", "latex": "$$KS_{crit} = 1.36\\sqrt{\\frac{2}{n}}$$" }
+    ]
+  },
+  {
+    "module": "Fairness — Confusion-Matrix Metrics, Reweighting",
+    "formulas": [
+      { "name": "Selection Rate", "latex": "$$\\text{Selection Rate} = \\frac{TP + FP}{N}$$" },
+      { "name": "True/False Positive Rate", "latex": "$$TPR = \\frac{TP}{TP+FN}, \\qquad FPR = \\frac{FP}{FP+TN}$$" },
+      { "name": "Precision", "latex": "$$\\text{Precision} = \\frac{TP}{TP+FP}$$" },
+      { "name": "Reweighting Factor", "latex": "$$\\text{weight} = \\frac{P(g) \\cdot P(y) \\cdot N}{\\text{observed count}}$$" }
+    ]
+  },
+  {
+    "module": "Statistical Significance — Two-Proportion Z-Test",
+    "formulas": [
+      { "name": "Standard Error of a Proportion Gap", "latex": "$$SE = \\sqrt{\\frac{p_1(1-p_1)}{n_1} + \\frac{p_2(1-p_2)}{n_2}}$$" },
+      { "name": "Z-Statistic", "latex": "$$z = \\frac{\\text{gap}}{SE}$$" },
+      { "name": "Two-Sided P-Value", "latex": "$$p = 2\\left(1 - \\Phi(|z|)\\right)$$" }
+    ]
+  },
+  {
+    "module": "Risk Scoring — Triage, Bisection, Bootstrap",
+    "formulas": [
+      { "name": "Risk Score", "latex": "$$\\text{Risk} = L \\times I \\quad (\\le 6\\ \\text{Low},\\ \\le 12\\ \\text{Med},\\ >12\\ \\text{High})$$" },
+      { "name": "Incident Triage Score", "latex": "$$\\text{Score} = \\min(5,\\ 1 + \\lfloor u/1000 \\rfloor) \\times s \\times (2 \\text{ if active else } 1)$$" },
+      { "name": "Bisection Midpoint", "latex": "$$mid = \\frac{lo + hi}{2}$$" },
+      { "name": "Bootstrap 95% CI", "latex": "$$CI_{95\\%} = \\left[\\hat\\theta_{2.5\\%},\\ \\hat\\theta_{97.5\\%}\\right] \\text{ over } B \\text{ resamples}$$" }
+    ]
+  }
+]

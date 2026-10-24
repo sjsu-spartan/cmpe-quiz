@@ -58,7 +58,7 @@ export function useQuiz() {
 
   const selectAnswer = useCallback((selected: string, timeSpent: number) => {
     const q = questions[currentIndex];
-    const correct = q.answer;
+    const correct = q.answer ?? '';
     const isCorrect = selected === correct;
 
     setAnswered((a) => a + 1);
@@ -66,6 +66,18 @@ export function useQuiz() {
     setAnswers((prev) => [
       ...prev,
       { qIndex: currentIndex, question: q, selected, correct, isCorrect, timeSpent },
+    ]);
+  }, [currentIndex, questions]);
+
+  /** For 'sa' (short-answer/flashcard) questions: the learner self-reports correctness after revealing the answer. */
+  const selfGradeAnswer = useCallback((isCorrect: boolean, timeSpent: number) => {
+    const q = questions[currentIndex];
+
+    setAnswered((a) => a + 1);
+    if (isCorrect) setScore((s) => s + 1);
+    setAnswers((prev) => [
+      ...prev,
+      { qIndex: currentIndex, question: q, selected: 'self', correct: 'self', isCorrect, timeSpent },
     ]);
   }, [currentIndex, questions]);
 
@@ -97,6 +109,7 @@ export function useQuiz() {
     totalElapsed,
     initQuiz,
     selectAnswer,
+    selfGradeAnswer,
     nextQuestion,
     prevQuestion,
     goToQuestion,

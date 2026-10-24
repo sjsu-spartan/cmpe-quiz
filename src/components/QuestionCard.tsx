@@ -10,8 +10,6 @@ interface QuestionCardProps {
   showResult: boolean;
 }
 
-const LETTERS = ['A', 'B', 'C', 'D'];
-
 export function QuestionCard({
   question,
   index,
@@ -22,16 +20,18 @@ export function QuestionCard({
   showResult,
 }: QuestionCardProps) {
   const tierLabel = question.tier?.replace(/^Tier \d+ — /, '') || '';
+  const letters = Object.keys(question.options ?? {});
 
   return (
     <div className="question-card">
       <div className="q-meta">
         <span className="q-number">Q{question.num}</span>
+        {question.type === 'tf' && <span className="q-type-badge">True / False</span>}
         {tierLabel && <span className="q-tier">{tierLabel}</span>}
       </div>
       <p className="q-text">{question.question}</p>
       <div className="q-options">
-        {LETTERS.map((letter) => {
+        {letters.map((letter) => {
           const isSelected = selectedAnswer === letter;
           const isCorrect = correctAnswer === letter;
           const isWrong = isSelected && !isCorrect;
@@ -49,7 +49,7 @@ export function QuestionCard({
               disabled={showResult}
             >
               <span className="option-letter">{letter}</span>
-              <span className="option-text">{question.options[letter]}</span>
+              <span className="option-text">{question.options?.[letter]}</span>
               {showResult && (
                 <span className={`option-status ${isCorrect ? 'status-correct' : isWrong ? 'status-wrong' : ''}`}>
                   {isCorrect ? '✓' : isWrong ? '✗' : ''}

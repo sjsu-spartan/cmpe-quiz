@@ -1,9 +1,17 @@
+export type QuestionType = 'mcq' | 'tf' | 'sa';
+
 export interface Question {
   num: number;
+  /** Defaults to 'mcq' when omitted, for backward compatibility with existing data files. */
+  type?: QuestionType;
   question: string;
-  options: Record<string, string>;
-  answer: string;
-  explanation: string;
+  /** Required for 'mcq'/'tf' questions; a letter -> choice-text map (2 entries for tf, usually 4 for mcq). */
+  options?: Record<string, string>;
+  /** Required for 'mcq'/'tf' questions; the correct option letter. */
+  answer?: string;
+  explanation?: string;
+  /** Required for 'sa' (short-answer) questions; the worked answer/approach shown on reveal. */
+  answerText?: string;
   tier: string;
   optionContext?: Record<string, string>;
   lectureReference?: string;

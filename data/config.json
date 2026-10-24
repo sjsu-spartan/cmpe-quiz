@@ -8,32 +8,31 @@
       "id": "cmpe249",
       "code": "CMPE 249",
       "name": "Intelligent Autonomous Systems",
-      "description": "Basic 2D Detection · Faster R-CNN, RPN, YOLOv1-v5, Geometric Losses & Metrics",
+      "description": "Weeks 1-8 · AV Architecture, Sensor Fusion, R-CNN/YOLO, Metrics, ViT/DETR, Calibration",
       "questionFile": "data/cmpe249.json",
       "formulaFile": "data/formulas-cmpe249.json",
       "enableShuffle": true,
-      "studyGuides": [
-        {
-          "id": "all",
-          "file": "guides/cmpe249/overview.md",
-          "label": "📋 All Lectures (Overview)"
-        },
-        {
-          "id": "l08",
-          "file": "guides/cmpe249/l08-two-stage-detectors.md",
-          "label": "L08 · Two-Stage Detectors & RPN"
-        },
-        {
-          "id": "l09",
-          "file": "guides/cmpe249/l09-single-stage-yolo.md",
-          "label": "L09 · Single-Stage YOLO Evolution"
-        },
-        {
-          "id": "l10",
-          "file": "guides/cmpe249/l10-modern-detectors-losses-metrics.md",
-          "label": "L10 · YOLOv5 Anatomy, Losses & Metrics"
-        }
-      ]
+      "studyGuides": []
+    },
+    {
+      "id": "cmpe258",
+      "code": "CMPE 258",
+      "name": "Deep Learning",
+      "description": "Weeks 1-8 · Backprop, Optimizers, CNN/ResNet, RNN/LSTM/GRU, Transformers",
+      "questionFile": "data/cmpe258.json",
+      "formulaFile": "data/formulas-cmpe258.json",
+      "enableShuffle": true,
+      "studyGuides": []
+    },
+    {
+      "id": "cmpe253",
+      "code": "CMPE 253",
+      "name": "AI Threat Intelligence",
+      "description": "FGSM/PGD, DP-SGD, Membership Inference, RAG Poisoning, Fairness, Drift Detection, Risk Scoring",
+      "questionFile": "data/cmpe253.json",
+      "formulaFile": "data/formulas-cmpe253.json",
+      "enableShuffle": true,
+      "studyGuides": []
     },
     {
       "id": "cmpe260",

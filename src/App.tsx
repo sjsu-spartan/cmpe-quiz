@@ -67,6 +67,10 @@ export default function App() {
     quiz.selectAnswer(selected, timeSpent);
   }, [quiz]);
 
+  const handleSelfGrade = useCallback((isCorrect: boolean, timeSpent: number) => {
+    quiz.selfGradeAnswer(isCorrect, timeSpent);
+  }, [quiz]);
+
   const handleNext = useCallback(() => {
     if (quiz.currentIndex >= quiz.questions.length - 1) {
       timer.stop();
@@ -209,6 +213,7 @@ export default function App() {
           elapsed={timer.elapsed}
           courseTitle={courseTitle}
           onSelectAnswer={handleSelectAnswer}
+          onSelfGrade={handleSelfGrade}
           onNext={handleNext}
           onPrev={handlePrev}
           onExit={handleExit}
