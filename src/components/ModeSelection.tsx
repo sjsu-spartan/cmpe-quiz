@@ -20,7 +20,7 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
   const total = questions.length;
 
   const presets = useMemo(() => {
-    const preferred = [10, 25, 50];
+    const preferred = [10, 25, 50, 100];
     return preferred.filter((n) => n < total && n <= total * 0.7);
   }, [total]);
 
@@ -43,19 +43,17 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
                   className="mode-preset-btn"
                   onClick={() => onStartQuiz(n)}
                 >
-                  <span className="preset-icon">{n === 10 ? '🎯' : n === 25 ? '⚡' : '🔥'}</span>
+                  <span className="preset-icon">{n === 10 ? '🎯' : n === 25 ? '⚡' : n === 50 ? '🔥' : '💯'}</span>
                   <span className="preset-label">Quick {n}</span>
                 </button>
               ))}
-              {total <= 100 && (
-                <button
-                  className="mode-preset-btn mode-preset-all"
-                  onClick={() => onStartQuiz(total)}
-                >
-                  <span className="preset-icon">📋</span>
-                  <span className="preset-label">All {total}</span>
-                </button>
-              )}
+              <button
+                className="mode-preset-btn mode-preset-all"
+                onClick={() => onStartQuiz(total)}
+              >
+                <span className="preset-icon">📋</span>
+                <span className="preset-label">All {total}</span>
+              </button>
             </div>
           </div>
         )}
