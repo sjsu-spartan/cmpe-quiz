@@ -1,177 +1,947 @@
 [
   {
     "num": 1,
-    "type": "sa",
-    "question": "**Given:** $w=[1.5,-2]$, $b=0.3$, $x=[0.40,0.30]$, $y=1$, $\\epsilon=0.05$, BCE loss $J=-\\ln p$.\n\n**Task:** Compute $z$, $p=\\sigma(z)$, $J$; compute $\\nabla_x J$ and its sign; compute $x_{adv}$, new $p'$; state whether the class flips.",
-    "answerText": "$z=1.5(0.4)+(-2)(0.3)+0.3=0.3$; $p=\\sigma(0.3)\\approx0.5744$; $J=-\\ln(0.5744) \\approx0.5545$. $\\nabla_x J=(p-y)w=(0.5744-1)[1.5,-2]=[-0.6384,0.8512]\\to\\text{sign}=[-1,+1]$. $x_{adv}=x+0.05\\cdot[-1,1]=[0.35,0.35]$. New $z'=1.5(0.35)-2(0.35)+0.3=0.125$, $p'=\\sigma(0.125) \\approx0.5312$ \u2014 still $>0.5$, no flip yet. **Trap:** $\\nabla_x J$ uses $w$, not $x$; don't swap with the weight-gradient formula.",
-    "tier": "Tier A \u2014 Highest Probability"
+    "type": "mcq",
+    "question": "What is the FGSM update rule for generating an adversarial example from input x?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "x_adv = x + ε·∇ₓJ / ‖∇ₓJ‖ (normalize the gradient to unit length, then add ε)",
+      "B": "x_adv = x − η·∇ₓJ (subtract the raw gradient, scaled by a learning rate)",
+      "C": "x_adv = x + ε·sign(∇ₓJ) (add a fixed-size step in the sign direction of the input gradient)",
+      "D": "x_adv = x − ε·sign(∇_wJ) (use the weight gradient, not the input gradient)"
+    },
+    "answer": "C",
+    "explanation": "FGSM is defined as x_adv = x + ε·sign(∇ₓJ): one gradient computation, one step, moving every feature by exactly ±ε in the direction that increases the loss.",
+    "lectureReference": "Algorithm 1 — FGSM (Fast Gradient Sign Method)"
   },
   {
     "num": 2,
-    "type": "sa",
-    "question": "**Given:** $x=[0.20,0.55,0.95]$, $\\nabla_x J=[-0.7,0.0,1.2]$, $\\epsilon=0.08$, valid range $[0,1]$.\n\n**Task:** Write $\\text{sign}(\\nabla_x J)$ and $\\delta=\\epsilon\\cdot\\text{sign}(\\nabla_x J)$; compute $x_{adv}$ after clipping to $[0,1]$.",
-    "answerText": "$\\text{sign}=[-1,0,+1]$ (note: sign of exactly 0.0 is 0, not $\\pm1$ \u2014 a common mis-step). $\\delta=[-0.08,0,0.08]$. $x_{adv}=[0.12,0.55,1.03]\\to\\text{clip}\\to[0.12,0.55,1.00]$. **Trap:** The zero-gradient coordinate gets zero perturbation; forgetting to clip the third coordinate back to 1.0 is the main error.",
-    "tier": "Tier A \u2014 Highest Probability"
+    "type": "mcq",
+    "question": "For a logistic neuron z = w·x + b, p = σ(z), J = −ln p (when y=1), what is the correct formula for the input gradient ∇ₓJ used by FGSM, and how does it differ from the weight gradient ∇_wJ used in training?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "∇ₓJ = (p−y)·w and ∇_wJ = (p−y)·x — they use the same scalar factor (p−y) but multiply by w vs. x respectively",
+      "B": "∇ₓJ requires computing a Hessian matrix, while ∇_wJ does not",
+      "C": "∇ₓJ = (p−y)·x and ∇_wJ = (p−y)·w — the formulas are swapped relative to option A",
+      "D": "∇ₓJ and ∇_wJ are identical formulas; FGSM and gradient descent use the same gradient"
+    },
+    "answer": "A",
+    "explanation": "The guide's explicit trap states: \"∇ₓJ uses w (input gradient); ∇_wJ uses x (weight gradient). Don't swap them.\" FGSM perturbs the input using the gradient with respect to the input, which is (p−y)·w.",
+    "lectureReference": "Algorithm 1 — FGSM (Fast Gradient Sign Method)"
   },
   {
     "num": 3,
-    "type": "sa",
-    "question": "**Given:** $x_0=[0.50,0.30]$, $\\epsilon=0.10$, $\\alpha=0.04$, 4 steps of given gradient signs ($t1$:$[+1,-1]$, $t2$:$[+1,-1]$, $t3$:$[+1,+1]$, $t4$:$[+1,+1]$).\n\n**Task:** Write the projection box around $x_0$; trace $x_1\\ldots x_4$ projecting after every step; state which step first hits the box edge, compared to $\\lceil\\epsilon/\\alpha\\rceil$.",
-    "answerText": "Box: $[0.40,0.60]\\times[0.20,0.40]$. $x_1=[0.54,0.26]$; $x_2=[0.58,0.22]$; $x_3=[0.60,0.26]\\to$ already clipped on coord 1 ($0.62\\to0.60$); $x_4$ stays at the edge for coord 1. $\\lceil0.10/0.04\\rceil=3$ \u2014 matches when the first coordinate hits the edge. **Trap:** Projection is always relative to $x_0$, never the current iterate.",
-    "tier": "Tier A \u2014 Highest Probability"
+    "type": "mcq",
+    "question": "Given w = [1.5, −2], b = 0.3, x = [0.40, 0.30], y = 1, ε = 0.05, with BCE loss J = −ln p: what is p = σ(z), computed from z = w·x + b?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "p ≈ 0.6900",
+      "B": "p ≈ 0.3100",
+      "C": "p ≈ 0.5744",
+      "D": "p ≈ 0.4256"
+    },
+    "answer": "C",
+    "explanation": "z = 1.5(0.40) + (−2)(0.30) + 0.3 = 0.60 − 0.60 + 0.30 = 0.30. p = σ(0.30) ≈ 0.5744 (verified numerically).",
+    "lectureReference": "Algorithm 1 — FGSM (Fast Gradient Sign Method)"
   },
   {
     "num": 4,
-    "type": "sa",
-    "question": "**Given:** $f(x)=w\\cdot x+b$, $w=(1,-2)$, $b=0.3$, $x_0=(0.40,0.30)$, $y=1$, $\\epsilon=0.2$, $\\alpha=0.1$, 3 steps, $\\nabla_x J=(p-y)\\cdot w$.\n\n**Task:** Find $f(x_0),p_0$; tabulate $x_t,f,p,J$ for $t=0\\ldots3$; state when first misclassified and when the point hits the box edge.",
-    "answerText": "$f(x_0)=0.4-0.6+0.3=0.1$, $p_0=\\sigma(0.1)\\approx0.525$. Since $p<1$ always and $y=1$, $(p-y)$ stays negative every step, so with $w=(1,-2)$ the gradient sign is constant: $\\text{sign}(\\nabla_x J)=[-1,+1]$ for all $t$ (a linear model has a fixed attack direction \u2014 no need to recompute the sign each iteration). Box: $x_1\\in[0.20,0.60]$, $x_2\\in[0.10,0.50]$. $x_1=(0.30,0.40)\\to f=-0.20$ (first misclassified, $p\\approx0.450$). $x_2=(0.20,0.50)\\to f=-0.50$ ($p\\approx0.378$) \u2014 **both coordinates hit their box edges simultaneously here** ($x_1=0.20=$lower bound, $x_2=0.50=$upper bound). $x_3$ is then frozen at $(0.20,0.50)$, $f=-0.50$ (unchanged from $t=2$), since the next unclipped step would move both coordinates further outside the box. **Trap:** don't assume $f$ keeps decreasing linearly for all 3 steps \u2014 always check each coordinate against its own box bound every iteration; here the attack saturates one step earlier than a naive \"$-0.3$ per step\" extrapolation would suggest.",
-    "tier": "Tier A \u2014 Highest Probability"
+    "type": "mcq",
+    "question": "Continuing from Q3 (w = [1.5, −2], x = [0.40, 0.30], y = 1, p ≈ 0.5744, ε = 0.05): what is sign(∇ₓJ), and what is x_adv?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "sign = [+1, +1]; x_adv = [0.45, 0.35]",
+      "B": "sign = [−1, +1]; x_adv = [0.35, 0.35]",
+      "C": "sign = [+1, −1]; x_adv = [0.45, 0.25]",
+      "D": "sign = [−1, −1]; x_adv = [0.35, 0.25]"
+    },
+    "answer": "B",
+    "explanation": "∇ₓJ = (p−y)·w = (0.5744−1)·[1.5, −2] = [−0.638, 0.851], so sign = [−1, +1]. x_adv = x + 0.05·sign = [0.40−0.05, 0.30+0.05] = [0.35, 0.35] (verified numerically).",
+    "lectureReference": "Algorithm 1 — FGSM (Fast Gradient Sign Method)"
   },
   {
     "num": 5,
-    "type": "sa",
-    "question": "**Given:** $x_1=(1,2),y_1=1$; $x_2=(-1,-1),y_2=0$; $w_0=(0,0),b_0=0,\\eta=1.0$.\n\n**Task:** Compute $p_1,p_2,J_0$; compute $\\nabla_w J,\\nabla_b J$; compute $w_1,b_1,J_1$.",
-    "answerText": "$z_1=z_2=0\\Rightarrow p_1=p_2=0.5$. $J_0=\\ln2\\approx0.6931$. Errors $(p_i-y_i)=(-0.5,+0.5)$. $\\nabla_w J=\\frac12[(-0.5)(1,2)+(0.5)(-1,-1)]=(-0.5,-0.75)$. $\\nabla_b J=\\frac12(-0.5+0.5)=0$. $w_1=(0.5,0.75)$, $b_1=0$. **Trap:** divide the gradient sum by $n$; subtract (not add) $\\eta\\nabla J$.",
-    "tier": "Tier A \u2014 Highest Probability"
+    "type": "mcq",
+    "question": "Continuing from Q4 (x_adv = [0.35, 0.35], w = [1.5, −2], b = 0.3, y = 1): does the predicted class flip after this single FGSM step at ε = 0.05?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "No — p′ is approximately 0.53, still above 0.5, so the class does not flip at this ε",
+      "B": "It is impossible to determine without re-running the full training loop",
+      "C": "Yes — p′ drops to approximately 0.42, below the 0.5 decision boundary",
+      "D": "The class always flips after any FGSM step, by construction"
+    },
+    "answer": "A",
+    "explanation": "z′ = 1.5(0.35) − 2(0.35) + 0.3 = 0.125. p′ = σ(0.125) ≈ 0.5312, which is still above 0.5 (verified numerically), so the point has not yet been misclassified at this ε; a larger ε would be needed to flip it.",
+    "lectureReference": "Algorithm 1 — FGSM (Fast Gradient Sign Method)"
   },
   {
     "num": 6,
-    "type": "sa",
-    "question": "**Given:** Same data, $\\eta=1.0$, start $w_1=(0.5,0.75)$, $b_1=0$, $p=(0.8808,0.2227)$ at $w_1$.\n\n**Task:** Compute $\\nabla_w J,\\nabla_b J$ at $w_1$; compute $w_2,b_2,J_2$; classify test point $(0.5,-0.2)$ using $w_2,b_2$.",
-    "answerText": "Errors $(0.8808-1, 0.2227-0)=(-0.1192,0.2227)$. $\\nabla_w J=\\frac12[(-0.1192)(1,2)+ (0.2227)(-1,-1)]\\approx(-0.1710,-0.2310)$. $\\nabla_b J=\\frac12(-0.1192+0.2227)=0.0518$. $w_2\\approx(0.6710,0.9810)$, $b_2\\approx-0.0518$. Test point: $z=0.6710(0.5)+0.9810(-0.2)-0.0518 \\approx0.0169>0\\to$ class 1.",
-    "tier": "Tier A \u2014 Highest Probability"
+    "type": "mcq",
+    "question": "Given x = [0.20, 0.55, 0.95], ∇ₓJ = [−0.7, 0.0, 1.2], ε = 0.08, with the valid pixel range [0, 1]: what is sign(∇ₓJ), and what is x_adv after clipping?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "sign = [0, 0, 0]; x_adv = x unchanged, since any zero component cancels the whole perturbation",
+      "B": "sign = [−1, 0, +1]; x_adv = [0.12, 0.55, 1.00] — the exactly-zero gradient coordinate gets zero perturbation, and the third coordinate must be clipped back to the valid range",
+      "C": "sign = [−1, 0, +1]; x_adv = [0.12, 0.55, 1.03] (no clipping applied)",
+      "D": "sign = [−1, +1, +1]; x_adv = [0.12, 0.63, 1.00] (a zero gradient is treated as positive)"
+    },
+    "answer": "B",
+    "explanation": "sign(0.0) = 0, not ±1, so the middle coordinate is unperturbed. δ = [−0.08, 0, 0.08], giving raw x_adv = [0.12, 0.55, 1.03], which must be clipped to the valid [0,1] range, yielding [0.12, 0.55, 1.00].",
+    "lectureReference": "Algorithm 1 — FGSM (Fast Gradient Sign Method)"
   },
   {
     "num": 7,
-    "type": "sa",
-    "question": "**Given:** Baseline: 95.0/42.0/30.0 (clean/FGSM/PGD) \u00b7 1k calls. FGSM-trained: 94.0/80.0/70.0 \u00b7 2k. PGD-trained: 93.5/78.0/76.0 \u00b7 8k, at $\\epsilon=0.1$.\n\n**Task:** State the baseline PGD drop; PGD accuracy recovered by each defense; PGD-trained's own clean-to-PGD gap; cost multipliers and which model to deploy against a PGD adversary.",
-    "answerText": "Baseline drop under PGD $=95.0-30.0=65.0$ points. FGSM-trained recovers $70.0-30.0 =40.0$ pts; PGD-trained recovers $76.0-30.0=46.0$ pts. PGD-trained's own gap (clean vs PGD) $=93.5-76.0=17.5$ pts. Cost multipliers: FGSM-trained $2\\times$, PGD-trained $8\\times$ baseline calls. Deploy PGD-trained against a PGD adversary (highest PGD accuracy, 76.0), accepting the 8\u00d7 training cost. **Trap:** always validate with PGD, not FGSM \u2014 training robust only at a given $\\epsilon$ doesn't generalize to other budgets.",
-    "tier": "Tier B \u2014 High Probability"
+    "type": "mcq",
+    "question": "How does PGD differ from FGSM?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "PGD takes a single large step like FGSM but in the opposite direction",
+      "B": "PGD is iterative FGSM with small steps α < ε, projecting back into an ε-ball around the ORIGINAL point x₀ after every step",
+      "C": "PGD does not use gradients at all; it is a random search method",
+      "D": "PGD projects around the current iterate at each step, not the original x₀"
+    },
+    "answer": "B",
+    "explanation": "PGD repeatedly applies x ← Π_ε[x + α·sign(∇ₓJ(x))], where the projection Π_ε is always centered on the original input x₀, not the current point — a trap the guide calls out explicitly: \"Project around x₀, not the current point.\"",
+    "lectureReference": "Algorithm 2 — PGD (Projected Gradient Descent)"
   },
   {
     "num": 8,
-    "type": "sa",
-    "question": "**Given:** $n=10$ points, $k=4$ outer iterations, each retrain = 200 GD steps = 0.5s. Validation losses per candidate flip given for iterations 1\u20132.\n\n**Task:** State which flip is committed each iteration; compute total retrains and total compute time for $k=4$; explain why greedy isn't globally optimal.",
-    "answerText": "Commit the flip with max $L_{val}$ each round (greedy). Total retrains for $k=4$ out of $n=10$: $10+9+8+7=34$ retrains $\\to 34\\times200=6800$ GD steps $\\to 34\\times0.5=17.0$s. Greedy is locally exact per step but never revisits earlier flips, so it can miss a globally better combination that requires an early \"suboptimal-looking\" flip.",
-    "tier": "Tier D \u2014 Lower Probability"
+    "type": "mcq",
+    "question": "Given x₀ = [0.50, 0.30] and ε = 0.10, what is the projection box (the valid region PGD must stay within)?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "[0, 1] × [0, 1] (the full pixel range, regardless of x₀ or ε)",
+      "B": "[0.45, 0.55] × [0.25, 0.35]",
+      "C": "[0.30, 0.70] × [0.10, 0.50]",
+      "D": "[0.40, 0.60] × [0.20, 0.40]"
+    },
+    "answer": "D",
+    "explanation": "The box is [x₀ − ε, x₀ + ε] per coordinate: [0.50−0.10, 0.50+0.10] × [0.30−0.10, 0.30+0.10] = [0.40, 0.60] × [0.20, 0.40].",
+    "lectureReference": "Algorithm 2 — PGD (Projected Gradient Descent)"
   },
   {
     "num": 9,
-    "type": "sa",
-    "question": "**Given:** $w_{sub}=(1.5,-1)$, $b_{sub}=0.2$. Pool: $P_1(1,1)$, $P_2(0.4,1.0)$, $P_3(-0.5,0.2)$, $P_4(2,2)$. Also: $d=60$ dims, 120 queries/dim random sampling, $0.003/query, 4\u00d7 more query-efficient active learning.\n\n**Task:** Compute $|f_{sub}(x)|$ for each pool point; identify the queried point and whose label is used; compute random-sampling cost vs. active-learning cost.",
-    "answerText": "$f_{sub}(P_1)=1.5-1+0.2=0.7$; $f_{sub}(P_2)=0.6-1+0.2=-0.2\\to|{-0.2}|=0.2$; $f_{sub}(P_3)=-0.75-0.2+0.2=-0.75\\to0.75$; $f_{sub}(P_4)=3-2+0.2=1.2$. Query $P_2$ (smallest $|f_{sub}|$, most uncertain). Use the **target's** label, not the substitute's guess. Random: $60\\times120=7200$ queries $\\times\\$0.003=\\$21.60$. Active learning: $7200/4=1800$ queries $\\times\\$0.003=\\$5.40$.",
-    "tier": "Tier B \u2014 High Probability"
+    "type": "mcq",
+    "question": "Given x₀ = [0.50, 0.30], ε = 0.10, α = 0.04, and sign(∇ₓJ) at steps t1=[+1,−1], t2=[+1,−1], t3=[+1,+1], t4=[+1,+1]: at which step does the first coordinate hit the box edge (0.60), and how does this compare to ⌈ε/α⌉?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "It first reaches (and gets clipped to) the edge at step 3, matching ⌈0.10/0.04⌉ = 3",
+      "B": "The first coordinate never reaches the edge within 4 steps",
+      "C": "It reaches the edge at step 4, one step later than ⌈ε/α⌉ = 3",
+      "D": "It reaches the edge at step 1, well before ⌈ε/α⌉ = 3"
+    },
+    "answer": "A",
+    "explanation": "Tracing: x₁=[0.54,0.26], x₂=[0.58,0.22], x₃=[0.62,0.26]→clipped to [0.60,0.26]. The first coordinate hits the edge exactly at step 3 (verified numerically), matching ⌈ε/α⌉ = ⌈0.10/0.04⌉ = ⌈2.5⌉ = 3.",
+    "lectureReference": "Algorithm 2 — PGD (Projected Gradient Descent)"
   },
   {
     "num": 10,
-    "type": "sa",
-    "question": "**Given:** Members: 0.98, 0.96, 0.91, 0.89, 0.85, 0.80. Non-members: 0.93, 0.70, 0.65, 0.50, 0.45, 0.30. Threshold: member if confidence $>0.88$ (strict).\n\n**Task:** Build the confusion matrix (TP,FN,FP,TN); compute accuracy, precision, recall, F1.",
-    "answerText": "Members $>0.88$: 0.98,0.96,0.91,0.89 $\\to TP=4$; 0.85,0.80 $\\le0.88\\to FN=2$. Non-members $>0.88$: 0.93 $\\to FP=1$; the other 5 $\\to TN=5$. Accuracy$=(4+5)/12=0.75$. Precision$=4/(4+1)=0.80$. Recall$=4/(4+2)=0.667$. F1$=2(0.80)(0.667)/(0.80+0.667)\\approx0.727$. **Trap:** threshold comparison is strict `>`; the exact threshold value is never flagged as member.",
-    "tier": "Tier B \u2014 High Probability"
+    "type": "mcq",
+    "question": "Given f(x) = w·x + b with w = (1, −2), b = 0.3, x₀ = (0.40, 0.30), y = 1, ε = 0.2, α = 0.1, and ∇ₓJ = (p−y)·w: at which step t does the point first become misclassified (p drops below 0.5)?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "It is never misclassified within 3 steps, because the gradient sign flips each step",
+      "B": "It is misclassified from the start (t=0), since p₀ < 0.5",
+      "C": "It first becomes misclassified at t=1, when p drops to approximately 0.45",
+      "D": "It becomes misclassified only at t=3, after the box projection clips both coordinates"
+    },
+    "answer": "C",
+    "explanation": "f(x₀) = 0.40 − 0.60 + 0.30 = 0.10, p₀ ≈ 0.5250 (still correctly classified). After one PGD step (sign=[−1,+1], giving x₁=[0.30, 0.40]), f₁ = −0.20, p₁ ≈ 0.4502, which is below 0.5 — misclassified at t=1 (verified numerically).",
+    "lectureReference": "Algorithm 2 — PGD (Projected Gradient Descent)"
   },
   {
     "num": 11,
-    "type": "sa",
-    "question": "**Given:** Same confidences, new threshold 0.90; a loss-threshold audit reports AUC$=0.62$.\n\n**Task:** New confusion matrix and accuracy/precision/recall/F1; compute membership advantage $=2(\\text{AUC}-0.5)$; name two defenses.",
-    "answerText": "Members $>0.90$: 0.98,0.96,0.91 $\\to TP=3$; 0.89,0.85,0.80 $\\le0.90\\to FN=3$. Non-members $>0.90$: 0.93 $\\to FP=1$ (this is the trap \u2014 0.93 exceeds 0.90 even though it's a non-member); the other 5 $\\le0.90\\to TN=5$. Accuracy$=(3+5)/12\\approx0.667$. Precision$=3/(3+1)=0.75$. Recall$=3/6=0.5$. F1$=2(0.75)(0.5)/(0.75+0.5)=0.6$. Membership advantage$=2(0.62-0.5)=0.24$. Defenses: DP-SGD (reduces confidence gap via clipping+noise), label smoothing, early stopping, or confidence vector masking (name any two). **Trap:** raising the threshold does not guarantee FP=0 \u2014 always re-check every non-member value against the new threshold rather than assuming the previous question's FP count carries over.",
-    "tier": "Tier B \u2014 High Probability"
+    "type": "mcq",
+    "question": "For logistic regression with cross-entropy loss, what are the correct gradient formulas for the weight vector w and bias b?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "∇_w = (1/n)Σ(pᵢ−yᵢ) (a scalar, not a vector, since w and x have the same shape)",
+      "B": "∇_w = (1/n)Σ(pᵢ−yᵢ)xᵢ ; ∇_b = (1/n)Σ(pᵢ−yᵢ), and the update subtracts η times each gradient",
+      "C": "∇_w = Σ(pᵢ−yᵢ)xᵢ with no division by n, since n cancels out in logistic regression",
+      "D": "∇_w = (1/n)Σ(yᵢ−pᵢ)xᵢ ; the update adds η times the gradient to w (gradient ascent)"
+    },
+    "answer": "B",
+    "explanation": "The guide's trap states: \"Divide by n. Subtract η·gradient (descent).\" The gradients average the per-example error-weighted inputs over the batch, and the update is w ← w − η∇_w, b ← b − η∇_b.",
+    "lectureReference": "Algorithm 3 — Batch Gradient Descent (Logistic Regression)"
   },
   {
     "num": 12,
-    "type": "sa",
-    "question": "**Given:** $q=[0.6,0.8,0,0]$ ($\\|q\\|=1$). $D_1(\\text{legit})=[0.5,0.7,0.1,0.2]$, $D_2(\\text{legit})=[0.1,0.2,0.9,0.4]$, $D_M(\\text{poison})=[0.6,0.78,0.05,0.05]$, top-$k=2$.\n\n**Task:** Compute $q\\cdot d$, $\\|d\\|$, $\\cos(q,d)$ for each document; rank and state which are retrieved; state the security consequence.",
-    "answerText": "$D_1$: $q\\cdot D_1=0.3+0.56=0.86$, $\\|D_1\\|=\\sqrt{0.25+0.49+0.01+0.04}=\\sqrt{0.79} \\approx0.889$, $\\cos\\approx0.86/0.889\\approx0.968$. $D_2$: $q\\cdot D_2=0.06+0.16=0.22$, $\\|D_2\\|=\\sqrt{0.01+0.04+0.81+0.16}=\\sqrt{1.02}\\approx1.010$, $\\cos\\approx0.218$. $D_M$: $q\\cdot D_M=0.36+0.624=0.984$, $\\|D_M\\|=\\sqrt{0.36+0.6084+0.0025+0.0025}\\approx0.986$, $\\cos\\approx0.998$. Ranking: $D_M(0.998) > D_1(0.968) > D_2(0.218)$. Top-2 retrieved: $D_M, D_1$ \u2014 the poisoned doc ranks #1, so its hidden instructions reach the LLM as trusted context. **Trap:** higher dot product $\\ne$ higher cosine similarity; must normalize by both vector norms.",
-    "tier": "Tier B \u2014 High Probability"
+    "type": "mcq",
+    "question": "Given x₁=(1,2), y₁=1; x₂=(−1,−1), y₂=0; starting weights w₀=(0,0), b₀=0: what are p₁, p₂, and the initial loss J₀?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "p₁=1.0, p₂=0.0, J₀=0 (perfect predictions at initialization)",
+      "B": "p₁=0.693, p₂=0.693, J₀=0.5 (loss and probability are swapped)",
+      "C": "p₁=0.5, p₂=0.5, J₀=ln(2) ≈ 0.693 — with w=0 and b=0, every z=0, so every sigmoid output is 0.5 regardless of input",
+      "D": "p₁ and p₂ depend on x₁ and x₂ even when w=0, since the bias alone determines p"
+    },
+    "answer": "C",
+    "explanation": "The guide notes: \"pᵢ = σ(w·xᵢ + b) (all 0.5 when w = 0, b = 0).\" With w=(0,0) and b=0, z=0 for every point regardless of x, so p=σ(0)=0.5 for both, and the cross-entropy loss at p=0.5 for any label is exactly −ln(0.5) = ln(2) ≈ 0.693.",
+    "lectureReference": "Algorithm 3 — Batch Gradient Descent (Logistic Regression)"
   },
   {
     "num": 13,
-    "type": "sa",
-    "question": "**Given:** Historical similarity $\\mu=0.68,\\sigma=0.07$; new top-1 similarity$=0.95$; inspect if $z>3$. Output classifier $P(\\text{sensitive})=0.76$; block threshold $T=0.80$.\n\n**Task:** Compute the z-score and decide whether to inspect; decide whether the output gate blocks the answer; name two more RAG controls.",
-    "answerText": "$z=(0.95-0.68)/0.07\\approx3.857>3\\to$ flag for inspection. Output gate: $0.76<0.80 \\to$ does NOT block (passes through) \u2014 note this is a near-miss, worth flagging for monitoring even though it technically passes the hard gate. Additional controls: provenance/allowlisting of source documents, retrieval diversity constraints (cap how much weight any single source gets), or periodic re-indexing/review of the document corpus (any two reasonable controls).",
-    "tier": "Tier B \u2014 High Probability"
+    "type": "mcq",
+    "question": "Given x₁=(1,2), y₁=1; x₂=(−1,−1), y₂=0; w₀=(0,0), b₀=0, η=1.0, p₁=p₂=0.5 (from Q12): what are the updated weights w₁ after one gradient step?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "w₁ = (−0.5, −0.75)",
+      "B": "w₁ = (0, 0) — no change, since both predictions started at 0.5",
+      "C": "w₁ = (0.5, 0.75)",
+      "D": "w₁ = (1.0, 1.5)"
+    },
+    "answer": "C",
+    "explanation": "∇_w = (1/2)[(0.5−1)(1,2) + (0.5−0)(−1,−1)] = (1/2)[(−0.5,−1)+(−0.5,−0.5)] = (1/2)(−1,−1.5) = (−0.5,−0.75). w₁ = w₀ − η·∇_w = (0,0) − 1.0·(−0.5,−0.75) = (0.5, 0.75) (verified numerically).",
+    "lectureReference": "Algorithm 3 — Batch Gradient Descent (Logistic Regression)"
   },
   {
     "num": 14,
-    "type": "sa",
-    "question": "**Given:** Clip norm $C=1.5$, batch $B=3$, $\\eta=0.1$. $g_1=[0.6,0.8]$, $g_2=[3,4]$, $g_3=[-1.2,0.9]$. Noise added to the sum $=[0.3,-0.6]$. $\\theta=[1.0,1.0]$.\n\n**Task:** Compute $\\|g_i\\|$ and each clipped gradient; sum, add noise, divide by $B$; compute updated $\\theta$.",
-    "answerText": "$\\|g_1\\|=1.0\\le1.5\\to$ unchanged: $[0.6,0.8]$. $\\|g_2\\|=5.0>1.5\\to$ factor $=1.5/5.0=0.3\\to$ clipped $=[0.9,1.2]$. $\\|g_3\\|=\\sqrt{1.44+0.81}=1.5=1.5\\to$ unchanged (exactly at the clip norm): $[-1.2,0.9]$. Sum$=[0.6+0.9-1.2,\\ 0.8+1.2+0.9]=[0.3,2.9]$. $+$noise$= [0.6,2.3]$. $\\div B=3\\to[0.2,0.767]$. Updated $\\theta=\\theta-\\eta\\cdot\\text{grad}=[1.0-0.1(0.2), 1.0-0.1(0.767)]=[0.98,0.923]$. **Trap:** clip each gradient individually BEFORE summing; the clipped norm is at most $C$ (exactly $C$ when the original exceeded it).",
-    "tier": "Tier A \u2014 Highest Probability"
+    "type": "mcq",
+    "question": "Continuing from Q13 (w₁=(0.5, 0.75), b₁=0): what is the new loss J₁, and is it lower than J₀ ≈ 0.693?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "J₁ cannot be computed without knowing the true labels of new test points",
+      "B": "J₁ ≈ 0.19, which is lower than J₀ — the loss decreased after one gradient step, as expected for a small enough η",
+      "C": "J₁ ≈ 1.20, which is higher than J₀ — gradient descent increased the loss in this case",
+      "D": "J₁ is exactly equal to J₀, since only one step was taken"
+    },
+    "answer": "B",
+    "explanation": "Recomputing p at w₁: p₁(for x₁)≈0.924, p₂(for x₂)≈0.370, giving J₁ ≈ 0.189 (verified numerically) — substantially lower than J₀≈0.693, confirming the guide's trap: \"Loss must not increase for small η.\"",
+    "lectureReference": "Algorithm 3 — Batch Gradient Descent (Logistic Regression)"
   },
   {
     "num": 15,
-    "type": "sa",
-    "question": "**Given:** $\\delta=10^{-5}$, $\\Delta=1$: $\\sigma=\\Delta\\sqrt{2\\ln(1.25/\\delta)}/\\epsilon$. DP-SGD: $\\sigma=1.1,C=1,B=64$. Basic composition: 0.02/step, $T=900$. Tight accountant: $\\epsilon=k\\sqrt{T}$ with $\\epsilon(100)=1.2$.\n\n**Task:** Compute $\\sigma$ for $\\epsilon=2$ and $\\epsilon=0.25$; compute per-coordinate noise std $\\sigma C/B$; compute $\\epsilon_{basic}$ and $\\epsilon_{tight}$ at $T=900$ and their ratio.",
-    "answerText": "$\\ln(1.25/10^{-5})=\\ln(125000)\\approx11.736$; $\\sqrt{2\\times11.736}=\\sqrt{23.47}\\approx4.845$. $\\epsilon=2\\to\\sigma\\approx2.42$; $\\epsilon=0.25\\to\\sigma\\approx19.38$. Per-coordinate noise std $=\\sigma C/B=1.1\\times1/64 \\approx0.0172$ (using the given DP-SGD $\\sigma=1.1$). $\\epsilon_{basic}=0.02\\times900=18.0$. $k=1.2/\\sqrt{100}=0.12$; $\\epsilon_{tight}=0.12\\times\\sqrt{900}=0.12\\times30=3.6$. Ratio $=18.0/3.6=5.0$ \u2014 basic composition overstates privacy loss 5\u00d7 relative to the tight accountant. **Trap:** halving $\\epsilon$ doubles $\\sigma$ (inverse relationship); basic composition grows linearly in $T$, tight accounting grows as $\\sqrt{T}$, so the overstatement grows with more training steps.",
-    "tier": "Tier A \u2014 Highest Probability"
+    "type": "mcq",
+    "question": "Given the same data, η=1.0, starting from w₁=(0.5,0.75), b₁=0, with p=(0.8808, 0.2227) at w₁: after computing w₂, b₂, how is the test point (0.5, −0.2) classified?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "The test point lies exactly on the decision boundary (p = 0.5)",
+      "B": "Class 1 — f(test) = w₂·(0.5,−0.2) + b₂ gives a positive z, so p > 0.5",
+      "C": "Class 0, since the updated decision boundary rejects points with a negative second coordinate",
+      "D": "Classification cannot be determined without a third training example"
+    },
+    "answer": "B",
+    "explanation": "Following the update: w₂ ≈ (0.671, 0.981), b₂ ≈ −0.052 (verified numerically). At the test point (0.5, −0.2): z = 0.671(0.5) + 0.981(−0.2) − 0.052 ≈ 0.088, giving p ≈ 0.522 > 0.5, so the point is classified as class 1.",
+    "lectureReference": "Algorithm 3 — Batch Gradient Descent (Logistic Regression)"
   },
   {
     "num": 16,
-    "type": "sa",
-    "question": "**Given:** Expected $e=[0.20,0.30,0.30,0.20]$, Actual $a=[0.15,0.25,0.35,0.25]$, $n=500$ per sample, KS critical $=1.36\\sqrt{2/n}$.\n\n**Task:** Compute PSI bin-by-bin and total; compute the KS statistic and the bin where it occurs; compute the critical value and state both verdicts.",
-    "answerText": "Bin1: $(0.15-0.20)\\ln(0.15/0.20)=(-0.05)(-0.2877)=0.0144$. Bin2: $(0.25-0.30)\\ln(0.25/0.30)=(-0.05)(-0.1823)=0.0091$. Bin3: $(0.35-0.30)\\ln(0.35/0.30) =(0.05)(0.1542)=0.0077$. Bin4: $(0.25-0.20)\\ln(0.25/0.20)=(0.05)(0.2231)=0.0112$. PSI$\\approx0.0144+0.0091+0.0077+0.0112=0.0424\\to<0.1\\to$ stable. Cumulative expected: 0.20,0.50,0.80,1.00. Cumulative actual: 0.15,0.40,0.75,1.00. Gaps: 0.05,0.10,0.05,0.00. KS$=0.10$ at bin 2. Critical $=1.36\\sqrt{2/500}=1.36\\times0.0632\\approx0.0860$. $0.10>0.086\\to$ KS flags drift even though PSI says stable. **Trap:** PSI and KS can disagree; PSI ignores sample size, KS's critical value depends on $n$ and becomes more sensitive as $n$ grows.",
-    "tier": "Tier C \u2014 Moderate Probability"
+    "type": "mcq",
+    "question": "What is the core idea of adversarial training as a defense, and what is its key limitation according to the guide's trap?",
+    "tier": "Tier D — Lower Probability",
+    "options": {
+      "A": "It trains on adversarial examples crafted during training (e.g., via PGD) at a fixed budget ε; robustness learned at a small ε does not protect against attacks at a larger ε",
+      "B": "It removes all adversarial examples from the dataset before training to avoid contaminating the model",
+      "C": "It trains the model only on clean data, then tests separately on adversarial examples; robustness generalizes automatically to any ε",
+      "D": "It only works against FGSM attacks and provides no benefit against PGD"
+    },
+    "answer": "A",
+    "explanation": "The guide states: \"Train on attacked inputs (Madry et al. 2018)... Robustness only holds for the ε it was trained at,\" and the trap warns: \"Training at a small ε does not protect at a larger ε.\"",
+    "lectureReference": "Algorithm 4 — Adversarial Training"
   },
   {
     "num": 17,
-    "type": "sa",
-    "question": "**Given:** KS statistic $=0.10$ (from Q16); critical value $1.36\\sqrt{2/n}$ at $\\alpha=0.05$.\n\n**Task:** State the verdict if $n=200$ per sample; find the smallest $n$ at which 0.10 is significant; explain why PSI and KS can disagree.",
-    "answerText": "$n=200$: critical$=1.36\\sqrt{2/200}=1.36\\times0.1=0.136>0.10\\to$ NOT significant at this smaller sample size (verdict flips vs. $n=500$!). Smallest $n$: solve $1.36\\sqrt{2/n}=0.10 \\to\\sqrt{2/n}=0.0735\\to2/n=0.0054\\to n\\approx370$. PSI and KS disagree because PSI applies fixed cutoffs (0.1/0.2) regardless of $n$, while KS's significance threshold shrinks as $n$ grows, making KS increasingly sensitive to small, consistent distributional shifts at large sample sizes.",
-    "tier": "Tier C \u2014 Moderate Probability"
+    "type": "mcq",
+    "question": "According to the guide's trap, what is the correct way to validate an adversarially trained model's robustness?",
+    "tier": "Tier D — Lower Probability",
+    "options": {
+      "A": "Validate with PGD, not FGSM — FGSM is a weaker single-step attack that can overestimate robustness against the stronger iterative PGD attack",
+      "B": "Validate with FGSM only, since it is faster to compute than PGD",
+      "C": "Validation is unnecessary once a model has been adversarially trained",
+      "D": "Validate only on the clean (non-adversarial) test accuracy"
+    },
+    "answer": "A",
+    "explanation": "The trap explicitly states: \"Validate with PGD, not FGSM.\" A model can appear robust against the weaker FGSM attack while remaining vulnerable to the stronger iterative PGD attack, so PGD is the standard robustness check.",
+    "lectureReference": "Algorithm 4 — Adversarial Training"
   },
   {
     "num": 18,
-    "type": "sa",
-    "question": "**Given:** Group G: approved 60, rejected 140 (N=200). Group H: approved 90, rejected 110 (N=200). $N_{total}=400$; weight$=P(g)\\cdot P(y)\\cdot N/\\text{observed}$.\n\n**Task:** Compute $P(G),P(H),P(\\text{approved}),P(\\text{rejected})$; compute expected count and weight for all 4 cells; state which cell is boosted most and what that does.",
-    "answerText": "$P(G)=0.5$, $P(H)=0.5$. $P(\\text{approved})=(60+90)/400=0.375$, $P(\\text{rejected})=0.625$. G-approved expected$=0.5\\times0.375\\times400=75$; observed$=60\\to$ weight$=75/60=1.25$. G-rejected expected$=0.5\\times0.625\\times400=125$; observed$=140\\to$ weight$=125/140\\approx0.893$. H-approved expected$=75$; observed$=90\\to$ weight$=75/90 \\approx0.833$. H-rejected expected$=125$; observed$=110\\to$ weight$=125/110\\approx1.136$. Largest weight: G-approved (1.25) \u2014 this cell is most under-represented and gets boosted most, counteracting the fact that G is approved less often than its population share would predict.",
-    "tier": "Tier D \u2014 Lower Probability"
+    "type": "mcq",
+    "question": "Given baseline accuracy (clean/FGSM/PGD) = 95.0/42.0/30.0 and PGD-trained accuracy = 93.5/78.0/76.0, both at ε=0.1: how much PGD accuracy does the PGD-trained model recover compared to the baseline, and what is the cost multiplier if PGD-trained uses 8k gradient calls vs. the baseline's 1k?",
+    "tier": "Tier D — Lower Probability",
+    "options": {
+      "A": "Recovers 46 percentage points of PGD accuracy, at 8× the compute cost of the baseline",
+      "B": "Recovers 46 percentage points, but at 1× the compute cost (no overhead)",
+      "C": "Loses 46 percentage points of PGD accuracy, at the same compute cost",
+      "D": "Recovers 4.6 percentage points, at 0.8× the compute cost"
+    },
+    "answer": "A",
+    "explanation": "PGD accuracy recovered = 76.0 − 30.0 = 46.0 percentage points. Cost multiplier = 8k / 1k = 8×, reflecting the substantially higher compute cost of adversarial training with iterative PGD-crafted batches.",
+    "lectureReference": "Algorithm 4 — Adversarial Training"
   },
   {
     "num": 19,
-    "type": "sa",
-    "question": "**Given:** (exposure, exploitability): prompt(1.0,0.7), api(0.8,0.8), upload(0.7,0.9), agent_tools(0.9,0.6), weights(0.2,0.5). Budget: harden top 3. Separately: Risk bands $\\le6$Low/$\\le12$Med/$>12$High; a component $L=4,I=4$. Triage: $\\min(5,1+\\lfloor \\text{users}/1000\\rfloor)\\times\\text{sensitivity}\\times(2\\text{ if active})$; 4200 users, sensitivity 4, active.\n\n**Task:** Score and rank all five surfaces; identify the hardened top 3 and the % of risk they cover; compute the risk band for $L=4,I=4$; compute the triage score and priority tier.",
-    "answerText": "Scores: prompt$=0.70$, api$=0.64$, upload$=0.63$, agent_tools$=0.54$, weights$=0.10$. Ranked: prompt$>$api$>$upload$>$agent_tools$>$weights. Top 3 = prompt, api, upload. Total$=0.70+0.64+0.63+0.54+0.10=2.61$. Top-3 sum$=0.70+0.64+0.63=1.97\\to1.97/2.61 \\approx75.5\\%$. Risk$=4\\times4=16>12\\to$ High. Triage: $\\min(5,1+\\lfloor4200/1000\\rfloor)=\\min(5,1+4)=5$; $5\\times4\\times2=40\\ge30\\to$ **P1**. **Trap:** compute scores before ranking; `users//1000` is integer floor division (800 users $\\to\\lfloor800/1000\\rfloor=0$, so the term inside is $1+0=1$, not $1.8$).",
-    "tier": "Tier A \u2014 Highest Probability"
+    "type": "mcq",
+    "question": "How does greedy iterative label-flip poisoning work, and why is it not guaranteed to find the globally optimal set of flips?",
+    "tier": "Tier D — Lower Probability",
+    "options": {
+      "A": "Each outer iteration tries every not-yet-flipped point, retrains fully for each candidate, and commits only the single flip that maximizes validation loss; because it never revisits earlier flips, it is a greedy (locally optimal per step) approximation, not a globally optimal search",
+      "B": "It requires no retraining at all — the optimal flip is computed analytically in closed form",
+      "C": "It flips all candidate labels simultaneously in one pass, which guarantees global optimality",
+      "D": "It uses gradient descent directly on the labels, treating them as continuous values"
+    },
+    "answer": "A",
+    "explanation": "The guide states: \"Try each flip, retrain, keep the max-L_val flip,\" and the trap notes: \"Greedy is exact per step but not globally optimal: it never revisits earlier flips.\"",
+    "lectureReference": "Algorithm 5 — Greedy Label-Flip Poisoning"
   },
   {
     "num": 20,
-    "type": "sa",
-    "question": "**Given:** Bands: $\\le6$Low, $\\le12$Med, else High. Chatbot $L5,I3,w=0.3$; Fraud $L2,I4,w=0.4$; Search $L3,I2,w=0.2$; HR tool $L1,I5,w=0.1$.\n\n**Task:** Compute risk score and band per component; compute the weighted index $\\sum \\text{score}\\times w$ and its overall band; state which component is escalated first.",
-    "answerText": "Chatbot$=5\\times3=15\\to$High. Fraud$=2\\times4=8\\to$Med. Search$=3\\times2=6\\to$Low. HR$=1\\times5=5\\to$Low. Weighted index$=15(0.3)+8(0.4)+6(0.2)+5(0.1)=4.5+3.2+1.2+0.5=9.4\\to$Med overall (despite one High component). Escalate Chatbot first (highest individual risk band, High).",
-    "tier": "Tier A \u2014 Highest Probability"
+    "type": "mcq",
+    "question": "Given n = 10 training points and k = 4 outer iterations, where each retrain costs 200 GD steps = 0.5 seconds: what is the total number of retrains, and the total compute time?",
+    "tier": "Tier D — Lower Probability",
+    "options": {
+      "A": "34 retrains, 17 seconds",
+      "B": "10 retrains, 5 seconds (one retrain per outer iteration)",
+      "C": "40 retrains, 20 seconds",
+      "D": "46 retrains, 23 seconds"
+    },
+    "answer": "A",
+    "explanation": "Retrains = n + (n−1) + (n−2) + (n−3) = 10+9+8+7 = 34 (verified numerically). Total time = 34 × 0.5s = 17 seconds.",
+    "lectureReference": "Algorithm 5 — Greedy Label-Flip Poisoning"
   },
   {
     "num": 21,
-    "type": "sa",
-    "question": "**Given:** base$=\\min(5,1+\\lfloor\\text{users}/1000\\rfloor)$; score$=\\text{base}\\times \\text{sensitivity}\\times(2\\text{ if active else }1)$; P1$\\ge30$, P2$\\ge15$, else P3. A(2500,3, active), B(12000,2,inactive), C(900,5,active), D(3999,4,active).\n\n**Task:** Compute base, score, severity for A\u2013D; sort by score and count P1s; explain why D gets base 4, not 5.",
-    "answerText": "A: base$=\\min(5,1+2)=3$, score$=3\\times3\\times2=18\\to$P2. B: base$=\\min(5,1+12)=5$, score$=5\\times2\\times1=10\\to$P3. C: base$=\\min(5,1+0)=1$, score$=1\\times5\\times2=10\\to$P3. D: base$=\\min(5,1+\\lfloor3999/1000\\rfloor)=\\min(5,1+3)=4$, score$=4\\times4\\times2=32\\to$P1. Sorted by score: D(32,P1) $>$ A(18,P2) $>$ B(10,P3) $\\approx$ C(10,P3). P1 count$=1$. D gets base 4 (not 5) because $\\lfloor3999/1000\\rfloor=3$ (floor/integer division truncates 3.999 to 3), so base$=1+3=4$ \u2014 not 5, because 3999 users is just under the 4000-user threshold needed to reach base 5.",
-    "tier": "Tier A \u2014 Highest Probability"
+    "type": "mcq",
+    "question": "How does uncertainty sampling select the next point to query in active-learning model extraction, and what must be used as the label for that point?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "It queries the point with the LARGEST |w_sub·x + b_sub|, since far-from-boundary points are most informative; the substitute model's own prediction is used as the label",
+      "B": "It queries the point with the SMALLEST |w_sub·x + b_sub| (closest to the substitute's decision boundary), and the label must come from the TARGET model, not the substitute's own guess",
+      "C": "It queries points uniformly at random from the pool, regardless of the substitute's confidence",
+      "D": "It queries the point with the smallest Euclidean distance to the origin, regardless of the substitute model"
+    },
+    "answer": "B",
+    "explanation": "The guide states the query is x* = argmin |w_sub·x + b_sub| (closest to the boundary, where the substitute is least certain), and the trap warns: \"Use the TARGET's label for x*, not the substitute's guess.\"",
+    "lectureReference": "Algorithm 6 — Active-Learning Model Extraction"
   },
   {
     "num": 22,
-    "type": "sa",
-    "question": "**Given:** Group C: $TP=72,FP=18,TN=140,FN=30$. Group D: $TP=50,FP=40,TN=90,FN=20$.\n\n**Task:** Compute selection rate, TPR, FPR, precision for both groups; compute all four gaps (D\u2212C); state which fairness criterion is closest to satisfied and which is most severely violated.",
-    "answerText": "$N_C=260$, $N_D=200$. C: selection$=90/260=0.3462$, TPR$=72/102=0.7059$, FPR$=18/158=0.1139$, precision$=72/90=0.8000$. D: selection$=90/200=0.4500$, TPR$=50/70=0.7143$, FPR$=40/130=0.3077$, precision$=50/90=0.5556$. Gaps: selection $+0.1038$, TPR $+0.0084$, FPR $+0.1938$, precision $-0.2444$. Closest to satisfied: **equal opportunity** (TPR gap only 0.84 points). Most severely violated: **predictive parity** (precision gap 24.4 points) \u2014 a \"select\" decision for D is correct only 55.6% of the time vs. 80.0% for C.",
-    "tier": "Tier B \u2014 High Probability"
+    "type": "mcq",
+    "question": "Given substitute weights w_sub = (1.5, −1), b_sub = 0.2, and pool points P1=(1,1), P2=(0.4,1.0), P3=(−0.5,0.2), P4=(2,2): which point is queried next?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "P1, since |f_sub(P1)| = 1.7 is the largest",
+      "B": "P3, since it has a negative x-coordinate",
+      "C": "P2 — |f_sub(P2)| = |1.5(0.4) − 1(1.0) + 0.2| = |0.6 − 1.0 + 0.2| = 0.2, the smallest absolute value among the four points",
+      "D": "P4, since it is farthest from the origin"
+    },
+    "answer": "C",
+    "explanation": "Computing |f_sub| for each: P1 = |1.5−1+0.2| = 0.7, P2 = |0.6−1.0+0.2| = 0.2, P3 = |−0.75−0.2+0.2| = 0.75, P4 = |3−2+0.2| = 1.2 (verified numerically). P2 has the smallest absolute value, so it is closest to the substitute's decision boundary and is queried next.",
+    "lectureReference": "Algorithm 6 — Active-Learning Model Extraction"
   },
   {
     "num": 23,
-    "type": "sa",
-    "question": "**Given:** Same Group C/D confusion matrices as Q22 (or any two-proportion comparison). Formula: $SE=\\sqrt{p_1(1-p_1)/n_1+p_2(1-p_2)/n_2}$, $z=\\text{gap}/SE$, two-sided $p=2(1-\\Phi(|z|))$.\n\n**Task:** For the selection-rate gap, compute the standard error, z-statistic, and state whether the gap is statistically significant at $\\alpha=0.05$.",
-    "answerText": "$p_1(1-p_1)/n_1=0.3462\\times0.6538/260\\approx0.000871$; $p_2(1-p_2)/n_2=0.4500\\times0.5500/200\\approx0.001238$. $SE=\\sqrt{0.002108}\\approx0.0459$. $z=0.1038/0.0459\\approx2.262$. $|z|>1.96\\to$ significant at $\\alpha=0.05$ (two-sided $p\\approx0.0237$). **Note:** the FPR gap test (same method, different n and p) yields the strongest result ($z\\approx4.08$); the TPR gap is NOT significant ($p\\approx0.90$) despite a nonzero raw difference \u2014 distinguishing \"a gap exists\" from \"a gap is statistically significant\" is the core skill this question type tests.",
-    "tier": "Tier B \u2014 High Probability"
+    "type": "mcq",
+    "question": "Given a decision boundary in d=60 dimensions, random sampling requiring 120 queries per dimension at \\$0.003 per query, and active learning being 4× more query-efficient: what is the dollar cost difference between random sampling and active learning?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "Random costs \\$2.16; active learning costs \\$0.54",
+      "B": "Random costs \\$7.20; active learning costs \\$28.80 (active learning is more expensive)",
+      "C": "Random costs \\$21.60; active learning costs \\$5.40 — a savings of \\$16.20",
+      "D": "Both cost exactly \\$18.00, since query efficiency does not affect total dollar cost"
+    },
+    "answer": "C",
+    "explanation": "Random queries = 120 × 60 = 7,200, costing 7,200 × \\$0.003 = \\$21.60. Active learning uses 4× fewer queries = 1,800, costing 1,800 × \\$0.003 = \\$5.40 (verified numerically) — a savings of \\$16.20, illustrating why query-efficient extraction is a greater security concern than raw query volume alone.",
+    "lectureReference": "Algorithm 6 — Active-Learning Model Extraction"
   },
   {
     "num": 24,
-    "type": "sa",
-    "question": "**Given:** Group G: $TPR_G(t)=1-t^2$ (or an empirical score distribution). Target TPR = another group's TPR at a reference threshold (e.g., Group H's TPR at $t=0.5$). Start bracket $[0,1]$ (or $[0.01,0.99]$); run ~5\u201310 iterations.\n\n**Task:** Tabulate lo, hi, mid, $TPR(\\text{mid})$, and the bracket-update direction at each iteration; report the final threshold; state the exact solution and the approximation error.",
-    "answerText": "mid$=0.5\\to TPR=0.75<0.80\\to$ TPR too low $\\to$ threshold too high $\\to hi=mid=0.5$. mid$=0.25\\to TPR=0.9375>0.80\\to lo=0.25$. mid$=0.375\\to TPR=0.8594>0.80\\to lo=0.375$. mid$=0.4375\\to TPR=0.8086>0.80\\to lo=0.4375$. mid$=0.46875\\to TPR=0.7803<0.80\\to hi=0.46875$. Converges toward the exact solution $1-t^2=0.80\\to t^*=\\sqrt{0.20}\\approx0.4472$. **Trap (the single most important rule for this algorithm):** TPR falls as the threshold rises. If current TPR is too HIGH, the threshold is too LOW, so you must RAISE it ($lo=mid$) \u2014 not lower it. Getting this direction backward is the classic bisection-fairness exam trap.",
-    "tier": "Tier B \u2014 High Probability"
+    "type": "mcq",
+    "question": "What does a membership inference attack determine, and what model property does it exploit?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "The dataset's class balance, by counting how often each class is predicted",
+      "B": "Whether the model is adversarially robust, by comparing clean vs. perturbed accuracy",
+      "C": "Whether a specific record was in the training set, by exploiting the fact that overfit models tend to assign higher confidence to records they were trained on",
+      "D": "The exact architecture of the target model, by analyzing its confidence calibration"
+    },
+    "answer": "C",
+    "explanation": "The guide states: \"Asks: was this record in the training set? Exploits overfitting: members get higher confidence.\" A well-generalized (non-overfit) model would show little confidence gap between members and non-members.",
+    "lectureReference": "Algorithm 7 — Membership Inference Attack"
   },
   {
     "num": 25,
-    "type": "sa",
-    "question": "**Given:** Two groups' confusion-matrix counts (e.g., Group C: $72,18,140,30$; Group D: $50,40,90,20$). Conceptual bootstrap procedure: resample each group's outcome counts via a multinomial draw preserving each group's total $N$, recompute the metric gap many times (e.g., $B=20{,}000$), then take the 2.5th/97.5th percentiles as a 95% CI.\n\n**Task:** Explain what the bootstrap resampling procedure estimates and why it should roughly match the analytic z-test's standard error; state how to decide significance from the bootstrap CI alone (no z-test needed); explain why a wider CI occurs for a metric with a smaller denominator (e.g., FPR, which only uses $FP+TN$, not the full $N$).",
-    "answerText": "The bootstrap repeatedly resamples synthetic datasets consistent with the observed per-group rates and sample sizes, builds an empirical distribution of the metric gap (D\u2212C), and reports the 2.5\u201397.5 percentile range as the 95% CI. This should closely match the analytic normal-approximation SE used in the z-test (both reflect the same underlying sampling variability). Decide significance directly: if 0 lies outside the 95% CI, the gap is significant at $\\alpha=0.05$ (equivalent to $|z|>1.96$). A metric like FPR, computed over a smaller denominator ($FP+TN$ rather than the full $N$), has higher sampling variance and thus a wider bootstrap CI/SE than a metric computed over the full population \u2014 but a larger raw gap can still dominate and produce a more decisively significant result despite the wider spread.",
-    "tier": "Tier B \u2014 High Probability"
+    "type": "mcq",
+    "question": "Given members' confidences [0.98, 0.96, 0.91, 0.89, 0.85, 0.80] and non-members' confidences [0.93, 0.70, 0.65, 0.50, 0.45, 0.30], with the rule \"predict member if confidence > 0.88\": what are TP, FN, FP, TN?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "TP=4, FN=2, FP=1, TN=5",
+      "B": "TP=5, FN=1, FP=1, TN=5",
+      "C": "TP=6, FN=0, FP=0, TN=6 (perfect separation)",
+      "D": "TP=4, FN=2, FP=0, TN=6"
+    },
+    "answer": "A",
+    "explanation": "Members > 0.88: 0.98, 0.96, 0.91, 0.89 → TP=4; members ≤ 0.88: 0.85, 0.80 → FN=2. Non-members > 0.88: only 0.93 → FP=1; non-members ≤ 0.88: the other 5 → TN=5 (verified numerically).",
+    "lectureReference": "Algorithm 7 — Membership Inference Attack"
+  },
+  {
+    "num": 26,
+    "type": "mcq",
+    "question": "Using TP=4, FN=2, FP=1, TN=5 from Q25, what are the accuracy and F1 score (to 3 significant figures)?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "Accuracy = 0.900, F1 = 0.889",
+      "B": "Accuracy = 0.833, F1 = 0.800",
+      "C": "Accuracy = 0.667, F1 = 0.600",
+      "D": "Accuracy = 0.750, F1 = 0.727"
+    },
+    "answer": "D",
+    "explanation": "Accuracy = (TP+TN)/12 = 9/12 = 0.750. Precision = TP/(TP+FP) = 4/5 = 0.800, Recall = TP/(TP+FN) = 4/6 ≈ 0.667. F1 = 2·(0.800·0.667)/(0.800+0.667) ≈ 0.727 (verified numerically).",
+    "lectureReference": "Algorithm 7 — Membership Inference Attack"
+  },
+  {
+    "num": 27,
+    "type": "mcq",
+    "question": "If the threshold is raised from 0.88 to 0.90 (same confidence lists as Q25-Q26), what happens to TP and recall, and given a separate loss-threshold audit reporting AUC = 0.62, what is the membership advantage (defined as 2(AUC − 0.5))?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "TP stays at 4, since raising the threshold does not affect which members are counted; membership advantage = 0.62",
+      "B": "TP increases to 5, since a higher threshold catches more true members; membership advantage = 0.12",
+      "C": "TP decreases to 3 and recall drops to 0.500 (since 0.89 is no longer counted as a member above the raised threshold); membership advantage = 0.24",
+      "D": "TP and recall are unaffected by threshold changes; membership advantage = 1.24"
+    },
+    "answer": "C",
+    "explanation": "At threshold 0.90, the member 0.89 drops below the cutoff, so TP falls from 4 to 3, FN rises to 3, giving recall = 3/6 = 0.500 (verified numerically). Membership advantage = 2(0.62 − 0.5) = 0.24, a standard metric quantifying how much better than random guessing (0.5 AUC) the attacker performs.",
+    "lectureReference": "Algorithm 7 — Membership Inference Attack"
+  },
+  {
+    "num": 28,
+    "type": "mcq",
+    "question": "How does RAG retrieval poisoning work, and what is the key mathematical trap the guide warns about?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "An attacker plants a document with an embedding close to expected queries (high cosine similarity), so it ranks in the top-k retrieved results and its hidden instructions reach the LLM as trusted context; the trap is that a higher dot product does not necessarily mean higher cosine similarity — you must normalize by both vector norms",
+      "B": "The attacker directly edits the LLM's weights to insert a backdoor; no retrieval or embeddings are involved",
+      "C": "RAG poisoning only works if the attacker has access to the training data, not just the retrieval corpus",
+      "D": "Cosine similarity ranking makes RAG poisoning impossible, since it always favors the legitimate, well-formed documents"
+    },
+    "answer": "A",
+    "explanation": "The guide states: \"Plant a document whose embedding sits close to expected queries... reach the LLM as trusted context,\" with the trap: \"Higher dot product ≠ higher cosine (Doc A has the larger dot). Normalize!\"",
+    "lectureReference": "Algorithm 8 — RAG Poisoning / Prompt Injection"
+  },
+  {
+    "num": 29,
+    "type": "mcq",
+    "question": "Given query q = [0.6, 0.8, 0, 0] (unit norm), legitimate document D1 = [0.5, 0.7, 0.1, 0.2], and poisoned document DM = [0.6, 0.78, 0.05, 0.05], with top-k = 2: which document has the higher cosine similarity to the query?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "Both documents have exactly equal cosine similarity to the query",
+      "B": "Neither can be retrieved since top-k = 2 excludes both",
+      "C": "DM — despite D1 and DM having similar dot products, DM's smaller off-axis components give it a smaller norm, so its normalized cosine similarity is higher, letting it outrank the legitimate document",
+      "D": "D1, because it has a slightly higher raw dot product with q"
+    },
+    "answer": "C",
+    "explanation": "Computing: D1 has dot=0.86, norm≈0.889, cos≈0.968; DM has dot=0.984, norm≈0.987, cos≈0.997 (verified numerically). DM's cosine similarity is higher, so it outranks D1 and gets retrieved — illustrating how a poisoned document can be engineered to dominate ranking even without matching the raw content perfectly.",
+    "lectureReference": "Algorithm 8 — RAG Poisoning / Prompt Injection"
+  },
+  {
+    "num": 30,
+    "type": "mcq",
+    "question": "Given historical top-1 similarity has mean μ=0.68 and standard deviation σ=0.07, and a new query's top-1 similarity is 0.95, with the rule \"inspect if z > 3\": should this retrieval be flagged for inspection?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "No — z ≈ 1.2, well below the threshold of 3",
+      "B": "Yes — z ≈ 3.86, which exceeds the threshold of 3, flagging this as an anomalously high similarity worth investigating",
+      "C": "The z-score cannot be computed without knowing the full similarity distribution's skewness",
+      "D": "Yes, but only because the similarity score itself exceeds 0.90, not because of the z-score"
+    },
+    "answer": "B",
+    "explanation": "z = (0.95 − 0.68) / 0.07 ≈ 3.857 (verified numerically), which exceeds the inspect threshold of 3 — an unusually strong retrieval match that could indicate a poisoned document specifically engineered to score abnormally high.",
+    "lectureReference": "Algorithm 8 — RAG Poisoning / Prompt Injection"
+  },
+  {
+    "num": 31,
+    "type": "mcq",
+    "question": "How is the detection threshold computed, and what is the eviction rule for events leaving the window?",
+    "tier": "Tier C — Moderate Probability",
+    "options": {
+      "A": "Threshold = μ − kσ; events are never evicted, only added",
+      "B": "Threshold = μ × kσ; events are evicted once t − τ ≥ W",
+      "C": "Threshold = kσ/μ; eviction happens on a fixed timer independent of arrivals",
+      "D": "Threshold = μ + kσ; an event at time τ is evicted from the window once t − τ > W (strictly greater than the window size), where t is the current arrival time"
+    },
+    "answer": "D",
+    "explanation": "The guide states: \"Threshold = μ + kσ... At each arrival t: add t, drop τ with t − τ > W,\" with the window always anchored at the current (most recent) arrival time, and the trap warns: \"'>' vs '≥' changes the answer.\"",
+    "lectureReference": "Algorithm 9 — Sliding-Window Rate Detector"
+  },
+  {
+    "num": 32,
+    "type": "mcq",
+    "question": "Given μ=6, σ=1.5, k=2 (threshold=9), window W=5s, with arrivals at 0, 0.5, 1.0, 1.2, 1.5, 2.0, 2.2, 2.4, 2.6, 2.8 (ten events, all within the first 5s window): what is the count at the 10th arrival (t=2.8), and does it trigger a flag?",
+    "tier": "Tier C — Moderate Probability",
+    "options": {
+      "A": "Count = 10, but no flag is triggered because the window has not yet reached W=5s",
+      "B": "Count = 10, which exceeds the threshold of 9, triggering a flag",
+      "C": "Count = 9, no flag (count equals but does not exceed the threshold of 9)",
+      "D": "Count = 5, no flag, since only events after t=0 are counted"
+    },
+    "answer": "B",
+    "explanation": "At t=2.8, all 10 arrivals so far are within the W=5s window (since t−0=2.8 ≤ 5), giving count=10 (verified numerically), which strictly exceeds the threshold of 9 (μ+kσ = 6+2(1.5) = 9), triggering a flag per the strict \">\" rule.",
+    "lectureReference": "Algorithm 9 — Sliding-Window Rate Detector"
+  },
+  {
+    "num": 33,
+    "type": "mcq",
+    "question": "What is the correct sequence of operations for sequentially updating a posterior probability as new evidence arrives, using likelihood ratios (LR)?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "odds₀ = P/(1−P); for each piece of evidence, odds ← odds × LR, then P = odds/(1+odds); the log form sums ln(LR) instead of multiplying",
+      "B": "odds₀ = P × (1−P); for each piece of evidence, add LR directly to P",
+      "C": "The order of evidence must be the same as event occurrence time, or the final posterior changes",
+      "D": "Each piece of evidence replaces the previous posterior entirely, with no accumulation"
+    },
+    "answer": "A",
+    "explanation": "The guide states: \"odds₀ = P / (1 − P)... odds ← odds × LR for each piece of evidence... P = odds / (1 + odds),\" and separately notes: \"The final posterior doesn't depend on evidence order\" — multiplication (and the equivalent log-odds summation) is commutative.",
+    "lectureReference": "Algorithm 10 — Sequential Bayesian Updating"
+  },
+  {
+    "num": 34,
+    "type": "mcq",
+    "question": "If one piece of evidence has a likelihood ratio (LR) of 0.5 while the running posterior is being updated, what effect does this have?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "An LR < 1 lowers the odds (and thus the posterior probability) — this evidence is more consistent with \"no attack\" than \"attack,\" decreasing belief",
+      "B": "An LR of exactly 0.5 has no effect on the posterior at all",
+      "C": "It always increases the posterior probability of attack, regardless of its value, since any new evidence raises suspicion",
+      "D": "LR values below 1 are invalid and should be treated as 1"
+    },
+    "answer": "A",
+    "explanation": "The guide's trap explicitly states: \"LR < 1 lowers belief.\" Multiplying the running odds by a factor less than 1 decreases the odds, which in turn decreases the computed posterior probability — evidence like \"known, trusted IP address\" is a real-world example of an LR < 1 signal.",
+    "lectureReference": "Algorithm 10 — Sequential Bayesian Updating"
+  },
+  {
+    "num": 35,
+    "type": "mcq",
+    "question": "Given prior P(attack) = 0.02 and evidence likelihood ratios in order 6.0, 0.5, 4.0, 3.0 (with \"act\" defined as posterior > 0.5): does the posterior ever exceed 0.5 across these four updates?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "No — the posterior reaches a maximum of approximately 0.424 after all four updates, never crossing 0.5",
+      "B": "Yes, after the second piece of evidence (LR=0.5), the posterior reaches 0.58",
+      "C": "Yes, immediately after the first piece of evidence (LR=6.0), the posterior exceeds 0.5",
+      "D": "The posterior cannot be computed without knowing the base rate of false positives"
+    },
+    "answer": "A",
+    "explanation": "odds₀ = 0.02/0.98 ≈ 0.0204. After multiplying by 6.0: odds≈0.1224, P≈0.109. After ×0.5: odds≈0.0612, P≈0.058 (drops). After ×4.0: odds≈0.245, P≈0.197. After ×3.0: odds≈0.735, P≈0.424 (verified numerically) — the posterior never exceeds 0.5 given these four signals, so the \"act\" threshold is not triggered.",
+    "lectureReference": "Algorithm 10 — Sequential Bayesian Updating"
+  },
+  {
+    "num": 36,
+    "type": "mcq",
+    "question": "How is k defined in k-anonymity, and what is a common computational mistake when determining it?",
+    "tier": "Tier C — Moderate Probability",
+    "options": {
+      "A": "k is the SMALLEST quasi-identifier group size across the entire table — a table is k-anonymous only if every group has at least k members; using the average instead of the minimum is a common error",
+      "B": "k is the average size of all quasi-identifier groups in the table",
+      "C": "k is the number of distinct quasi-identifier columns used (e.g., age, ZIP, gender = k=3)",
+      "D": "k is the total number of records in the dataset"
+    },
+    "answer": "A",
+    "explanation": "The guide states: \"k = SMALLEST quasi-identifier group\" and the trap warns: \"k is the minimum, not the average.\"",
+    "lectureReference": "Algorithm 11 — k-Anonymity"
+  },
+  {
+    "num": 37,
+    "type": "mcq",
+    "question": "Given group counts for (age, ZIP3, gender): 6, 3, 4, 2, 1, 5: what is k for this table, and is it 2-anonymous?",
+    "tier": "Tier C — Moderate Probability",
+    "options": {
+      "A": "k = 3.5 (the average group size); yes, it is 2-anonymous",
+      "B": "k = 5 (the largest group); yes, it is 2-anonymous",
+      "C": "k cannot be determined without knowing the exact identities in each group",
+      "D": "k = 1 (the smallest group); no, it is NOT 2-anonymous, since a group of size 1 means that individual is uniquely identifiable by their quasi-identifiers"
+    },
+    "answer": "D",
+    "explanation": "k is the minimum group size, which here is 1 (verified numerically from the given counts). Since k=1 < 2, the table fails the 2-anonymity requirement — the single-person group is uniquely re-identifiable.",
+    "lectureReference": "Algorithm 11 — k-Anonymity"
+  },
+  {
+    "num": 38,
+    "type": "mcq",
+    "question": "Continuing from Q37 (groups of size 6, 3, 4, 2, 1, 5, total N=21), what is the uniqueness ratio (fraction of records that are the sole member of their group)?",
+    "tier": "Tier C — Moderate Probability",
+    "options": {
+      "A": "0, since uniqueness only applies to continuous attributes, not categorical quasi-identifiers",
+      "B": "1/6 ≈ 0.167 (one unique group out of six groups)",
+      "C": "6/21 ≈ 0.286 (counting all groups smaller than 5)",
+      "D": "1/21 ≈ 0.0476 — one individual record out of 21 total records belongs to a size-1 group"
+    },
+    "answer": "D",
+    "explanation": "The guide's formula is \"Uniqueness = (# groups of size 1) / N,\" dividing by the total number of records N (not the number of groups). Here, there is 1 group of size 1, and N = 6+3+4+2+1+5 = 21, giving 1/21 ≈ 0.0476 (verified numerically) — the trap explicitly warns: \"Uniqueness divides by records N, not by number of groups.\"",
+    "lectureReference": "Algorithm 11 — k-Anonymity"
+  },
+  {
+    "num": 39,
+    "type": "mcq",
+    "question": "Given the same table (ages 20-29/30-39/40-49, ZIP 941/950, counts as in Q37), after (1) merging ages 20-29 and 30-39 into \"20-39\" and (2) suppressing gender for the 40-49/950 rows: what is the final minimum group size k, and is the result 5-anonymous?",
+    "tier": "Tier C — Moderate Probability",
+    "options": {
+      "A": "k = 5 after both steps — merging gives groups of 10, 5, 1, 5, and suppressing the gender of the 40-49/950 rows merges the size-1 and size-5 cells into a single group of 6, raising the minimum to 5; the table is now 5-anonymous",
+      "B": "k = 10 after step 1 alone, with no need for step 2",
+      "C": "The result can never be 5-anonymous regardless of generalization or suppression",
+      "D": "k = 1 after both steps; still not 5-anonymous"
+    },
+    "answer": "A",
+    "explanation": "After step 1 (merging ages), the four groups become 10, 5, 1, 5 (the 20-39/941/F and 20-39/941/M merges, plus the unchanged 40-49/950 groups), giving k=1. After step 2 (suppressing gender for 40-49/950), the 1 and 5 groups merge into 6, giving final groups 10, 5, 6, so k=5 (verified numerically) — the table is now 5-anonymous, at the utility cost of losing gender information for the 40-49/950 segment.",
+    "lectureReference": "Algorithm 11 — k-Anonymity"
+  },
+  {
+    "num": 40,
+    "type": "mcq",
+    "question": "How does the Laplace mechanism provide ε-differential privacy, and what is the relationship between ε and the amount of noise added?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "ε has no effect on the amount of noise; it only affects which distribution family is used",
+      "B": "It adds noise drawn from Laplace(0, b) where b = Δf/ε; SMALLER ε means SMALLER b and therefore LESS noise",
+      "C": "The noise scale b is fixed regardless of the sensitivity Δf or the privacy budget ε",
+      "D": "It adds noise drawn from Laplace(0, b) where b = Δf/ε; SMALLER ε means LARGER b and therefore MORE noise — stronger privacy guarantees require more noise"
+    },
+    "answer": "D",
+    "explanation": "b = Δf/ε, so as ε decreases (stronger privacy), b increases (more noise). The guide's trap states explicitly: \"Smaller ε gives MORE noise.\"",
+    "lectureReference": "Algorithm 12 — Laplace Mechanism"
+  },
+  {
+    "num": 41,
+    "type": "mcq",
+    "question": "Given a true count of 120, sensitivity Δf = 1, ε = 0.25, and a drawn noise value of −2.6: what is the noise scale b, and what is the released (noisy) value?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "b = 480 (dividing ε by Δf instead of the reverse)",
+      "B": "b = 4.0, released value = 122.6 (the noise is added with the wrong sign)",
+      "C": "b = 0.25, released value = 117.4",
+      "D": "b = 4.0, released value = 117.4 — b = Δf/ε = 1/0.25 = 4, and the released value is the true count plus the drawn noise: 120 + (−2.6) = 117.4"
+    },
+    "answer": "D",
+    "explanation": "b = Δf/ε = 1/0.25 = 4.0 (verified numerically). Released value = true count + noise = 120 + (−2.6) = 117.4.",
+    "lectureReference": "Algorithm 12 — Laplace Mechanism"
+  },
+  {
+    "num": 42,
+    "type": "mcq",
+    "question": "Given a total privacy budget ε_total = 0.9 split evenly across 3 count queries (Δf = 1 for each): what is ε per query, and what is the resulting noise scale b per query?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "ε_each = 0.3, b = 3.33 — splitting the total budget evenly across 3 queries under sequential composition gives each query 1/3 of the total ε, and a correspondingly larger (more noisy) scale b = 1/0.3",
+      "B": "ε_each = 0.9 (the full budget applies to each query independently); b = 1.11",
+      "C": "ε_each and b are unaffected by the number of queries, since Δf = 1 for all of them",
+      "D": "ε_each = 2.7 (multiplying instead of dividing); b = 0.37"
+    },
+    "answer": "A",
+    "explanation": "Under sequential composition, ε_each = ε_total/n = 0.9/3 = 0.3 (verified numerically). b = Δf/ε_each = 1/0.3 ≈ 3.33 — more queries against a fixed total budget means a smaller ε per query and thus more noise per query, illustrating the fundamental privacy-budget tradeoff.",
+    "lectureReference": "Algorithm 12 — Laplace Mechanism"
+  },
+  {
+    "num": 43,
+    "type": "mcq",
+    "question": "A MAX-age query over ages 18-90 uses ε = 0.5. What is the sensitivity Δf for a MAX query (as opposed to a COUNT query), and why does this make the Laplace mechanism impractical here?",
+    "tier": "Tier B — High Probability",
+    "options": {
+      "A": "Δf = max − min = 90 − 18 = 72 (since removing/changing one record can shift the reported max by up to the full range), giving an enormous noise scale b = 72/0.5 = 144 — far too noisy to be useful",
+      "B": "Δf = 0, since MAX queries are inherently insensitive to individual records",
+      "C": "Δf cannot be computed for MAX queries; a different mechanism must always be used regardless of the data range",
+      "D": "Δf = 1, same as a count query, so the mechanism works equally well"
+    },
+    "answer": "A",
+    "explanation": "Unlike a count query (Δf=1, since adding/removing one record changes a count by at most 1), a MAX query's sensitivity equals the full value range (90−18=72 here), because a single extreme record can change the reported maximum by the entire range. This gives b = 72/0.5 = 144 (verified numerically) — such massive noise makes the Laplace mechanism a poor fit for MAX/MIN-style queries without further bounding or a different mechanism.",
+    "lectureReference": "Algorithm 12 — Laplace Mechanism"
+  },
+  {
+    "num": 44,
+    "type": "mcq",
+    "question": "What are the ordered steps of DP-SGD's gradient processing, and what is the key trap regarding the order of operations?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "Add Gaussian noise to each per-example gradient first, then clip, then sum",
+      "B": "Clipping and noise addition are interchangeable in order; both produce identical results",
+      "C": "Sum all per-example gradients first, then clip the sum to norm C, then add Gaussian noise",
+      "D": "Clip EACH per-example gradient individually to norm C (only shrinking if its norm exceeds C), THEN sum the clipped gradients, THEN add Gaussian noise, THEN divide by the batch size B"
+    },
+    "answer": "D",
+    "explanation": "The guide states: \"Clip to C, sum, add N(0, σ²C²), divide by B,\" and the trap warns: \"Clip each example BEFORE summing. A clipped gradient has norm exactly C\" (when clipping is active).",
+    "lectureReference": "Algorithm 13 — DP-SGD"
+  },
+  {
+    "num": 45,
+    "type": "mcq",
+    "question": "Given clip norm C = 1.5 and per-example gradients g₁=[0.6, 0.8] (norm 1.0), g₂=[3, 4] (norm 5.0), g₃=[−1.2, 0.9] (norm 1.5): which gradients are modified by clipping, and what does g₂ become?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "All three gradients are clipped equally to norm 1.5",
+      "B": "None of the gradients are clipped, since C = 1.5 exceeds all their component-wise values",
+      "C": "g₂ is clipped to [1.5, 1.5], truncating each component independently rather than scaling the whole vector",
+      "D": "g₁ is unchanged (norm 1.0 < C); g₃ is unchanged (norm exactly equals C = 1.5); g₂ is scaled down since its norm (5.0) exceeds C, becoming [0.9, 1.2] — scaled by C/5 = 0.3"
+    },
+    "answer": "D",
+    "explanation": "g₁'s norm (1.0) and g₃'s norm (1.5) are both ≤ C=1.5, so they pass through unchanged. g₂'s norm (5.0) exceeds C, so it is scaled by C/‖g₂‖ = 1.5/5 = 0.3, giving [3×0.3, 4×0.3] = [0.9, 1.2] (verified numerically).",
+    "lectureReference": "Algorithm 13 — DP-SGD"
+  },
+  {
+    "num": 46,
+    "type": "mcq",
+    "question": "Continuing from Q45 (clipped gradients [0.6,0.8], [0.9,1.2], [−1.2,0.9]), with noise [0.3, −0.6] added to the sum, batch B=3, learning rate η=0.1, and θ=[1.0, 1.0]: what is the updated θ after this DP-SGD step?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "θ_new = [1.0, 1.0] (unchanged, since the noise cancels the gradient signal)",
+      "B": "θ_new ≈ [0.70, 0.23] (forgetting to divide by B)",
+      "C": "θ_new ≈ [1.02, 1.08] (adding instead of subtracting the gradient)",
+      "D": "θ_new ≈ [0.98, 0.92]"
+    },
+    "answer": "D",
+    "explanation": "Sum of clipped gradients = [0.6+0.9−1.2, 0.8+1.2+0.9] = [0.3, 2.9]. Adding noise [0.3, −0.6] gives [0.6, 2.3], divided by B=3 gives the averaged gradient [0.2, 0.767]. θ_new = θ − η×avg = [1.0−0.1(0.2), 1.0−0.1(0.767)] = [0.98, 0.923] (verified numerically, matching option A to 2 decimal places).",
+    "lectureReference": "Algorithm 13 — DP-SGD"
+  },
+  {
+    "num": 47,
+    "type": "mcq",
+    "question": "Given δ = 10⁻⁵, Δ = 1, with σ = Δ√(2 ln(1.25/δ)) / ε: approximately what is σ for ε = 2, compared to ε = 0.25, and what trend does this show?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "σ ≈ 2.42 for ε=2, and σ ≈ 19.38 for ε=0.25 — smaller ε (stronger privacy) again requires a much larger noise standard deviation, consistent with the Laplace mechanism's same trend",
+      "B": "σ cannot be computed without knowing the batch size B",
+      "C": "σ ≈ 19.38 for ε=2, and σ ≈ 2.42 for ε=0.25 (the trend is reversed)",
+      "D": "σ is identical for both ε values, since δ dominates the formula"
+    },
+    "answer": "A",
+    "explanation": "Using the given formula: for ε=2, σ ≈ 2.42; for ε=0.25, σ ≈ 19.38 (verified numerically) — confirming the same general pattern as the Laplace mechanism: stronger privacy (smaller ε) demands more noise.",
+    "lectureReference": "Algorithm 13 — DP-SGD"
+  },
+  {
+    "num": 48,
+    "type": "mcq",
+    "question": "Given basic composition costs 0.02 privacy \"ε-units\" per training step for T=900 steps, and a tight accountant uses ε = k√T with ε(100) = 1.2 (implying k ≈ 0.12): what are ε_basic and ε_tight at T=900, and what does their ratio suggest about accounting methods?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "ε_basic and ε_tight are always equal regardless of T, since both track the same underlying mechanism",
+      "B": "ε_basic = 18.0, ε_tight = 3.6 — the tight accountant gives a 5× smaller (better) privacy bound than naive basic composition over the same number of steps, showing why practical DP-SGD implementations use tighter accountants (e.g., moments accountant / RDP)",
+      "C": "ε_basic = 3.6, ε_tight = 18.0 (the formulas are swapped)",
+      "D": "ε_basic = 0.02 regardless of T, since composition does not accumulate over steps"
+    },
+    "answer": "B",
+    "explanation": "ε_basic = 0.02 × 900 = 18.0 (linear accumulation under basic/naive composition). ε_tight = k√T = 0.12 × √900 = 0.12 × 30 = 3.6 (verified numerically). Ratio = 18.0/3.6 = 5.0 — the tight accountant's √T scaling (rather than basic composition's linear T scaling) gives a substantially tighter, more useful privacy bound over many training steps.",
+    "lectureReference": "Algorithm 13 — DP-SGD"
+  },
+  {
+    "num": 49,
+    "type": "mcq",
+    "question": "What is the conceptual difference between the Population Stability Index (PSI) and the Kolmogorov-Smirnov (KS) test for detecting distribution drift?",
+    "tier": "Tier C — Moderate Probability",
+    "options": {
+      "A": "PSI uses a fixed numeric cutoff convention (e.g., PSI < 0.1 is \"stable\") that does not account for sample size n, while KS has a formal significance test whose critical value scales with n",
+      "B": "PSI only works for continuous features; KS only works for categorical/binned features",
+      "C": "KS ignores sample size entirely, while PSI's critical value depends on n",
+      "D": "PSI and KS are mathematically identical formulas with different names"
+    },
+    "answer": "A",
+    "explanation": "The guide's trap states: \"PSI cut-offs ignore n; KS accounts for sample size,\" since the KS critical value formula 1.36√(2/n) explicitly depends on the sample size n, while PSI's \"<0.1 stable\" convention is a fixed threshold regardless of how much data was used.",
+    "lectureReference": "Algorithm 14 — PSI / KS Drift Tests"
+  },
+  {
+    "num": 50,
+    "type": "mcq",
+    "question": "Given expected proportions e = [0.20, 0.30, 0.30, 0.20] and actual proportions a = [0.15, 0.25, 0.35, 0.25], with PSI = Σ(a−e)·ln(a/e): is the resulting PSI value below the conventional \"stable\" threshold of 0.1?",
+    "tier": "Tier C — Moderate Probability",
+    "options": {
+      "A": "PSI ≈ 0.420, well above 0.1, indicating significant drift",
+      "B": "PSI is always 0 when the proportions sum to 1 in both the expected and actual distributions",
+      "C": "PSI ≈ 0.042, which is below 0.1 — this distribution shift is considered stable by the standard convention, despite each bin's proportion changing",
+      "D": "PSI ≈ 0.10 exactly, right at the stability boundary"
+    },
+    "answer": "C",
+    "explanation": "Computing bin-by-bin: (−0.05)ln(0.75)+(−0.05)ln(0.833)+(0.05)ln(1.167)+(0.05)ln(1.25) ≈ 0.0144+0.0091+0.0077+0.0112 ≈ 0.042 (verified numerically) — below the 0.1 stability threshold, meaning PSI alone would classify this shift as stable.",
+    "lectureReference": "Algorithm 14 — PSI / KS Drift Tests"
+  },
+  {
+    "num": 51,
+    "type": "mcq",
+    "question": "Using the same bins as Q50 (e = [0.20,0.30,0.30,0.20], a = [0.15,0.25,0.35,0.25]), with n=500 per sample and KS critical value = 1.36√(2/n): what is the KS statistic, the critical value, and the verdict — does this illustrate why PSI and KS can disagree?",
+    "tier": "Tier C — Moderate Probability",
+    "options": {
+      "A": "KS ≈ 0.10, critical ≈ 0.086; since KS > critical, this DOES register as drift under the KS test, even though PSI (≈0.042) classified the same shift as stable — illustrating that PSI's fixed threshold can miss drift that a sample-size-aware test like KS catches",
+      "B": "KS and PSI always agree on whether a given distribution shift is significant",
+      "C": "KS ≈ 0.42, critical ≈ 0.50; no drift detected, consistent with the PSI result",
+      "D": "KS cannot be computed from proportions, only from raw counts"
+    },
+    "answer": "A",
+    "explanation": "Computing cumulative differences: gaps of [0.05, 0.10, 0.05, 0.00], so KS = max = 0.10 (verified numerically). Critical = 1.36√(2/500) ≈ 0.086. Since 0.10 > 0.086, the KS test flags this as significant drift — directly contradicting PSI's \"stable\" verdict on the identical data, which is exactly the kind of disagreement the guide's trap warns students to expect and explain.",
+    "lectureReference": "Algorithm 14 — PSI / KS Drift Tests"
+  },
+  {
+    "num": 52,
+    "type": "mcq",
+    "question": "Given a fixed KS statistic of 0.10 (from Q51), what is the smallest sample size n (per sample) at which this KS value becomes statistically significant (KS > critical) at α=0.05?",
+    "tier": "Tier C — Moderate Probability",
+    "options": {
+      "A": "n ≈ 100",
+      "B": "n ≈ 1000",
+      "C": "The significance of a KS statistic never depends on sample size; it only depends on the statistic's magnitude",
+      "D": "n ≈ 370 — below this sample size, the critical value exceeds 0.10 and the shift would NOT register as significant, even though the same KS statistic would be flagged as drift at n=500 (as in Q51)"
+    },
+    "answer": "D",
+    "explanation": "Solving 0.10 = 1.36√(2/n) for n gives n ≈ 369.9, so n ≈ 370 is the smallest integer sample size at which this KS statistic would be considered significant (verified numerically) — demonstrating that the exact same observed drift (KS=0.10) can be \"significant\" or \"not significant\" purely depending on how much data was collected, which is the central reason KS and PSI can disagree.",
+    "lectureReference": "Algorithm 14 — PSI / KS Drift Tests"
+  },
+  {
+    "num": 53,
+    "type": "mcq",
+    "question": "What is the formula for computing a fairness reweighting weight for a given (group, label) cell, and is it an iterative or closed-form procedure?",
+    "tier": "Tier D — Lower Probability",
+    "options": {
+      "A": "weight = P(group) / P(label), ignoring the total sample size N entirely",
+      "B": "weight = P(group) × P(label) × N / observed_count — this is a closed-form, one-pass calculation requiring no iteration",
+      "C": "weight = observed_count² / N, an iterative procedure requiring multiple passes to converge",
+      "D": "weight = observed_count / N, computed once and never updated"
+    },
+    "answer": "B",
+    "explanation": "The guide states: \"Expected = P(g) × P(y) × N; Weight = expected / observed,\" and the trap confirms: \"Closed form, one pass, no iteration.\"",
+    "lectureReference": "Algorithm 15 — Reweighting (Fairness Pre-Processing)"
+  },
+  {
+    "num": 54,
+    "type": "mcq",
+    "question": "Given Group G: 60 approved, 140 rejected (200 total); Group H: 90 approved, 110 rejected (200 total); N=400: what is the reweighting weight for the \"Group G, approved\" cell?",
+    "tier": "Tier D — Lower Probability",
+    "options": {
+      "A": "weight ≈ 1.250 — this cell is under-represented relative to its expected count, so training weights it up to compensate",
+      "B": "weight ≈ 0.800 (under-weighting the minority-outcome cell)",
+      "C": "weight = 1.0 exactly, since G and H have equal total size (200 each)",
+      "D": "weight ≈ 2.500"
+    },
+    "answer": "A",
+    "explanation": "P(G) = 200/400 = 0.5, P(approved) = (60+90)/400 = 0.375. Expected = 0.5 × 0.375 × 400 = 75. Weight = 75/60 ≈ 1.250 (verified numerically) — since observed (60) is lower than expected under independence (75), this cell is boosted to compensate for its under-representation.",
+    "lectureReference": "Algorithm 15 — Reweighting (Fairness Pre-Processing)"
+  },
+  {
+    "num": 55,
+    "type": "mcq",
+    "question": "Continuing from Q54, with four cells (G-approved, G-rejected, H-approved, H-rejected) having weights approximately 1.250, 0.893, 0.833, and 1.136 respectively: which cell receives the largest boost (weight furthest above 1), and what effect does boosting have during training?",
+    "tier": "Tier D — Lower Probability",
+    "options": {
+      "A": "G-rejected is boosted the most, since it has the largest raw observed count (140)",
+      "B": "All four cells receive identical boosts, since reweighting always balances weights to exactly 1.0",
+      "C": "H-approved (weight ≈0.833) is boosted the most, since it has the smallest weight value",
+      "D": "G-approved (weight ≈1.250) is boosted the most; boosting a cell increases its effective influence on the learned model, helping correct for its under-representation relative to the independence assumption"
+    },
+    "answer": "D",
+    "explanation": "Among the four weights (1.250, 0.893, 0.833, 1.136), G-approved's weight of 1.250 is the largest, meaning it is boosted the most during training (verified numerically) — a weight above 1 increases a cell's effective sample weight in the loss function, helping the model pay more attention to that underrepresented (group, label) combination.",
+    "lectureReference": "Algorithm 15 — Reweighting (Fairness Pre-Processing)"
+  },
+  {
+    "num": 56,
+    "type": "mcq",
+    "question": "In equal-opportunity threshold adjustment via bisection, if the current midpoint threshold's TPR is HIGHER than the target TPR, which bracket endpoint should be updated, and why?",
+    "tier": "Tier C — Moderate Probability",
+    "options": {
+      "A": "Set hi = mid, because a higher TPR means the threshold needs to be raised further",
+      "B": "Set lo = mid, because TPR is a decreasing function of the threshold (raising the threshold rejects more points, lowering TPR) — if the current TPR is too high, the threshold must be raised, which means searching in the upper half of the bracket, so the lower bound moves up to mid",
+      "C": "Both lo and hi should be set to mid simultaneously",
+      "D": "No update is needed; bisection only moves when TPR exactly matches the target"
+    },
+    "answer": "B",
+    "explanation": "The guide's trap states: \"Raising the threshold lowers TPR. Check which end to move before you update.\" Since TPR decreases as the threshold increases, if TPR(mid) is too high, the true threshold must be higher than mid, so the search continues in [mid, hi], meaning lo←mid.",
+    "lectureReference": "Algorithm 16 — Threshold Adjustment (Bisection)"
+  },
+  {
+    "num": 57,
+    "type": "mcq",
+    "question": "Given Group G's TPR as a function of threshold t: TPR_G(t) = 1 − t², with target TPR = 0.80, starting bracket [0, 1]: after 5 bisection iterations, is the reported threshold reasonably close to the exact analytical solution?",
+    "tier": "Tier C — Moderate Probability",
+    "options": {
+      "A": "After 5 iterations, the bracket has not narrowed at all from its starting width of 1.0",
+      "B": "The exact threshold is 0.80, identical to the target TPR value",
+      "C": "Bisection never converges for this particular function, since TPR_G(t) is nonlinear",
+      "D": "The reported threshold after 5 iterations (≈0.453) is close to the exact solution t = √(1−0.80) ≈ 0.447 — bisection converges toward the true root as iterations increase"
+    },
+    "answer": "D",
+    "explanation": "Tracing the iterations (lo=0,hi=1 → mid=0.5,TPR=0.75<0.80→hi=0.5 → mid=0.25,TPR=0.9375>0.80→lo=0.25 → mid=0.375,TPR=0.859>0.80→lo=0.375 → mid=0.4375,TPR=0.809>0.80→lo=0.4375 → mid=0.469,TPR=0.780<0.80→hi=0.469) gives a final bracket of approximately [0.4375, 0.469], reported threshold ≈0.453 (verified numerically), very close to the exact root √0.20 ≈ 0.447.",
+    "lectureReference": "Algorithm 16 — Threshold Adjustment (Bisection)"
+  },
+  {
+    "num": 58,
+    "type": "mcq",
+    "question": "Starting from bracket [0, 1], how many bisection iterations are needed to guarantee a final bracket width below 0.001?",
+    "tier": "Tier C — Moderate Probability",
+    "options": {
+      "A": "1000 iterations (one per unit of precision)",
+      "B": "100 iterations",
+      "C": "10 iterations — since each iteration halves the width, and log₂(1.0/0.001) = log₂(1000) ≈ 9.97, so 10 full iterations are required to get the width strictly below 0.001",
+      "D": "5 iterations"
+    },
+    "answer": "C",
+    "explanation": "Width after k iterations = (hi−lo)/2^k = 1/2^k. Setting 1/2^k < 0.001 requires k > log₂(1000) ≈ 9.97, so k=10 iterations are needed (verified numerically) — the same 10 iterations would also suffice starting from the narrower bracket [0.01, 0.99], since log₂(0.98/0.001) ≈ 9.94 also rounds up to 10.",
+    "lectureReference": "Algorithm 16 — Threshold Adjustment (Bisection)"
+  },
+  {
+    "num": 59,
+    "type": "mcq",
+    "question": "What is the main governance concern the guide's algorithm list associates with using per-group decision thresholds to achieve equal opportunity (matching TPR across groups)?",
+    "tier": "Tier C — Moderate Probability",
+    "options": {
+      "A": "Per-group thresholds are illegal in all jurisdictions and can never be used",
+      "B": "Applying different decision thresholds to different demographic groups, even for a fairness goal, raises legal and ethical questions (e.g., disparate treatment concerns), since it means similarly-scored individuals from different groups can receive different decisions solely based on group membership",
+      "C": "Bisection is computationally infeasible for real-world deployment, making this concern moot",
+      "D": "Per-group thresholds always improve both fairness and accuracy simultaneously, with no tradeoffs"
+    },
+    "answer": "B",
+    "explanation": "Per-group threshold adjustment (Hardt et al. 2016's equalized-odds/equal-opportunity post-processing) explicitly uses different thresholds for different groups to equalize outcome rates, which creates a direct tension between group fairness (equal TPR) and individual fairness/non-discrimination law (treating similarly-situated individuals identically regardless of group), a tradeoff governance frameworks must explicitly document and justify.",
+    "lectureReference": "Algorithm 16 — Threshold Adjustment (Bisection)"
+  },
+  {
+    "num": 60,
+    "type": "mcq",
+    "question": "Given attack surfaces scored as (exposure × exploitability): prompt=(1.0,0.7), api=(0.8,0.8), upload=(0.7,0.9), agent_tools=(0.9,0.6), weights=(0.2,0.5), with a budget to harden the top 3 by score: which three are selected, and roughly what percentage of total risk do they cover?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "prompt, api, and agent_tools are the top 3, covering approximately 40% of total risk",
+      "B": "prompt (0.70), api (0.64), upload (0.63) are the top 3 by score, covering approximately 75% of the total summed risk across all five surfaces",
+      "C": "agent_tools, weights, and prompt are the top 3, covering 100% of total risk",
+      "D": "All five surfaces have identical scores, so any three can be chosen"
+    },
+    "answer": "B",
+    "explanation": "Scores: prompt=1.0×0.7=0.70, api=0.8×0.8=0.64, upload=0.7×0.9=0.63, agent_tools=0.9×0.6=0.54, weights=0.2×0.5=0.10. Ranked descending: prompt, api, upload, agent_tools, weights (verified numerically). The top 3 (prompt+api+upload=1.97) cover 1.97/2.61 ≈ 75.5% of the total risk score across all five surfaces.",
+    "lectureReference": "Algorithm 17 — Risk L×I, Triage, and Attack-Surface Ranking"
+  },
+  {
+    "num": 61,
+    "type": "mcq",
+    "question": "Given the risk bands \"≤6 Low, ≤12 Medium, else High,\" and a component with Likelihood L=2 and Impact I=4: what is its risk score and band?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "Score = 2, band = Low (adding instead of multiplying L and I)",
+      "B": "Score = 8, band = Medium — L×I = 2×4 = 8, which exceeds the Low threshold of 6 but falls within the Medium threshold of ≤12",
+      "C": "Score = 6, band = Low",
+      "D": "Score = 8, band = High (incorrectly using a strict > comparison on the wrong boundary)"
+    },
+    "answer": "B",
+    "explanation": "Risk = L × I = 2 × 4 = 8. Since 8 > 6 (fails Low) but 8 ≤ 12 (satisfies Medium), the band is Medium — the guide's trap warns: \"Multiply before ranking,\" i.e., always compute L×I first before comparing to band thresholds, never add or compare the raw L and I values separately.",
+    "lectureReference": "Algorithm 17 — Risk L×I, Triage, and Attack-Surface Ranking"
+  },
+  {
+    "num": 62,
+    "type": "mcq",
+    "question": "Using the triage formula base = min(5, 1 + users // 1000), what is the base score for a component with 3,999 users, and why is this NOT 5 even though 3,999 is close to 4,000?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "base = 4 — integer floor division (//) truncates 3,999 // 1000 to 3 (not 4, since 3,999 < 4,000), giving 1 + 3 = 4, and min(5, 4) = 4; the component falls just short of qualifying for the next base tier",
+      "B": "base = 3, forgetting to add 1 to the floor-divided result",
+      "C": "base = 3.999, treating the formula as producing a continuous (non-integer) score",
+      "D": "base = 5, since 3,999 rounds up to 4,000"
+    },
+    "answer": "A",
+    "explanation": "Integer floor division 3,999 // 1000 = 3 (not 4), because floor division truncates toward zero/negative infinity and 3,999 is still less than 4,000. So base = min(5, 1+3) = min(5,4) = 4 (verified numerically) — the guide's trap specifically calls out: \"users//1000 floors (800 → 0),\" illustrating how floor division can produce a lower tier than a naive rounding would suggest.",
+    "lectureReference": "Algorithm 17 — Risk L×I, Triage, and Attack-Surface Ranking"
+  },
+  {
+    "num": 63,
+    "type": "mcq",
+    "question": "Given triage formula score = base × sensitivity × (2 if active else 1), with severity P1 if score≥30, P2 if score≥15, else P3, and four incidents: A(2,500 users, sensitivity 3, active), B(12,000 users, sensitivity 2, inactive), C(900 users, sensitivity 5, active), D(3,999 users, sensitivity 4, active): how many incidents are classified P1?",
+    "tier": "Tier A — Highest Probability",
+    "options": {
+      "A": "0 — none of the four incidents reach a score of 30",
+      "B": "4 — all four incidents are classified P1, since all involve \"active\" or high-sensitivity components",
+      "C": "2 — both A and D reach P1",
+      "D": "1 — only incident D reaches P1, with base=4, score = 4×4×2 = 32 ≥ 30; A scores 18 (P2), B and C both score 10 (P3)"
+    },
+    "answer": "D",
+    "explanation": "A: base=min(5,1+2)=3, score=3×3×2=18 (P2). B: base=min(5,1+12)=5, score=5×2×1=10 (P3, inactive so ×1). C: base=min(5,1+0)=1, score=1×5×2=10 (P3). D: base=min(5,1+3)=4 (since 3,999//1000=3), score=4×4×2=32 (P1, since 32≥30) (all verified numerically). Only D reaches P1 — a single incident out of four.",
+    "lectureReference": "Algorithm 17 — Risk L×I, Triage, and Attack-Surface Ranking"
   }
 ]
