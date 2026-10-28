@@ -1,0 +1,14 @@
+data/cmpe253.json
+  h_566954f6ea4a9a 4-15,19-30,34-45,49-60,64-75,79-90,94-105,109-120,124-135,139-150,154-165,169-180,184-195,199-210,214-225,229-240,244-255,259-270,274-285,289-300,304-315,319-330,334-345,349-360,364-945
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "09cea8c0d78f955360b46e5eef7d9f77ae9be87e",
+  "prompts": {},
+  "humans": {
+    "h_566954f6ea4a9a": {
+      "author": "pyadav <pyadav@paloaltonetworks.com>"
+    }
+  }
+}
