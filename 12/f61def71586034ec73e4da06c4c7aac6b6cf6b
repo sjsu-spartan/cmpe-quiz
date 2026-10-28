@@ -1,0 +1,16 @@
+src/components/QuizScreen.tsx
+  h_566954f6ea4a9a 49-55,58
+src/hooks/useQuiz.ts
+  h_566954f6ea4a9a 62-76,81-82,87-88
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "12f61def71586034ec73e4da06c4c7aac6b6cf6b",
+  "prompts": {},
+  "humans": {
+    "h_566954f6ea4a9a": {
+      "author": "pyadav <pyadav@paloaltonetworks.com>"
+    }
+  }
+}
