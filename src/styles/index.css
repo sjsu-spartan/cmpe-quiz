@@ -498,6 +498,12 @@ body {
 .custom-input::-webkit-outer-spin-button,
 .custom-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .custom-go-btn { flex: 0; padding: 14px 28px; }
+.mode-part-select {
+  flex: 1;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
 
 /* ===== Quiz Screen ===== */
 .quiz-top {

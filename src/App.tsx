@@ -54,11 +54,12 @@ export default function App() {
     setScreen('mode');
   }, [quiz]);
 
-  const handleStartQuiz = useCallback((count: number, tier?: string) => {
+  const handleStartQuiz = useCallback((count: number, tier?: string, part?: string) => {
     if (!quiz.courseId) return;
     const allQ = allQuestions[quiz.courseId];
     if (!allQ || allQ.length === 0) return;
-    quiz.initQuiz(quiz.courseId, allQ, count, tier ? 'tier' : count >= allQ.length ? 'all' : 'quick', true, tier);
+    const quizMode = part ? 'part' : tier ? 'tier' : count >= allQ.length ? 'all' : 'quick';
+    quiz.initQuiz(quiz.courseId, allQ, count, quizMode, true, tier, part);
     timer.start();
     setScreen('quiz');
   }, [quiz, allQuestions, timer]);
@@ -102,7 +103,9 @@ export default function App() {
     if (quiz.courseId) {
       const allQ = allQuestions[quiz.courseId];
       if (allQ) {
-        quiz.initQuiz(quiz.courseId, allQ, quiz.questions.length, quiz.mode, true, quiz.moduleFilter);
+        const restartTier = quiz.mode === 'tier' ? quiz.moduleFilter : undefined;
+        const restartPart = quiz.mode === 'part' ? quiz.moduleFilter : undefined;
+        quiz.initQuiz(quiz.courseId, allQ, quiz.questions.length, quiz.mode, true, restartTier, restartPart);
         timer.start();
         setScreen('quiz');
       }

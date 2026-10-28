@@ -62,7 +62,7 @@ export interface Answer {
   timeSpent: number;
 }
 
-export type QuizMode = 'all' | 'quick' | 'tier' | 'custom';
+export type QuizMode = 'all' | 'quick' | 'tier' | 'part' | 'custom';
 
 export interface QuizState {
   courseId: string;

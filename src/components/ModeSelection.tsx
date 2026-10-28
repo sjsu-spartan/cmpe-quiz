@@ -4,7 +4,7 @@ import type { Question } from '../types';
 interface ModeSelectionProps {
   courseTitle: string;
   questions: Question[];
-  onStartQuiz: (count: number, tier?: string) => void;
+  onStartQuiz: (count: number, tier?: string, part?: string) => void;
   onBack: () => void;
 }
 
@@ -13,10 +13,25 @@ function getAvailableTiers(questions: Question[]): string[] {
   return [...tiers].sort();
 }
 
+/** Parts are detected from lectureReference values that follow the "Part N: ..." naming
+ * convention (currently only CMPE 253's 19-part bank), sorted numerically by part number. */
+function getAvailableParts(questions: Question[]): string[] {
+  const parts = new Set(
+    questions.map((q) => q.lectureReference).filter((ref): ref is string => !!ref && /^Part \d+:/.test(ref))
+  );
+  return [...parts].sort((a, b) => {
+    const na = parseInt(a.match(/^Part (\d+):/)?.[1] ?? '0', 10);
+    const nb = parseInt(b.match(/^Part (\d+):/)?.[1] ?? '0', 10);
+    return na - nb;
+  });
+}
+
 export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: ModeSelectionProps) {
   const [shuffle, setShuffle] = useState(true);
   const [customCount, setCustomCount] = useState(Math.min(30, Math.floor(questions.length / 2)));
   const tiers = useMemo(() => getAvailableTiers(questions), [questions]);
+  const parts = useMemo(() => getAvailableParts(questions), [questions]);
+  const [selectedPart, setSelectedPart] = useState('');
   const total = questions.length;
 
   const presets = useMemo(() => {
@@ -78,6 +93,39 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
                   </button>
                 );
               })}
+            </div>
+          </div>
+        )}
+
+        {parts.length > 0 && (
+          <div className="mode-section">
+            <h3 className="mode-section-title">By Part</h3>
+            <div className="custom-row">
+              <select
+                className="review-tier-select mode-part-select"
+                value={selectedPart}
+                onChange={(e) => setSelectedPart(e.target.value)}
+              >
+                <option value="">Choose a part…</option>
+                {parts.map((part) => {
+                  const count = questions.filter((q) => q.lectureReference === part).length;
+                  return (
+                    <option key={part} value={part}>
+                      {part} ({count}q)
+                    </option>
+                  );
+                })}
+              </select>
+              <button
+                className="mode-preset-btn custom-go-btn"
+                disabled={!selectedPart}
+                onClick={() => {
+                  const count = questions.filter((q) => q.lectureReference === selectedPart).length;
+                  onStartQuiz(count, undefined, selectedPart);
+                }}
+              >
+                Start 📖
+              </button>
             </div>
           </div>
         )}

@@ -30,9 +30,12 @@ export function useQuiz() {
     quizMode: QuizMode,
     shouldShuffle: boolean,
     tier?: string | null,
+    part?: string | null,
   ) => {
     let selected: Question[];
-    if (tier) {
+    if (part) {
+      selected = allQ.filter((q) => q.lectureReference === part);
+    } else if (tier) {
       selected = allQ.filter((q) => q.tier === tier);
     } else if (shouldShuffle) {
       selected = shuffle(allQ).slice(0, Math.min(count, allQ.length));
@@ -52,7 +55,7 @@ export function useQuiz() {
     setAnswered(0);
     setAnswers([]);
     setMode(quizMode);
-    setModuleFilter(tier ?? null);
+    setModuleFilter(part ?? tier ?? null);
     setStartTime(Date.now());
   }, []);
 
