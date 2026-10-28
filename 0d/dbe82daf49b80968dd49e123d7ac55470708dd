@@ -1,0 +1,16 @@
+.gitignore
+  h_566954f6ea4a9a 7-13
+package.json
+  h_566954f6ea4a9a 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "0ddbe82daf49b80968dd49e123d7ac55470708dd",
+  "prompts": {},
+  "humans": {
+    "h_566954f6ea4a9a": {
+      "author": "pyadav <pyadav@paloaltonetworks.com>"
+    }
+  }
+}
