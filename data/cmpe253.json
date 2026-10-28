@@ -145,14 +145,14 @@
   {
     "num": 12,
     "type": "tf",
-    "question": "At each iteration, PGD projects the perturbed point back into a box centered on the current iterate x_t.",
+    "question": "At each iteration, PGD projects the perturbed point back into a box centered on the current iterate $x_{t}.$",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The box is always centered on the original point x0; it is $[x0-\\epsilon, x0+\\epsilon]$ and never recentered on x_t.",
+    "explanation": "The box is always centered on the original point x0; it is $[x0-\\epsilon, x0+\\epsilon]$ and never recentered on $x_{t}.$",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -1692,7 +1692,7 @@
   {
     "num": 131,
     "type": "tf",
-    "question": "The Population Stability Index is defined as PSI = sum over bins of (a_i - e_i) * $\\ln(a_i/e_i)$, where a_i is the actual (live) bin proportion and e_i is the expected (training) bin proportion.",
+    "question": "The Population Stability Index is defined as PSI = sum over bins of ($a_{i}$ - $e_{i}$) * $\\ln(a_{i}/e_{i})$, where $a_{i}$ is the actual (live) bin proportion and $e_{i}$ is the expected (training) bin proportion.",
     "tier": "Tier C — Moderate Probability",
     "options": {
       "A": "True",
@@ -1705,14 +1705,14 @@
   {
     "num": 132,
     "type": "tf",
-    "question": "An individual PSI bin term (a_i - e_i) * $\\ln(a_i/e_i)$ can be negative if a_i < e_i for that bin.",
+    "question": "An individual PSI bin term ($a_{i}$ - $e_{i}$) * $\\ln(a_{i}/e_{i})$ can be negative if $a_{i}$ < $e_{i}$ for that bin.",
     "tier": "Tier C — Moderate Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "When a_i < e_i, the ratio a_i/e_i < $1$ so $\\ln(a_i/e_i)$ is negative, and (a_i - e_i) is also negative. A negative times a negative is positive, so the term is always >= $0.$",
+    "explanation": "When $a_{i}$ < $e_{i}$, the ratio $a_{i}/e_{i}$ < $1$ so $\\ln(a_{i}/e_{i})$ is negative, and ($a_{i}$ - $e_{i}$) is also negative. A negative times a negative is positive, so the term is always >= $0.$",
     "lectureReference": "Part 14: PSI / KS Drift Tests"
   },
   {
@@ -1751,7 +1751,7 @@
       "B": "False"
     },
     "answer": "A",
-    "explanation": "KS = max_i |cum_a_i - cum_e_i|, computed from the running cumulative sums of each distribution.",
+    "explanation": "KS = $max_{i} |cum_{a_{i}}$ - $cum_{e_{i}}|$, computed from the running cumulative sums of each distribution.",
     "lectureReference": "Part 14: PSI / KS Drift Tests"
   },
   {
@@ -1816,7 +1816,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "PSI is computed from the per-bin proportions (a_i and e_i) directly, not from cumulative sums. KS is the one that uses cumulative distributions.",
+    "explanation": "PSI is computed from the per-bin proportions ($a_{i}$ and $e_{i}$) directly, not from cumulative sums. KS is the one that uses cumulative distributions.",
     "lectureReference": "Part 14: PSI / KS Drift Tests"
   },
   {
@@ -2718,7 +2718,7 @@
       "A": "Clip the point back into the fixed box $[x0-\\epsilon, x0+\\epsilon]$ defined by the original input",
       "B": "Reset x back to x0 if the loss decreases",
       "C": "Normalize the gradient vector to unit length",
-      "D": "Recenter the perturbation box on the current iterate x_t"
+      "D": "Recenter the perturbation box on the current iterate $x_{t}$"
     },
     "answer": "A",
     "explanation": "$\\Pi_\\epsilon$ always clips relative to the original x0's box; the box never moves with the iterate.",
@@ -5400,10 +5400,10 @@
     "question": "Which expression correctly defines the Population Stability Index across bins?",
     "tier": "Tier C — Moderate Probability",
     "options": {
-      "A": "PSI = sum of (a_i - e_i) * $\\ln(a_i/e_i)$",
-      "B": "PSI = sum of (a_i - e_i)^2 / e_i",
-      "C": "PSI = max of |cum_a_i - cum_e_i|",
-      "D": "PSI = sum of |a_i - e_i|"
+      "A": "PSI = sum of ($a_{i}$ - $e_{i}$) * $\\ln(a_{i}/e_{i})$",
+      "B": "PSI = sum of ($a_{i}$ - $e_{i})^2$ / $e_{i}$",
+      "C": "PSI = max of $|cum_{a_{i}}$ - $cum_{e_{i}}|$",
+      "D": "PSI = sum of $|a_{i}$ - $e_{i}|$"
     },
     "answer": "A",
     "explanation": "This is the defined PSI formula; A is a simple absolute-difference metric (not PSI), C is the KS statistic, and D resembles a chi-square-style statistic, not PSI.",
@@ -5427,16 +5427,16 @@
   {
     "num": 388,
     "type": "mcq",
-    "question": "Why is each individual PSI bin term (a_i - e_i) * $\\ln(a_i/e_i)$ always greater than or equal to zero?",
+    "question": "Why is each individual PSI bin term ($a_{i}$ - $e_{i}$) * $\\ln(a_{i}/e_{i})$ always greater than or equal to zero?",
     "tier": "Tier C — Moderate Probability",
     "options": {
-      "A": "Because (a_i - e_i) is always positive",
+      "A": "Because ($a_{i}$ - $e_{i}$) is always positive",
       "B": "Because PSI bins are normalized to sum to $1$",
-      "C": "Because (a_i - e_i) and $\\ln(a_i/e_i)$ always share the same sign, so their product is non-negative",
-      "D": "Because $\\ln(a_i/e_i)$ is always positive"
+      "C": "Because ($a_{i}$ - $e_{i}$) and $\\ln(a_{i}/e_{i})$ always share the same sign, so their product is non-negative",
+      "D": "Because $\\ln(a_{i}/e_{i})$ is always positive"
     },
     "answer": "C",
-    "explanation": "If a_i > e_i both factors are positive; if a_i < e_i both factors are negative; either way the product is non-negative.",
+    "explanation": "If $a_{i}$ > $e_{i}$ both factors are positive; if $a_{i}$ < $e_{i}$ both factors are negative; either way the product is non-negative.",
     "lectureReference": "Part 14: PSI / KS Drift Tests"
   },
   {
@@ -5472,7 +5472,7 @@
   {
     "num": 391,
     "type": "mcq",
-    "question": "Using e = $[0.25, 0.25, 0.25, 0.25]$ and a = $[0.18, 0.22, 0.30, 0.30]$, what is the PSI contribution of bin $1$ (where a_1 = $0.18$, e_1 = $0.25$)?",
+    "question": "Using e = $[0.25, 0.25, 0.25, 0.25]$ and a = $[0.18, 0.22, 0.30, 0.30]$, what is the PSI contribution of bin $1$ (where $a_{1}$ = $0.18, e_{1}$ = $0.25$)?",
     "tier": "Tier C — Moderate Probability",
     "options": {
       "A": "$0.0230$",
@@ -5487,7 +5487,7 @@
   {
     "num": 392,
     "type": "mcq",
-    "question": "What is the PSI contribution of bin $3$ (where a_3 = $0.30$, e_3 = $0.25$)?",
+    "question": "What is the PSI contribution of bin $3$ (where $a_{3}$ = $0.30, e_{3}$ = $0.25$)?",
     "tier": "Tier C — Moderate Probability",
     "options": {
       "A": "$0.0230$",
@@ -6492,7 +6492,7 @@
   {
     "num": 459,
     "type": "mcq",
-    "question": "Which of the following is NOT mentioned as a valid example of a token set T_i used for this monitoring technique?",
+    "question": "Which of the following is NOT mentioned as a valid example of a token set $T_{i}$ used for this monitoring technique?",
     "tier": "Tier C — Moderate Probability",
     "options": {
       "A": "Parameter names",
@@ -6771,9 +6771,9 @@
   {
     "num": 479,
     "type": "sa",
-    "question": "Explain why PGD projects each updated point back into a box defined around the *original* input x0, rather than around the current iterate x_t. What would go wrong with the attack if the box were recentered on x_t at every step?",
+    "question": "Explain why PGD projects each updated point back into a box defined around the *original* input x0, rather than around the current iterate $x_{t}.$ What would go wrong with the attack if the box were recentered on $x_{t}$ at every step?",
     "tier": "Tier A — Highest Probability",
-    "answerText": "The $\\epsilon-ball$ constraint is meant to bound the total perturbation relative to the original input, so that the adversarial example stays within a fixed, bounded distance of x0 for the whole attack. If the box were recentered on x_t instead, the allowed region would effectively \"walk\" along with the iterate, letting the cumulative perturbation grow unboundedly across iterations and violating the stated perturbation budget $\\epsilon.$ The projection must therefore always reference the fixed x0, keeping the box boundaries stationary throughout optimization.",
+    "answerText": "The $\\epsilon-ball$ constraint is meant to bound the total perturbation relative to the original input, so that the adversarial example stays within a fixed, bounded distance of x0 for the whole attack. If the box were recentered on $x_{t}$ instead, the allowed region would effectively \"walk\" along with the iterate, letting the cumulative perturbation grow unboundedly across iterations and violating the stated perturbation budget $\\epsilon.$ The projection must therefore always reference the fixed x0, keeping the box boundaries stationary throughout optimization.",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -7059,9 +7059,9 @@
   {
     "num": 515,
     "type": "sa",
-    "question": "Explain why a PSI bin term (a_i - e_i) * $\\ln(a_i/e_i)$ is always non-negative, even in cases where a_i < e_i (the actual proportion is lower than expected).",
+    "question": "Explain why a PSI bin term ($a_{i}$ - $e_{i}$) * $\\ln(a_{i}/e_{i})$ is always non-negative, even in cases where $a_{i}$ < $e_{i}$ (the actual proportion is lower than expected).",
     "tier": "Tier C — Moderate Probability",
-    "answerText": "When a_i < e_i, the difference (a_i - e_i) is negative. At the same time, the ratio a_i/e_i is less than $1$, which makes $\\ln(a_i/e_i)$ negative as well. Multiplying two negative numbers produces a positive result, so the bin term is non-negative. The symmetric case (a_i > e_i) makes both factors positive, again yielding a non-negative product, which is why total PSI is always a sum of non-negative terms.",
+    "answerText": "When $a_{i}$ < $e_{i}$, the difference ($a_{i}$ - $e_{i}$) is negative. At the same time, the ratio $a_{i}/e_{i}$ is less than $1$, which makes $\\ln(a_{i}/e_{i})$ negative as well. Multiplying two negative numbers produces a positive result, so the bin term is non-negative. The symmetric case ($a_{i}$ > $e_{i}$) makes both factors positive, again yielding a non-negative product, which is why total PSI is always a sum of non-negative terms.",
     "lectureReference": "Part 14: PSI / KS Drift Tests"
   },
   {
@@ -7165,7 +7165,7 @@
     "type": "sa",
     "question": "Explain what token sets like n-grams, parameter names, or AST tokens represent in the context of this monitoring technique, and why the choice of tokenization matters.",
     "tier": "Tier C — Moderate Probability",
-    "answerText": "Each request i is converted into a set T_i of tokens, for example the n-grams of its text, the names of its parameters, its sequence of API calls, or the tokens of its parsed AST, and Jaccard similarity is then computed between these sets for pairs of requests. The choice of tokenization determines what \"similarity\" actually captures: parameter-name tokens emphasize structural similarity of requests, while AST tokens emphasize similarity of code/logic structure, and n-grams emphasize surface-level textual similarity. A poor choice of tokenization can make genuinely similar attack traffic look dissimilar (missed detections) or make genuinely different legitimate traffic look similar (false positives).",
+    "answerText": "Each request i is converted into a set $T_{i}$ of tokens, for example the n-grams of its text, the names of its parameters, its sequence of API calls, or the tokens of its parsed AST, and Jaccard similarity is then computed between these sets for pairs of requests. The choice of tokenization determines what \"similarity\" actually captures: parameter-name tokens emphasize structural similarity of requests, while AST tokens emphasize similarity of code/logic structure, and n-grams emphasize surface-level textual similarity. A poor choice of tokenization can make genuinely similar attack traffic look dissimilar (missed detections) or make genuinely different legitimate traffic look similar (false positives).",
     "lectureReference": "Part 18: Jaccard Similarity (Stateful Token Monitoring)"
   },
   {
@@ -7411,7 +7411,7 @@
   {
     "num": 559,
     "type": "sa",
-    "question": "Full PSI Computation\n\nGiven expected distribution e = $[0.25, 0.25, 0.25, 0.25]$ and actual distribution a = $[0.18, 0.22, 0.30, 0.30]$ across $4$ bins:\n\n(a) Compute each of the $4$ individual PSI bin terms (a_i - e_i) * $\\ln(a_i/e_i).$\n(b) Sum the $4$ bin terms to get the total PSI.\n(c) State the PSI verdict using the $0.1$ stability convention.\n(d) Explain why PSI is described as using a \"fixed cutoff that ignores n.\"",
+    "question": "Full PSI Computation\n\nGiven expected distribution e = $[0.25, 0.25, 0.25, 0.25]$ and actual distribution a = $[0.18, 0.22, 0.30, 0.30]$ across $4$ bins:\n\n(a) Compute each of the $4$ individual PSI bin terms ($a_{i}$ - $e_{i}$) * $\\ln(a_{i}/e_{i}).$\n(b) Sum the $4$ bin terms to get the total PSI.\n(c) State the PSI verdict using the $0.1$ stability convention.\n(d) Explain why PSI is described as using a \"fixed cutoff that ignores n.\"",
     "tier": "Tier C — Moderate Probability",
     "answerText": "(a)\n- Bin $1: (0.18-0.25)*\\ln(0.18/0.25)$ = $(-0.07)*\\ln(0.72)$ = $(-0.07)*(-0.3285)$ = $0.0230$\n- Bin $2: (0.22-0.25)*\\ln(0.22/0.25)$ = $(-0.03)*\\ln(0.88)$ = $(-0.03)*(-0.1278)$ = $0.0038$\n- Bin $3: (0.30-0.25)*\\ln(0.30/0.25)$ = $(0.05)*\\ln(1.20)$ = $(0.05)*(0.1823)$ = $0.0091$\n- Bin $4: (0.30-0.25)*\\ln(0.30/0.25)$ = same as bin $3$ = $0.0091$\n\n(b) Total PSI = $0.0230$ + $0.0038$ + $0.0091$ + $0.0091$ = $0.0451.$\n\n(c) Since $0.0451$ < $0.1$, the distribution is classified as \"stable\" by the standard PSI convention; no significant drift is flagged.\n\n(d) The $0.1$ threshold is applied to the PSI value exactly the same way whether the underlying distributions were built from $50$ samples or $50,000$ samples; the formula and the cutoff contain no term for n. This means PSI's verdict (stable or drifted) is determined purely by the shape of the distributional difference, not by how statistically confident we should be in that difference given the sample size, which is the opposite of a formal hypothesis test like KS.",
     "lectureReference": "Part 14: PSI / KS Drift Tests"
@@ -7419,7 +7419,7 @@
   {
     "num": 560,
     "type": "sa",
-    "question": "Full KS Computation\n\nUsing the same expected distribution e = $[0.25, 0.25, 0.25, 0.25]$ and actual distribution a = $[0.18, 0.22, 0.30, 0.30]$:\n\n(a) Compute the cumulative distributions of e and a, and the absolute gap |cum_a_i - cum_e_i| at each bin.\n(b) Identify the KS statistic and which bin it occurs at.\n(c) Compute the KS critical value and state the drift verdict at n=300.\n(d) Compute the KS critical value and state the drift verdict at n=800. Explicitly state whether this verdict contradicts the n=300 verdict despite using the identical KS statistic, and connect this to why PSI and KS can disagree.",
+    "question": "Full KS Computation\n\nUsing the same expected distribution e = $[0.25, 0.25, 0.25, 0.25]$ and actual distribution a = $[0.18, 0.22, 0.30, 0.30]$:\n\n(a) Compute the cumulative distributions of e and a, and the absolute gap $|cum_{a_{i}}$ - $cum_{e_{i}}|$ at each bin.\n(b) Identify the KS statistic and which bin it occurs at.\n(c) Compute the KS critical value and state the drift verdict at n=300.\n(d) Compute the KS critical value and state the drift verdict at n=800. Explicitly state whether this verdict contradicts the n=300 verdict despite using the identical KS statistic, and connect this to why PSI and KS can disagree.",
     "tier": "Tier C — Moderate Probability",
     "answerText": "(a)\n- Cumulative e: $0.25, 0.50, 0.75, 1.00$\n- Cumulative a: $0.18, 0.40, 0.70, 1.00$\n- Gaps: $|0.18-0.25|$ = $0.07, |0.40-0.50|$ = $0.10, |0.70-0.75|$ = $0.05, |1.00-1.00|$ = $0.00$\n\n(b) KS statistic = $\\max(0.07, 0.10, 0.05, 0.00)$ = $0.10$, occurring at bin $2.$\n\n(c) At n=300: critical value = 1.36*sqrt(2/300) = $1.36*0.0816$ = $0.1110.$ Since KS $(0.10)$ < critical $(0.1110)$, no drift is flagged at n=300.\n\n(d) At n=800: critical value = 1.36*sqrt(2/800) = $1.36*0.0500$ = $0.0680.$ Since KS $(0.10)$ > critical $(0.0680)$, drift IS flagged at n=800. This directly contradicts the n=300 verdict, even though the KS statistic itself $(0.10)$ is identical in both cases; only the critical value changed because it depends on n. This is precisely the mechanism behind why PSI and KS can disagree: PSI's $0.0451$ result and \"stable\" verdict would stay fixed at $0.0451$ regardless of n, while KS's verdict flips from stable to drifted purely because of a larger sample size, with no change in the underlying distributions at all.",
     "lectureReference": "Part 14: PSI / KS Drift Tests"
