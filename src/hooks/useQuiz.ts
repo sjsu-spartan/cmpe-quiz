@@ -59,30 +59,33 @@ export function useQuiz() {
     setStartTime(Date.now());
   }, []);
 
+  /** Replaces any existing answer for this question index with a new one (so revisiting
+   * an already-answered question via Prev/Next and picking a different option corrects
+   * the record instead of appending a duplicate), then recomputes score/answered from
+   * the resulting answers array so counts always match the actual number of distinct
+   * questions answered. */
+  const recordAnswer = useCallback((newAnswer: Answer) => {
+    setAnswers((prev) => {
+      const next = prev.filter((a) => a.qIndex !== newAnswer.qIndex);
+      next.push(newAnswer);
+      setAnswered(next.length);
+      setScore(next.filter((a) => a.isCorrect).length);
+      return next;
+    });
+  }, []);
+
   const selectAnswer = useCallback((selected: string, timeSpent: number) => {
     const q = questions[currentIndex];
     const correct = q.answer ?? '';
     const isCorrect = selected === correct;
-
-    setAnswered((a) => a + 1);
-    if (isCorrect) setScore((s) => s + 1);
-    setAnswers((prev) => [
-      ...prev,
-      { qIndex: currentIndex, question: q, selected, correct, isCorrect, timeSpent },
-    ]);
-  }, [currentIndex, questions]);
+    recordAnswer({ qIndex: currentIndex, question: q, selected, correct, isCorrect, timeSpent });
+  }, [currentIndex, questions, recordAnswer]);
 
   /** For 'sa' (short-answer/flashcard) questions: the learner self-reports correctness after revealing the answer. */
   const selfGradeAnswer = useCallback((isCorrect: boolean, timeSpent: number) => {
     const q = questions[currentIndex];
-
-    setAnswered((a) => a + 1);
-    if (isCorrect) setScore((s) => s + 1);
-    setAnswers((prev) => [
-      ...prev,
-      { qIndex: currentIndex, question: q, selected: 'self', correct: 'self', isCorrect, timeSpent },
-    ]);
-  }, [currentIndex, questions]);
+    recordAnswer({ qIndex: currentIndex, question: q, selected: 'self', correct: 'self', isCorrect, timeSpent });
+  }, [currentIndex, questions, recordAnswer]);
 
   const nextQuestion = useCallback(() => {
     if (currentIndex < questions.length - 1) {

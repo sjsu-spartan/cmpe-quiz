@@ -46,11 +46,16 @@ export function QuizScreen({
   useEffect(() => {
     if (prevIndexRef.current !== currentIndex) {
       prevIndexRef.current = currentIndex;
-      setHasAnswered(false);
-      setSaRevealed(false);
+      // Reflect whether the question we're navigating TO already has a recorded answer
+      // (e.g. revisiting via Prev), rather than always unlocking it -- otherwise picking
+      // a different option on a revisited question would re-fire the answer handler and
+      // overwrite the original recorded answer without it being visible that a change
+      // happened, which is what caused incorrect selections to silently show as correct.
+      setHasAnswered(!!prevAnswer);
+      setSaRevealed(!!prevAnswer);
       questionStartRef.current = Date.now();
     }
-  }, [currentIndex]);
+  }, [currentIndex, prevAnswer]);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
