@@ -1,0 +1,14 @@
+data/cmpe253.json
+  h_566954f6ea4a9a 2748,2750
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "85591a9a2d7bfc09e2884ecd6579af559a82eb06",
+  "prompts": {},
+  "humans": {
+    "h_566954f6ea4a9a": {
+      "author": "pyadav <pyadav@paloaltonetworks.com>"
+    }
+  }
+}
