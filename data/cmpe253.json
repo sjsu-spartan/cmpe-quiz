@@ -15,20 +15,20 @@
   {
     "num": 2,
     "type": "tf",
-    "question": "The FGSM perturbation direction is $\\text{sign}(\\nabla_w$ J), the gradient of the loss with respect to the weights.",
+    "question": "The FGSM perturbation direction is $\\text{sign}(\\nabla_w J)$, the gradient of the loss with respect to the weights.",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "FGSM perturbs the input, so it uses $\\text{sign}(\\nabla_x$ J), the gradient with respect to x. The weight gradient $(p-y)\\cdot$ x is used for training, not for crafting adversarial examples.",
+    "explanation": "FGSM perturbs the input, so it uses $\\text{sign}(\\nabla_x J)$, the gradient with respect to x. The weight gradient $(p-y)\\cdot x$ is used for training, not for crafting adversarial examples.",
     "lectureReference": "Part 1: FGSM (Fast Gradient Sign Method)"
   },
   {
     "num": 3,
     "type": "tf",
-    "question": "For a single logistic neuron with $z=w\\cdot$ x+b and $p=\\sigma(z)$, the input gradient is $\\nabla_x J=(p-y)\\cdot$ w.",
+    "question": "For a single logistic neuron with $z=w\\cdot$ x+b and $p=\\sigma(z)$, the input gradient is $\\nabla_x J=(p-y)\\cdot w.$",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "True",
@@ -41,20 +41,20 @@
   {
     "num": 4,
     "type": "tf",
-    "question": "The gradient with respect to the weights for the same neuron is $\\nabla_w J=(p-y)\\cdot$ w.",
+    "question": "The gradient with respect to the weights for the same neuron is $\\nabla_w J=(p-y)\\cdot w.$",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The weight gradient is $\\nabla_w J=(p-y)\\cdot$ x. Swapping w and x between the input gradient and weight gradient is a common error.",
+    "explanation": "The weight gradient is $\\nabla_w J=(p-y)\\cdot x.$ Swapping w and x between the input gradient and weight gradient is a common error.",
     "lectureReference": "Part 1: FGSM (Fast Gradient Sign Method)"
   },
   {
     "num": 5,
     "type": "tf",
-    "question": "If a coordinate of $\\nabla_x$ J is exactly $0, \\text{sign}(0)=0$, so that input coordinate receives zero perturbation under FGSM.",
+    "question": "If a coordinate of $\\nabla_x J$ is exactly $0, \\text{sign}(0)=0$, so that input coordinate receives zero perturbation under FGSM.",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "True",
@@ -80,7 +80,7 @@
   {
     "num": 7,
     "type": "tf",
-    "question": "After computing $x_{adv}$ = x + $\\epsilon\\cdot \\text{sign}(\\nabla_x$ J), it must be clipped to the valid input range (e.g., $[0,1]$) before being used further.",
+    "question": "After computing $x_{adv}$ = x + $\\epsilon\\cdot \\text{sign}(\\nabla_x J)$, it must be clipped to the valid input range (e.g., $[0,1]$) before being used further.",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "True",
@@ -275,14 +275,14 @@
   {
     "num": 22,
     "type": "tf",
-    "question": "The parameter update rule is w $\\leftarrow$ w + $\\eta\\cdot\\nabla_w.$",
+    "question": "The parameter update rule is w $\\leftarrow w$ + $\\eta\\cdot\\nabla_w.$",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The correct rule is w $\\leftarrow$ w - $\\eta\\cdot\\nabla_w$ (subtraction); adding the gradient performs ascent, not descent.",
+    "explanation": "The correct rule is w $\\leftarrow w$ - $\\eta\\cdot\\nabla_w$ (subtraction); adding the gradient performs ascent, not descent.",
     "lectureReference": "Part 3: Batch Gradient Descent (Logistic Regression)"
   },
   {
@@ -418,14 +418,14 @@
   {
     "num": 33,
     "type": "tf",
-    "question": "The clipping rule g $\\leftarrow$ g / $\\max(1$, \\| g\\|/C) leaves a gradient unchanged whenever \\| g\\| $\\leq$ C.",
+    "question": "The clipping rule g $\\leftarrow g$ / $\\max(1$, \\| g\\|/C) leaves a gradient unchanged whenever \\| g\\| $\\leq C.$",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "A",
-    "explanation": "When \\| g\\| $\\leq$ C, \\| g\\|/C $\\leq 1$, so $\\max(1$, \\| g\\|/C) = $1$ and g is divided by $1.$",
+    "explanation": "When \\| g\\| $\\leq C$, \\| g\\|/C $\\leq 1$, so $\\max(1$, \\| g\\|/C) = $1$ and g is divided by $1.$",
     "lectureReference": "Part 4: DP-SGD (Abadi et al. 2016)"
   },
   {
@@ -451,7 +451,7 @@
       "B": "False"
     },
     "answer": "A",
-    "explanation": "Clipping guarantees \\| clipped g\\| $\\leq$ C, with equality only when the original norm exceeded C.",
+    "explanation": "Clipping guarantees \\| clipped g\\| $\\leq C$, with equality only when the original norm exceeded C.",
     "lectureReference": "Part 4: DP-SGD (Abadi et al. 2016)"
   },
   {
@@ -503,7 +503,7 @@
       "B": "False"
     },
     "answer": "A",
-    "explanation": "Basic composition sums the per-step epsilon budget, e.g., epsilon_basic = epsilon_per_step $\\times$ T.",
+    "explanation": "Basic composition sums the per-step epsilon budget, e.g., epsilon_basic = epsilon_per_step $\\times T.$",
     "lectureReference": "Part 4: DP-SGD (Abadi et al. 2016)"
   },
   {
@@ -529,7 +529,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "Surfaces must be ranked by the combined score (exposure $\\times$ exploitability), computed before ranking; ranking the raw factors separately can reorder the surfaces incorrectly.",
+    "explanation": "Surfaces must be ranked by the combined score (exposure $\\times exploitability$), computed before ranking; ranking the raw factors separately can reorder the surfaces incorrectly.",
     "lectureReference": "Part 5: Risk Scoring / Triage / Attack-Surface Ranking"
   },
   {
@@ -561,7 +561,7 @@
   {
     "num": 44,
     "type": "tf",
-    "question": "Under the risk banding scheme Risk = L $\\times$ I, a risk score exactly equal to $6$ is classified as Low.",
+    "question": "Under the risk banding scheme Risk = L $\\times I$, a risk score exactly equal to $6$ is classified as Low.",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "True",
@@ -646,7 +646,7 @@
       "B": "False"
     },
     "answer": "A",
-    "explanation": "The active multiplier is $2$ versus $1$ for inactive, and both base and sensitivity are non-negative, so the active score is always $\\geq$ the inactive score.",
+    "explanation": "The active multiplier is $2$ versus $1$ for inactive, and both base and sensitivity are non-negative, so the active score is always $\\geq the$ inactive score.",
     "lectureReference": "Part 5: Risk Scoring / Triage / Attack-Surface Ranking"
   },
   {
@@ -782,7 +782,7 @@
   {
     "num": 61,
     "type": "tf",
-    "question": "Uncertainty sampling for active-learning extraction selects the pool point that maximizes $|f_{sub}(x)|$ = $|w_{sub}\\cdot$ x + $b_{sub}|.$",
+    "question": "Uncertainty sampling for active-learning extraction selects the pool point that maximizes $|f_{sub}(x)|$ = $|w_{sub}\\cdot x$ + $b_{sub}|.$",
     "tier": "Tier B — High Probability",
     "options": {
       "A": "True",
@@ -821,20 +821,20 @@
   {
     "num": 64,
     "type": "tf",
-    "question": "Random sampling in d dimensions at q queries per dimension requires a total of $d\\times$ q queries.",
+    "question": "Random sampling in d dimensions at q queries per dimension requires a total of $d\\times q$ queries.",
     "tier": "Tier B — High Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "A",
-    "explanation": "Total random queries = $d\\cdot$ q (e.g., $80 \\times 100$ = $8000).$",
+    "explanation": "Total random queries = $d\\cdot q$ (e.g., $80 \\times 100$ = $8000).$",
     "lectureReference": "Part 7: Active-Learning Model Extraction"
   },
   {
     "num": 65,
     "type": "tf",
-    "question": "If active learning is N times more query-efficient than random sampling, the attacker needs only ($d\\times$ q)/N queries for comparable boundary coverage.",
+    "question": "If active learning is N times more query-efficient than random sampling, the attacker needs only $(d \\times q)/N$ queries for comparable boundary coverage.",
     "tier": "Tier B — High Probability",
     "options": {
       "A": "True",
@@ -854,7 +854,7 @@
       "B": "False"
     },
     "answer": "A",
-    "explanation": "$|f_{sub}(x)|$ = $|w_{sub}\\cdot$ x + $b_{sub}|$ is computed from the substitute's current parameters for every candidate point.",
+    "explanation": "$|f_{sub}(x)|$ = $|w_{sub}\\cdot x$ + $b_{sub}|$ is computed from the substitute's current parameters for every candidate point.",
     "lectureReference": "Part 7: Active-Learning Model Extraction"
   },
   {
@@ -984,7 +984,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "F1 is the harmonic mean, computed as $2 \\times$ Precision $\\times$ Recall / (Precision + Recall), not (Precision + Recall)/2.",
+    "explanation": "F1 is the harmonic mean, computed as $2 \\times Precision$ $\\times Recall$ / (Precision + Recall), not (Precision + Recall)/2.",
     "lectureReference": "Part 8: Membership Inference Attack"
   },
   {
@@ -2475,10 +2475,10 @@
     "question": "Which of the following is the correct FGSM update rule for a single logistic neuron?",
     "tier": "Tier A — Highest Probability",
     "options": {
-      "A": "$x_{adv}$ = x + $\\epsilon\\cdot \\text{sign}(\\nabla_x$ J)",
-      "B": "$x_{adv}$ = x - $\\epsilon\\cdot \\text{sign}(\\nabla_x$ J)",
-      "C": "$x_{adv}$ = x + $\\epsilon\\cdot \\text{sign}(\\nabla_w$ J)",
-      "D": "$x_{adv}$ = x + $\\epsilon\\cdot\\nabla_x$ J"
+      "A": "$x_{adv}$ = x + $\\epsilon\\cdot \\text{sign}(\\nabla_x J)$",
+      "B": "$x_{adv}$ = x - $\\epsilon\\cdot \\text{sign}(\\nabla_x J)$",
+      "C": "$x_{adv}$ = x + $\\epsilon\\cdot \\text{sign}(\\nabla_w J)$",
+      "D": "$x_{adv}$ = x + $\\epsilon\\cdot\\nabla_x J$"
     },
     "answer": "A",
     "explanation": "FGSM perturbs the input in the direction of the sign of the input gradient, scaled by $\\epsilon.$ B uses the weight gradient (wrong quantity), C uses the wrong sign (this is the direction that decreases the loss, i.e., gradient descent, not an attack), and D omits the sign function.",
@@ -2487,13 +2487,13 @@
   {
     "num": 192,
     "type": "mcq",
-    "question": "For $z=w\\cdot$ x+b, $p=\\sigma(z)$, and $J=-\\ln(p)$ when y=1 (or $-\\ln(1-p)$ when y=0), which expression gives $\\nabla_x$ J?",
+    "question": "For $z=w\\cdot$ x+b, $p=\\sigma(z)$, and $J=-\\ln(p)$ when y=1 (or $-\\ln(1-p)$ when y=0), which expression gives $\\nabla_x J$?",
     "tier": "Tier A — Highest Probability",
     "options": {
-      "A": "$(y-p)\\cdot$ w",
-      "B": "$(p-y)\\cdot$ w",
-      "C": "$(p-y)\\cdot$ x",
-      "D": "$p\\cdot(1-p)\\cdot$ x"
+      "A": "$(y-p)\\cdot w$",
+      "B": "$(p-y)\\cdot w$",
+      "C": "$(p-y)\\cdot x$",
+      "D": "$p\\cdot(1-p)\\cdot x$"
     },
     "answer": "B",
     "explanation": "This is the gradient of the loss with respect to the input. A is the weight-gradient form with x and w swapped, and C has the correct variables but the wrong sign.",
@@ -2502,12 +2502,12 @@
   {
     "num": 193,
     "type": "mcq",
-    "question": "For the same neuron, which expression gives $\\nabla_w$ J (the gradient with respect to the weights)?",
+    "question": "For the same neuron, which expression gives $\\nabla_w J$ (the gradient with respect to the weights)?",
     "tier": "Tier A — Highest Probability",
     "options": {
-      "A": "$(p-y)\\cdot$ x",
-      "B": "$(y-p)\\cdot$ x",
-      "C": "$(p-y)\\cdot$ w",
+      "A": "$(p-y)\\cdot x$",
+      "B": "$(y-p)\\cdot x$",
+      "C": "$(p-y)\\cdot w$",
       "D": "$x\\cdot(1-p)$"
     },
     "answer": "A",
@@ -2526,7 +2526,7 @@
       "D": "$0.30$"
     },
     "answer": "D",
-    "explanation": "$W\\cdot$ x = $1.5(0.4)$ + $(-2)(0.3)$ = $0.60$ - $0.60$ = $0.00$, and z = $0.00$ + $0.3$ = $0.30.$",
+    "explanation": "$W\\cdot x$ = $1.5(0.4)$ + $(-2)(0.3)$ = $0.60$ - $0.60$ = $0.00$, and z = $0.00$ + $0.3$ = $0.30.$",
     "lectureReference": "Part 1: FGSM (Fast Gradient Sign Method)"
   },
   {
@@ -2571,13 +2571,13 @@
       "D": "$[0.6383, -0.8511]$"
     },
     "answer": "C",
-    "explanation": "(p-y) = $0.5744-1$ = $-0.4256$, so $(p-y)\\cdot$ w = $-0.4256\\cdot[1.5,-2]$ = $[-0.6383, 0.8511].$",
+    "explanation": "(p-y) = $0.5744-1$ = $-0.4256$, so $(p-y)\\cdot w$ = $-0.4256\\cdot[1.5,-2]$ = $[-0.6383, 0.8511].$",
     "lectureReference": "Part 1: FGSM (Fast Gradient Sign Method)"
   },
   {
     "num": 198,
     "type": "mcq",
-    "question": "What is $\\text{sign}(\\nabla_x$ J) for Example $1$, where $\\nabla_x$ J=[-0.6383, $0.8511]$?",
+    "question": "What is $\\text{sign}(\\nabla_x J)$ for Example $1$, where $\\nabla_x J=[-0.6383, 0.8511]$?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "$[-1,+1]$",
@@ -2691,7 +2691,7 @@
       "D": "$-0.35$"
     },
     "answer": "C",
-    "explanation": "$\\epsilon_{min}$ = -z/slope = $-0.70/(-2)$ = $0.35.$ Verification: z + $\\epsilon_{min}\\cdot$ slope = $0.70$ + $0.35(-2)$ = $0.$",
+    "explanation": "$\\epsilon_{min}$ = -z/slope = $-0.70/(-2)$ = $0.35.$ Verification: z + $\\epsilon_{min}\\cdot slope$ = $0.70$ + $0.35(-2)$ = $0.$",
     "lectureReference": "Part 1: FGSM (Fast Gradient Sign Method)"
   },
   {
@@ -2700,7 +2700,7 @@
     "question": "Which expression correctly describes one PGD iteration?",
     "tier": "Tier A — Highest Probability",
     "options": {
-      "A": "x $\\leftarrow$ x + $\\alpha\\cdot \\text{sign}(\\nabla _{x}J(x))$",
+      "A": "x $\\leftarrow x$ + $\\alpha\\cdot \\text{sign}(\\nabla _{x}J(x))$",
       "B": "x $\\leftarrow$ x0 + $\\alpha\\cdot \\text{sign}(\\nabla _{x}J(x))$",
       "C": "x $\\leftarrow \\Pi_\\epsilon[x$ + $\\alpha\\cdot \\text{sign}(\\nabla _{x}J(x))]$",
       "D": "x $\\leftarrow \\Pi_\\epsilon[x0$ + $\\epsilon\\cdot \\text{sign}(\\nabla _{x}J(x0))]$"
@@ -2775,13 +2775,13 @@
     "question": "For a linear classifier, why can the sign of $\\nabla _{x}J(x)$ stay constant across many PGD iterations?",
     "tier": "Tier A — Highest Probability",
     "options": {
-      "A": "The predicted probability p can remain on the same side of $0.5$ relative to y for several steps, so (p-y) keeps the same sign and the gradient direction $(p-y)\\cdot$ w doesn't flip",
+      "A": "The predicted probability p can remain on the same side of $0.5$ relative to y for several steps, so (p-y) keeps the same sign and the gradient direction $(p-y)\\cdot w$ doesn't flip",
       "B": "The weights change at every step, keeping the sign fixed by construction",
       "C": "Linear models have zero gradient everywhere, so the sign defaults to $+1$",
       "D": "PGD forces the sign to be constant by design, regardless of the model"
     },
     "answer": "A",
-    "explanation": "Since gradient = $(p-y)\\cdot$ w for a logistic model, and w is fixed, the sign only flips when p crosses to the other side of y; for several steps p can stay misclassified, keeping the sign fixed.",
+    "explanation": "Since gradient = $(p-y)\\cdot w$ for a logistic model, and w is fixed, the sign only flips when p crosses to the other side of y; for several steps p can stay misclassified, keeping the sign fixed.",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -2856,7 +2856,7 @@
       "D": "Step $2$"
     },
     "answer": "B",
-    "explanation": "x1=[0.54, $0.26]$, x2=[0.58, $0.22]$, x3 pre-clip = $0.62 \\to$ clipped to $0.60.$ This matches $\\lceil \\epsilon/\\alpha\\rceil$ = $\\lceil0.10/0.04\\rceil$ = $\\lceil2.5\\rceil$ = $3.$",
+    "explanation": "x1=[0.54, $0.26]$, x2=[0.58, $0.22]$, x3 pre-clip = $0.62 \\to clipped$ to $0.60.$ This matches $\\lceil \\epsilon/\\alpha\\rceil$ = $\\lceil0.10/0.04\\rceil$ = $\\lceil2.5\\rceil$ = $3.$",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -2880,13 +2880,13 @@
     "question": "For the logistic model with weights w=[1,-2], bias b=0.1, and label y=1, the gradient $\\nabla _{x}J(x)$ used at each PGD step is computed as:",
     "tier": "Tier A — Highest Probability",
     "options": {
-      "A": "(y - $p)\\cdot$ x",
+      "A": "(y - $p)\\cdot x$",
       "B": "The second derivative of the sigmoid function",
-      "C": "(p - $y)\\cdot$ w, where p = $sigmoid(w\\cdot$ x + b)",
+      "C": "(p - $y)\\cdot w$, where p = $sigmoid(w\\cdot x$ + b)",
       "D": "w alone, ignoring the prediction"
     },
     "answer": "C",
-    "explanation": "For binary cross-entropy with a linear score z = $w\\cdot$ x+b and p = sigmoid(z), the gradient with respect to x is $(p-y)\\cdot$ w.",
+    "explanation": "For binary cross-entropy with a linear score z = $w\\cdot$ x+b and p = sigmoid(z), the gradient with respect to x is $(p-y)\\cdot w.$",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -2901,7 +2901,7 @@
       "D": "$[-1, +1]$"
     },
     "answer": "D",
-    "explanation": "grad = $(p-y)\\cdot$ w = $(0.3662-1)\\cdot[1,-2]$ = $(-0.6338)\\cdot[1,-2]$ = $[-0.6338, 1.2676]$, giving sign = $[-1, +1].$",
+    "explanation": "grad = $(p-y)\\cdot w$ = $(0.3662-1)\\cdot[1,-2]$ = $(-0.6338)\\cdot[1,-2]$ = $[-0.6338, 1.2676]$, giving sign = $[-1, +1].$",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -2955,10 +2955,10 @@
     "question": "Which is the correct batch gradient descent update for w?",
     "tier": "Tier A — Highest Probability",
     "options": {
-      "A": "w $\\leftarrow$ w + $\\eta\\cdot\\nabla_w$",
+      "A": "w $\\leftarrow w$ + $\\eta\\cdot\\nabla_w$",
       "B": "w $\\leftarrow \\eta\\cdot\\nabla_w$",
-      "C": "w $\\leftarrow$ w - $\\eta\\cdot\\nabla_b$",
-      "D": "w $\\leftarrow$ w - $\\eta\\cdot\\nabla_w$"
+      "C": "w $\\leftarrow w$ - $\\eta\\cdot\\nabla_b$",
+      "D": "w $\\leftarrow w$ - $\\eta\\cdot\\nabla_w$"
     },
     "answer": "D",
     "explanation": "Descent subtracts the gradient scaled by $\\eta$; B performs ascent, C swaps w and b's gradients, D discards the current w entirely.",
@@ -3042,7 +3042,7 @@
   {
     "num": 229,
     "type": "mcq",
-    "question": "A student updates w $\\leftarrow$ w + $\\eta\\cdot\\nabla_w$ instead of subtracting. What happens to the loss on the next iteration, for a reasonable $\\eta$?",
+    "question": "A student updates w $\\leftarrow w$ + $\\eta\\cdot\\nabla_w$ instead of subtracting. What happens to the loss on the next iteration, for a reasonable $\\eta$?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "This only matters for the bias term b, not for w",
@@ -3150,10 +3150,10 @@
     "question": "Which is the correct order of steps in a single DP-SGD training step?",
     "tier": "Tier A — Highest Probability",
     "options": {
-      "A": "Clip each gradient $\\to$ sum clipped gradients $\\to$ add noise $\\to$ divide by B",
-      "B": "Sum gradients $\\to$ clip the sum $\\to$ add noise $\\to$ divide by B",
-      "C": "Clip each gradient $\\to$ divide by B $\\to$ sum $\\to$ add noise",
-      "D": "Add noise to each gradient $\\to$ clip $\\to$ sum $\\to$ divide by B"
+      "A": "Clip each gradient $\\to sum$ clipped gradients $\\to add$ noise $\\to divide$ by B",
+      "B": "Sum gradients $\\to clip$ the sum $\\to add$ noise $\\to divide$ by B",
+      "C": "Clip each gradient $\\to divide$ by B $\\to sum$ $\\to add$ noise",
+      "D": "Add noise to each gradient $\\to clip$ $\\to sum$ $\\to divide$ by B"
     },
     "answer": "A",
     "explanation": "DP-SGD clips per-example gradients first, sums them, adds Gaussian noise to the sum, then averages by B.",
@@ -3276,7 +3276,7 @@
       "D": "$[0.5, 0.5]$"
     },
     "answer": "B",
-    "explanation": "theta_new = theta - $\\eta\\cdot$ grad = $[0.5$ - $0.2\\cdot0.35, 0.5$ - $0.2\\cdot0.2375]$ = $[0.43, 0.4525].$",
+    "explanation": "theta_new = theta - $\\eta\\cdot grad$ = $[0.5$ - $0.2\\cdot0.35, 0.5$ - $0.2\\cdot0.2375]$ = $[0.43, 0.4525].$",
     "lectureReference": "Part 4: DP-SGD (Abadi et al. 2016)"
   },
   {
@@ -3331,9 +3331,9 @@
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "$\\sigma\\cdot$ C/B",
-      "B": "$\\sigma\\cdot$ C",
+      "B": "$\\sigma\\cdot C$",
       "C": "$\\sigma/C$",
-      "D": "$\\sigma\\cdot C\\cdot$ B"
+      "D": "$\\sigma\\cdot C\\cdot B$"
     },
     "answer": "A",
     "explanation": "Dividing the noisy sum by B scales the noise standard deviation by 1/B, giving $\\sigma\\cdot$ C/B.",
@@ -3362,8 +3362,8 @@
     "options": {
       "A": "epsilon_tight(900) = $36.0$, larger than epsilon_basic",
       "B": "epsilon_tight(900) = $1.2$, unchanged from T = $100$",
-      "C": "epsilon_tight(900) = $10.8$, about $1.7\\times$ smaller than epsilon_basic",
-      "D": "epsilon_tight(900) = $3.6$, about $5\\times$ smaller than epsilon_basic"
+      "C": "epsilon_tight(900) = $10.8$, about $1.7\\times smaller$ than epsilon_basic",
+      "D": "epsilon_tight(900) = $3.6$, about $5\\times smaller$ than epsilon_basic"
     },
     "answer": "D",
     "explanation": "k = 1.2/sqrt(100) = $0.12$; epsilon_tight(900) = $0.12\\cdot30$ = $3.6$; ratio $18.0/3.6$ = $5.0.$",
@@ -3376,7 +3376,7 @@
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "score = exploitability only, since exposure is a secondary factor",
-      "B": "score = exposure $\\times$ exploitability",
+      "B": "score = exposure $\\times exploitability$",
       "C": "score = $\\max(exposure$, exploitability)",
       "D": "score = exposure + exploitability"
     },
@@ -3432,7 +3432,7 @@
   {
     "num": 255,
     "type": "mcq",
-    "question": "Component A has Likelihood L = $3$ and Impact I = $5.$ Using Risk = L $\\times$ I, what band does it fall into?",
+    "question": "Component A has Likelihood L = $3$ and Impact I = $5.$ Using Risk = L $\\times I$, what band does it fall into?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "Medium",
@@ -3486,7 +3486,7 @@
       "D": "$5$, Low"
     },
     "answer": "C",
-    "explanation": "Risk must be computed as L $\\times$ I = $5 \\times 5$ = $25$, which is > $12$, so the correct band is High; the student's error was adding instead of multiplying.",
+    "explanation": "Risk must be computed as L $\\times I$ = $5 \\times 5$ = $25$, which is > $12$, so the correct band is High; the student's error was adding instead of multiplying.",
     "lectureReference": "Part 5: Risk Scoring / Triage / Attack-Surface Ranking"
   },
   {
@@ -3507,7 +3507,7 @@
   {
     "num": 260,
     "type": "mcq",
-    "question": "Incident E has base = $5$, sensitivity = $3$, and is active. Using score = base $\\times$ sensitivity $\\times (2$ if active else $1$), what severity tier does it receive?",
+    "question": "Incident E has base = $5$, sensitivity = $3$, and is active. Using score = base $\\times sensitivity$ $\\times (2$ if active else $1$), what severity tier does it receive?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "P3",
@@ -3825,13 +3825,13 @@
     "question": "Given the substitute model's weights $w_{sub}$ and bias $b_{sub}$, which pool point does the attacker query next under uncertainty sampling?",
     "tier": "Tier B — High Probability",
     "options": {
-      "A": "The point maximizing $w_{sub}\\cdot$ x + $b_{sub}$ (without absolute value)",
-      "B": "The point minimizing $|w_{sub}\\cdot$ x + $b_{sub}|$",
+      "A": "The point maximizing $w_{sub}\\cdot x$ + $b_{sub}$ (without absolute value)",
+      "B": "The point minimizing $|w_{sub}\\cdot x$ + $b_{sub}|$",
       "C": "A uniformly randomly chosen pool point",
-      "D": "The point maximizing $|w_{sub}\\cdot$ x + $b_{sub}|$"
+      "D": "The point maximizing $|w_{sub}\\cdot x$ + $b_{sub}|$"
     },
     "answer": "B",
-    "explanation": "Uncertainty sampling queries x* = argmin $|w_{sub}\\cdot$ x + $b_{sub}|$, the point closest to the current decision boundary.",
+    "explanation": "Uncertainty sampling queries x* = argmin $|w_{sub}\\cdot x$ + $b_{sub}|$, the point closest to the current decision boundary.",
     "lectureReference": "Part 7: Active-Learning Model Extraction"
   },
   {
@@ -3871,12 +3871,12 @@
     "tier": "Tier B — High Probability",
     "options": {
       "A": "q / d",
-      "B": "d $\\times$ q",
+      "B": "d $\\times q$",
       "C": "d + q",
       "D": "d / q"
     },
     "answer": "B",
-    "explanation": "Total random queries = $d\\cdot$ q.",
+    "explanation": "Total random queries = $d\\cdot q.$",
     "lectureReference": "Part 7: Active-Learning Model Extraction"
   },
   {
@@ -4020,13 +4020,13 @@
     "question": "Which of the following represents a common attacker/analyst mistake when estimating the random-sampling query budget?",
     "tier": "Tier B — High Probability",
     "options": {
-      "A": "Confusing $d\\times$ q with d/q, drastically underestimating the needed query count",
+      "A": "Confusing $d\\times q$ with d/q, drastically underestimating the needed query count",
       "B": "Representing weights as floating-point numbers",
       "C": "Always rounding the query count up to the nearest hundred",
       "D": "Reporting costs only in whole dollars"
     },
     "answer": "A",
-    "explanation": "$D\\times$ q and d/q differ enormously (e.g., $8000$ vs. $0.8$), leading to a severe budget miscalculation.",
+    "explanation": "$D\\times q$ and d/q differ enormously (e.g., $8000$ vs. $0.8$), leading to a severe budget miscalculation.",
     "lectureReference": "Part 7: Active-Learning Model Extraction"
   },
   {
@@ -4245,7 +4245,7 @@
     "question": "Which formula correctly computes membership advantage from AUC?",
     "tier": "Tier B — High Probability",
     "options": {
-      "A": "$2 \\times$ AUC - $1.5$",
+      "A": "$2 \\times AUC$ - $1.5$",
       "B": "AUC - $0.5$",
       "C": "$2 \\times$ (AUC - $0.5$)",
       "D": "(AUC - $0.5)/2$"
@@ -4277,7 +4277,7 @@
     "options": {
       "A": "Cosine similarity cos(q,d)",
       "B": "Euclidean distance between q and d",
-      "C": "Raw dot product $q\\cdot$ d",
+      "C": "Raw dot product $q\\cdot d$",
       "D": "The document's L2 norm alone"
     },
     "answer": "A",
@@ -4290,10 +4290,10 @@
     "question": "What is the correct formula for cosine similarity between query q and document d?",
     "tier": "Tier B — High Probability",
     "options": {
-      "A": "$q\\cdot$ d",
-      "B": "$q\\cdot$ d / ||d||",
-      "C": "$q\\cdot$ d / ||q||",
-      "D": "$q\\cdot$ d / (||q|| * ||d||)"
+      "A": "$q\\cdot d$",
+      "B": "$q\\cdot d$ / ||d||",
+      "C": "$q\\cdot d$ / ||q||",
+      "D": "$q\\cdot d$ / (||q|| * ||d||)"
     },
     "answer": "D",
     "explanation": "Cosine similarity requires dividing the dot product by the product of both norms.",
@@ -4452,7 +4452,7 @@
   {
     "num": 323,
     "type": "mcq",
-    "question": "An analyst computes \"similarity\" as $q\\cdot$ d / ||q|| only, forgetting to divide by ||d||. What problem does this introduce?",
+    "question": "An analyst computes \"similarity\" as $q\\cdot d$ / ||q|| only, forgetting to divide by ||d||. What problem does this introduce?",
     "tier": "Tier B — High Probability",
     "options": {
       "A": "Documents with large norms can still be artificially inflated in ranking, the same flaw as using raw dot product alone",
@@ -6747,9 +6747,9 @@
   {
     "num": 476,
     "type": "sa",
-    "question": "Explain why the FGSM perturbation direction uses $\\nabla_x J=(p-y)\\cdot$ w and not $\\nabla_w J=(p-y)\\cdot$ x, even though both are valid gradients of the same loss function.",
+    "question": "Explain why the FGSM perturbation direction uses $\\nabla_x J=(p-y)\\cdot w$ and not $\\nabla_w J=(p-y)\\cdot x$, even though both are valid gradients of the same loss function.",
     "tier": "Tier A — Highest Probability",
-    "answerText": "FGSM attacks the input, not the model, so it needs the direction in which the loss increases fastest as the input changes, which is the gradient with respect to x. The weight gradient $(p-y)\\cdot$ x describes how the loss changes if the weights were updated, which is the quantity used during training, not during an attack on a fixed, already-trained model. Using the weight-gradient formula in place of the input-gradient formula perturbs the input by a quantity scaled by x instead of w, which does not correspond to the direction of steepest ascent in input space and produces an incorrect attack.",
+    "answerText": "FGSM attacks the input, not the model, so it needs the direction in which the loss increases fastest as the input changes, which is the gradient with respect to x. The weight gradient $(p-y)\\cdot x$ describes how the loss changes if the weights were updated, which is the quantity used during training, not during an attack on a fixed, already-trained model. Using the weight-gradient formula in place of the input-gradient formula perturbs the input by a quantity scaled by x instead of w, which does not correspond to the direction of steepest ascent in input space and produces an incorrect attack.",
     "lectureReference": "Part 1: FGSM (Fast Gradient Sign Method)"
   },
   {
@@ -6765,7 +6765,7 @@
     "type": "sa",
     "question": "Explain why $x_{adv}$ must be clipped to the valid input range after applying the FGSM perturbation, and what could go wrong if this step were skipped.",
     "tier": "Tier A — Highest Probability",
-    "answerText": "The sign-based perturbation adds or subtracts $\\epsilon$ uniformly on every coordinate, regardless of how close that coordinate's original value already is to the edge of the valid range, so $x+\\epsilon\\cdot \\text{sign}(\\nabla_x$ J) can land outside the domain the model expects, as in Example $2$ where $0.9+0.15$ produces $1.05.$ If clipping is skipped, the resulting $x_{adv}$ is not a valid input (e.g., an out-of-range pixel intensity), so any downstream computation of z', p', or J' using that value no longer corresponds to a realistic or reachable input, undermining the validity of the attack.",
+    "answerText": "The sign-based perturbation adds or subtracts $\\epsilon$ uniformly on every coordinate, regardless of how close that coordinate's original value already is to the edge of the valid range, so $x+\\epsilon\\cdot \\text{sign}(\\nabla_x J)$ can land outside the domain the model expects, as in Example $2$ where $0.9+0.15$ produces $1.05.$ If clipping is skipped, the resulting $x_{adv}$ is not a valid input (e.g., an out-of-range pixel intensity), so any downstream computation of z', p', or J' using that value no longer corresponds to a realistic or reachable input, undermining the validity of the attack.",
     "lectureReference": "Part 1: FGSM (Fast Gradient Sign Method)"
   },
   {
@@ -6781,7 +6781,7 @@
     "type": "sa",
     "question": "Explain why, for a linear classifier, PGD's gradient sign can stay constant across many iterations, and why this causes PGD's final result to resemble a single FGSM step.",
     "tier": "Tier A — Highest Probability",
-    "answerText": "For a linear model, the gradient of the loss with respect to x is $(p-y)\\cdot$ w, where w is fixed and p = $sigmoid(w\\cdot$ x+b). As long as the perturbed point stays misclassified (p remains on the same side of $0.5$ relative to y), the sign of (p-y) does not change, so the gradient direction, and hence $\\text{sign}(\\nabla _{x}J)$, stays constant across steps. Since PGD then keeps stepping in that same fixed direction every iteration, it traces a straight path toward the same box corner that a single FGSM step (using $\\text{sign}(\\nabla _{x}J(x0))$ scaled by $\\epsilon$) would reach directly, making the multi-step PGD trajectory converge to the FGSM solution.",
+    "answerText": "For a linear model, the gradient of the loss with respect to x is $(p-y)\\cdot w$, where w is fixed and p = $sigmoid(w\\cdot$ x+b). As long as the perturbed point stays misclassified (p remains on the same side of $0.5$ relative to y), the sign of (p-y) does not change, so the gradient direction, and hence $\\text{sign}(\\nabla _{x}J)$, stays constant across steps. Since PGD then keeps stepping in that same fixed direction every iteration, it traces a straight path toward the same box corner that a single FGSM step (using $\\text{sign}(\\nabla _{x}J(x0))$ scaled by $\\epsilon$) would reach directly, making the multi-step PGD trajectory converge to the FGSM solution.",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -6843,7 +6843,7 @@
   {
     "num": 488,
     "type": "sa",
-    "question": "Explain why attack-surface scores must be computed as exposure $\\times$ exploitability *before* ranking the surfaces, rather than ranking surfaces by exposure and exploitability separately and combining the rankings afterward. Use the iot vs. sso comparison from the five-surface example to support your answer.",
+    "question": "Explain why attack-surface scores must be computed as exposure $\\times exploitability$ *before* ranking the surfaces, rather than ranking surfaces by exposure and exploitability separately and combining the rankings afterward. Use the iot vs. sso comparison from the five-surface example to support your answer.",
     "tier": "Tier A — Highest Probability",
     "answerText": "Exposure and exploitability each capture a different dimension of risk, and a surface is only genuinely risky if both dimensions are jointly high; ranking the factors separately loses this interaction. For example, iot has the highest exploitability $(0.9)$ of any surface, but its exposure is only $0.4$, giving it a combined score of $0.36.$ Meanwhile sso has both high exposure $(0.95)$ and reasonably high exploitability $(0.65)$, giving it the highest combined score $(0.6175).$ If you ranked by exploitability alone, iot would appear to be the top priority, which would misallocate hardening effort away from the actually riskiest surface.",
     "lectureReference": "Part 5: Risk Scoring / Triage / Attack-Surface Ranking"
@@ -7203,17 +7203,17 @@
   {
     "num": 533,
     "type": "sa",
-    "question": "Basic FGSM Trace (No Clipping Required)\n\nA logistic neuron has w=[1.5,-2], b=0.3. An input x=[0.4,0.3] has true label y=1. FGSM is applied with $\\epsilon=0.05.$\n(a) Compute $z=w\\cdot$ x+b, $p=\\sigma(z)$, and J, using the correct BCE form for y=1.\n(b) Compute the input gradient $\\nabla_x J=(p-y)\\cdot$ w and its sign vector.\n(c) Compute $x_{adv}=x+\\epsilon\\cdot \\text{sign}(\\nabla_x$ J). Does $x_{adv}$ require clipping to $[0,1]$?\n(d) Recompute z', p', and J' using $x_{adv}$, and state whether the predicted class flips.",
+    "question": "Basic FGSM Trace (No Clipping Required)\n\nA logistic neuron has w=[1.5,-2], b=0.3. An input x=[0.4,0.3] has true label y=1. FGSM is applied with $\\epsilon=0.05.$\n(a) Compute $z=w\\cdot$ x+b, $p=\\sigma(z)$, and J, using the correct BCE form for y=1.\n(b) Compute the input gradient $\\nabla_x J=(p-y)\\cdot w$ and its sign vector.\n(c) Compute $x_{adv}=x+\\epsilon\\cdot \\text{sign}(\\nabla_x J).$ Does $x_{adv}$ require clipping to $[0,1]$?\n(d) Recompute z', p', and J' using $x_{adv}$, and state whether the predicted class flips.",
     "tier": "Tier A — Highest Probability",
-    "answerText": "(a) z = $1.5(0.4)$ + $(-2)(0.3)$ + $0.3$ = $0.60$ - $0.60$ + $0.3$ = $0.30.$ p = $\\sigma(0.30) \\approx 0.5744.$ Since y=1, J = $-\\ln(p)$ = $-\\ln(0.5744) \\approx 0.5544.$\n(b) $\\nabla_x$ J = $(p-y)\\cdot$ w = $(0.5744-1)\\cdot[1.5,-2]$ = $(-0.4256)\\cdot[1.5,-2]$ = $[-0.6383, 0.8511]. \\text{sign}(\\nabla_x$ J) = $[-1, +1].$\n(c) $x_{adv}$ = $[0.4,0.3]$ + $0.05\\cdot[-1,+1]$ = $[0.35, 0.35].$ Both coordinates ($0.35$ and $0.35$) already lie within $[0,1]$, so no clipping is needed.\n(d) z' = $1.5(0.35)$ + $(-2)(0.35)$ + $0.3$ = $0.525$ - $0.70$ + $0.3$ = $0.125.$ p' = $\\sigma(0.125) \\approx 0.5312.$ J' = $-\\ln(0.5312) \\approx 0.6326.$ Since p'=0.5312 is still above $0.5$, the predicted class remains class $1$, matching y=1, so the class does NOT flip.",
+    "answerText": "(a) z = $1.5(0.4)$ + $(-2)(0.3)$ + $0.3$ = $0.60$ - $0.60$ + $0.3$ = $0.30.$ p = $\\sigma(0.30) \\approx 0.5744.$ Since y=1, J = $-\\ln(p)$ = $-\\ln(0.5744) \\approx 0.5544.$\n(b) $\\nabla_x J$ = $(p-y)\\cdot w$ = $(0.5744-1)\\cdot[1.5,-2]$ = $(-0.4256)\\cdot[1.5,-2]$ = $[-0.6383, 0.8511]. \\text{sign}(\\nabla_x J)$ = $[-1, +1].$\n(c) $x_{adv}$ = $[0.4,0.3]$ + $0.05\\cdot[-1,+1]$ = $[0.35, 0.35].$ Both coordinates ($0.35$ and $0.35$) already lie within $[0,1]$, so no clipping is needed.\n(d) z' = $1.5(0.35)$ + $(-2)(0.35)$ + $0.3$ = $0.525$ - $0.70$ + $0.3$ = $0.125.$ p' = $\\sigma(0.125) \\approx 0.5312.$ J' = $-\\ln(0.5312) \\approx 0.6326.$ Since p'=0.5312 is still above $0.5$, the predicted class remains class $1$, matching y=1, so the class does NOT flip.",
     "lectureReference": "Part 1: FGSM (Fast Gradient Sign Method)"
   },
   {
     "num": 534,
     "type": "sa",
-    "question": "FGSM With Clipping and a Resulting Flip\n\nA logistic neuron has w=[-1,2], b=0.1. An input x=[0.1,0.9] has true label y=0. FGSM is applied with $\\epsilon=0.15.$\n(a) Compute $z=w\\cdot$ x+b, $p=\\sigma(z)$, and J, using the correct BCE form for y=0.\n(b) Compute $\\nabla_x J=(p-0)\\cdot$ w and its sign vector.\n(c) Compute the raw $x_{adv}$ before clipping, then apply clipping to $[0,1]$ to obtain the final adversarial input.\n(d) Using the clipped $x_{adv}$, recompute z' and p'. Relative to the true label y=0, has the example become misclassified (flipped)?",
+    "question": "FGSM With Clipping and a Resulting Flip\n\nA logistic neuron has w=[-1,2], b=0.1. An input x=[0.1,0.9] has true label y=0. FGSM is applied with $\\epsilon=0.15.$\n(a) Compute $z=w\\cdot$ x+b, $p=\\sigma(z)$, and J, using the correct BCE form for y=0.\n(b) Compute $\\nabla_x J=(p-0)\\cdot w$ and its sign vector.\n(c) Compute the raw $x_{adv}$ before clipping, then apply clipping to $[0,1]$ to obtain the final adversarial input.\n(d) Using the clipped $x_{adv}$, recompute z' and p'. Relative to the true label y=0, has the example become misclassified (flipped)?",
     "tier": "Tier A — Highest Probability",
-    "answerText": "(a) z = $-1(0.1)$ + $2(0.9)$ + $0.1$ = $-0.1$ + $1.8$ + $0.1$ = $1.80.$ p = $\\sigma(1.80) \\approx 0.8581.$ Since y=0, J = $-\\ln(1-p)$ = $-\\ln(0.1419) \\approx 1.9530.$\n(b) $\\nabla_x$ J = $(p-0)\\cdot$ w = $0.8581\\cdot[-1,2]$ = $[-0.8581, 1.7163]. \\text{sign}(\\nabla_x$ J) = $[-1, +1].$\n(c) $x_{adv_raw}$ = $[0.1,0.9]$ + $0.15\\cdot[-1,+1]$ = $[0.1-0.15, 0.9+0.15]$ = $[-0.05, 1.05].$ Coordinate $1 (-0.05)$ is below $0$ and coordinate $2 (1.05)$ is above $1$, so clipping is required: $x_{adv_clipped}$ = $[0, 1].$\n(d) z' = $-1(0)$ + $2(1)$ + $0.1$ = $2.10.$ p' = $\\sigma(2.10) \\approx 0.8909.$ Since the true label is y=0 but p'=0.8909>0.5, the model now predicts class $1.$ This is a misclassification relative to the true label, so the example has flipped.",
+    "answerText": "(a) z = $-1(0.1)$ + $2(0.9)$ + $0.1$ = $-0.1$ + $1.8$ + $0.1$ = $1.80.$ p = $\\sigma(1.80) \\approx 0.8581.$ Since y=0, J = $-\\ln(1-p)$ = $-\\ln(0.1419) \\approx 1.9530.$\n(b) $\\nabla_x J$ = $(p-0)\\cdot w$ = $0.8581\\cdot[-1,2]$ = $[-0.8581, 1.7163]. \\text{sign}(\\nabla_x J)$ = $[-1, +1].$\n(c) $x_{adv_raw}$ = $[0.1,0.9]$ + $0.15\\cdot[-1,+1]$ = $[0.1-0.15, 0.9+0.15]$ = $[-0.05, 1.05].$ Coordinate $1 (-0.05)$ is below $0$ and coordinate $2 (1.05)$ is above $1$, so clipping is required: $x_{adv_clipped}$ = $[0, 1].$\n(d) z' = $-1(0)$ + $2(1)$ + $0.1$ = $2.10.$ p' = $\\sigma(2.10) \\approx 0.8909.$ Since the true label is y=0 but p'=0.8909>0.5, the model now predicts class $1.$ This is a misclassification relative to the true label, so the example has flipped.",
     "lectureReference": "Part 1: FGSM (Fast Gradient Sign Method)"
   },
   {
@@ -7227,9 +7227,9 @@
   {
     "num": 536,
     "type": "sa",
-    "question": "Full Logistic-Model PGD Trace (Gradient Recomputed Each Step)\n\nGiven a logistic model with w=[1,-2], b=0.1, true label y=1, x0=[0.45, $0.55], \\epsilon=0.12, \\alpha=0.05$, and sigmoid(z)=1/(1+e^-z).\n\n(a) Compute the projection box $[x0-\\epsilon, x0+\\epsilon]$ per coordinate.\n(b) For step t1: compute z at x0, p=sigmoid(z), the gradient $(p-y)\\cdot$ w, its sign, and the resulting x1 after the PGD step and clipping. State the new z, p, and predicted class at x1.\n(c) Repeat the same process for steps t2 and t3, noting explicitly when and where clipping occurs.\n(d) Compute step t4 and explain why x remains unchanged (frozen) from t3, and state the final predicted class.",
+    "question": "Full Logistic-Model PGD Trace (Gradient Recomputed Each Step)\n\nGiven a logistic model with w=[1,-2], b=0.1, true label y=1, x0=[0.45, $0.55], \\epsilon=0.12, \\alpha=0.05$, and sigmoid(z)=1/(1+e^-z).\n\n(a) Compute the projection box $[x0-\\epsilon, x0+\\epsilon]$ per coordinate.\n(b) For step t1: compute z at x0, p=sigmoid(z), the gradient $(p-y)\\cdot w$, its sign, and the resulting x1 after the PGD step and clipping. State the new z, p, and predicted class at x1.\n(c) Repeat the same process for steps t2 and t3, noting explicitly when and where clipping occurs.\n(d) Compute step t4 and explain why x remains unchanged (frozen) from t3, and state the final predicted class.",
     "tier": "Tier A — Highest Probability",
-    "answerText": "(a) Box = $[0.45-0.12, 0.45+0.12] \\times [0.55-0.12, 0.55+0.12]$ = $[0.33, 0.57] \\times [0.43, 0.67].$\n\n(b) t1: z = $w\\cdot$ x0+b = $(1)(0.45)$ + $(-2)(0.55)$ + $0.1$ = $0.45$ - $1.10$ + $0.1$ = $-0.55.$ p = sigmoid(-0.55) $\\approx 0.3662.$ Gradient = $(p-y)\\cdot$ w = $(0.3662-1)\\cdot[1,-2]$ = $(-0.6338)\\cdot[1,-2]$ = $[-0.6338, 1.2676]$, so sign = $[-1, +1].$ Step: x1 = x0 + $\\alpha\\cdot$ sign = $[0.45-0.05, 0.55+0.05]$ = $[0.40, 0.60]$; this is within the box $[0.33,0.57]\\times[0.43,0.67]$, so no clipping is needed. New z = $(1)(0.40)$ + $(-2)(0.60)$ + $0.1$ = $0.40$ - $1.20$ + $0.1$ = $-0.70$, p = sigmoid(-0.70) $\\approx 0.3318$, which is below $0.5$, so the predicted class is $0$, already misclassified relative to y=1.\n\n(c) t2: gradient recomputed at x1=[0.40, $0.60]$; since w is fixed and p is still well below $0.5$ (sign of (p-y) unchanged), sign = $[-1, +1]$ again. Step: x2 = $[0.40-0.05, 0.60+0.05]$ = $[0.35, 0.65]$; still within the box, no clipping needed. New z = $0.35$ - $1.30$ + $0.1$ = $-0.85$, p = sigmoid(-0.85) $\\approx 0.2994$, class = $0.$\nt3: gradient recomputed at x2=[0.35, $0.65]$; sign remains $[-1, +1].$ Pre-clip step: x = $[0.35-0.05, 0.65+0.05]$ = $[0.30, 0.70].$ Now both coordinates violate the box: $0.30$ < $0.33$ (lower bound) and $0.70$ > $0.67$ (upper bound), so both are clipped: x3 = $[0.33, 0.67].$ New z = $0.33$ - $1.34$ + $0.1$ = $-0.91$, p = sigmoid(-0.91) $\\approx 0.2870$, class = $0.$\n\n(d) t4: gradient recomputed at x3=[0.33, $0.67]$; sign is still $[-1, +1]$ since p remains well below $0.5.$ The proposed step would be $[0.33-0.05, 0.67+0.05]$ = $[0.28, 0.72]$, but both coordinates are already at their respective box edges (lower bound $0.33$ and upper bound $0.67$) and the step continues to push outward in the same direction, so projection clips both coordinates right back to $[0.33, 0.67]$; x4 = x3, unchanged. The trajectory is frozen because the gradient sign has not flipped since the point became misclassified at t1; z and p also remain unchanged at $-0.91$ and $\\approx0.2870.$ The final predicted class stays $0$, i.e., the adversarial example remains misclassified relative to the true label y=1.",
+    "answerText": "(a) Box = $[0.45-0.12, 0.45+0.12] \\times [0.55-0.12, 0.55+0.12]$ = $[0.33, 0.57] \\times [0.43, 0.67].$\n\n(b) t1: z = $w\\cdot$ x0+b = $(1)(0.45)$ + $(-2)(0.55)$ + $0.1$ = $0.45$ - $1.10$ + $0.1$ = $-0.55.$ p = sigmoid(-0.55) $\\approx 0.3662.$ Gradient = $(p-y)\\cdot w$ = $(0.3662-1)\\cdot[1,-2]$ = $(-0.6338)\\cdot[1,-2]$ = $[-0.6338, 1.2676]$, so sign = $[-1, +1].$ Step: x1 = x0 + $\\alpha\\cdot sign$ = $[0.45-0.05, 0.55+0.05]$ = $[0.40, 0.60]$; this is within the box $[0.33,0.57]\\times[0.43,0.67]$, so no clipping is needed. New z = $(1)(0.40)$ + $(-2)(0.60)$ + $0.1$ = $0.40$ - $1.20$ + $0.1$ = $-0.70$, p = sigmoid(-0.70) $\\approx 0.3318$, which is below $0.5$, so the predicted class is $0$, already misclassified relative to y=1.\n\n(c) t2: gradient recomputed at x1=[0.40, $0.60]$; since w is fixed and p is still well below $0.5$ (sign of (p-y) unchanged), sign = $[-1, +1]$ again. Step: x2 = $[0.40-0.05, 0.60+0.05]$ = $[0.35, 0.65]$; still within the box, no clipping needed. New z = $0.35$ - $1.30$ + $0.1$ = $-0.85$, p = sigmoid(-0.85) $\\approx 0.2994$, class = $0.$\nt3: gradient recomputed at x2=[0.35, $0.65]$; sign remains $[-1, +1].$ Pre-clip step: x = $[0.35-0.05, 0.65+0.05]$ = $[0.30, 0.70].$ Now both coordinates violate the box: $0.30$ < $0.33$ (lower bound) and $0.70$ > $0.67$ (upper bound), so both are clipped: x3 = $[0.33, 0.67].$ New z = $0.33$ - $1.34$ + $0.1$ = $-0.91$, p = sigmoid(-0.91) $\\approx 0.2870$, class = $0.$\n\n(d) t4: gradient recomputed at x3=[0.33, $0.67]$; sign is still $[-1, +1]$ since p remains well below $0.5.$ The proposed step would be $[0.33-0.05, 0.67+0.05]$ = $[0.28, 0.72]$, but both coordinates are already at their respective box edges (lower bound $0.33$ and upper bound $0.67$) and the step continues to push outward in the same direction, so projection clips both coordinates right back to $[0.33, 0.67]$; x4 = x3, unchanged. The trajectory is frozen because the gradient sign has not flipped since the point became misclassified at t1; z and p also remain unchanged at $-0.91$ and $\\approx0.2870.$ The final predicted class stays $0$, i.e., the adversarial example remains misclassified relative to the true label y=1.",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -7253,7 +7253,7 @@
     "type": "sa",
     "question": "Full DP-SGD Step Trace\n\nGiven: clip norm C = $1.0$, batch size B = $4$, learning rate $\\eta$ = $0.2$, per-example gradients g1=[0.3,0.4], g2=[1.5,2.0], g3=[0.6,-0.8], g4=[0.1,0.05], noise vector $[-0.2, 0.5]$ added to the summed clipped gradients, and current parameters theta = $[0.5, 0.5].$\n(a) Compute the L2 norm of each gi and state which gradient(s) are clipped (norm > C) versus left unchanged.\n(b) Compute each clipped gradient.\n(c) Sum the clipped gradients, add the noise vector, then divide by B to get the averaged noisy gradient.\n(d) Compute the updated parameter vector theta_new = theta - $\\eta\\cdot(averaged$ gradient).",
     "tier": "Tier A — Highest Probability",
-    "answerText": "(a) \\| g1\\| = $sqrt(0.3^{2}+0.4^{2})$ = sqrt(0.25) = $0.5000 \\leq$ C $\\to$ unchanged. \\| g2\\| = $sqrt(1.5^{2}+2.0^{2})$ = sqrt(6.25) = $2.5000$ > C $\\to$ clipped. \\| g3\\| = $sqrt(0.6^{2}+0.8^{2})$ = sqrt(1.0) = $1.0000$, exactly C $\\to$ scale = $\\max(1,1)$ = $1 \\to$ unchanged. \\| g4\\| = $sqrt(0.1^{2}+0.05^{2})$ = sqrt(0.0125) = $0.1118 \\leq$ C $\\to$ unchanged. Only g2 is clipped.\n(b) clipped1 = $[0.3, 0.4]$ (unchanged). clipped2 = g2 / $2.5$ = $[0.6, 0.8].$ clipped3 = $[0.6, -0.8]$ (unchanged). clipped4 = $[0.1, 0.05]$ (unchanged).\n(c) Sum = $[0.3+0.6+0.6+0.1, 0.4+0.8-0.8+0.05]$ = $[1.6, 0.45].$ Add noise $[-0.2, 0.5]$: noisy_sum = $[1.4, 0.95].$ Divide by B=4: averaged_grad = $[0.35, 0.2375].$\n(d) theta_new = $[0.5, 0.5]$ - $0.2\\cdot[0.35, 0.2375]$ = $[0.5$ - $0.07, 0.5$ - $0.0475]$ = $[0.43, 0.4525].$",
+    "answerText": "(a) \\| g1\\| = $sqrt(0.3^{2}+0.4^{2})$ = sqrt(0.25) = $0.5000 \\leq C$ $\\to unchanged.$ \\| g2\\| = $sqrt(1.5^{2}+2.0^{2})$ = sqrt(6.25) = $2.5000$ > C $\\to clipped.$ \\| g3\\| = $sqrt(0.6^{2}+0.8^{2})$ = sqrt(1.0) = $1.0000$, exactly C $\\to scale$ = $\\max(1,1)$ = $1 \\to unchanged.$ \\| g4\\| = $sqrt(0.1^{2}+0.05^{2})$ = sqrt(0.0125) = $0.1118 \\leq C$ $\\to unchanged.$ Only g2 is clipped.\n(b) clipped1 = $[0.3, 0.4]$ (unchanged). clipped2 = g2 / $2.5$ = $[0.6, 0.8].$ clipped3 = $[0.6, -0.8]$ (unchanged). clipped4 = $[0.1, 0.05]$ (unchanged).\n(c) Sum = $[0.3+0.6+0.6+0.1, 0.4+0.8-0.8+0.05]$ = $[1.6, 0.45].$ Add noise $[-0.2, 0.5]$: noisy_sum = $[1.4, 0.95].$ Divide by B=4: averaged_grad = $[0.35, 0.2375].$\n(d) theta_new = $[0.5, 0.5]$ - $0.2\\cdot[0.35, 0.2375]$ = $[0.5$ - $0.07, 0.5$ - $0.0475]$ = $[0.43, 0.4525].$",
     "lectureReference": "Part 4: DP-SGD (Abadi et al. 2016)"
   },
   {
@@ -7267,7 +7267,7 @@
   {
     "num": 541,
     "type": "sa",
-    "question": "Attack-Surface Ranking and Hardening Priority\n\nA security team identifies five attack surfaces with the following (exposure, exploitability) pairs:\n- email = $(0.6, 0.75)$\n- cloud_storage = $(0.85, 0.55)$\n- sso = $(0.95, 0.65)$\n- iot = $(0.4, 0.9)$\n- dns = $(0.3, 0.4)$\n\n(a) Compute the attack-surface score (score = exposure $\\times$ exploitability) for each of the five surfaces.\n(b) Rank the five surfaces in descending order of score.\n(c) Compute the combined score of the top $2$ ranked surfaces, and express it as a percentage of the total combined score of all $5$ surfaces.\n(d) The team has budget to harden only $2$ surfaces. Based on (b) and (c), which $2$ surfaces should be hardened, and how would you justify this to a stakeholder who asks why iot (highest raw exploitability) was not chosen?",
+    "question": "Attack-Surface Ranking and Hardening Priority\n\nA security team identifies five attack surfaces with the following (exposure, exploitability) pairs:\n- email = $(0.6, 0.75)$\n- cloud_storage = $(0.85, 0.55)$\n- sso = $(0.95, 0.65)$\n- iot = $(0.4, 0.9)$\n- dns = $(0.3, 0.4)$\n\n(a) Compute the attack-surface score (score = exposure $\\times exploitability$) for each of the five surfaces.\n(b) Rank the five surfaces in descending order of score.\n(c) Compute the combined score of the top $2$ ranked surfaces, and express it as a percentage of the total combined score of all $5$ surfaces.\n(d) The team has budget to harden only $2$ surfaces. Based on (b) and (c), which $2$ surfaces should be hardened, and how would you justify this to a stakeholder who asks why iot (highest raw exploitability) was not chosen?",
     "tier": "Tier A — Highest Probability",
     "answerText": "(a)\n- email: $0.6 \\times 0.75$ = $0.45$\n- cloud_storage: $0.85 \\times 0.55$ = $0.4675$\n- sso: $0.95 \\times 0.65$ = $0.6175$\n- iot: $0.4 \\times 0.9$ = $0.36$\n- dns: $0.3 \\times 0.4$ = $0.12$\n\n(b) Descending order: sso $(0.6175)$ > cloud_storage $(0.4675)$ > email $(0.45)$ > iot $(0.36)$ > dns $(0.12)$\n\n(c) Top $2$ combined = $0.6175$ + $0.4675$ = $1.085.$ Total of all $5$ = $0.45$ + $0.4675$ + $0.6175$ + $0.36$ + $0.12$ = $2.015.$ Coverage = $1.085$ / $2.015 \\approx$ 53.85%.\n\n(d) Harden sso and cloud_storage, since they jointly account for roughly 54% of the total attack-surface risk and individually rank 1st and 2nd by combined score. iot is not chosen despite its high exploitability $(0.9)$ because its exposure $(0.4)$ is comparatively low, giving it a lower overall score $(0.36)$ than both sso and cloud_storage; prioritizing by exploitability alone would ignore how reachable/exposed the surface actually is, which is the point of multiplying the two factors together before ranking.",
     "lectureReference": "Part 5: Risk Scoring / Triage / Attack-Surface Ranking"
@@ -7275,9 +7275,9 @@
   {
     "num": 542,
     "type": "sa",
-    "question": "Incident Triage Scoring\n\nFour incidents are reported with the following attributes. Use base = $\\min(5, 1$ + floor(users/1000)); score = base $\\times$ sensitivity $\\times (2$ if active else $1$); severity tiers: P1 if score $\\geq 30$, P2 if score $\\geq 15$, else P3.\n- Incident E: users = $5600$, sensitivity = $3$, active = True\n- Incident F: users = $899$, sensitivity = $5$, active = False\n- Incident G: users = $10500$, sensitivity = $2$, active = True\n- Incident H: users = $3000$, sensitivity = $4$, active = False\n\n(a) Compute the triage base value for each incident, explicitly showing the floor division step.\n(b) Compute the triage score for each incident.\n(c) Assign a severity tier (P1/P2/P3) to each incident.\n(d) Incident F has the highest sensitivity $(5)$ of all four incidents, yet receives the lowest severity tier. Explain why, in terms of the base calculation.",
+    "question": "Incident Triage Scoring\n\nFour incidents are reported with the following attributes. Use base = $\\min(5, 1$ + floor(users/1000)); score = base $\\times sensitivity$ $\\times (2$ if active else $1$); severity tiers: P1 if score $\\geq 30$, P2 if score $\\geq 15$, else P3.\n- Incident E: users = $5600$, sensitivity = $3$, active = True\n- Incident F: users = $899$, sensitivity = $5$, active = False\n- Incident G: users = $10500$, sensitivity = $2$, active = True\n- Incident H: users = $3000$, sensitivity = $4$, active = False\n\n(a) Compute the triage base value for each incident, explicitly showing the floor division step.\n(b) Compute the triage score for each incident.\n(c) Assign a severity tier (P1/P2/P3) to each incident.\n(d) Incident F has the highest sensitivity $(5)$ of all four incidents, yet receives the lowest severity tier. Explain why, in terms of the base calculation.",
     "tier": "Tier A — Highest Probability",
-    "answerText": "(a)\n- Incident E: floor(5600/1000) = $5 \\to$ base = $\\min(5, 1+5)$ = $\\min(5, 6)$ = $5$\n- Incident F: floor(899/1000) = $0 \\to$ base = $\\min(5, 1+0)$ = $\\min(5, 1)$ = $1$\n- Incident G: floor(10500/1000) = $10 \\to$ base = $\\min(5, 1+10)$ = $\\min(5, 11)$ = $5$ (capped)\n- Incident H: floor(3000/1000) = $3 \\to$ base = $\\min(5, 1+3)$ = $\\min(5, 4)$ = $4$\n\n(b)\n- Incident E: score = $5 \\times 3 \\times 2$ = $30$\n- Incident F: score = $1 \\times 5 \\times 1$ = $5$\n- Incident G: score = $5 \\times 2 \\times 2$ = $20$\n- Incident H: score = $4 \\times 4 \\times 1$ = $16$\n\n(c)\n- Incident E: score $30 \\geq 30 \\to$ P1\n- Incident F: score $5$ < $15 \\to$ P3\n- Incident G: score $20 \\geq 15$ (and < $30) \\to$ P2\n- Incident H: score $16 \\geq 15$ (and < $30) \\to$ P2\n\n(d) Incident F's low tier is driven entirely by its base value, not its sensitivity. With only $899$ users, floor(899/1000) = $0$, so base = $\\min(5, 1+0)$ = $1$, the lowest possible base value. Since score is the product of base, sensitivity, and the active multiplier, a base of $1$ severely limits the final score ($1 \\times 5 \\times 1$ = $5$) even though sensitivity is at its maximum of $5.$ The user-count component of the formula is not scaled or weighted to compensate for high sensitivity; it is a hard gate that must clear the next 1000-user threshold before base increases, so sensitivity alone cannot rescue a low-user incident from a low severity tier.",
+    "answerText": "(a)\n- Incident E: floor(5600/1000) = $5 \\to base$ = $\\min(5, 1+5)$ = $\\min(5, 6)$ = $5$\n- Incident F: floor(899/1000) = $0 \\to base$ = $\\min(5, 1+0)$ = $\\min(5, 1)$ = $1$\n- Incident G: floor(10500/1000) = $10 \\to base$ = $\\min(5, 1+10)$ = $\\min(5, 11)$ = $5$ (capped)\n- Incident H: floor(3000/1000) = $3 \\to base$ = $\\min(5, 1+3)$ = $\\min(5, 4)$ = $4$\n\n(b)\n- Incident E: score = $5 \\times 3 \\times 2$ = $30$\n- Incident F: score = $1 \\times 5 \\times 1$ = $5$\n- Incident G: score = $5 \\times 2 \\times 2$ = $20$\n- Incident H: score = $4 \\times 4 \\times 1$ = $16$\n\n(c)\n- Incident E: score $30 \\geq 30 \\to$ P1\n- Incident F: score $5$ < $15 \\to$ P3\n- Incident G: score $20 \\geq 15$ (and < $30) \\to$ P2\n- Incident H: score $16 \\geq 15$ (and < $30) \\to$ P2\n\n(d) Incident F's low tier is driven entirely by its base value, not its sensitivity. With only $899$ users, floor(899/1000) = $0$, so base = $\\min(5, 1+0)$ = $1$, the lowest possible base value. Since score is the product of base, sensitivity, and the active multiplier, a base of $1$ severely limits the final score ($1 \\times 5 \\times 1$ = $5$) even though sensitivity is at its maximum of $5.$ The user-count component of the formula is not scaled or weighted to compensate for high sensitivity; it is a hard gate that must clear the next 1000-user threshold before base increases, so sensitivity alone cannot rescue a low-user incident from a low severity tier.",
     "lectureReference": "Part 5: Risk Scoring / Triage / Attack-Surface Ranking"
   },
   {
@@ -7299,7 +7299,7 @@
   {
     "num": 545,
     "type": "sa",
-    "question": "Query Selection via Uncertainty Sampling\n\nGiven substitute model $w_{sub}$ = $(2, -1.5), b_{sub}$ = $0.3$, and pool points:\nP1 = $(0.5, 0.5)$, P2 = $(1.2, 0.8)$, P3 = $(-0.3, 0.4)$, P4 = $(0.1, 0.9)$, P5 = $(2, 1).$\n\n(a) Compute $|f_{sub}(x)|$ = $|w_{sub}\\cdot$ x + $b_{sub}|$ for all $5$ points.\n(b) Identify which point is queried and why.\n(c) State what label must be used for the queried point and why.\n(d) Explain what happens to the substitute model's decision boundary after this point is added and retrained.",
+    "question": "Query Selection via Uncertainty Sampling\n\nGiven substitute model $w_{sub}$ = $(2, -1.5), b_{sub}$ = $0.3$, and pool points:\nP1 = $(0.5, 0.5)$, P2 = $(1.2, 0.8)$, P3 = $(-0.3, 0.4)$, P4 = $(0.1, 0.9)$, P5 = $(2, 1).$\n\n(a) Compute $|f_{sub}(x)|$ = $|w_{sub}\\cdot x$ + $b_{sub}|$ for all $5$ points.\n(b) Identify which point is queried and why.\n(c) State what label must be used for the queried point and why.\n(d) Explain what happens to the substitute model's decision boundary after this point is added and retrained.",
     "tier": "Tier B — High Probability",
     "answerText": "(a)\n- P1: f = $2(0.5)$ - $1.5(0.5)$ + $0.3$ = $0.55 \\to$ |f| = $0.55$\n- P2: f = $2(1.2)$ - $1.5(0.8)$ + $0.3$ = $1.50 \\to$ |f| = $1.50$\n- P3: f = $2(-0.3)$ - $1.5(0.4)$ + $0.3$ = $-0.90 \\to$ |f| = $0.90$\n- P4: f = $2(0.1)$ - $1.5(0.9)$ + $0.3$ = $-0.85 \\to$ |f| = $0.85$\n- P5: f = $2(2)$ - $1.5(1)$ + $0.3$ = $2.80 \\to$ |f| = $2.80$\n\n(b) P1 is queried, since $|f_{sub}(P1)|$ = $0.55$ is the smallest value among all pool points (x* = argmin $|f_{sub}(x)|$), meaning P1 is closest to the substitute's current decision boundary and therefore the point about which the substitute is most uncertain.\n\n(c) The label must come from the **target model's actual response** to input P1, not from the substitute model's own prediction. The entire point of the attack is to learn the target's real decision behavior; labeling P1 with the substitute's own guess would add no new information and would not correct any error in the substitute's current boundary.\n\n(d) After P1 is queried and labeled by the target, it is added to the substitute's training set and the substitute is retrained. This updates $(w_{sub}, b_{sub})$ so that the decision boundary shifts to be consistent with the target's true label at P1, specifically refining the boundary in the region near P1 where the substitute was previously uncertain. Over repeated rounds of this process, the substitute's boundary progressively converges toward the target's true decision surface.",
     "lectureReference": "Part 7: Active-Learning Model Extraction"
@@ -7317,7 +7317,7 @@
     "type": "sa",
     "question": "Confusion Matrix and Metrics at Threshold = $0.85$\n\nGiven the following confidence scores from Example $1$:\nMembers ($7$ values): $[0.96, 0.93, 0.91, 0.88, 0.84, 0.79, 0.71]$\nNon-members ($7$ values): $[0.90, 0.77, 0.69, 0.58, 0.50, 0.35, 0.20]$\nThe attack rule predicts \"member\" if confidence > threshold (strict). Use threshold = $0.85.$\n\n(a) Build the confusion matrix: list which values fall into TP, FN, FP, and TN, and give the counts.\n(b) Compute the accuracy.\n(c) Compute the precision and recall.\n(d) Compute the F1 score.",
     "tier": "Tier B — High Probability",
-    "answerText": "(a) Members > $0.85: 0.96, 0.93, 0.91, 0.88 \\to$ TP = $4.$ Members $\\leq 0.85: 0.84, 0.79, 0.71 \\to$ FN = $3.$ Non-members > $0.85: 0.90 \\to$ FP = $1.$ Non-members $\\leq 0.85: 0.77, 0.69, 0.58, 0.50, 0.35, 0.20 \\to$ TN = $6.$ Total = $14.$\n(b) Accuracy = (TP+TN)/total = $(4+6)/14$ = $0.7143.$\n(c) Precision = TP/(TP+FP) = $4/5$ = $0.8000.$ Recall = TP/(TP+FN) = $4/7$ = $0.5714.$\n(d) F1 = $2 \\times$ Precision $\\times$ Recall / (Precision + Recall) = $2(0.8000)(0.5714)/(0.8000+0.5714)$ = $0.6667.$",
+    "answerText": "(a) Members > $0.85: 0.96, 0.93, 0.91, 0.88 \\to TP$ = $4.$ Members $\\leq 0.85: 0.84, 0.79, 0.71 \\to FN$ = $3.$ Non-members > $0.85: 0.90 \\to FP$ = $1.$ Non-members $\\leq 0.85: 0.77, 0.69, 0.58, 0.50, 0.35, 0.20 \\to TN$ = $6.$ Total = $14.$\n(b) Accuracy = (TP+TN)/total = $(4+6)/14$ = $0.7143.$\n(c) Precision = TP/(TP+FP) = $4/5$ = $0.8000.$ Recall = TP/(TP+FN) = $4/7$ = $0.5714.$\n(d) F1 = $2 \\times Precision$ $\\times Recall$ / (Precision + Recall) = $2(0.8000)(0.5714)/(0.8000+0.5714)$ = $0.6667.$",
     "lectureReference": "Part 8: Membership Inference Attack"
   },
   {
@@ -7325,7 +7325,7 @@
     "type": "sa",
     "question": "Lowering the Threshold and Measuring Membership Advantage\n\nUsing the same Example $1$ data as NC1, now set the threshold to $0.80$ (strict >). Separately, a loss-threshold audit of the same model reports an AUC of $0.58.$\n\n(a) Build the confusion matrix at threshold = $0.80$: list which values fall into TP, FN, FP, and TN, and give the counts.\n(b) Compute all four metrics: accuracy, precision, recall, and F1.\n(c) Compare these results to the threshold = $0.85$ results from NC1. Which values changed, which stayed the same, and why?\n(d) Given AUC = $0.58$, compute the membership advantage and interpret what this value means about the attacker's effectiveness.",
     "tier": "Tier B — High Probability",
-    "answerText": "(a) Members > $0.80: 0.96, 0.93, 0.91, 0.88, 0.84 \\to$ TP = $5.$ Members $\\leq 0.80: 0.79, 0.71 \\to$ FN = $2.$ Non-members > $0.80: 0.90 \\to$ FP = $1.$ Non-members $\\leq 0.80: 0.77, 0.69, 0.58, 0.50, 0.35, 0.20 \\to$ TN = $6.$ Total = $14.$\n(b) Accuracy = $(5+6)/14$ = $0.7857.$ Precision = TP/(TP+FP) = $5/6$ = $0.8333.$ Recall = TP/(TP+FN) = $5/7$ = $0.7143.$ F1 = $2(0.8333)(0.7143)/(0.8333+0.7143)$ = $0.7692.$\n(c) TP increased from $4$ to $5$ and FN decreased from $3$ to $2$, because lowering the threshold from $0.85$ to $0.80$ lets the member value $0.84$ (which was $\\leq 0.85$ but is > $0.80$) now count as a correctly caught member. FP and TN stayed the same (FP=1, TN=6) because no non-member confidence value lies between $0.80$ and $0.85$; the only non-member above either threshold is $0.90.$ As a result, accuracy, precision, recall, and F1 all improved $(0.7143\\to0.7857, 0.8000\\to0.8333, 0.5714\\to0.7143, 0.6667\\to0.7692)$ purely from catching one more true member without introducing any new false positives.\n(d) Membership advantage = $2 \\times$ (AUC - $0.5$) = $2 \\times (0.58$ - $0.5$) = $2 \\times 0.08$ = $0.16.$ Since $0$ would indicate random guessing and $1$ would indicate perfect separation, a membership advantage of $0.16$ means the attacker performs only modestly better than random guessing. There is a real but limited privacy leak, far from the severe leakage a value near $1$ would represent.",
+    "answerText": "(a) Members > $0.80: 0.96, 0.93, 0.91, 0.88, 0.84 \\to TP$ = $5.$ Members $\\leq 0.80: 0.79, 0.71 \\to FN$ = $2.$ Non-members > $0.80: 0.90 \\to FP$ = $1.$ Non-members $\\leq 0.80: 0.77, 0.69, 0.58, 0.50, 0.35, 0.20 \\to TN$ = $6.$ Total = $14.$\n(b) Accuracy = $(5+6)/14$ = $0.7857.$ Precision = TP/(TP+FP) = $5/6$ = $0.8333.$ Recall = TP/(TP+FN) = $5/7$ = $0.7143.$ F1 = $2(0.8333)(0.7143)/(0.8333+0.7143)$ = $0.7692.$\n(c) TP increased from $4$ to $5$ and FN decreased from $3$ to $2$, because lowering the threshold from $0.85$ to $0.80$ lets the member value $0.84$ (which was $\\leq 0.85$ but is > $0.80$) now count as a correctly caught member. FP and TN stayed the same (FP=1, TN=6) because no non-member confidence value lies between $0.80$ and $0.85$; the only non-member above either threshold is $0.90.$ As a result, accuracy, precision, recall, and F1 all improved $(0.7143\\to0.7857, 0.8000\\to0.8333, 0.5714\\to0.7143, 0.6667\\to0.7692)$ purely from catching one more true member without introducing any new false positives.\n(d) Membership advantage = $2 \\times$ (AUC - $0.5$) = $2 \\times (0.58$ - $0.5$) = $2 \\times 0.08$ = $0.16.$ Since $0$ would indicate random guessing and $1$ would indicate perfect separation, a membership advantage of $0.16$ means the attacker performs only modestly better than random guessing. There is a real but limited privacy leak, far from the severe leakage a value near $1$ would represent.",
     "lectureReference": "Part 8: Membership Inference Attack"
   },
   {
