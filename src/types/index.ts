@@ -73,6 +73,9 @@ export interface QuizState {
   answers: Answer[];
   mode: QuizMode;
   moduleFilter: string | null;
+  /** Set only when a quiz was started with a Part + Tier combo filter (mode 'part'
+   * with an additional tier narrowing); null otherwise. */
+  tierFilter: string | null;
 }
 
 export type Screen = 'course' | 'mode' | 'quiz' | 'summary';

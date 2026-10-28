@@ -10,6 +10,7 @@ const initial: Omit<QuizState, 'courseId'> = {
   answers: [],
   mode: 'all',
   moduleFilter: null,
+  tierFilter: null,
 };
 
 export function useQuiz() {
@@ -21,6 +22,7 @@ export function useQuiz() {
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [mode, setMode] = useState<QuizMode>('all');
   const [moduleFilter, setModuleFilter] = useState<string | null>(null);
+  const [tierFilter, setTierFilter] = useState<string | null>(null);
   const [startTime, setStartTime] = useState<number | null>(null);
 
   const initQuiz = useCallback((
@@ -33,7 +35,9 @@ export function useQuiz() {
     part?: string | null,
   ) => {
     let selected: Question[];
-    if (part) {
+    if (part && tier) {
+      selected = allQ.filter((q) => q.lectureReference === part && q.tier === tier);
+    } else if (part) {
       selected = allQ.filter((q) => q.lectureReference === part);
     } else if (tier) {
       selected = allQ.filter((q) => q.tier === tier);
@@ -56,6 +60,7 @@ export function useQuiz() {
     setAnswers([]);
     setMode(quizMode);
     setModuleFilter(part ?? tier ?? null);
+    setTierFilter(part ? tier ?? null : null);
     setStartTime(Date.now());
   }, []);
 
@@ -112,6 +117,7 @@ export function useQuiz() {
     answers,
     mode,
     moduleFilter,
+    tierFilter,
     totalElapsed,
     initQuiz,
     selectAnswer,

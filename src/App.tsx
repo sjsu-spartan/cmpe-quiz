@@ -37,7 +37,9 @@ export default function App() {
       : config?.title || 'CMPE Exam Prep';
   const headerSubtitle =
     (screen === 'quiz' || screen === 'summary') && quiz.moduleFilter
-      ? quiz.moduleFilter.replace(/^Tier \d+ — /, '')
+      ? quiz.tierFilter
+        ? `${quiz.moduleFilter} · ${quiz.tierFilter.replace(/^Tier \d+ — /, '')}`
+        : quiz.moduleFilter.replace(/^Tier \d+ — /, '')
       : undefined;
 
   const questionCounts: Record<string, number> = {};
@@ -107,7 +109,11 @@ export default function App() {
     if (quiz.courseId) {
       const allQ = allQuestions[quiz.courseId];
       if (allQ) {
-        const restartTier = quiz.mode === 'tier' ? quiz.moduleFilter : undefined;
+        const restartTier = quiz.mode === 'tier'
+          ? quiz.moduleFilter
+          : quiz.mode === 'part'
+          ? quiz.tierFilter
+          : undefined;
         const restartPart = quiz.mode === 'part' ? quiz.moduleFilter : undefined;
         quiz.initQuiz(quiz.courseId, allQ, quiz.questions.length, quiz.mode, true, restartTier, restartPart);
         timer.start();

@@ -26,13 +26,37 @@ function getAvailableParts(questions: Question[]): string[] {
   });
 }
 
+/** Strips the "Part N: " prefix for display purposes only; the full string (with
+ * "Part N: ") is still used internally as the lectureReference filter value and is
+ * what's stored in the data file. */
+function stripPartPrefix(part: string): string {
+  return part.replace(/^Part \d+:\s*/, '');
+}
+
 export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: ModeSelectionProps) {
   const [shuffle, setShuffle] = useState(true);
   const [customCount, setCustomCount] = useState(Math.min(30, Math.floor(questions.length / 2)));
   const tiers = useMemo(() => getAvailableTiers(questions), [questions]);
   const parts = useMemo(() => getAvailableParts(questions), [questions]);
   const [selectedPart, setSelectedPart] = useState('');
+  const [selectedPartTier, setSelectedPartTier] = useState('');
   const total = questions.length;
+
+  const partTiers = useMemo(
+    () => getAvailableTiers(questions.filter((q) => q.lectureReference === selectedPart)),
+    [questions, selectedPart]
+  );
+
+  const handlePartChange = (part: string) => {
+    setSelectedPart(part);
+    setSelectedPartTier('');
+  };
+
+  const partQuizCount = useMemo(() => {
+    return questions.filter(
+      (q) => q.lectureReference === selectedPart && (!selectedPartTier || q.tier === selectedPartTier)
+    ).length;
+  }, [questions, selectedPart, selectedPartTier]);
 
   const presets = useMemo(() => {
     const preferred = [10, 25, 50, 100];
@@ -104,25 +128,42 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
               <select
                 className="review-tier-select mode-part-select"
                 value={selectedPart}
-                onChange={(e) => setSelectedPart(e.target.value)}
+                onChange={(e) => handlePartChange(e.target.value)}
               >
                 <option value="">Choose a part…</option>
                 {parts.map((part) => {
                   const count = questions.filter((q) => q.lectureReference === part).length;
                   return (
                     <option key={part} value={part}>
-                      {part} ({count}q)
+                      {stripPartPrefix(part)} ({count}q)
                     </option>
                   );
                 })}
               </select>
+              {selectedPart && partTiers.length > 1 && (
+                <select
+                  className="review-tier-select mode-part-select"
+                  value={selectedPartTier}
+                  onChange={(e) => setSelectedPartTier(e.target.value)}
+                >
+                  <option value="">All tiers</option>
+                  {partTiers.map((tier) => {
+                    const count = questions.filter(
+                      (q) => q.lectureReference === selectedPart && q.tier === tier
+                    ).length;
+                    const shortLabel = tier.replace(/^Tier \d+ — /, '');
+                    return (
+                      <option key={tier} value={tier}>
+                        {shortLabel} ({count}q)
+                      </option>
+                    );
+                  })}
+                </select>
+              )}
               <button
                 className="mode-preset-btn custom-go-btn mode-part-go-btn"
                 disabled={!selectedPart}
-                onClick={() => {
-                  const count = questions.filter((q) => q.lectureReference === selectedPart).length;
-                  onStartQuiz(count, undefined, selectedPart);
-                }}
+                onClick={() => onStartQuiz(partQuizCount, selectedPartTier || undefined, selectedPart)}
               >
                 Start 📖
               </button>
