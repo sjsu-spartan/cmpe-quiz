@@ -33,6 +33,54 @@ function stripPartPrefix(part: string): string {
   return part.replace(/^Part \d+:\s*/, '');
 }
 
+/** CMPE 249's 56 parts each contain a mix of per-question tiers (unlike CMPE 253's
+ * single-tier-per-part banks), so there's no one tier to show in the Part dropdown
+ * by default. This is a manual topic-level judgment call (not a plurality of the
+ * per-question tiers) distinguishing historical/survey/company-trivia content
+ * (lower exam priority per course emphasis) from actual model/architecture/mechanism
+ * content (higher priority) -- display-only, does not alter any question's stored
+ * per-question tier in the data file. Keyed by part number parsed from
+ * "Part N: ...". Parts not listed here (or for any other mixed-tier course) fall
+ * back to whichever tier has the most questions in that part. */
+const CMPE249_PART_TOPIC_TIER: Record<number, 'high' | 'medium' | 'low'> = {
+  1: 'high', 2: 'low', 3: 'low', 4: 'medium', 5: 'high', 6: 'high', 7: 'high',
+  8: 'high', 9: 'medium', 10: 'medium', 11: 'high', 12: 'high', 13: 'medium',
+  14: 'low', 15: 'medium', 16: 'medium', 17: 'medium', 18: 'high', 19: 'medium',
+  20: 'low', 21: 'low', 22: 'high', 23: 'high', 24: 'high', 25: 'high', 26: 'high',
+  27: 'high', 28: 'high', 29: 'high', 30: 'high', 31: 'high', 32: 'high', 33: 'high',
+  34: 'high', 35: 'high', 36: 'medium', 37: 'high', 38: 'high', 39: 'high',
+  40: 'high', 41: 'medium', 42: 'high', 43: 'low', 44: 'high', 45: 'high',
+  46: 'high', 47: 'high', 48: 'high', 49: 'high', 50: 'high', 51: 'high',
+  52: 'high', 53: 'high', 54: 'high', 55: 'high', 56: 'high',
+};
+
+const TOPIC_TIER_LABEL: Record<'high' | 'medium' | 'low', string> = {
+  high: 'High',
+  medium: 'Medium',
+  low: 'Low',
+};
+
+/** Returns a short tier label to show in front of a Part's name in the dropdown.
+ * Single-tier parts (e.g. CMPE 253) just use their one real tier. Mixed-tier parts
+ * (CMPE 249) use the manual topic-level override above, falling back to whichever
+ * tier has the most questions in that part if no override is defined. */
+function getPartTierLabel(part: string, partTiers: string[], partQuestions: Question[]): string {
+  if (partTiers.length === 1) {
+    return partTiers[0].replace(/^Tier \S+ — /, '');
+  }
+  const partNum = parseInt(part.match(/^Part (\d+):/)?.[1] ?? '', 10);
+  const override = CMPE249_PART_TOPIC_TIER[partNum];
+  if (override) {
+    return TOPIC_TIER_LABEL[override];
+  }
+  const counts = new Map<string, number>();
+  for (const q of partQuestions) {
+    counts.set(q.tier, (counts.get(q.tier) ?? 0) + 1);
+  }
+  const dominant = [...counts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? '';
+  return dominant.replace(/^Tier \S+ — /, '');
+}
+
 export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: ModeSelectionProps) {
   const [shuffle, setShuffle] = useState(true);
   const [customCount, setCustomCount] = useState(Math.min(30, Math.floor(questions.length / 2)));
@@ -62,6 +110,16 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
     const preferred = [10, 25, 50, 100];
     return preferred.filter((n) => n < total && n <= total * 0.7);
   }, [total]);
+
+  const partTierLabels = useMemo(() => {
+    const labels = new Map<string, string>();
+    for (const part of parts) {
+      const partQuestions = questions.filter((q) => q.lectureReference === part);
+      const thisPartTiers = getAvailableTiers(partQuestions);
+      labels.set(part, getPartTierLabel(part, thisPartTiers, partQuestions));
+    }
+    return labels;
+  }, [parts, questions]);
 
   return (
     <div className="screen-content">
@@ -131,14 +189,11 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
                 onChange={(e) => handlePartChange(e.target.value)}
               >
                 <option value="">Choose a part…</option>
-                {parts.map((part) => {
-                  const count = questions.filter((q) => q.lectureReference === part).length;
-                  return (
-                    <option key={part} value={part}>
-                      {stripPartPrefix(part)} ({count}q)
-                    </option>
-                  );
-                })}
+                {parts.map((part) => (
+                  <option key={part} value={part}>
+                    {partTierLabels.get(part)} — {stripPartPrefix(part)}
+                  </option>
+                ))}
               </select>
               {selectedPart && (
                 partTiers.length > 1 ? (
