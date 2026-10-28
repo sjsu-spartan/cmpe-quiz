@@ -1,0 +1,14 @@
+src/styles/index.css
+  h_566954f6ea4a9a 77,235-237
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "59d0a4e1506c3283bbcdeae081b128a955131527",
+  "prompts": {},
+  "humans": {
+    "h_566954f6ea4a9a": {
+      "author": "pyadav <pyadav@paloaltonetworks.com>"
+    }
+  }
+}
