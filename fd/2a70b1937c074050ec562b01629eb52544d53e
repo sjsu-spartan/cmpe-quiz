@@ -1,0 +1,14 @@
+src/App.tsx
+  h_566954f6ea4a9a 32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "fd2a70b1937c074050ec562b01629eb52544d53e",
+  "prompts": {},
+  "humans": {
+    "h_566954f6ea4a9a": {
+      "author": "pyadav <pyadav@paloaltonetworks.com>"
+    }
+  }
+}
