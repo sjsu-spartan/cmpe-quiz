@@ -2,6 +2,7 @@ import { formatTime } from '../utils/formatTime';
 
 interface HeaderProps {
   title: string;
+  subtitle?: string;
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
   elapsed: number;
@@ -18,6 +19,7 @@ interface HeaderProps {
 
 export function Header({
   title,
+  subtitle,
   theme,
   onToggleTheme,
   elapsed,
@@ -39,7 +41,10 @@ export function Header({
       {minimal ? (
         <span className="header-logo">📝</span>
       ) : (
-        <h1 className="header-title">{title}</h1>
+        <div className="header-titles">
+          <h1 className="header-title">{title}</h1>
+          {subtitle && <p className="header-subtitle">{subtitle}</p>}
+        </div>
       )}
       <div className="header-actions">
         {showExit && onExit && (

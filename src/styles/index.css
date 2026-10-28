@@ -120,17 +120,31 @@ body {
   margin-right: auto;
   opacity: 0.7;
 }
+.header-titles {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  min-width: 0;
+  gap: 2px;
+}
 .header-title {
   font-size: 1rem;
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 50%;
   background: var(--color-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+.header-subtitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .header-themed .header-title {
   background: none;
@@ -138,6 +152,9 @@ body {
   -webkit-text-fill-color: #fff;
   background-clip: unset;
   color: #fff;
+}
+.header-themed .header-subtitle {
+  color: rgba(255, 255, 255, 0.75);
 }
 .header-actions {
   display: flex;
@@ -1357,7 +1374,9 @@ body {
   .app { padding: 0 12px 24px; }
   .header { padding: 12px 16px; margin: 0 -12px 20px; min-height: 54px; }
   .header-minimal { padding: 6px 0; margin-bottom: 8px; min-height: 40px; }
-  .header-title { font-size: 0.88rem; max-width: 45%; }
+  .header-titles { max-width: 45%; }
+  .header-title { font-size: 0.88rem; }
+  .header-subtitle { font-size: 0.68rem; }
   .card { padding: 20px; border-radius: var(--radius-lg); }
   .home-courses { grid-template-columns: 1fr; }
   .hc { min-height: 260px; }
@@ -1383,7 +1402,9 @@ body {
 }
 
 @media (max-width: 400px) {
-  .header-title { font-size: 0.8rem; max-width: 40%; }
+  .header-titles { max-width: 40%; }
+  .header-title { font-size: 0.8rem; }
+  .header-subtitle { font-size: 0.64rem; }
   .header-btn { padding: 5px 8px; font-size: 0.85rem; }
   .header-timer { font-size: 0.7rem; padding: 3px 8px; }
   .mode-presets { grid-template-columns: 1fr 1fr; }

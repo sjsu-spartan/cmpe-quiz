@@ -33,8 +33,12 @@ export default function App() {
       : screen === 'mode' && quiz.courseId
       ? courseTitle
       : screen === 'quiz' || screen === 'summary'
-      ? `${courseTitle}${quiz.moduleFilter ? ' · ' + quiz.moduleFilter.replace(/^Tier \d+ — /, '') : ''}`
+      ? courseTitle
       : config?.title || 'CMPE Exam Prep';
+  const headerSubtitle =
+    (screen === 'quiz' || screen === 'summary') && quiz.moduleFilter
+      ? quiz.moduleFilter.replace(/^Tier \d+ — /, '')
+      : undefined;
 
   const questionCounts: Record<string, number> = {};
   const tierCounts: Record<string, Record<string, number>> = {};
@@ -175,6 +179,7 @@ export default function App() {
     <div className="app">
       <Header
         title={headerTitle}
+        subtitle={headerSubtitle}
         theme={theme}
         onToggleTheme={toggleTheme}
         elapsed={timer.elapsed}
