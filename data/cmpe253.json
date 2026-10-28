@@ -2745,9 +2745,9 @@
     "question": "If the gradient sign for a coordinate stays constant, after how many steps does that coordinate typically reach the edge of the box?",
     "tier": "Tier A — Highest Probability",
     "options": {
-      "A": "$\\lceil \\epsilon/\\alpha\\rceil$ steps",
+      "A": "$\\lceil \\epsilon/\\alpha\\rceil$ steps (ceiling, i.e. round up)",
       "B": "Exactly $\\epsilon/\\alpha$ steps, always an integer",
-      "C": "$\\lfloor \\epsilon/\\alpha\\rfloor$ steps",
+      "C": "$\\lfloor \\epsilon/\\alpha\\rfloor$ steps (floor, i.e. round down)",
       "D": "A number of steps independent of $\\alpha$ and $\\epsilon$"
     },
     "answer": "A",

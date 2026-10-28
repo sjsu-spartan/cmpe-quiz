@@ -185,7 +185,6 @@ export default function App() {
         onStudyGuide={() => setShowStudyGuide(true)}
         onExit={handleExit}
         showExit={screen === 'quiz'}
-        minimal
       />
 
       {screen === 'course' && config && (
@@ -214,7 +213,6 @@ export default function App() {
           score={quiz.score}
           answered={quiz.answered}
           elapsed={timer.elapsed}
-          courseTitle={courseTitle}
           onSelectAnswer={handleSelectAnswer}
           onSelfGrade={handleSelfGrade}
           onNext={handleNext}

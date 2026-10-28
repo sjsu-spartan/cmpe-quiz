@@ -11,7 +11,6 @@ interface QuizScreenProps {
   score: number;
   answered: number;
   elapsed: number;
-  courseTitle: string;
   onSelectAnswer: (selected: string, timeSpent: number) => void;
   onSelfGrade: (isCorrect: boolean, timeSpent: number) => void;
   onNext: () => void;
@@ -33,7 +32,6 @@ export function QuizScreen({
   onNext,
   onPrev,
   onExit,
-  courseTitle,
 }: QuizScreenProps) {
   const total = questions.length;
   const q = questions[currentIndex];
@@ -87,9 +85,6 @@ export function QuizScreen({
 
   return (
     <div className="screen-content" ref={containerRef}>
-      <div className="quiz-top">
-        <span className="quiz-course-label">{courseTitle}</span>
-      </div>
       <div className="quiz-header">
         <div className="quiz-progress-text">
           <span>Question {currentIndex + 1} of {total}</span>

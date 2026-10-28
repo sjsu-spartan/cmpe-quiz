@@ -518,16 +518,6 @@ body {
 .mode-part-go-btn { width: 100%; }
 
 /* ===== Quiz Screen ===== */
-.quiz-top {
-  margin-bottom: 16px;
-}
-.quiz-course-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--color-text-3);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
 .quiz-header { margin-bottom: 20px; }
 .quiz-progress-text {
   display: flex;
