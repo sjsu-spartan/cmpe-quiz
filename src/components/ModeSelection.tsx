@@ -100,7 +100,7 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
         {parts.length > 0 && (
           <div className="mode-section">
             <h3 className="mode-section-title">By Part</h3>
-            <div className="custom-row">
+            <div className="mode-part-row">
               <select
                 className="review-tier-select mode-part-select"
                 value={selectedPart}
@@ -117,7 +117,7 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
                 })}
               </select>
               <button
-                className="mode-preset-btn custom-go-btn"
+                className="mode-preset-btn custom-go-btn mode-part-go-btn"
                 disabled={!selectedPart}
                 onClick={() => {
                   const count = questions.filter((q) => q.lectureReference === selectedPart).length;
