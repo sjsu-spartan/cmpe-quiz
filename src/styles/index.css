@@ -533,6 +533,44 @@ body {
   text-overflow: ellipsis;
 }
 .mode-part-go-btn { width: 100%; }
+.mode-part-tier-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.mode-part-tier-pill {
+  flex: 1;
+  min-width: 70px;
+  padding: 12px 10px;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.mode-part-tier-pill:hover {
+  border-color: var(--color-primary);
+  background: var(--color-surface-3);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-glow);
+}
+.mode-part-tier-pill.tier-high {
+  border-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary-glow), var(--color-surface-2));
+}
+.mode-part-tier-pill .pill-count {
+  font-size: 0.72rem;
+  font-weight: 500;
+  opacity: 0.65;
+}
 
 /* ===== Quiz Screen ===== */
 .quiz-header { margin-bottom: 20px; }

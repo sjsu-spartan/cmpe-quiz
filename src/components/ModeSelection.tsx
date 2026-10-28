@@ -39,7 +39,6 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
   const tiers = useMemo(() => getAvailableTiers(questions), [questions]);
   const parts = useMemo(() => getAvailableParts(questions), [questions]);
   const [selectedPart, setSelectedPart] = useState('');
-  const [selectedPartTier, setSelectedPartTier] = useState('');
   const total = questions.length;
 
   const partTiers = useMemo(
@@ -49,14 +48,15 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
 
   const handlePartChange = (part: string) => {
     setSelectedPart(part);
-    setSelectedPartTier('');
   };
 
-  const partQuizCount = useMemo(() => {
-    return questions.filter(
-      (q) => q.lectureReference === selectedPart && (!selectedPartTier || q.tier === selectedPartTier)
-    ).length;
-  }, [questions, selectedPart, selectedPartTier]);
+  const partTotalCount = useMemo(
+    () => questions.filter((q) => q.lectureReference === selectedPart).length,
+    [questions, selectedPart]
+  );
+
+  const partTierCount = (tier: string) =>
+    questions.filter((q) => q.lectureReference === selectedPart && q.tier === tier).length;
 
   const presets = useMemo(() => {
     const preferred = [10, 25, 50, 100];
@@ -140,33 +140,38 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
                   );
                 })}
               </select>
-              {selectedPart && partTiers.length > 1 && (
-                <select
-                  className="review-tier-select mode-part-select"
-                  value={selectedPartTier}
-                  onChange={(e) => setSelectedPartTier(e.target.value)}
-                >
-                  <option value="">All tiers</option>
-                  {partTiers.map((tier) => {
-                    const count = questions.filter(
-                      (q) => q.lectureReference === selectedPart && q.tier === tier
-                    ).length;
-                    const shortLabel = tier.replace(/^Tier \d+ — /, '');
-                    return (
-                      <option key={tier} value={tier}>
-                        {shortLabel} ({count}q)
-                      </option>
-                    );
-                  })}
-                </select>
+              {selectedPart && (
+                partTiers.length > 1 ? (
+                  <div className="mode-part-tier-pills">
+                    <button
+                      className="mode-part-tier-pill"
+                      onClick={() => onStartQuiz(partTotalCount, undefined, selectedPart)}
+                    >
+                      All <span className="pill-count">{partTotalCount}q</span>
+                    </button>
+                    {partTiers.map((tier) => {
+                      const shortLabel = tier.replace(/^Tier \d+ — /, '');
+                      const isHigh = tier.includes('Highest') || tier.includes('Tier 1');
+                      return (
+                        <button
+                          key={tier}
+                          className={`mode-part-tier-pill ${isHigh ? 'tier-high' : ''}`}
+                          onClick={() => onStartQuiz(partTierCount(tier), tier, selectedPart)}
+                        >
+                          {shortLabel} <span className="pill-count">{partTierCount(tier)}q</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <button
+                    className="mode-preset-btn custom-go-btn mode-part-go-btn"
+                    onClick={() => onStartQuiz(partTotalCount, undefined, selectedPart)}
+                  >
+                    Start 📖
+                  </button>
+                )
               )}
-              <button
-                className="mode-preset-btn custom-go-btn mode-part-go-btn"
-                disabled={!selectedPart}
-                onClick={() => onStartQuiz(partQuizCount, selectedPartTier || undefined, selectedPart)}
-              >
-                Start 📖
-              </button>
             </div>
           </div>
         )}

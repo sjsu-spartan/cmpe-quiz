@@ -29,12 +29,12 @@ export default function App() {
   const courseTitle = course ? `${course.code} — ${course.name}` : '';
   const headerTitle =
     screen === 'course'
-      ? config?.title || 'CMPE Exam Prep'
+      ? config?.title || 'Gradient'
       : screen === 'mode' && quiz.courseId
       ? courseTitle
       : screen === 'quiz' || screen === 'summary'
       ? courseTitle
-      : config?.title || 'CMPE Exam Prep';
+      : config?.title || 'Gradient';
   const headerSubtitle =
     (screen === 'quiz' || screen === 'summary') && quiz.moduleFilter
       ? quiz.tierFilter
