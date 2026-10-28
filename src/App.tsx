@@ -60,12 +60,12 @@ export default function App() {
     setScreen('mode');
   }, [quiz]);
 
-  const handleStartQuiz = useCallback((count: number, tier?: string, part?: string) => {
+  const handleStartQuiz = useCallback((count: number, tier?: string, part?: string, shouldShuffle = true) => {
     if (!quiz.courseId) return;
     const allQ = allQuestions[quiz.courseId];
     if (!allQ || allQ.length === 0) return;
     const quizMode = part ? 'part' : tier ? 'tier' : count >= allQ.length ? 'all' : 'quick';
-    quiz.initQuiz(quiz.courseId, allQ, count, quizMode, true, tier, part);
+    quiz.initQuiz(quiz.courseId, allQ, count, quizMode, shouldShuffle, tier, part);
     timer.start();
     setScreen('quiz');
   }, [quiz, allQuestions, timer]);

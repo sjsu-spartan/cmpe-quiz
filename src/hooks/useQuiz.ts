@@ -34,24 +34,27 @@ export function useQuiz() {
     tier?: string | null,
     part?: string | null,
   ) => {
-    let selected: Question[];
+    // First narrow down to the relevant subset of questions: an exact part/tier/
+    // part+tier filter match, or a random sample of `count` questions (in original
+    // order) when no filter is given.
+    let subset: Question[];
     if (part && tier) {
-      selected = allQ.filter((q) => q.lectureReference === part && q.tier === tier);
+      subset = allQ.filter((q) => q.lectureReference === part && q.tier === tier);
     } else if (part) {
-      selected = allQ.filter((q) => q.lectureReference === part);
+      subset = allQ.filter((q) => q.lectureReference === part);
     } else if (tier) {
-      selected = allQ.filter((q) => q.tier === tier);
-    } else if (shouldShuffle) {
-      selected = shuffle(allQ).slice(0, Math.min(count, allQ.length));
+      subset = allQ.filter((q) => q.tier === tier);
+    } else if (count >= allQ.length) {
+      subset = [...allQ];
     } else {
-      if (count >= allQ.length) {
-        selected = [...allQ];
-      } else {
-        const indices = shuffle([...Array(allQ.length).keys()]).slice(0, count);
-        indices.sort((a, b) => a - b);
-        selected = indices.map((i) => allQ[i]);
-      }
+      const indices = shuffle([...Array(allQ.length).keys()]).slice(0, count);
+      indices.sort((a, b) => a - b);
+      subset = indices.map((i) => allQ[i]);
     }
+    // The shuffle toggle then controls only the presentation order of that subset,
+    // applied uniformly across every mode (part/tier filters previously ignored
+    // it and always stayed in the data file's original order).
+    const selected = shouldShuffle ? shuffle(subset) : subset;
     setCourseId(cId);
     setQuestions(selected);
     setCurrentIndex(0);

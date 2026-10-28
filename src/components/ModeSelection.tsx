@@ -4,7 +4,7 @@ import type { Question } from '../types';
 interface ModeSelectionProps {
   courseTitle: string;
   questions: Question[];
-  onStartQuiz: (count: number, tier?: string, part?: string) => void;
+  onStartQuiz: (count: number, tier?: string, part?: string, shouldShuffle?: boolean) => void;
   onBack: () => void;
 }
 
@@ -80,7 +80,7 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
                 <button
                   key={n}
                   className="mode-preset-btn"
-                  onClick={() => onStartQuiz(n)}
+                  onClick={() => onStartQuiz(n, undefined, undefined, shuffle)}
                 >
                   <span className="preset-icon">{n === 10 ? '🎯' : n === 25 ? '⚡' : n === 50 ? '🔥' : '💯'}</span>
                   <span className="preset-label">Quick {n}</span>
@@ -88,7 +88,7 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
               ))}
               <button
                 className="mode-preset-btn mode-preset-all"
-                onClick={() => onStartQuiz(total)}
+                onClick={() => onStartQuiz(total, undefined, undefined, shuffle)}
               >
                 <span className="preset-icon">📋</span>
                 <span className="preset-label">All {total}</span>
@@ -109,7 +109,7 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
                   <button
                     key={tier}
                     className={`mode-tier-btn ${isHigh ? 'tier-high' : ''}`}
-                    onClick={() => onStartQuiz(count, tier)}
+                    onClick={() => onStartQuiz(count, tier, undefined, shuffle)}
                   >
                     <span className="tier-badge">{isHigh ? '🏆' : '⭐'}</span>
                     <span className="tier-label">{shortLabel}</span>
@@ -145,7 +145,7 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
                   <div className="mode-part-tier-pills">
                     <button
                       className="mode-part-tier-pill"
-                      onClick={() => onStartQuiz(partTotalCount, undefined, selectedPart)}
+                      onClick={() => onStartQuiz(partTotalCount, undefined, selectedPart, shuffle)}
                     >
                       All <span className="pill-count">{partTotalCount}q</span>
                     </button>
@@ -156,7 +156,7 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
                         <button
                           key={tier}
                           className={`mode-part-tier-pill ${isHigh ? 'tier-high' : ''}`}
-                          onClick={() => onStartQuiz(partTierCount(tier), tier, selectedPart)}
+                          onClick={() => onStartQuiz(partTierCount(tier), tier, selectedPart, shuffle)}
                         >
                           {shortLabel} <span className="pill-count">{partTierCount(tier)}q</span>
                         </button>
@@ -166,7 +166,7 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
                 ) : (
                   <button
                     className="mode-preset-btn custom-go-btn mode-part-go-btn"
-                    onClick={() => onStartQuiz(partTotalCount, undefined, selectedPart)}
+                    onClick={() => onStartQuiz(partTotalCount, undefined, selectedPart, shuffle)}
                   >
                     Start 📖
                   </button>
@@ -199,7 +199,7 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
                 value={customCount}
                 onChange={(e) => setCustomCount(Math.min(Math.max(1, +e.target.value), total))}
               />
-              <button className="mode-preset-btn custom-go-btn" onClick={() => onStartQuiz(customCount)}>
+              <button className="mode-preset-btn custom-go-btn" onClick={() => onStartQuiz(customCount, undefined, undefined, shuffle)}>
                 Go 🎲
               </button>
             </div>
