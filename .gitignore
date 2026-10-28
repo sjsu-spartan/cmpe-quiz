@@ -4,3 +4,10 @@ dist
 *.png
 *.tsbuildinfo
 .vscode/
+
+# index.html is generated from index.dev.html by `npm run dev`/`npm run build`
+# (see package.json scripts); the repo root `assets/` below was a leftover from
+# an old manual deploy step that copied `dist/assets` here -- deployment is now
+# handled entirely by .github/workflows/deploy.yml via GitHub Actions.
+/index.html
+/assets/

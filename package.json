@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "cp index.dev.html index.html && vite",
-    "build": "cp index.dev.html index.html && tsc && vite build && cp -r data dist/data && cp -r guides dist/guides && cp dist/index.html index.html && cp -r dist/assets .",
+    "build": "cp index.dev.html index.html && tsc && vite build && cp -r data dist/data && cp -r guides dist/guides",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview"
   },
