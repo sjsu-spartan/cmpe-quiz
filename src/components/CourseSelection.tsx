@@ -74,7 +74,7 @@ export function CourseSelection({ courses, questionCounts, tierCounts, onSelect 
           {/* text */}
           <text x="360" y="88" textAnchor="middle" fill="#fff" fontSize="28" fontWeight="800" letterSpacing="-0.5">SJSU</text>
           <text x="360" y="120" textAnchor="middle" fill="url(#goldGrad)" fontSize="17" fontWeight="700" letterSpacing="3">CMPE EXAM PREP</text>
-          <text x="360" y="150" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="12" fontWeight="400" letterSpacing="1.5">Reinforcement Learning · Recommender Systems</text>
+          <text x="360" y="150" textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="12" fontWeight="400" letterSpacing="1.5">Graduate Exam Practice · Multiple Courses</text>
         </svg>
       </div>
 

@@ -1,7 +1,9 @@
 # CMPE Exam Quiz App v2
 
 A modern, config-driven single-page quiz application for practicing CMPE graduate course exam questions:
-- **CMPE 249: Intelligent Autonomous Systems** (Basic 2D Object Detection · Lectures 8–10)
+- **CMPE 249: Intelligent Autonomous Systems** (AV Architecture, Sensor Fusion, R-CNN/YOLO, Metrics, ViT/DETR, Calibration)
+- **CMPE 258: Deep Learning** (Backprop, Optimizers, CNN/ResNet, RNN/LSTM/GRU, Transformers)
+- **CMPE 253: AI Threat Intelligence** (FGSM/PGD, DP-SGD, Membership Inference, RAG Poisoning, Fairness, Drift Detection, Risk Scoring)
 - **CMPE 260: Reinforcement Learning** (Modules 9–17 · TRPO, PPO, DDPG, SAC, A3C)
 - **CMPE 256: Recommender Systems** (CF, MF, Deep Learning, Fairness, Bandits)
 
