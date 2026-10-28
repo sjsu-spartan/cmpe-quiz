@@ -29,7 +29,7 @@ export default function App() {
   const courseTitle = course ? `${course.code} — ${course.name}` : '';
   const headerTitle =
     screen === 'course'
-      ? config?.title || 'Gradient'
+      ? ''
       : screen === 'mode' && quiz.courseId
       ? courseTitle
       : screen === 'quiz' || screen === 'summary'
