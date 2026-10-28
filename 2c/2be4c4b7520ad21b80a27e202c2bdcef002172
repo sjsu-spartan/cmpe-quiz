@@ -1,0 +1,16 @@
+src/components/ModeSelection.tsx
+  h_566954f6ea4a9a 103,120
+src/styles/index.css
+  h_566954f6ea4a9a 501-505,507,511-513,515
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "2c2be4c4b7520ad21b80a27e202c2bdcef002172",
+  "prompts": {},
+  "humans": {
+    "h_566954f6ea4a9a": {
+      "author": "pyadav <pyadav@paloaltonetworks.com>"
+    }
+  }
+}
