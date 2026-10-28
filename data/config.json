@@ -1,6 +1,6 @@
 {
-  "title": "CMPE Exam Prep",
-  "subtitle": "Select a course to start practicing",
+  "title": "Gradient",
+  "subtitle": "SJSU Graduate AI & ML Exam Prep",
   "enableBackButton": true,
   "showFormulas": true,
   "courses": [
