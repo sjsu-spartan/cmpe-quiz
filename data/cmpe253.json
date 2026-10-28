@@ -152,7 +152,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The box is always centered on the original point x0; it is $[x0-\\epsilon, x0+\\epsilon]$ and never recentered on $x_{t}.$",
+    "explanation": "The box is always centered on the original point $x_{0}$; it is $[x_{0}-\\epsilon, x_{0}+\\epsilon]$ and never recentered on $x_{t}.$",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -210,7 +210,7 @@
   {
     "num": 17,
     "type": "tf",
-    "question": "PGD computes the gradient once at x0 and reuses that same gradient direction for every subsequent step.",
+    "question": "PGD computes the gradient once at $x_{0}$ and reuses that same gradient direction for every subsequent step.",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "True",
@@ -223,14 +223,14 @@
   {
     "num": 18,
     "type": "tf",
-    "question": "As PGD iterates, the box boundaries $[x0-\\epsilon, x0+\\epsilon]$ shift inward to tighten around the most recent iterate.",
+    "question": "As PGD iterates, the box boundaries $[x_{0}-\\epsilon, x_{0}+\\epsilon]$ shift inward to tighten around the most recent iterate.",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The box boundaries never move; they are fixed once, based on x0 and $\\epsilon$, for the entire optimization.",
+    "explanation": "The box boundaries never move; they are fixed once, based on $x_{0}$ and $\\epsilon$, for the entire optimization.",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -301,14 +301,14 @@
   {
     "num": 24,
     "type": "tf",
-    "question": "The initial loss J0 (when w=0, b=0) depends on the proportion of positive versus negative labels in the batch.",
+    "question": "The initial loss $J_{0}$ (when w=0, b=0) depends on the proportion of positive versus negative labels in the batch.",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "Since every $p_{i}=0.5$ regardless of $y_{i}$, each per-point term equals $-\\ln(0.5)$, so J0 = $\\ln(2) \\approx 0.693$ no matter what the labels are.",
+    "explanation": "Since every $p_{i}=0.5$ regardless of $y_{i}$, each per-point term equals $-\\ln(0.5)$, so $J_{0}$ = $\\ln(2) \\approx 0.693$ no matter what the labels are.",
     "lectureReference": "Part 3: Batch Gradient Descent (Logistic Regression)"
   },
   {
@@ -2701,12 +2701,12 @@
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "x $\\leftarrow x$ + $\\alpha\\cdot \\text{sign}(\\nabla _{x}J(x))$",
-      "B": "x $\\leftarrow$ x0 + $\\alpha\\cdot \\text{sign}(\\nabla _{x}J(x))$",
+      "B": "x $\\leftarrow x_{0}$ + $\\alpha\\cdot \\text{sign}(\\nabla _{x}J(x))$",
       "C": "x $\\leftarrow \\Pi_\\epsilon[x$ + $\\alpha\\cdot \\text{sign}(\\nabla _{x}J(x))]$",
-      "D": "x $\\leftarrow \\Pi_\\epsilon[x0$ + $\\epsilon\\cdot \\text{sign}(\\nabla _{x}J(x0))]$"
+      "D": "x $\\leftarrow \\Pi_\\epsilon[x_{0}$ + $\\epsilon\\cdot \\text{sign}(\\nabla _{x}J(x_{0}))]$"
     },
     "answer": "C",
-    "explanation": "PGD takes a small step at the current x using the sign of the gradient recomputed at x, then projects the result back into the $\\epsilon-box$ around x0.",
+    "explanation": "PGD takes a small step at the current x using the sign of the gradient recomputed at x, then projects the result back into the $\\epsilon-box$ around $x_{0}.$",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -2715,13 +2715,13 @@
     "question": "In PGD, the projection operator $\\Pi_\\epsilon$ is applied after each step to:",
     "tier": "Tier A — Highest Probability",
     "options": {
-      "A": "Clip the point back into the fixed box $[x0-\\epsilon, x0+\\epsilon]$ defined by the original input",
-      "B": "Reset x back to x0 if the loss decreases",
+      "A": "Clip the point back into the fixed box $[x_{0}-\\epsilon, x_{0}+\\epsilon]$ defined by the original input",
+      "B": "Reset x back to $x_{0}$ if the loss decreases",
       "C": "Normalize the gradient vector to unit length",
       "D": "Recenter the perturbation box on the current iterate $x_{t}$"
     },
     "answer": "A",
-    "explanation": "$\\Pi_\\epsilon$ always clips relative to the original x0's box; the box never moves with the iterate.",
+    "explanation": "$\\Pi_\\epsilon$ always clips relative to the original $x_{0}'s$ box; the box never moves with the iterate.",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -2762,7 +2762,7 @@
     "options": {
       "A": "Computed once at the midpoint of the box",
       "B": "Recomputed at the current iterate x before each step",
-      "C": "Computed once at x0 and reused at every step",
+      "C": "Computed once at $x_{0}$ and reused at every step",
       "D": "Never actually needed since the sign is assumed constant"
     },
     "answer": "B",
@@ -2807,7 +2807,7 @@
     "options": {
       "A": "It moves past the edge, violating the $\\epsilon$ constraint",
       "B": "It is removed from future gradient computations",
-      "C": "It gets reset back to x0's value",
+      "C": "It gets reset back to $x_{0}'s$ value",
       "D": "It stays clipped at the same edge value, effectively frozen"
     },
     "answer": "D",
@@ -2826,13 +2826,13 @@
       "D": "PGD uses a larger $\\epsilon$ than FGSM"
     },
     "answer": "C",
-    "explanation": "FGSM is a one-shot attack using $\\text{sign}(\\nabla _{x}J(x0))$ scaled by $\\epsilon$; PGD iterates with smaller steps $\\alpha$, recomputing the gradient and projecting at each step.",
+    "explanation": "FGSM is a one-shot attack using $\\text{sign}(\\nabla _{x}J(x_{0}))$ scaled by $\\epsilon$; PGD iterates with smaller steps $\\alpha$, recomputing the gradient and projecting at each step.",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
     "num": 215,
     "type": "mcq",
-    "question": "Given x0 = $[0.50, 0.30]$ and $\\epsilon$ = $0.10$, what is the correct box $\\Pi_\\epsilon$ projects into?",
+    "question": "Given $x_{0}$ = $[0.50, 0.30]$ and $\\epsilon$ = $0.10$, what is the correct box $\\Pi_\\epsilon$ projects into?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "A box centered on the current iterate, which changes every step\n- E) (not applicable)",
@@ -2841,13 +2841,13 @@
       "D": "$[0.50, 0.60] \\times [0.30, 0.40]$"
     },
     "answer": "B",
-    "explanation": "The box is $[x0-\\epsilon, x0+\\epsilon]$ per coordinate: $[0.50-0.10, 0.50+0.10] \\times [0.30-0.10, 0.30+0.10]$ = $[0.40, 0.60] \\times [0.20, 0.40].$",
+    "explanation": "The box is $[x_{0}-\\epsilon, x_{0}+\\epsilon]$ per coordinate: $[0.50-0.10, 0.50+0.10] \\times [0.30-0.10, 0.30+0.10]$ = $[0.40, 0.60] \\times [0.20, 0.40].$",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
     "num": 216,
     "type": "mcq",
-    "question": "Using x0=[0.50, $0.30], \\epsilon=0.10, \\alpha=0.04$, with signs t1=[+1,-1], t2=[+1,-1], t3=[+1,+1], at which step does the first coordinate first hit its box edge of $0.60$?",
+    "question": "Using $x_{0}=[0.50, 0.30], \\epsilon=0.10, \\alpha=0.04$, with signs $t_{1}=[+1,-1], t_{2}=[+1,-1], t_{3}=[+1,+1]$, at which step does the first coordinate first hit its box edge of $0.60$?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "Step $1$",
@@ -2856,7 +2856,7 @@
       "D": "Step $2$"
     },
     "answer": "B",
-    "explanation": "x1=[0.54, $0.26]$, x2=[0.58, $0.22]$, x3 pre-clip = $0.62 \\to clipped$ to $0.60.$ This matches $\\lceil \\epsilon/\\alpha\\rceil$ = $\\lceil0.10/0.04\\rceil$ = $\\lceil2.5\\rceil$ = $3.$",
+    "explanation": "$x_{1}=[0.54, 0.26], x_{2}=[0.58, 0.22], x_{3}$ pre-clip = $0.62 \\to clipped$ to $0.60.$ This matches $\\lceil \\epsilon/\\alpha\\rceil$ = $\\lceil0.10/0.04\\rceil$ = $\\lceil2.5\\rceil$ = $3.$",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -2892,7 +2892,7 @@
   {
     "num": 219,
     "type": "mcq",
-    "question": "At x0=[0.45, $0.55]$, computing z = $w\\cdot$ x0+b gives $-0.55$, so p = sigmoid(-0.55) $\\approx 0.3662.$ What is $\\text{sign}(\\nabla _{x}J(x0))$?",
+    "question": "At $x_{0}=[0.45, 0.55]$, computing z = $w\\cdot x_{0}+b$ gives $-0.55$, so p = sigmoid(-0.55) $\\approx 0.3662.$ What is $\\text{sign}(\\nabla _{x}J(x_{0}))$?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "$[-1, -1]$",
@@ -2916,7 +2916,7 @@
       "D": "Step $4$"
     },
     "answer": "A",
-    "explanation": "At t3 the proposed step $[0.30, 0.70]$ gets clipped on both coordinates to $[0.33, 0.67]$ (the box bounds), and since the sign stays $[-1,+1]$ at t4 the point remains frozen there.",
+    "explanation": "At $t_{3}$ the proposed step $[0.30, 0.70]$ gets clipped on both coordinates to $[0.33, 0.67]$ (the box bounds), and since the sign stays $[-1,+1]$ at $t_{4}$ the point remains frozen there.",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -2997,7 +2997,7 @@
   {
     "num": 226,
     "type": "mcq",
-    "question": "For any batch of binary labels, if w=0 and b=0, what is the initial loss J0?",
+    "question": "For any batch of binary labels, if w=0 and b=0, what is the initial loss $J_{0}$?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "It depends on the proportion of positive versus negative labels",
@@ -3057,7 +3057,7 @@
   {
     "num": 230,
     "type": "mcq",
-    "question": "Using the verified trace (x1=(2,1), y1=1; x2=(-1,-2), y2=0; x3=(1,-1), y3=0; w0=(0,0), b0=0, n=3), the per-point errors $(p_{i}-y_{i})$ are $(-0.5, 0.5, 0.5).$ What is $\\nabla_b$?",
+    "question": "Using the verified trace ($x_{1}=(2,1), y_{1}=1; x_{2}=(-1,-2), y_{2}=0; x_{3}=(1,-1), y_{3}=0; w_{0}=(0,0), b_{0}=0$, n=3), the per-point errors $(p_{i}-y_{i})$ are $(-0.5, 0.5, 0.5).$ What is $\\nabla_b$?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "$\\approx0.1667$",
@@ -3072,7 +3072,7 @@
   {
     "num": 231,
     "type": "mcq",
-    "question": "Using the same errors $(-0.5, 0.5, 0.5)$ with points x1=(2,1), x2=(-1,-2), x3=(1,-1), what is $\\nabla_w$ (to $4$ decimals)?",
+    "question": "Using the same errors $(-0.5, 0.5, 0.5)$ with points $x_{1}=(2,1), x_{2}=(-1,-2), x_{3}=(1,-1)$, what is $\\nabla_w$ (to $4$ decimals)?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "$(-1, -2)$",
@@ -3087,7 +3087,7 @@
   {
     "num": 232,
     "type": "mcq",
-    "question": "With w0=(0,0), $\\eta=0.5$, and $\\nabla_w=(-0.3333,-0.6667)$, what is w1?",
+    "question": "With $w_{0}=(0,0), \\eta=0.5$, and $\\nabla_w=(-0.3333,-0.6667)$, what is $w_{1}$?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "$(0.1667, 0.3333)$",
@@ -3096,13 +3096,13 @@
       "D": "$(-0.1667, -1.3333)$"
     },
     "answer": "A",
-    "explanation": "w1 = $(0,0)$ - $0.5\\cdot(-0.3333,-0.6667)$ = $(0.1667, 0.3333).$",
+    "explanation": "$w_{1}$ = $(0,0)$ - $0.5\\cdot(-0.3333,-0.6667)$ = $(0.1667, 0.3333).$",
     "lectureReference": "Part 3: Batch Gradient Descent (Logistic Regression)"
   },
   {
     "num": 233,
     "type": "mcq",
-    "question": "With b0=0, $\\eta=0.5$, and $\\nabla_b\\approx0.1667$, what is b1?",
+    "question": "With $b_{0}=0, \\eta=0.5$, and $\\nabla_b\\approx0.1667$, what is $b_{1}$?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "$\\approx-0.1667$",
@@ -3111,13 +3111,13 @@
       "D": "$\\approx0.0833$"
     },
     "answer": "C",
-    "explanation": "b1 = $0$ - $0.5(0.1667) \\approx -0.0833.$",
+    "explanation": "$b_{1}$ = $0$ - $0.5(0.1667) \\approx -0.0833.$",
     "lectureReference": "Part 3: Batch Gradient Descent (Logistic Regression)"
   },
   {
     "num": 234,
     "type": "mcq",
-    "question": "After the first update $(w1\\approx(0.1667,0.3333), b1\\approx-0.0833)$, the recomputed loss is $J1\\approx0.4519$, compared to $J0\\approx0.6931$ before the update. What does this confirm?",
+    "question": "After the first update $(w_{1}\\approx(0.1667,0.3333), b_{1}\\approx-0.0833)$, the recomputed loss is $J_{1}\\approx0.4519$, compared to $J_{0}\\approx0.6931$ before the update. What does this confirm?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "The learning rate $\\eta=0.5$ is too large and should be reduced",
@@ -3132,7 +3132,7 @@
   {
     "num": 235,
     "type": "mcq",
-    "question": "Using $w2\\approx(0.2607,0.5612), b2\\approx-0.1442$ (after iteration $2$), the test point x=(0.5,0.5) gives z=0.2667 and $p_{test}=\\sigma(0.2667)\\approx0.5663.$ With a $0.5$ threshold, what is the predicted class?",
+    "question": "Using $w_{2}\\approx(0.2607,0.5612), b_{2}\\approx-0.1442$ (after iteration $2$), the test point x=(0.5,0.5) gives z=0.2667 and $p_{test}=\\sigma(0.2667)\\approx0.5663.$ With a $0.5$ threshold, what is the predicted class?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "Class $1$, since $p_{test}$ > $0.5$",
@@ -3192,27 +3192,27 @@
   {
     "num": 239,
     "type": "mcq",
-    "question": "In Example $1$, g2 = $[1.5, 2.0]$ and C = $1.0.$ What is \\| g2\\|, and is g2 clipped?",
+    "question": "In Example $1, g_{2}$ = $[1.5, 2.0]$ and C = $1.0.$ What is \\| $g_{2}\\|$, and is $g_{2}$ clipped?",
     "tier": "Tier A — Highest Probability",
     "options": {
-      "A": "\\| g2\\| = $2.5$, clipped to $[0.6, 0.8]$",
-      "B": "\\| g2\\| = $2.5$, not clipped",
-      "C": "\\| g2\\| = $2.5$, clipped to $[1.5, 2.0]$ (unchanged)",
-      "D": "\\| g2\\| = $3.5$, clipped to $[0.6, 0.8]$"
+      "A": "\\| $g_{2}\\|$ = $2.5$, clipped to $[0.6, 0.8]$",
+      "B": "\\| $g_{2}\\|$ = $2.5$, not clipped",
+      "C": "\\| $g_{2}\\|$ = $2.5$, clipped to $[1.5, 2.0]$ (unchanged)",
+      "D": "\\| $g_{2}\\|$ = $3.5$, clipped to $[0.6, 0.8]$"
     },
     "answer": "A",
-    "explanation": "\\| g2\\| = $sqrt(1.5^{2}+2.0^{2})$ = sqrt(6.25) = $2.5$ > C, so g2 is scaled by $1/2.5$ = $0.4$, giving $[0.6, 0.8].$",
+    "explanation": "\\| $g_{2}\\|$ = $sqrt(1.5^{2}+2.0^{2})$ = sqrt(6.25) = $2.5$ > C, so $g_{2}$ is scaled by $1/2.5$ = $0.4$, giving $[0.6, 0.8].$",
     "lectureReference": "Part 4: DP-SGD (Abadi et al. 2016)"
   },
   {
     "num": 240,
     "type": "mcq",
-    "question": "In Example $1$, g3 = $[0.6, -0.8]$ has norm exactly $1.0$, and C = $1.0.$ What happens to g3?",
+    "question": "In Example $1, g_{3}$ = $[0.6, -0.8]$ has norm exactly $1.0$, and C = $1.0.$ What happens to $g_{3}$?",
     "tier": "Tier A — Highest Probability",
     "options": {
       "A": "It is scaled up to increase its contribution",
       "B": "It is scaled down because its norm is not strictly less than C",
-      "C": "It is left unchanged because $\\max(1$, \\| g3\\|/C) = $\\max(1, 1)$ = $1$",
+      "C": "It is left unchanged because $\\max(1$, \\| $g_{3}\\|/C$) = $\\max(1, 1)$ = $1$",
       "D": "It is discarded because it exceeds the clip threshold"
     },
     "answer": "C",
@@ -6771,9 +6771,9 @@
   {
     "num": 479,
     "type": "sa",
-    "question": "Explain why PGD projects each updated point back into a box defined around the *original* input x0, rather than around the current iterate $x_{t}.$ What would go wrong with the attack if the box were recentered on $x_{t}$ at every step?",
+    "question": "Explain why PGD projects each updated point back into a box defined around the *original* input $x_{0}$, rather than around the current iterate $x_{t}.$ What would go wrong with the attack if the box were recentered on $x_{t}$ at every step?",
     "tier": "Tier A — Highest Probability",
-    "answerText": "The $\\epsilon-ball$ constraint is meant to bound the total perturbation relative to the original input, so that the adversarial example stays within a fixed, bounded distance of x0 for the whole attack. If the box were recentered on $x_{t}$ instead, the allowed region would effectively \"walk\" along with the iterate, letting the cumulative perturbation grow unboundedly across iterations and violating the stated perturbation budget $\\epsilon.$ The projection must therefore always reference the fixed x0, keeping the box boundaries stationary throughout optimization.",
+    "answerText": "The $\\epsilon-ball$ constraint is meant to bound the total perturbation relative to the original input, so that the adversarial example stays within a fixed, bounded distance of $x_{0}$ for the whole attack. If the box were recentered on $x_{t}$ instead, the allowed region would effectively \"walk\" along with the iterate, letting the cumulative perturbation grow unboundedly across iterations and violating the stated perturbation budget $\\epsilon.$ The projection must therefore always reference the fixed $x_{0}$, keeping the box boundaries stationary throughout optimization.",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -6781,7 +6781,7 @@
     "type": "sa",
     "question": "Explain why, for a linear classifier, PGD's gradient sign can stay constant across many iterations, and why this causes PGD's final result to resemble a single FGSM step.",
     "tier": "Tier A — Highest Probability",
-    "answerText": "For a linear model, the gradient of the loss with respect to x is $(p-y)\\cdot w$, where w is fixed and p = $sigmoid(w\\cdot$ x+b). As long as the perturbed point stays misclassified (p remains on the same side of $0.5$ relative to y), the sign of (p-y) does not change, so the gradient direction, and hence $\\text{sign}(\\nabla _{x}J)$, stays constant across steps. Since PGD then keeps stepping in that same fixed direction every iteration, it traces a straight path toward the same box corner that a single FGSM step (using $\\text{sign}(\\nabla _{x}J(x0))$ scaled by $\\epsilon$) would reach directly, making the multi-step PGD trajectory converge to the FGSM solution.",
+    "answerText": "For a linear model, the gradient of the loss with respect to x is $(p-y)\\cdot w$, where w is fixed and p = $sigmoid(w\\cdot$ x+b). As long as the perturbed point stays misclassified (p remains on the same side of $0.5$ relative to y), the sign of (p-y) does not change, so the gradient direction, and hence $\\text{sign}(\\nabla _{x}J)$, stays constant across steps. Since PGD then keeps stepping in that same fixed direction every iteration, it traces a straight path toward the same box corner that a single FGSM step (using $\\text{sign}(\\nabla _{x}J(x_{0}))$ scaled by $\\epsilon$) would reach directly, making the multi-step PGD trajectory converge to the FGSM solution.",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
@@ -6789,13 +6789,13 @@
     "type": "sa",
     "question": "Explain the \"freezing\" behavior that occurs once a coordinate reaches the edge of the projection box. Why does it stay frozen, and under what condition could it start moving again?",
     "tier": "Tier A — Highest Probability",
-    "answerText": "Once a coordinate's value is clipped to its box boundary, taking another step in the same direction and sign would push it outside $[x0-\\epsilon, x0+\\epsilon]$, so the projection operator clips it right back to the same boundary value, making it appear frozen on each subsequent step. This freezing persists only as long as the gradient sign for that coordinate stays the same. If the sign flips (for example because the point becomes correctly classified and (p-y) changes sign), the next step would push the coordinate back toward the interior of the box, unfreezing it.",
+    "answerText": "Once a coordinate's value is clipped to its box boundary, taking another step in the same direction and sign would push it outside $[x_{0}-\\epsilon, x_{0}+\\epsilon]$, so the projection operator clips it right back to the same boundary value, making it appear frozen on each subsequent step. This freezing persists only as long as the gradient sign for that coordinate stays the same. If the sign flips (for example because the point becomes correctly classified and (p-y) changes sign), the next step would push the coordinate back toward the interior of the box, unfreezing it.",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
     "num": 482,
     "type": "sa",
-    "question": "Explain why, whenever w=0 and b=0 at initialization, the initial loss J0 is always exactly $\\ln(2) \\approx 0.693$, regardless of what the true labels $y_{i}$ are.",
+    "question": "Explain why, whenever w=0 and b=0 at initialization, the initial loss $J_{0}$ is always exactly $\\ln(2) \\approx 0.693$, regardless of what the true labels $y_{i}$ are.",
     "tier": "Tier A — Highest Probability",
     "answerText": "When w=0 and b=0, z = $w\\cdot x_{i}+b$ = $0$ for every point regardless of $x_{i}$, so $p_{i}$ = $\\sigma(0)$ = $0.5$ for all i. Substituting $p_{i}=0.5$ into the cross-entropy term for either label value gives $-[y_{i}ln(0.5)+(1-y_{i})\\ln(0.5)]$ = $-\\ln(0.5)$ = $\\ln(2)$, since both $\\ln(p_{i})$ and $\\ln(1-p_{i})$ equal $\\ln(0.5)$ and the $y_{i}$ coefficients just split a sum of two identical terms. Averaging $\\ln(2)$ over n points still gives $\\ln(2)$, so the labels never actually enter the calculation.",
     "lectureReference": "Part 3: Batch Gradient Descent (Logistic Regression)"
@@ -6805,7 +6805,7 @@
     "type": "sa",
     "question": "Without re-deriving the gradient formulas from scratch, describe one practical check you could perform after a single batch gradient descent update to verify your implementation is likely correct.",
     "tier": "Tier A — Highest Probability",
-    "answerText": "Recompute the loss J using the updated parameters w1, b1 and compare it to the loss J0 computed before the update, using a small learning rate. If J1 < J0, the step moved in a descent direction, which is consistent with a correct implementation. If the loss increased instead, that signals a likely sign error (e.g., adding the gradient instead of subtracting it) or a learning rate that is too large.",
+    "answerText": "Recompute the loss J using the updated parameters $w_{1}, b_{1}$ and compare it to the loss $J_{0}$ computed before the update, using a small learning rate. If $J_{1}$ < $J_{0}$, the step moved in a descent direction, which is consistent with a correct implementation. If the loss increased instead, that signals a likely sign error (e.g., adding the gradient instead of subtracting it) or a learning rate that is too large.",
     "lectureReference": "Part 3: Batch Gradient Descent (Logistic Regression)"
   },
   {
@@ -7219,41 +7219,41 @@
   {
     "num": 535,
     "type": "sa",
-    "question": "Sign-Given PGD Trace\n\nGiven x0=[0.50, $0.30], \\epsilon=0.10, \\alpha=0.04.$ The sign of $\\nabla _{x}J(x)$ is given directly at each step (no need to recompute from a model): t1=[+1,-1], t2=[+1,-1], t3=[+1,+1], t4=[+1,+1].\n\n(a) Compute the projection box $[x0-\\epsilon, x0+\\epsilon]$ per coordinate.\n(b) Compute x1 and x2 using the PGD update rule, clipping into the box after each step.\n(c) Compute x3, showing the clipping step explicitly, and verify that the step at which the first coordinate reaches its edge matches $\\lceil \\epsilon/\\alpha\\rceil.$\n(d) Compute x4 and state which coordinate(s) are frozen and why.",
+    "question": "Sign-Given PGD Trace\n\nGiven $x_{0}=[0.50, 0.30], \\epsilon=0.10, \\alpha=0.04.$ The sign of $\\nabla _{x}J(x)$ is given directly at each step (no need to recompute from a model): $t_{1}=[+1,-1], t_{2}=[+1,-1], t_{3}=[+1,+1], t_{4}=[+1,+1].$\n\n(a) Compute the projection box $[x_{0}-\\epsilon, x_{0}+\\epsilon]$ per coordinate.\n(b) Compute $x_{1}$ and $x_{2}$ using the PGD update rule, clipping into the box after each step.\n(c) Compute $x_{3}$, showing the clipping step explicitly, and verify that the step at which the first coordinate reaches its edge matches $\\lceil \\epsilon/\\alpha\\rceil.$\n(d) Compute $x_{4}$ and state which coordinate(s) are frozen and why.",
     "tier": "Tier A — Highest Probability",
-    "answerText": "(a) Box = $[0.50-0.10, 0.50+0.10] \\times [0.30-0.10, 0.30+0.10]$ = $[0.40, 0.60] \\times [0.20, 0.40].$\n\n(b) x1 = x0 + $\\alpha\\cdot$ t1 = $[0.50+0.04, 0.30-0.04]$ = $[0.54, 0.26]$; this is within the box, so no clipping needed.\nx2 = x1 + $\\alpha\\cdot$ t2 = $[0.54+0.04, 0.26-0.04]$ = $[0.58, 0.22]$; still within the box, no clipping needed.\n\n(c) Pre-clip x3 = x2 + $\\alpha\\cdot$ t3 = $[0.58+0.04, 0.22+0.04]$ = $[0.62, 0.26].$ The first coordinate, $0.62$, exceeds the upper bound $0.60$, so it is clipped to $0.60$: x3 = $[0.60, 0.26].$ This is the first step at which the first coordinate hits its edge, and $\\lceil \\epsilon/\\alpha\\rceil$ = $\\lceil0.10/0.04\\rceil$ = $\\lceil2.5\\rceil$ = $3$, which matches (edge reached at step $3).$\n\n(d) Pre-clip x4 = x3 + $\\alpha\\cdot$ t4 = $[0.60+0.04, 0.26+0.04]$ = $[0.64, 0.30].$ The first coordinate, $0.64$, again exceeds the upper bound $0.60$ and is clipped back to $0.60$; the second coordinate, $0.30$, is within $[0.20, 0.40]$ and needs no clipping. So x4 = $[0.60, 0.30].$ The first coordinate is frozen at $0.60$ because the sign for that coordinate $(+1)$ has not changed since it first hit the edge, so projection keeps clipping it back to the same boundary value.",
+    "answerText": "(a) Box = $[0.50-0.10, 0.50+0.10] \\times [0.30-0.10, 0.30+0.10]$ = $[0.40, 0.60] \\times [0.20, 0.40].$\n\n(b) $x_{1}$ = $x_{0}$ + $\\alpha\\cdot t_{1}$ = $[0.50+0.04, 0.30-0.04]$ = $[0.54, 0.26]$; this is within the box, so no clipping needed.\n$x_{2}$ = $x_{1}$ + $\\alpha\\cdot t_{2}$ = $[0.54+0.04, 0.26-0.04]$ = $[0.58, 0.22]$; still within the box, no clipping needed.\n\n(c) Pre-clip $x_{3}$ = $x_{2}$ + $\\alpha\\cdot t_{3}$ = $[0.58+0.04, 0.22+0.04]$ = $[0.62, 0.26].$ The first coordinate, $0.62$, exceeds the upper bound $0.60$, so it is clipped to $0.60: x_{3}$ = $[0.60, 0.26].$ This is the first step at which the first coordinate hits its edge, and $\\lceil \\epsilon/\\alpha\\rceil$ = $\\lceil0.10/0.04\\rceil$ = $\\lceil2.5\\rceil$ = $3$, which matches (edge reached at step $3).$\n\n(d) Pre-clip $x_{4}$ = $x_{3}$ + $\\alpha\\cdot t_{4}$ = $[0.60+0.04, 0.26+0.04]$ = $[0.64, 0.30].$ The first coordinate, $0.64$, again exceeds the upper bound $0.60$ and is clipped back to $0.60$; the second coordinate, $0.30$, is within $[0.20, 0.40]$ and needs no clipping. So $x_{4}$ = $[0.60, 0.30].$ The first coordinate is frozen at $0.60$ because the sign for that coordinate $(+1)$ has not changed since it first hit the edge, so projection keeps clipping it back to the same boundary value.",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
     "num": 536,
     "type": "sa",
-    "question": "Full Logistic-Model PGD Trace (Gradient Recomputed Each Step)\n\nGiven a logistic model with w=[1,-2], b=0.1, true label y=1, x0=[0.45, $0.55], \\epsilon=0.12, \\alpha=0.05$, and sigmoid(z)=1/(1+e^-z).\n\n(a) Compute the projection box $[x0-\\epsilon, x0+\\epsilon]$ per coordinate.\n(b) For step t1: compute z at x0, p=sigmoid(z), the gradient $(p-y)\\cdot w$, its sign, and the resulting x1 after the PGD step and clipping. State the new z, p, and predicted class at x1.\n(c) Repeat the same process for steps t2 and t3, noting explicitly when and where clipping occurs.\n(d) Compute step t4 and explain why x remains unchanged (frozen) from t3, and state the final predicted class.",
+    "question": "Full Logistic-Model PGD Trace (Gradient Recomputed Each Step)\n\nGiven a logistic model with w=[1,-2], b=0.1, true label y=1, $x_{0}=[0.45, 0.55], \\epsilon=0.12, \\alpha=0.05$, and sigmoid(z)=1/(1+e^-z).\n\n(a) Compute the projection box $[x_{0}-\\epsilon, x_{0}+\\epsilon]$ per coordinate.\n(b) For step $t_{1}$: compute z at $x_{0}$, p=sigmoid(z), the gradient $(p-y)\\cdot w$, its sign, and the resulting $x_{1}$ after the PGD step and clipping. State the new z, p, and predicted class at $x_{1}.$\n(c) Repeat the same process for steps $t_{2}$ and $t_{3}$, noting explicitly when and where clipping occurs.\n(d) Compute step $t_{4}$ and explain why x remains unchanged (frozen) from $t_{3}$, and state the final predicted class.",
     "tier": "Tier A — Highest Probability",
-    "answerText": "(a) Box = $[0.45-0.12, 0.45+0.12] \\times [0.55-0.12, 0.55+0.12]$ = $[0.33, 0.57] \\times [0.43, 0.67].$\n\n(b) t1: z = $w\\cdot$ x0+b = $(1)(0.45)$ + $(-2)(0.55)$ + $0.1$ = $0.45$ - $1.10$ + $0.1$ = $-0.55.$ p = sigmoid(-0.55) $\\approx 0.3662.$ Gradient = $(p-y)\\cdot w$ = $(0.3662-1)\\cdot[1,-2]$ = $(-0.6338)\\cdot[1,-2]$ = $[-0.6338, 1.2676]$, so sign = $[-1, +1].$ Step: x1 = x0 + $\\alpha\\cdot sign$ = $[0.45-0.05, 0.55+0.05]$ = $[0.40, 0.60]$; this is within the box $[0.33,0.57]\\times[0.43,0.67]$, so no clipping is needed. New z = $(1)(0.40)$ + $(-2)(0.60)$ + $0.1$ = $0.40$ - $1.20$ + $0.1$ = $-0.70$, p = sigmoid(-0.70) $\\approx 0.3318$, which is below $0.5$, so the predicted class is $0$, already misclassified relative to y=1.\n\n(c) t2: gradient recomputed at x1=[0.40, $0.60]$; since w is fixed and p is still well below $0.5$ (sign of (p-y) unchanged), sign = $[-1, +1]$ again. Step: x2 = $[0.40-0.05, 0.60+0.05]$ = $[0.35, 0.65]$; still within the box, no clipping needed. New z = $0.35$ - $1.30$ + $0.1$ = $-0.85$, p = sigmoid(-0.85) $\\approx 0.2994$, class = $0.$\nt3: gradient recomputed at x2=[0.35, $0.65]$; sign remains $[-1, +1].$ Pre-clip step: x = $[0.35-0.05, 0.65+0.05]$ = $[0.30, 0.70].$ Now both coordinates violate the box: $0.30$ < $0.33$ (lower bound) and $0.70$ > $0.67$ (upper bound), so both are clipped: x3 = $[0.33, 0.67].$ New z = $0.33$ - $1.34$ + $0.1$ = $-0.91$, p = sigmoid(-0.91) $\\approx 0.2870$, class = $0.$\n\n(d) t4: gradient recomputed at x3=[0.33, $0.67]$; sign is still $[-1, +1]$ since p remains well below $0.5.$ The proposed step would be $[0.33-0.05, 0.67+0.05]$ = $[0.28, 0.72]$, but both coordinates are already at their respective box edges (lower bound $0.33$ and upper bound $0.67$) and the step continues to push outward in the same direction, so projection clips both coordinates right back to $[0.33, 0.67]$; x4 = x3, unchanged. The trajectory is frozen because the gradient sign has not flipped since the point became misclassified at t1; z and p also remain unchanged at $-0.91$ and $\\approx0.2870.$ The final predicted class stays $0$, i.e., the adversarial example remains misclassified relative to the true label y=1.",
+    "answerText": "(a) Box = $[0.45-0.12, 0.45+0.12] \\times [0.55-0.12, 0.55+0.12]$ = $[0.33, 0.57] \\times [0.43, 0.67].$\n\n(b) $t_{1}$: z = $w\\cdot x_{0}+b$ = $(1)(0.45)$ + $(-2)(0.55)$ + $0.1$ = $0.45$ - $1.10$ + $0.1$ = $-0.55.$ p = sigmoid(-0.55) $\\approx 0.3662.$ Gradient = $(p-y)\\cdot w$ = $(0.3662-1)\\cdot[1,-2]$ = $(-0.6338)\\cdot[1,-2]$ = $[-0.6338, 1.2676]$, so sign = $[-1, +1].$ Step: $x_{1}$ = $x_{0}$ + $\\alpha\\cdot sign$ = $[0.45-0.05, 0.55+0.05]$ = $[0.40, 0.60]$; this is within the box $[0.33,0.57]\\times[0.43,0.67]$, so no clipping is needed. New z = $(1)(0.40)$ + $(-2)(0.60)$ + $0.1$ = $0.40$ - $1.20$ + $0.1$ = $-0.70$, p = sigmoid(-0.70) $\\approx 0.3318$, which is below $0.5$, so the predicted class is $0$, already misclassified relative to y=1.\n\n(c) $t_{2}$: gradient recomputed at $x_{1}=[0.40, 0.60]$; since w is fixed and p is still well below $0.5$ (sign of (p-y) unchanged), sign = $[-1, +1]$ again. Step: $x_{2}$ = $[0.40-0.05, 0.60+0.05]$ = $[0.35, 0.65]$; still within the box, no clipping needed. New z = $0.35$ - $1.30$ + $0.1$ = $-0.85$, p = sigmoid(-0.85) $\\approx 0.2994$, class = $0. t_{3}$: gradient recomputed at $x_{2}=[0.35, 0.65]$; sign remains $[-1, +1].$ Pre-clip step: x = $[0.35-0.05, 0.65+0.05]$ = $[0.30, 0.70].$ Now both coordinates violate the box: $0.30$ < $0.33$ (lower bound) and $0.70$ > $0.67$ (upper bound), so both are clipped: $x_{3}$ = $[0.33, 0.67].$ New z = $0.33$ - $1.34$ + $0.1$ = $-0.91$, p = sigmoid(-0.91) $\\approx 0.2870$, class = $0.$\n\n(d) $t_{4}$: gradient recomputed at $x_{3}=[0.33, 0.67]$; sign is still $[-1, +1]$ since p remains well below $0.5.$ The proposed step would be $[0.33-0.05, 0.67+0.05]$ = $[0.28, 0.72]$, but both coordinates are already at their respective box edges (lower bound $0.33$ and upper bound $0.67$) and the step continues to push outward in the same direction, so projection clips both coordinates right back to $[0.33, 0.67]; x_{4}$ = $x_{3}$, unchanged. The trajectory is frozen because the gradient sign has not flipped since the point became misclassified at $t_{1}$; z and p also remain unchanged at $-0.91$ and $\\approx0.2870.$ The final predicted class stays $0$, i.e., the adversarial example remains misclassified relative to the true label y=1.",
     "lectureReference": "Part 2: PGD (Projected Gradient Descent)"
   },
   {
     "num": 537,
     "type": "sa",
-    "question": "Full trace of iteration $1$\n\nGiven points x1=(2,1), y1=1; x2=(-1,-2), y2=0; x3=(1,-1), y3=0, with initial parameters w0=(0,0), b0=0, learning rate $\\eta=0.5$, and batch size n=3:\n\n(a) Compute p1, p2, p3 and the initial loss J0.\n(b) Compute $\\nabla_w$ and $\\nabla_b$ using the per-point errors $(p_{i}-y_{i}).$\n(c) Compute the updated parameters w1 and b1.\n(d) State whether this first update matches what you'd expect from a correctly functioning gradient descent step, and why.",
+    "question": "Full trace of iteration $1$\n\nGiven points $x_{1}=(2,1), y_{1}=1; x_{2}=(-1,-2), y_{2}=0; x_{3}=(1,-1), y_{3}=0$, with initial parameters $w_{0}=(0,0), b_{0}=0$, learning rate $\\eta=0.5$, and batch size n=3:\n\n(a) Compute $p_{1}, p_{2}, p_{3}$ and the initial loss $J_{0}.$\n(b) Compute $\\nabla_w$ and $\\nabla_b$ using the per-point errors $(p_{i}-y_{i}).$\n(c) Compute the updated parameters $w_{1}$ and $b_{1}.$\n(d) State whether this first update matches what you'd expect from a correctly functioning gradient descent step, and why.",
     "tier": "Tier A — Highest Probability",
-    "answerText": "(a) Since w0=(0,0) and b0=0, $z=w0\\cdot x_{i}+b0=0$ for all three points, so p1=p2=p3=0.5. J0 = $-(1/3)[\\ln(0.5)+\\ln(0.5)+\\ln(0.5)]$ = $-\\ln(0.5)$ = $\\ln(2) \\approx 0.6931.$\n(b) Errors $(p_{i}-y_{i})$ = $(0.5-1, 0.5-0, 0.5-0)$ = $(-0.5, 0.5, 0.5). \\nabla_w$ = $(1/3)[(-0.5)(2,1)$ + $(0.5)(-1,-2)$ + $(0.5)(1,-1)]$ = $(1/3)[(-1,-0.5)+(-0.5,-1)+(0.5,-0.5)]$ = $(1/3)(-1,-2)$ = $(-0.3333, -0.6667). \\nabla_b$ = $(1/3)(-0.5+0.5+0.5)$ = $(1/3)(0.5) \\approx 0.1667.$\n(c) w1 = w0 - $\\eta\\cdot\\nabla_w$ = $(0,0)$ - $0.5\\cdot(-0.3333,-0.6667)$ = $(0.1667, 0.3333).$\nb1 = b0 - $\\eta\\cdot\\nabla_b$ = $0$ - $0.5(0.1667) \\approx -0.0833.$\n(d) Yes. Point x1 has true label y1=1 but was under-predicted (error $-0.5$), so the update should push the score for x1=(2,1) upward. The new weight vector w1=(0.1667, $0.3333$) is a positive multiple shift toward x1's direction, consistent with increasing p1 on the next evaluation. This is confirmed numerically in NC2, where the recomputed loss $J1\\approx0.4519$ is lower than $J0\\approx0.6931$, verifying the step reduced the loss as expected.",
+    "answerText": "(a) Since $w_{0}=(0,0)$ and $b_{0}=0, z=w_{0}\\cdot x_{i}+b_{0}=0$ for all three points, so $p_{1}=p_{2}=p_{3}=0.5. J_{0}$ = $-(1/3)[\\ln(0.5)+\\ln(0.5)+\\ln(0.5)]$ = $-\\ln(0.5)$ = $\\ln(2) \\approx 0.6931.$\n(b) Errors $(p_{i}-y_{i})$ = $(0.5-1, 0.5-0, 0.5-0)$ = $(-0.5, 0.5, 0.5). \\nabla_w$ = $(1/3)[(-0.5)(2,1)$ + $(0.5)(-1,-2)$ + $(0.5)(1,-1)]$ = $(1/3)[(-1,-0.5)+(-0.5,-1)+(0.5,-0.5)]$ = $(1/3)(-1,-2)$ = $(-0.3333, -0.6667). \\nabla_b$ = $(1/3)(-0.5+0.5+0.5)$ = $(1/3)(0.5) \\approx 0.1667.$\n(c) $w_{1}$ = $w_{0}$ - $\\eta\\cdot\\nabla_w$ = $(0,0)$ - $0.5\\cdot(-0.3333,-0.6667)$ = $(0.1667, 0.3333). b_{1}$ = $b_{0}$ - $\\eta\\cdot\\nabla_b$ = $0$ - $0.5(0.1667) \\approx -0.0833.$\n(d) Yes. Point $x_{1}$ has true label $y_{1}=1$ but was under-predicted (error $-0.5$), so the update should push the score for $x_{1}=(2,1)$ upward. The new weight vector $w_{1}=(0.1667, 0.3333)$ is a positive multiple shift toward $x_{1}'s$ direction, consistent with increasing $p_{1}$ on the next evaluation. This is confirmed numerically in NC2, where the recomputed loss $J_{1}\\approx0.4519$ is lower than $J_{0}\\approx0.6931$, verifying the step reduced the loss as expected.",
     "lectureReference": "Part 3: Batch Gradient Descent (Logistic Regression)"
   },
   {
     "num": 538,
     "type": "sa",
-    "question": "Iteration $2$ and test-point classification\n\nContinuing from NC1 with $w1\\approx(0.1667, 0.3333), b1\\approx-0.0833$, and $\\eta=0.5$: recomputing predictions at these parameters for the same three points gives p1=0.6418, p2=0.2856, p3=0.4378, with loss $J1\\approx0.4519.$\n\n(a) Compute the errors $(p_{i}-y_{i})$ at w1, b1.\n(b) Compute $\\nabla_w2$ and $\\nabla_b2.$\n(c) Compute the updated parameters w2 and b2.\n(d) Using w2 and b2, classify the new test point x=(0.5, $0.5$) with a $0.5$ decision threshold.",
+    "question": "Iteration $2$ and test-point classification\n\nContinuing from NC1 with $w_{1}\\approx(0.1667, 0.3333), b_{1}\\approx-0.0833$, and $\\eta=0.5$: recomputing predictions at these parameters for the same three points gives $p_{1}=0.6418, p_{2}=0.2856, p_{3}=0.4378$, with loss $J_{1}\\approx0.4519.$\n\n(a) Compute the errors $(p_{i}-y_{i})$ at $w_{1}, b_{1}.$\n(b) Compute $\\nabla_w2$ and $\\nabla_b2.$\n(c) Compute the updated parameters $w_{2}$ and $b_{2}.$\n(d) Using $w_{2}$ and $b_{2}$, classify the new test point x=(0.5, $0.5$) with a $0.5$ decision threshold.",
     "tier": "Tier A — Highest Probability",
-    "answerText": "(a) Errors = $(0.6418-1, 0.2856-0, 0.4378-0)$ = $(-0.3582, 0.2856, 0.4378).$\n(b) $\\nabla_w2$ = $(1/3)[(-0.3582)(2,1)$ + $(0.2856)(-1,-2)$ + $(0.4378)(1,-1)]$ = $(-0.1880, -0.4558). \\nabla_b2$ = $(1/3)(-0.3582+0.2856+0.4378) \\approx 0.1218.$\n(c) w2 = w1 - $0.5\\cdot\\nabla_w2$ = $(0.1667+0.0940, 0.3333+0.2279)$ = $(0.2607, 0.5612).$\nb2 = b1 - $0.5(0.1218)$ = $-0.0833$ - $0.0609 \\approx -0.1442.$\n(d) z = $0.2607(0.5)$ + $0.5612(0.5)$ - $0.1442 \\approx 0.2667. p_{test}$ = $\\sigma(0.2667) \\approx 0.5663$, which is greater than the $0.5$ threshold, so the test point is classified as class $1.$",
+    "answerText": "(a) Errors = $(0.6418-1, 0.2856-0, 0.4378-0)$ = $(-0.3582, 0.2856, 0.4378).$\n(b) $\\nabla_w2$ = $(1/3)[(-0.3582)(2,1)$ + $(0.2856)(-1,-2)$ + $(0.4378)(1,-1)]$ = $(-0.1880, -0.4558). \\nabla_b2$ = $(1/3)(-0.3582+0.2856+0.4378) \\approx 0.1218.$\n(c) $w_{2}$ = $w_{1}$ - $0.5\\cdot\\nabla_w2$ = $(0.1667+0.0940, 0.3333+0.2279)$ = $(0.2607, 0.5612). b_{2}$ = $b_{1}$ - $0.5(0.1218)$ = $-0.0833$ - $0.0609 \\approx -0.1442.$\n(d) z = $0.2607(0.5)$ + $0.5612(0.5)$ - $0.1442 \\approx 0.2667. p_{test}$ = $\\sigma(0.2667) \\approx 0.5663$, which is greater than the $0.5$ threshold, so the test point is classified as class $1.$",
     "lectureReference": "Part 3: Batch Gradient Descent (Logistic Regression)"
   },
   {
     "num": 539,
     "type": "sa",
-    "question": "Full DP-SGD Step Trace\n\nGiven: clip norm C = $1.0$, batch size B = $4$, learning rate $\\eta$ = $0.2$, per-example gradients g1=[0.3,0.4], g2=[1.5,2.0], g3=[0.6,-0.8], g4=[0.1,0.05], noise vector $[-0.2, 0.5]$ added to the summed clipped gradients, and current parameters theta = $[0.5, 0.5].$\n(a) Compute the L2 norm of each gi and state which gradient(s) are clipped (norm > C) versus left unchanged.\n(b) Compute each clipped gradient.\n(c) Sum the clipped gradients, add the noise vector, then divide by B to get the averaged noisy gradient.\n(d) Compute the updated parameter vector theta_new = theta - $\\eta\\cdot(averaged$ gradient).",
+    "question": "Full DP-SGD Step Trace\n\nGiven: clip norm C = $1.0$, batch size B = $4$, learning rate $\\eta$ = $0.2$, per-example gradients $g_{1}=[0.3,0.4], g_{2}=[1.5,2.0], g_{3}=[0.6,-0.8], g_{4}=[0.1,0.05]$, noise vector $[-0.2, 0.5]$ added to the summed clipped gradients, and current parameters theta = $[0.5, 0.5].$\n(a) Compute the L2 norm of each gi and state which gradient(s) are clipped (norm > C) versus left unchanged.\n(b) Compute each clipped gradient.\n(c) Sum the clipped gradients, add the noise vector, then divide by B to get the averaged noisy gradient.\n(d) Compute the updated parameter vector theta_new = theta - $\\eta\\cdot(averaged$ gradient).",
     "tier": "Tier A — Highest Probability",
-    "answerText": "(a) \\| g1\\| = $sqrt(0.3^{2}+0.4^{2})$ = sqrt(0.25) = $0.5000 \\leq C$ $\\to unchanged.$ \\| g2\\| = $sqrt(1.5^{2}+2.0^{2})$ = sqrt(6.25) = $2.5000$ > C $\\to clipped.$ \\| g3\\| = $sqrt(0.6^{2}+0.8^{2})$ = sqrt(1.0) = $1.0000$, exactly C $\\to scale$ = $\\max(1,1)$ = $1 \\to unchanged.$ \\| g4\\| = $sqrt(0.1^{2}+0.05^{2})$ = sqrt(0.0125) = $0.1118 \\leq C$ $\\to unchanged.$ Only g2 is clipped.\n(b) clipped1 = $[0.3, 0.4]$ (unchanged). clipped2 = g2 / $2.5$ = $[0.6, 0.8].$ clipped3 = $[0.6, -0.8]$ (unchanged). clipped4 = $[0.1, 0.05]$ (unchanged).\n(c) Sum = $[0.3+0.6+0.6+0.1, 0.4+0.8-0.8+0.05]$ = $[1.6, 0.45].$ Add noise $[-0.2, 0.5]$: noisy_sum = $[1.4, 0.95].$ Divide by B=4: averaged_grad = $[0.35, 0.2375].$\n(d) theta_new = $[0.5, 0.5]$ - $0.2\\cdot[0.35, 0.2375]$ = $[0.5$ - $0.07, 0.5$ - $0.0475]$ = $[0.43, 0.4525].$",
+    "answerText": "(a) \\| $g_{1}\\|$ = $sqrt(0.3^{2}+0.4^{2})$ = sqrt(0.25) = $0.5000 \\leq C$ $\\to unchanged.$ \\| $g_{2}\\|$ = $sqrt(1.5^{2}+2.0^{2})$ = sqrt(6.25) = $2.5000$ > C $\\to clipped.$ \\| $g_{3}\\|$ = $sqrt(0.6^{2}+0.8^{2})$ = sqrt(1.0) = $1.0000$, exactly C $\\to scale$ = $\\max(1,1)$ = $1 \\to unchanged.$ \\| $g_{4}\\|$ = $sqrt(0.1^{2}+0.05^{2})$ = sqrt(0.0125) = $0.1118 \\leq C$ $\\to unchanged.$ Only $g_{2}$ is clipped.\n(b) clipped1 = $[0.3, 0.4]$ (unchanged). clipped2 = $g_{2}$ / $2.5$ = $[0.6, 0.8].$ clipped3 = $[0.6, -0.8]$ (unchanged). clipped4 = $[0.1, 0.05]$ (unchanged).\n(c) Sum = $[0.3+0.6+0.6+0.1, 0.4+0.8-0.8+0.05]$ = $[1.6, 0.45].$ Add noise $[-0.2, 0.5]$: noisy_sum = $[1.4, 0.95].$ Divide by B=4: averaged_grad = $[0.35, 0.2375].$\n(d) theta_new = $[0.5, 0.5]$ - $0.2\\cdot[0.35, 0.2375]$ = $[0.5$ - $0.07, 0.5$ - $0.0475]$ = $[0.43, 0.4525].$",
     "lectureReference": "Part 4: DP-SGD (Abadi et al. 2016)"
   },
   {
