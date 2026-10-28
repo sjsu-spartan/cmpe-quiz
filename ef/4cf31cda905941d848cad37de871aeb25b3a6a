@@ -1,0 +1,18 @@
+src/App.tsx
+  h_566954f6ea4a9a 36,38-41,182
+src/components/Header.tsx
+  h_566954f6ea4a9a 5,22,44-47
+src/styles/index.css
+  h_566954f6ea4a9a 123-129,141-148,156-158,1377-1379,1405-1407
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "ef4cf31cda905941d848cad37de871aeb25b3a6a",
+  "prompts": {},
+  "humans": {
+    "h_566954f6ea4a9a": {
+      "author": "pyadav <pyadav@paloaltonetworks.com>"
+    }
+  }
+}
