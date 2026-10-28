@@ -1,0 +1,24 @@
+data/config.json
+  h_566954f6ea4a9a 2-3
+index.dev.html
+  h_566954f6ea4a9a 6
+src/App.tsx
+  h_566954f6ea4a9a 32,37
+src/components/CourseSelection.tsx
+  h_566954f6ea4a9a 26-32,34-36,38-40,45-124,126-145,147-148,151-153
+src/components/ModeSelection.tsx
+  h_566954f6ea4a9a 53-59,143-173
+src/styles/index.css
+  h_566954f6ea4a9a 536-573
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "4d579c8358e96760cfd4b09e0c6d5d08be09130e",
+  "prompts": {},
+  "humans": {
+    "h_566954f6ea4a9a": {
+      "author": "pyadav <pyadav@paloaltonetworks.com>"
+    }
+  }
+}
