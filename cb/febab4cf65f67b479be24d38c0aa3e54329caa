@@ -1,0 +1,16 @@
+README.md
+  h_566954f6ea4a9a 4-6
+src/components/CourseSelection.tsx
+  h_566954f6ea4a9a 77
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "cbfebab4cf65f67b479be24d38c0aa3e54329caa",
+  "prompts": {},
+  "humans": {
+    "h_566954f6ea4a9a": {
+      "author": "pyadav <pyadav@paloaltonetworks.com>"
+    }
+  }
+}
