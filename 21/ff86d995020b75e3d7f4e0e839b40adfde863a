@@ -1,0 +1,40 @@
+data/config.json
+  h_566954f6ea4a9a 14,25
+data/exams-cmpe249.json
+  h_566954f6ea4a9a 1-4572
+data/exams-cmpe258.json
+  h_566954f6ea4a9a 1-4572
+src/App.tsx
+  h_566954f6ea4a9a 15,19,73-79,88-91,105-108,124-127,131-143,237,239,252,255,273-276
+src/components/ExamSACard.tsx
+  h_566954f6ea4a9a 1-37
+src/components/ModeSelection.tsx
+  h_566954f6ea4a9a 2,8,10,92,141-161
+src/components/QuestionCard.tsx
+  h_566954f6ea4a9a 11-17,28,30,56-58
+src/components/QuizScreen.tsx
+  h_566954f6ea4a9a 5,15-18,21,36,39,47,49-51,55,69,103-115,123-125,132-138,152,154-155,159,217-221
+src/components/ReviewList.tsx
+  h_566954f6ea4a9a 9-12,17,73,75,77,90-97,130-139
+src/components/SummaryScreen.tsx
+  h_566954f6ea4a9a 17-23,27-28,36-39,41-44,59,61-71,85-91,96
+src/hooks/useQuestions.ts
+  h_566954f6ea4a9a 2,7,14-30,35,38-41,45,58
+src/hooks/useQuiz.ts
+  h_566954f6ea4a9a 2,27-29,70-89,121-145,162-168,179-182,185,188-189
+src/styles/index.css
+  h_566954f6ea4a9a 460-490,664-672,721-727,814-832,1096-1105,1200-1202,1218-1230
+src/types/index.ts
+  h_566954f6ea4a9a 19-37,63-66,86-94,97
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "21ff86d995020b75e3d7f4e0e839b40adfde863a",
+  "prompts": {},
+  "humans": {
+    "h_566954f6ea4a9a": {
+      "author": "pyadav <pyadav@paloaltonetworks.com>"
+    }
+  }
+}
