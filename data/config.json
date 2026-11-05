@@ -11,6 +11,7 @@
       "description": "Weeks 1-10 · AV Architecture, R-CNN/YOLO, ViT/DETR, PointPillars, CenterPoint, LiDAR 3D Detection",
       "questionFile": "data/cmpe249.json",
       "formulaFile": "data/formulas-cmpe249.json",
+      "examFile": "data/exams-cmpe249.json",
       "enableShuffle": true,
       "studyGuides": []
     },
@@ -21,6 +22,7 @@
       "description": "Weeks 1-10 · Backprop, CNN/ResNet, RNN/LSTM/GRU, Transformers, BERT/GPT, SBERT, RAG",
       "questionFile": "data/cmpe258.json",
       "formulaFile": "data/formulas-cmpe258.json",
+      "examFile": "data/exams-cmpe258.json",
       "enableShuffle": true,
       "studyGuides": []
     },
