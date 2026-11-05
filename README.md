@@ -1,8 +1,8 @@
 # CMPE Exam Quiz App v2
 
 A modern, config-driven single-page quiz application for practicing CMPE graduate course exam questions:
-- **CMPE 249: Intelligent Autonomous Systems** (AV Architecture, Sensor Fusion, R-CNN/YOLO, Metrics, ViT/DETR, Calibration)
-- **CMPE 258: Deep Learning** (Backprop, Optimizers, CNN/ResNet, RNN/LSTM/GRU, Transformers)
+- **CMPE 249: Intelligent Autonomous Systems** (AV Architecture, R-CNN/YOLO, ViT/DETR, PointPillars, CenterPoint, LiDAR 3D Detection)
+- **CMPE 258: Deep Learning** (Backprop, CNN/ResNet, RNN/LSTM/GRU, Transformers, BERT/GPT, SBERT, RAG)
 - **CMPE 253: AI Threat Intelligence** (FGSM/PGD, DP-SGD, Membership Inference, RAG Poisoning, Fairness, Drift Detection, Risk Scoring)
 - **CMPE 260: Reinforcement Learning** (Modules 9–17 · TRPO, PPO, DDPG, SAC, A3C)
 - **CMPE 256: Recommender Systems** (CF, MF, Deep Learning, Fairness, Bandits)
@@ -26,7 +26,7 @@ guides/             # Markdown study guides per course
 
 ## Features
 
-- **300+ total questions** — 100 questions per course, loaded dynamically from JSON
+- **4,700+ total questions** — loaded dynamically from JSON, generated from markdown practice-question banks in the companion `spartan-msai` repo (see `quiz-app/README.md` there for the regeneration workflow)
 - **Interactive Quiz Modes** — Quick 10, Quick 25, Quick 50, All Questions, Custom Random
 - **Tier-based filtering** — Practice by exam probability (Tier 1 / Tier 2 / Tier 3)
 - **Instant feedback** — Correct/wrong color highlighting with detailed mathematical & conceptual explanations
