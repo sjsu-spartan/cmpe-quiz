@@ -6,11 +6,15 @@ import { renderMarkdown } from '../utils/markdown';
 
 interface ReviewListProps {
   answers: Answer[];
+  /** Only provided in exam mode; called to self-grade a pending short-answer
+   * entry (qIndex, isCorrect) after the student compares their typed response
+   * against the revealed model answer. */
+  onGradeExamSA?: (qIndex: number, isCorrect: boolean) => void;
 }
 
 type Filter = 'all' | 'correct' | 'wrong';
 
-export function ReviewList({ answers }: ReviewListProps) {
+export function ReviewList({ answers, onGradeExamSA }: ReviewListProps) {
   const [filter, setFilter] = useState<Filter>('all');
   const [searchTier, setSearchTier] = useState<string>('all');
   const listRef = useRef<HTMLDivElement>(null);
@@ -66,10 +70,11 @@ export function ReviewList({ answers }: ReviewListProps) {
 
       <div className="review-list">
         {filtered.map((a) => (
-          <div key={a.qIndex} className={`review-item ${a.isCorrect ? 'item-correct' : 'item-wrong'}`}>
+          <div key={a.qIndex} className={`review-item ${a.pendingSelfGrade ? 'item-pending' : a.isCorrect ? 'item-correct' : 'item-wrong'}`}>
             <div className="review-item-header">
-              <span className="review-icon">{a.isCorrect ? '✅' : '❌'}</span>
+              <span className="review-icon">{a.pendingSelfGrade ? '⏳' : a.isCorrect ? '✅' : '❌'}</span>
               <span className="review-q-num">Q{a.question.num}</span>
+              {a.question.points != null && <span className="review-points-tag">{a.question.points} pts</span>}
               <span className="review-tier-tag">
                 {a.question.tier?.replace(/^Tier \d+ — /, '') || 'General'}
               </span>
@@ -82,7 +87,14 @@ export function ReviewList({ answers }: ReviewListProps) {
             ) : (
               <p className="review-q-text">{a.question.question}</p>
             )}
-            {a.question.type === 'sa' ? (
+            {a.question.type === 'sa' && a.pendingSelfGrade ? (
+              <div className="review-answers">
+                <div className="review-answer-row">
+                  <span className="review-answer-label">Your answer:</span>
+                  <span className="exam-sa-response">{a.response?.trim() || '(left blank)'}</span>
+                </div>
+              </div>
+            ) : a.question.type === 'sa' ? (
               <div className="review-answers">
                 <div className="review-answer-row">
                   <span className="review-answer-label">Self-graded:</span>
@@ -114,6 +126,16 @@ export function ReviewList({ answers }: ReviewListProps) {
               />
             ) : (
               a.question.explanation && <p className="review-explanation">{a.question.explanation}</p>
+            )}
+            {a.pendingSelfGrade && onGradeExamSA && (
+              <div className="self-grade">
+                <button className="btn-grade got-it" onClick={() => onGradeExamSA(a.qIndex, true)}>
+                  ✓ I got it right
+                </button>
+                <button className="btn-grade missed" onClick={() => onGradeExamSA(a.qIndex, false)}>
+                  ✕ I missed it
+                </button>
+              </div>
             )}
             {a.question.optionContext && Object.keys(a.question.optionContext).length > 0 && (
               <div className="review-breakdown">

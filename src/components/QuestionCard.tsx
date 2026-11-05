@@ -8,6 +8,13 @@ interface QuestionCardProps {
   correctAnswer: string | null;
   onSelect: (letter: string) => void;
   showResult: boolean;
+  /** Disables option buttons once answered without implying showResult's correct/
+   * wrong coloring. Exam mode locks the choice (locked=true) but withholds the
+   * answer key (showResult stays false), so a student can't change their answer
+   * after picking it but also doesn't see which option was right. Defaults to
+   * showResult for practice mode, where "answered" and "show the answer" are the
+   * same moment. */
+  locked?: boolean;
 }
 
 export function QuestionCard({
@@ -18,7 +25,9 @@ export function QuestionCard({
   correctAnswer,
   onSelect,
   showResult,
+  locked,
 }: QuestionCardProps) {
+  const isLocked = locked ?? showResult;
   const tierLabel = question.tier?.replace(/^Tier \d+ — /, '') || '';
   const letters = Object.keys(question.options ?? {});
 
@@ -44,9 +53,9 @@ export function QuestionCard({
           return (
             <button
               key={letter}
-              className={cls}
-              onClick={() => !showResult && onSelect(letter)}
-              disabled={showResult}
+              className={cls + (isLocked && isSelected && !showResult ? ' selected-locked' : '')}
+              onClick={() => !isLocked && onSelect(letter)}
+              disabled={isLocked}
             >
               <span className="option-letter">{letter}</span>
               <span className="option-text">{question.options?.[letter]}</span>

@@ -16,6 +16,25 @@ export interface Question {
   optionContext?: Record<string, string>;
   lectureReference?: string;
   keyConcept?: string;
+  /** Point value for this question within a specific mock-exam paper. Only set on
+   * questions loaded from an exams-<course>.json paper; absent for the regular
+   * practice-question banks, which score by count, not points. */
+  points?: number;
+}
+
+export interface ExamSection {
+  type: QuestionType;
+  label: string;
+  pointsEach: number;
+  questions: Question[];
+}
+
+export interface ExamPaper {
+  paperNum: number;
+  totalPoints: number;
+  totalQuestions: number;
+  postMidtermShare: number;
+  sections: ExamSection[];
 }
 
 export interface FormulaItem {
@@ -41,6 +60,10 @@ export interface Course {
   description: string;
   questionFile: string;
   formulaFile?: string;
+  /** Path to an exams-<course>.json file of pre-generated mock-exam papers
+   * (see tools/scripts/generate_mock_exams.py in the spartan-msai repo).
+   * Omit for courses without mock exams; the Mock Exam UI section is hidden. */
+  examFile?: string;
   enableShuffle: boolean;
   studyGuides: StudyGuide[];
 }
@@ -60,9 +83,18 @@ export interface Answer {
   correct: string;
   isCorrect: boolean;
   timeSpent: number;
+  /** Free-text response typed during an exam-mode short-answer question. Only
+   * set for exam mode; practice-mode SA uses the immediate self-grade flow
+   * instead and never populates this. */
+  response?: string;
+  /** For exam-mode short-answer questions: true/false once self-graded on the
+   * Results screen, undefined/null while awaiting grading. isCorrect stays
+   * false until this is set, so the point total only reflects self-graded SA
+   * answers, not unreviewed ones. */
+  pendingSelfGrade?: boolean;
 }
 
-export type QuizMode = 'all' | 'quick' | 'tier' | 'part' | 'custom';
+export type QuizMode = 'all' | 'quick' | 'tier' | 'part' | 'custom' | 'exam';
 
 export interface QuizState {
   courseId: string;

@@ -1,11 +1,13 @@
 import { useState, useMemo } from 'react';
-import type { Question } from '../types';
+import type { ExamPaper, Question } from '../types';
 
 interface ModeSelectionProps {
   courseId: string;
   courseTitle: string;
   questions: Question[];
+  examPapers?: ExamPaper[];
   onStartQuiz: (count: number, tier?: string, part?: string, shouldShuffle?: boolean) => void;
+  onStartExam: (paper: ExamPaper) => void;
   onBack: () => void;
 }
 
@@ -87,7 +89,7 @@ function getPartTierLabel(courseId: string, part: string, partTiers: string[], p
   return dominant.replace(/^Tier \S+ — /, '');
 }
 
-export function ModeSelection({ courseId, courseTitle, questions, onStartQuiz, onBack }: ModeSelectionProps) {
+export function ModeSelection({ courseId, courseTitle, questions, examPapers, onStartQuiz, onStartExam, onBack }: ModeSelectionProps) {
   const [shuffle, setShuffle] = useState(true);
   const [customCount, setCustomCount] = useState(Math.min(30, Math.floor(questions.length / 2)));
   const tiers = useMemo(() => getAvailableTiers(questions), [questions]);
@@ -135,6 +137,27 @@ export function ModeSelection({ courseId, courseTitle, questions, onStartQuiz, o
           <h2>{courseTitle}</h2>
           <p className="mode-subtitle">{total} questions available</p>
         </div>
+
+        {examPapers && examPapers.length > 0 && (
+          <div className="mode-section">
+            <h3 className="mode-section-title">📝 Mock Exam</h3>
+            <p className="mode-section-hint">
+              {examPapers[0].totalQuestions} questions · {examPapers[0].totalPoints} pts · cumulative, weighted toward recent material
+            </p>
+            <div className="mode-exam-grid">
+              {examPapers.map((paper) => (
+                <button
+                  key={paper.paperNum}
+                  className="mode-exam-btn"
+                  onClick={() => onStartExam(paper)}
+                >
+                  <span className="exam-paper-label">Exam {paper.paperNum}</span>
+                  <span className="exam-paper-meta">{Math.round(paper.postMidtermShare * 100)}% post-midterm</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {presets.length > 0 && (
           <div className="mode-section">

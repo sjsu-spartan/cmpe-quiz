@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import type { Question, Answer } from '../types';
 import { QuestionCard } from './QuestionCard';
 import { SACard } from './SACard';
+import { ExamSACard } from './ExamSACard';
 import { formatTime } from '../utils/formatTime';
 
 interface QuizScreenProps {
@@ -11,8 +12,13 @@ interface QuizScreenProps {
   score: number;
   answered: number;
   elapsed: number;
+  /** True for a mock exam: suppresses immediate per-question feedback (no
+   * correct/wrong, no explanation) to simulate real exam conditions. Short-answer
+   * questions switch to a free-text capture flow instead of reveal+self-grade. */
+  isExamMode?: boolean;
   onSelectAnswer: (selected: string, timeSpent: number) => void;
   onSelfGrade: (isCorrect: boolean, timeSpent: number) => void;
+  onRecordExamSAResponse: (response: string, timeSpent: number) => void;
   onNext: () => void;
   onPrev: () => void;
   onExit: () => void;
@@ -27,8 +33,10 @@ export function QuizScreen({
   score,
   answered,
   elapsed,
+  isExamMode = false,
   onSelectAnswer,
   onSelfGrade,
+  onRecordExamSAResponse,
   onNext,
   onPrev,
   onExit,
@@ -36,10 +44,15 @@ export function QuizScreen({
   const total = questions.length;
   const q = questions[currentIndex];
   const isSA = q?.type === 'sa';
+  const isExamSA = isExamMode && isSA;
   const prevAnswer = answers.find((a) => a.qIndex === currentIndex) ?? null;
+  // In exam mode, an SA question is "answered" (for progress/Next purposes) the
+  // moment it's recorded via onRecordExamSAResponse, same as prevAnswer existing
+  // for TF/MCQ; the free-text box itself never blocks navigation (input is optional).
   const progress = ((currentIndex + (prevAnswer ? 1 : 0)) / total) * 100;
   const [hasAnswered, setHasAnswered] = useState(!!prevAnswer);
   const [saRevealed, setSaRevealed] = useState(!!prevAnswer);
+  const [examSAText, setExamSAText] = useState(prevAnswer?.response ?? '');
   const prevIndexRef = useRef(currentIndex);
   const questionStartRef = useRef(Date.now());
 
@@ -53,6 +66,7 @@ export function QuizScreen({
       // happened, which is what caused incorrect selections to silently show as correct.
       setHasAnswered(!!prevAnswer);
       setSaRevealed(!!prevAnswer);
+      setExamSAText(prevAnswer?.response ?? '');
       questionStartRef.current = Date.now();
     }
   }, [currentIndex, prevAnswer]);
@@ -86,6 +100,19 @@ export function QuizScreen({
     onSelfGrade(isCorrect, timeSpent);
   }, [hasAnswered, onSelfGrade]);
 
+  // Exam-mode SA: records the free-text response (possibly empty) the first time
+  // Next is pressed on this question; re-pressing Next on an already-recorded
+  // question (e.g. after Prev then Next again) does not re-record, matching how
+  // TF/MCQ's handleSelect only fires once via the hasAnswered guard.
+  const handleExamSANext = useCallback(() => {
+    if (!hasAnswered) {
+      setHasAnswered(true);
+      const timeSpent = Math.floor((Date.now() - questionStartRef.current) / 1000);
+      onRecordExamSAResponse(examSAText, timeSpent);
+    }
+    onNext();
+  }, [hasAnswered, examSAText, onRecordExamSAResponse, onNext]);
+
   if (!q) return null;
 
   return (
@@ -93,14 +120,22 @@ export function QuizScreen({
       <div className="quiz-header">
         <div className="quiz-progress-text">
           <span>Question {currentIndex + 1} of {total}</span>
-          <span className="quiz-score">Score: {score}/{answered}</span>
+          {/* Live score is withheld in exam mode: watching it tick up/stay flat would
+              leak correctness feedback the exam is supposed to hide until Results. */}
+          {!isExamMode && <span className="quiz-score">Score: {score}/{answered}</span>}
         </div>
         <div className="quiz-progress-bar">
           <div className="quiz-progress-fill" style={{ width: `${Math.max(progress, 5)}%` }} />
         </div>
       </div>
 
-      {isSA ? (
+      {isExamSA ? (
+        <ExamSACard
+          question={q}
+          value={examSAText}
+          onChange={setExamSAText}
+        />
+      ) : isSA ? (
         <SACard
           question={q}
           revealed={saRevealed}
@@ -114,13 +149,14 @@ export function QuizScreen({
           index={currentIndex}
           total={total}
           selectedAnswer={prevAnswer?.selected ?? null}
-          correctAnswer={prevAnswer?.correct ?? null}
+          correctAnswer={isExamMode ? null : (prevAnswer?.correct ?? null)}
           onSelect={handleSelect}
-          showResult={hasAnswered}
+          showResult={!isExamMode && hasAnswered}
+          locked={hasAnswered}
         />
       )}
 
-      {!isSA && hasAnswered && prevAnswer && (
+      {!isExamMode && !isSA && hasAnswered && prevAnswer && (
         <div className={`feedback ${prevAnswer.isCorrect ? 'feedback-correct' : 'feedback-wrong'}`}>
           <div className="feedback-header">
             <span className="feedback-icon">{prevAnswer.isCorrect ? '✅' : '❌'}</span>
@@ -178,7 +214,11 @@ export function QuizScreen({
         >
           ← Prev
         </button>
-        {hasAnswered && (
+        {isExamSA ? (
+          <button className="nav-btn next-btn" onClick={handleExamSANext}>
+            {currentIndex < total - 1 ? 'Next →' : 'View Results →'}
+          </button>
+        ) : hasAnswered && (
           <button className="nav-btn next-btn" onClick={onNext}>
             {currentIndex < total - 1 ? 'Next →' : 'View Results →'}
           </button>

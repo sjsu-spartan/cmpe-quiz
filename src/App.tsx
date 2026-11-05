@@ -12,11 +12,11 @@ import { QuizScreen } from './components/QuizScreen';
 import { SummaryScreen } from './components/SummaryScreen';
 import { FormulaSheet } from './components/FormulaSheet';
 import { StudyGuide } from './components/StudyGuide';
-import type { Screen } from './types';
+import type { ExamPaper, Screen } from './types';
 
 export default function App() {
   const { config, loading: configLoading, error: configError } = useConfig();
-  const { questions: allQuestions, formulas, loading: dataLoading } = useQuestions(config);
+  const { questions: allQuestions, formulas, exams, loading: dataLoading } = useQuestions(config);
   const { theme, toggle: toggleTheme } = useTheme();
   const timer = useTimer();
   const quiz = useQuiz();
@@ -70,12 +70,23 @@ export default function App() {
     setScreen('quiz');
   }, [quiz, allQuestions, timer]);
 
+  const handleStartExam = useCallback((paper: ExamPaper) => {
+    if (!quiz.courseId) return;
+    quiz.initExam(quiz.courseId, paper, true);
+    timer.start();
+    setScreen('quiz');
+  }, [quiz, timer]);
+
   const handleSelectAnswer = useCallback((selected: string, timeSpent: number) => {
     quiz.selectAnswer(selected, timeSpent);
   }, [quiz]);
 
   const handleSelfGrade = useCallback((isCorrect: boolean, timeSpent: number) => {
     quiz.selfGradeAnswer(isCorrect, timeSpent);
+  }, [quiz]);
+
+  const handleRecordExamSAResponse = useCallback((response: string, timeSpent: number) => {
+    quiz.recordExamSAResponse(response, timeSpent);
   }, [quiz]);
 
   const handleNext = useCallback(() => {
@@ -89,6 +100,10 @@ export default function App() {
 
   const handlePrev = useCallback(() => {
     quiz.prevQuestion();
+  }, [quiz]);
+
+  const handleGradeExamSA = useCallback((qIndex: number, isCorrect: boolean) => {
+    quiz.gradeExamSA(qIndex, isCorrect);
   }, [quiz]);
 
   const handleExit = useCallback(() => {
@@ -106,19 +121,26 @@ export default function App() {
 
   const handleRestart = useCallback(() => {
     timer.reset();
-    if (quiz.courseId) {
-      const allQ = allQuestions[quiz.courseId];
-      if (allQ) {
-        const restartTier = quiz.mode === 'tier'
-          ? quiz.moduleFilter
-          : quiz.mode === 'part'
-          ? quiz.tierFilter
-          : undefined;
-        const restartPart = quiz.mode === 'part' ? quiz.moduleFilter : undefined;
-        quiz.initQuiz(quiz.courseId, allQ, quiz.questions.length, quiz.mode, true, restartTier, restartPart);
+    if (!quiz.courseId) return;
+    if (quiz.mode === 'exam') {
+      if (quiz.examPaper) {
+        quiz.initExam(quiz.courseId, quiz.examPaper, true);
         timer.start();
         setScreen('quiz');
       }
+      return;
+    }
+    const allQ = allQuestions[quiz.courseId];
+    if (allQ) {
+      const restartTier = quiz.mode === 'tier'
+        ? quiz.moduleFilter
+        : quiz.mode === 'part'
+        ? quiz.tierFilter
+        : undefined;
+      const restartPart = quiz.mode === 'part' ? quiz.moduleFilter : undefined;
+      quiz.initQuiz(quiz.courseId, allQ, quiz.questions.length, quiz.mode, true, restartTier, restartPart);
+      timer.start();
+      setScreen('quiz');
     }
   }, [quiz, allQuestions, timer]);
 
@@ -212,7 +234,9 @@ export default function App() {
           courseId={quiz.courseId}
           courseTitle={courseTitle}
           questions={allQuestions[quiz.courseId] || []}
+          examPapers={exams[quiz.courseId]}
           onStartQuiz={handleStartQuiz}
+          onStartExam={handleStartExam}
           onBack={handleBackToCourses}
         />
       )}
@@ -225,8 +249,10 @@ export default function App() {
           score={quiz.score}
           answered={quiz.answered}
           elapsed={timer.elapsed}
+          isExamMode={quiz.mode === 'exam'}
           onSelectAnswer={handleSelectAnswer}
           onSelfGrade={handleSelfGrade}
+          onRecordExamSAResponse={handleRecordExamSAResponse}
           onNext={handleNext}
           onPrev={handlePrev}
           onExit={handleExit}
@@ -244,6 +270,10 @@ export default function App() {
           onRestart={handleRestart}
           onBackToCourses={handleBackToCourses}
           courseTitle={courseTitle}
+          pointsEarned={quiz.pointsEarned}
+          pointsTotal={quiz.pointsTotal}
+          pendingSACount={quiz.pendingSACount}
+          onGradeExamSA={handleGradeExamSA}
         />
       )}
 

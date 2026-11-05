@@ -457,6 +457,37 @@ body {
   flex-shrink: 0;
 }
 
+.mode-section-hint {
+  font-size: 0.78rem;
+  color: var(--color-text-2);
+  margin: -6px 0 12px;
+}
+.mode-exam-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+}
+.mode-exam-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 12px;
+  background: var(--color-gradient);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.mode-exam-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+.exam-paper-label { font-weight: 700; font-size: 0.92rem; }
+.exam-paper-meta { font-size: 0.7rem; opacity: 0.85; }
+
 /* Toggle */
 .toggle-row {
   display: flex;
@@ -630,6 +661,15 @@ body {
   padding: 4px 12px;
   border-radius: 20px;
 }
+.q-points {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: var(--color-primary-glow);
+  border: 1px solid rgba(129, 140, 248, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
 .q-text {
   font-size: 1.05rem;
   font-weight: 600;
@@ -677,6 +717,13 @@ body {
 .q-option.selected-correct {
   border-color: var(--color-success) !important;
   background: var(--color-success-bg) !important;
+}
+/* Exam mode: choice is locked in (no further clicks) but correctness is
+   withheld until Results, so this is a neutral "this is what you picked"
+   state, not a correct/wrong color. */
+.q-option.selected-locked {
+  border-color: var(--color-primary) !important;
+  background: var(--color-surface-3) !important;
 }
 .option-letter {
   flex-shrink: 0;
@@ -764,6 +811,25 @@ body {
   transition: all 0.2s;
 }
 .sa-reveal-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.exam-sa-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+  font-family: inherit;
+  color: var(--color-text);
+  line-height: 1.6;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.exam-sa-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
+}
+.exam-sa-input::placeholder { color: var(--color-text-2); }
 .sa-answer {
   margin-top: 4px;
   padding: 16px 18px;
@@ -1027,6 +1093,16 @@ body {
   transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 0 12px rgba(52, 211, 153, 0.2);
 }
+.pending-sa-banner {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: var(--color-text);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
 
 /* Module Breakdown */
 .module-breakdown {
@@ -1121,6 +1197,9 @@ body {
   transition: all 0.2s;
 }
 .review-item:hover { border-color: var(--color-border-light); }
+.review-item.item-correct { border-left: 3px solid var(--color-success); }
+.review-item.item-wrong { border-left: 3px solid var(--color-error); }
+.review-item.item-pending { border-left: 3px solid #f59e0b; }
 .review-item-header {
   display: flex;
   align-items: center;
@@ -1135,6 +1214,19 @@ body {
   border-radius: 10px;
   background: var(--color-surface-3);
   color: var(--color-text-2);
+}
+.review-points-tag {
+  font-size: 0.68rem;
+  padding: 2px 10px;
+  border-radius: 10px;
+  background: var(--color-primary-glow);
+  color: var(--color-primary);
+  font-weight: 700;
+}
+.exam-sa-response {
+  font-size: 0.88rem;
+  color: var(--color-text);
+  white-space: pre-wrap;
 }
 .review-q-text {
   font-size: 0.88rem;
