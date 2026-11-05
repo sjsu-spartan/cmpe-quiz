@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import type { Question } from '../types';
 
 interface ModeSelectionProps {
+  courseId: string;
   courseTitle: string;
   questions: Question[];
   onStartQuiz: (count: number, tier?: string, part?: string, shouldShuffle?: boolean) => void;
@@ -62,16 +63,21 @@ const TOPIC_TIER_LABEL: Record<'high' | 'medium' | 'low', string> = {
 
 /** Returns a short tier label to show in front of a Part's name in the dropdown.
  * Single-tier parts (e.g. CMPE 253) just use their one real tier. Mixed-tier parts
- * (CMPE 249) use the manual topic-level override above, falling back to whichever
- * tier has the most questions in that part if no override is defined. */
-function getPartTierLabel(part: string, partTiers: string[], partQuestions: Question[]): string {
+ * use the manual topic-level override table above (currently only populated for
+ * CMPE 249's Part numbers; other mixed-tier courses, e.g. CMPE 258, fall through
+ * to the per-part dominant-tier computation below since CMPE249_PART_TOPIC_TIER's
+ * keys are plain Part numbers with no course scoping, and every course restarts
+ * its own Part numbering at 1). */
+function getPartTierLabel(courseId: string, part: string, partTiers: string[], partQuestions: Question[]): string {
   if (partTiers.length === 1) {
     return partTiers[0].replace(/^Tier \S+ — /, '');
   }
-  const partNum = parseInt(part.match(/^Part (\d+):/)?.[1] ?? '', 10);
-  const override = CMPE249_PART_TOPIC_TIER[partNum];
-  if (override) {
-    return TOPIC_TIER_LABEL[override];
+  if (courseId === 'cmpe249') {
+    const partNum = parseInt(part.match(/^Part (\d+):/)?.[1] ?? '', 10);
+    const override = CMPE249_PART_TOPIC_TIER[partNum];
+    if (override) {
+      return TOPIC_TIER_LABEL[override];
+    }
   }
   const counts = new Map<string, number>();
   for (const q of partQuestions) {
@@ -81,7 +87,7 @@ function getPartTierLabel(part: string, partTiers: string[], partQuestions: Ques
   return dominant.replace(/^Tier \S+ — /, '');
 }
 
-export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: ModeSelectionProps) {
+export function ModeSelection({ courseId, courseTitle, questions, onStartQuiz, onBack }: ModeSelectionProps) {
   const [shuffle, setShuffle] = useState(true);
   const [customCount, setCustomCount] = useState(Math.min(30, Math.floor(questions.length / 2)));
   const tiers = useMemo(() => getAvailableTiers(questions), [questions]);
@@ -116,10 +122,10 @@ export function ModeSelection({ courseTitle, questions, onStartQuiz, onBack }: M
     for (const part of parts) {
       const partQuestions = questions.filter((q) => q.lectureReference === part);
       const thisPartTiers = getAvailableTiers(partQuestions);
-      labels.set(part, getPartTierLabel(part, thisPartTiers, partQuestions));
+      labels.set(part, getPartTierLabel(courseId, part, thisPartTiers, partQuestions));
     }
     return labels;
-  }, [parts, questions]);
+  }, [courseId, parts, questions]);
 
   return (
     <div className="screen-content">

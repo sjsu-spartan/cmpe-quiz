@@ -209,6 +209,7 @@ export default function App() {
 
       {screen === 'mode' && quiz.courseId && (
         <ModeSelection
+          courseId={quiz.courseId}
           courseTitle={courseTitle}
           questions={allQuestions[quiz.courseId] || []}
           onStartQuiz={handleStartQuiz}
