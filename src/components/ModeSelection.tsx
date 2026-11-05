@@ -119,6 +119,32 @@ export function ModeSelection({ courseId, courseTitle, questions, examPapers, on
     return preferred.filter((n) => n < total && n <= total * 0.7);
   }, [total]);
 
+  // Splits the 10 mock-exam papers into two evenly sized groups by post-midterm
+  // share (lower half / higher half), rather than hardcoding specific percentage
+  // thresholds, so this stays correct if generate_mock_exams.py's gradient ever
+  // changes. Falls back to a single unlabeled group if there are not exactly 10
+  // papers (e.g. a future course with a different paper count).
+  const examPaperGroups = useMemo(() => {
+    if (!examPapers || examPapers.length === 0) return [];
+    if (examPapers.length !== 10) {
+      return [{ label: 'Mock Exams', papers: examPapers }];
+    }
+    const sorted = [...examPapers].sort((a, b) => a.postMidtermShare - b.postMidtermShare);
+    const lower = sorted.slice(0, 5);
+    const upper = sorted.slice(5);
+    const pct = (n: number) => Math.round(n * 100);
+    return [
+      {
+        label: `Lower post-midterm (${pct(lower[0].postMidtermShare)}-${pct(lower[lower.length - 1].postMidtermShare)}%)`,
+        papers: lower,
+      },
+      {
+        label: `Higher post-midterm (${pct(upper[0].postMidtermShare)}-${pct(upper[upper.length - 1].postMidtermShare)}%)`,
+        papers: upper,
+      },
+    ];
+  }, [examPapers]);
+
   const partTierLabels = useMemo(() => {
     const labels = new Map<string, string>();
     for (const part of parts) {
@@ -144,18 +170,23 @@ export function ModeSelection({ courseId, courseTitle, questions, examPapers, on
             <p className="mode-section-hint">
               {examPapers[0].totalQuestions} questions · {examPapers[0].totalPoints} pts · cumulative, weighted toward recent material
             </p>
-            <div className="mode-exam-grid">
-              {examPapers.map((paper) => (
-                <button
-                  key={paper.paperNum}
-                  className="mode-exam-btn"
-                  onClick={() => onStartExam(paper)}
-                >
-                  <span className="exam-paper-label">Exam {paper.paperNum}</span>
-                  <span className="exam-paper-meta">{Math.round(paper.postMidtermShare * 100)}% post-midterm</span>
-                </button>
-              ))}
-            </div>
+            {examPaperGroups.map((group) => (
+              <div key={group.label} className="mode-exam-group">
+                <h4 className="mode-exam-group-title">{group.label}</h4>
+                <div className="mode-exam-grid">
+                  {group.papers.map((paper) => (
+                    <button
+                      key={paper.paperNum}
+                      className="mode-exam-btn"
+                      onClick={() => onStartExam(paper)}
+                    >
+                      <span className="exam-paper-label">Exam {paper.paperNum}</span>
+                      <span className="exam-paper-meta">{Math.round(paper.postMidtermShare * 100)}% post-midterm</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         )}
 
