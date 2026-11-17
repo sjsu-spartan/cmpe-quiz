@@ -30133,5 +30133,4205 @@
     "tier": "Tier 2 — Medium Probability",
     "answerText": "PON first collapses the vertical dimension of the image feature map into bottleneck features, then applies a 1D convolution along the horizontal axis and resamples to BEV with camera parameters (slides 37). The lift-and-splat method first lifts each image into a per-pixel depth frustum, then splats all frustums into the BEV grid (slide 42). The first operations differ: PON compresses the vertical axis, while the frustum method expands each pixel along depth.",
     "lectureReference": "Part 64: Camera Depth Bins and Lifting to BEV"
+  },
+  {
+    "num": 2202,
+    "type": "tf",
+    "question": "DPT-Base and DPT-Large tokenize the image into non-overlapping patches followed by a linear projection.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.2 gives this for DPT-Base and DPT-Large. DPT-Hybrid uses a ResNet-50 feature extractor instead.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2203,
+    "type": "tf",
+    "question": "DPT-Base uses a ResNet-50 feature extractor in place of patch tokenization.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.2 gives the ResNet-50 extractor for DPT-Hybrid. DPT-Base uses patch tokens with a linear projection.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2204,
+    "type": "tf",
+    "question": "The readout token is one of the patch tokens placed at the image center.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.3 describes the readout token as a special patch-independent token added to the sequence.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2205,
+    "type": "tf",
+    "question": "The tokens are tapped at four Transformer stages and sent to Reassemble modules.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.3 says the tokens are tapped at four stages.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2206,
+    "type": "tf",
+    "question": "A Reassemble-4 block outputs a feature map at 1/4 of the input resolution.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.4 gives Reassemble-4 as the example of a 1/4 output.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2207,
+    "type": "tf",
+    "question": "The Fusion block adds the reassembled features to the output of the previous fusion block after a Residual Convolutional Unit.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.5 describes the previous block's output passing through a Residual Convolutional Unit before the addition.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2208,
+    "type": "tf",
+    "question": "The Resample-0.5 step in a fusion block halves the spatial resolution.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.5 says Resample-0.5 upsamples the feature map by a factor of 2 because the stride is halved.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2209,
+    "type": "tf",
+    "question": "The slides give the input size used for the DPT encoder as 384 x 384.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slides do not state the input size. The 384 x 384 value in this topic's worked example is an assumption.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2210,
+    "type": "tf",
+    "question": "The DPT-style decoder appears in the Depth Anything V2 model described on the slides.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.14 describes the DPT-style dense head that fuses multi-scale features back to pixels.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2211,
+    "type": "tf",
+    "question": "The slides present a table that compares DPT, Depth Anything V2, and ZoeDepth on one benchmark with numeric scores.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Pages 14 to 16 describe architectures and their intended use. The numeric results appear on later pages, not in a comparison table on these pages.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2212,
+    "type": "tf",
+    "question": "A ViT with 16 x 16 patches on a 384 x 384 input produces a 24 x 24 grid of patch tokens.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "384 divided by 16 is 24. This is standard ViT arithmetic and assumes the 384 input size.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2213,
+    "type": "tf",
+    "question": "The fusion path in DPT upsamples from the finest map to the coarsest map.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The fusion path starts from the coarsest features and upsamples toward the finer ones (p.5).",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2214,
+    "type": "mcq",
+    "question": "Which step tokenizes the image in DPT-Base and DPT-Large?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Non-overlapping patches with a linear projection",
+      "B": "Overlapping sliding windows",
+      "C": "A convolutional stem with stride 2",
+      "D": "A ResNet-50 feature extractor"
+    },
+    "answer": "A",
+    "explanation": "Slide p.2 gives this step for DPT-Base and DPT-Large.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2215,
+    "type": "mcq",
+    "question": "What is the readout token described on slide p.3?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A patch token taken from the image center",
+      "B": "A patch-independent token added to the sequence",
+      "C": "A learned classification label copied to every patch",
+      "D": "The output of the decoder"
+    },
+    "answer": "B",
+    "explanation": "Slide p.3 describes it as a special patch-independent token.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2216,
+    "type": "mcq",
+    "question": "How many Transformer stages are tapped and sent to Reassemble modules, according to slide p.3?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Two",
+      "B": "Three",
+      "C": "Four",
+      "D": "Six"
+    },
+    "answer": "C",
+    "explanation": "Slide p.3 says tokens are tapped at four different stages.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2217,
+    "type": "mcq",
+    "question": "What is the output resolution of Reassemble-4 relative to the input image?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "1/16",
+      "B": "1/2",
+      "C": "1/8",
+      "D": "1/4"
+    },
+    "answer": "D",
+    "explanation": "Slide p.4 gives the example of a feature map at 1/4 of the original resolution.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2218,
+    "type": "mcq",
+    "question": "A 384 x 384 image is cut into 16 x 16 patches. How many patch tokens are produced, before the readout token is added?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "576",
+      "B": "96",
+      "C": "384",
+      "D": "24"
+    },
+    "answer": "A",
+    "explanation": "384 / 16 = 24 per side, and 24 x 24 = 576. This assumes the 384 input size from the worked example.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2219,
+    "type": "mcq",
+    "question": "A fusion block receives a 12 x 12 map and applies Resample-0.5. What is the output size?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "6 x 6",
+      "B": "24 x 24",
+      "C": "12 x 12",
+      "D": "48 x 48"
+    },
+    "answer": "B",
+    "explanation": "Resample-0.5 doubles the resolution (p.5), so 12 x 12 becomes 24 x 24.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2220,
+    "type": "mcq",
+    "question": "Why does DPT need a Reassemble module after the Transformer stages?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "To add positional embeddings",
+      "B": "To compute the loss",
+      "C": "To turn a flat token sequence back into an image-like 2D map",
+      "D": "To remove the readout token"
+    },
+    "answer": "C",
+    "explanation": "Slide p.4 says standard Transformers output a flat 1D sequence, and Reassemble converts it into an image-like 2D map.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2221,
+    "type": "mcq",
+    "question": "Which two inputs does a Fusion block combine, according to slide p.5?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The patch embeddings and the head output",
+      "B": "The raw image and the readout token",
+      "C": "The depth bins and the camera intrinsics",
+      "D": "The previous fusion output and the matching Reassemble features"
+    },
+    "answer": "D",
+    "explanation": "Slide p.5 names these two inputs.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2222,
+    "type": "mcq",
+    "question": "Which component produces the final fine-grained dense prediction in DPT, according to slide p.3?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The task-specific head",
+      "B": "The Reassemble-4 block",
+      "C": "The first Transformer stage",
+      "D": "The readout token"
+    },
+    "answer": "A",
+    "explanation": "Slide p.3 says a task-specific head generates the dense prediction.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2223,
+    "type": "mcq",
+    "question": "Which model does slide p.6 credit with making cross-dataset relative depth practical?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "LSS and BEVDepth",
+      "B": "MiDaS and DPT",
+      "C": "FCOS3D and PGD",
+      "D": "CenterPoint and PointPillars"
+    },
+    "answer": "B",
+    "explanation": "Slide p.6 gives this title.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2224,
+    "type": "mcq",
+    "question": "Which decoder does slide p.14 describe for Depth Anything V2?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A PointNet decoder",
+      "B": "A set prediction head",
+      "C": "A DPT-style dense head",
+      "D": "A BEV pooling layer"
+    },
+    "answer": "C",
+    "explanation": "Slide p.14 names a DPT-style dense head.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2225,
+    "type": "mcq",
+    "question": "For a 384 x 384 input, what size is the Reassemble-32 feature map?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "96 x 96",
+      "B": "48 x 48",
+      "C": "24 x 24",
+      "D": "12 x 12"
+    },
+    "answer": "D",
+    "explanation": "384 / 32 = 12, so the map is 12 x 12.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2226,
+    "type": "mcq",
+    "question": "According to slide p.3, what do the Fusion modules do?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "They progressively fuse multi-scale representations and upsample them",
+      "B": "They replace the Transformer stages",
+      "C": "They compute the scale-shift-invariant loss",
+      "D": "They tokenize the image"
+    },
+    "answer": "A",
+    "explanation": "Slide p.3 uses this wording.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2227,
+    "type": "mcq",
+    "question": "What are the positional embeddings added to the image embeddings for?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "To remove the readout token",
+      "B": "To retain spatial information",
+      "C": "To set the metric scale",
+      "D": "To compute expected depth"
+    },
+    "answer": "B",
+    "explanation": "Slide p.3 says they retain spatial information.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2228,
+    "type": "mcq",
+    "question": "For a 16 x 16 patch size, which stride-level feature map has the same resolution as the token grid?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Stride 4",
+      "B": "Stride 8",
+      "C": "Stride 16",
+      "D": "Stride 32"
+    },
+    "answer": "C",
+    "explanation": "A 384 input gives a 24 x 24 token grid, and 384 / 16 = 24, so the token grid matches stride 16.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2229,
+    "type": "mcq",
+    "question": "Which DPT variant uses a ResNet-50 feature extractor for tokenization?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "DPT-Base",
+      "B": "DPT-Large",
+      "C": "DPT-Small",
+      "D": "DPT-Hybrid"
+    },
+    "answer": "D",
+    "explanation": "Slide p.2 names DPT-Hybrid as the ResNet-50 variant.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2230,
+    "type": "sa",
+    "question": "Describe the path from an input image to a dense prediction in DPT, naming each stage in order.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The image is tokenized, either into linear patch embeddings or with a ResNet-50 extractor (p.2). Positional embeddings are added, and a readout token is appended (p.3). The tokens pass through Transformer stages, and four stages are tapped (p.3). Reassemble converts each tapped sequence into a 2D map at a fixed fraction of the input resolution (p.4). Fusion blocks combine the maps from coarse to fine and upsample by a factor of 2 at each step (p.5). A task-specific head produces the dense output (p.3).",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2231,
+    "type": "sa",
+    "question": "Why does a per-pixel dense output benefit from both global context and fine spatial detail? Connect this to the DPT design.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The ViT encoder gives a global receptive field from the first layer, which helps with relations across the image (p.6). Those global features are coarse in spatial resolution. The Reassemble and Fusion path restores spatial detail by mapping tokens back to a grid and merging several scales (pp.4 and 5). The slides argue for this combination but do not report an ablation, so the size of the effect is not established by these slides.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2232,
+    "type": "sa",
+    "question": "A student proposes replacing DPT's Reassemble step with a single bilinear upsampling of the final token map. Name one thing the student would need to show before using that change in a depth experiment.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The student would need to show that the single upsampling keeps the accuracy of the multi-scale path on the same data and metric. A fair test holds the backbone, head, training data, and schedule fixed, then reports the change in a per-range error table. Without that, the change cannot be claimed to be neutral. The slides do not contain this comparison.",
+    "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
+  },
+  {
+    "num": 2233,
+    "type": "tf",
+    "question": "The scale-shift-invariant loss aligns the prediction to each ground truth with a shift and a scale before the error is computed.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.7 describes this alignment step for each dataset's loss term.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2234,
+    "type": "tf",
+    "question": "The scale-shift-invariant loss by itself produces calibrated metric depth.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.7 lists the weakness as \"not a calibrated metric sensor by itself.\"",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2235,
+    "type": "tf",
+    "question": "The teacher in the pseudo-label pipeline is trained on a labelled mix of 1.5 million images.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.12 gives 1.5 million labelled images for the teacher.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2236,
+    "type": "tf",
+    "question": "The pseudo-labelled set on the slides is about 41 times the size of the labelled set.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "62 million divided by 1.5 million is about 41.3.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2237,
+    "type": "tf",
+    "question": "The slides describe centering and sharpening applied to the teacher outputs to prevent collapse.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slides pp.10 and 11 describe both operations on the teacher side.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2238,
+    "type": "tf",
+    "question": "The EMA teacher in DINOv2 is updated by backpropagating the cross-entropy loss.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.10 says the teacher is not updated by backpropagation. Its weights follow an exponential moving average of the student's weights.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2239,
+    "type": "tf",
+    "question": "AbsRel is defined as the mean of |D_hat - D| / D.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.21 gives this definition.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2240,
+    "type": "tf",
+    "question": "delta-1 is defined as the mean of |D_hat - D| / D.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.21 defines delta-1 as the mean of an indicator on max(D_hat / D, D / D_hat) below 1.25. The |D_hat - D| / D form is AbsRel.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2241,
+    "type": "tf",
+    "question": "The slides give focal lengths of about 721 px for KITTI and about 1266 px for nuScenes.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.20 gives both values.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2242,
+    "type": "tf",
+    "question": "On nuScenes, the DA-V2-Metric raw AbsRel is 0.185, and the median-scaled AbsRel is 0.555.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.20 gives raw 0.555 and median-scaled 0.185. The values are reversed in this statement.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2243,
+    "type": "tf",
+    "question": "The KITTI measurement on slide p.19 uses 600 frames.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.19 says 60 frames, with LiDAR ground truth and a Garg crop.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2244,
+    "type": "tf",
+    "question": "The Depth Anything V2 recipe on p.14 cites about 5.95 million clean dense depth labels.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.14 says about 595K clean dense depth labels, which is 0.595 million.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2245,
+    "type": "mcq",
+    "question": "What does the scale-shift-invariant loss allow during training?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "It lets datasets with different depth units train together.",
+      "B": "It requires LiDAR at inference.",
+      "C": "It fixes the absolute units in every ground truth.",
+      "D": "It replaces the DPT decoder."
+    },
+    "answer": "A",
+    "explanation": "Slide p.13 says the loss lets you train on any dataset whose depth units disagree.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2246,
+    "type": "mcq",
+    "question": "What does slide p.7 list as the strength of the scale-shift-invariant objective?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Calibrated metric output",
+      "B": "Robust relative geometry across many domains",
+      "C": "No need for camera intrinsics",
+      "D": "Exact per-pixel ground truth"
+    },
+    "answer": "B",
+    "explanation": "Slide p.7 gives this as the strength.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2247,
+    "type": "mcq",
+    "question": "In the teacher-student pipeline on p.12, how many labelled and unlabelled images does the deck give?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "1.5 million labelled and 1.5 million unlabelled",
+      "B": "62 million labelled and 1.5 million unlabelled",
+      "C": "1.5 million labelled and 62 million unlabelled",
+      "D": "41 million labelled and 62 million unlabelled"
+    },
+    "answer": "C",
+    "explanation": "Slide p.12 gives 1.5 million labelled images and 62 million pseudo-labelled images.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2248,
+    "type": "mcq",
+    "question": "Roughly how many times larger is the pseudo-labelled set than the labelled set in the deck?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "4.1",
+      "B": "0.024",
+      "C": "410",
+      "D": "41"
+    },
+    "answer": "D",
+    "explanation": "62 divided by 1.5 is about 41.3.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2249,
+    "type": "mcq",
+    "question": "Which perturbations does slide p.12 list for the student input?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Color jitter, blur, and CutMix",
+      "B": "Gradient clipping and dropout only",
+      "C": "Removal of the teacher network",
+      "D": "Scaling of the LiDAR points"
+    },
+    "answer": "A",
+    "explanation": "Slide p.12 names these three perturbations.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2250,
+    "type": "mcq",
+    "question": "A prediction of [9, 21] is compared to a ground truth of [10, 20] in meters. What is the AbsRel?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "0.005",
+      "B": "0.075",
+      "C": "0.100",
+      "D": "0.150"
+    },
+    "answer": "B",
+    "explanation": "(0.1 + 0.05) / 2 = 0.075.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2251,
+    "type": "mcq",
+    "question": "Which options does slide p.13 list as ways to get scale for relative depth?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "A color histogram",
+      "B": "Teacher temperature",
+      "C": "Intrinsics, a few LiDAR points, or multi-view geometry",
+      "D": "The depth bin index"
+    },
+    "answer": "C",
+    "explanation": "Slide p.13 lists these three sources.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2252,
+    "type": "mcq",
+    "question": "In DINO-style sharpening, what does a lower teacher temperature do to the softmax output?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "It raises the teacher temperature.",
+      "B": "It has no effect on the softmax.",
+      "C": "It applies only to the student.",
+      "D": "It makes the distribution more peaked."
+    },
+    "answer": "D",
+    "explanation": "Slide p.11 says the lower teacher temperature makes the output peakier, closer to one-hot.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2253,
+    "type": "mcq",
+    "question": "Using the focal lengths on p.20, what is the ratio of nuScenes focal length to KITTI focal length?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "1.76",
+      "B": "0.57",
+      "C": "2.50",
+      "D": "0.97"
+    },
+    "answer": "A",
+    "explanation": "1266 divided by 721 is about 1.76. Option A is the inverse ratio.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2254,
+    "type": "mcq",
+    "question": "Slide p.20 gives which cause for the large raw AbsRel on nuScenes?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The LiDAR points are noisy.",
+      "B": "The model has no focal-length input, so its scale is off.",
+      "C": "The model was trained on KITTI only.",
+      "D": "Depth below 10 m is excluded from evaluation."
+    },
+    "answer": "B",
+    "explanation": "Slide p.20 states that the model has no focal-length input.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2255,
+    "type": "mcq",
+    "question": "Which metric on slide p.21 counts pixels whose depth ratio is below a 1.25 threshold?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Boundary F1",
+      "B": "AbsRel",
+      "C": "delta-1",
+      "D": "Gradient norm"
+    },
+    "answer": "C",
+    "explanation": "Slide p.21 defines delta-1 with the 1.25 threshold.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2256,
+    "type": "mcq",
+    "question": "Which of these is a lesson from the KITTI slide on p.19?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Report only metric numbers.",
+      "B": "Score on the points the model was trained on.",
+      "C": "Treat \"metric\" as a property of the dataset.",
+      "D": "Report aligned and metric results."
+    },
+    "answer": "D",
+    "explanation": "Slide p.19 says to report aligned and metric results.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2257,
+    "type": "mcq",
+    "question": "Which synthetic dataset does slide p.16 give as supervision for the DA-V2-Metric-Outdoor model?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Virtual KITTI 2",
+      "B": "Argoverse",
+      "C": "SYNTHIA",
+      "D": "CARLA"
+    },
+    "answer": "A",
+    "explanation": "Slide p.16 names Virtual KITTI 2 as the synthetic outdoor supervision.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2258,
+    "type": "mcq",
+    "question": "What output range does slide p.16 give for the DA-V2-Metric-Outdoor model?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "0 to 10 m",
+      "B": "0 to 80 m",
+      "C": "0 to 200 m",
+      "D": "0 to 1000 m"
+    },
+    "answer": "B",
+    "explanation": "Slide p.16 gives 0 to 80 m.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2259,
+    "type": "mcq",
+    "question": "Which architecture does slide p.12 give for the teacher in the pseudo-label pipeline?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "ResNet-50",
+      "B": "Swin-B",
+      "C": "DINOv2 + DPT",
+      "D": "PointPillars"
+    },
+    "answer": "C",
+    "explanation": "Slide p.12 states DINOv2 + DPT.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2260,
+    "type": "mcq",
+    "question": "Which metric does slide p.21 list for sharpness around object edges?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "delta-1",
+      "B": "AbsRel",
+      "C": "SILog",
+      "D": "Boundary F1"
+    },
+    "answer": "D",
+    "explanation": "Slide p.21 gives Boundary F1 for this purpose.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2261,
+    "type": "sa",
+    "question": "A student mixes depth datasets with different units and trains a model with the scale-shift-invariant loss. Explain what the model learns and what it does not learn, and what step is needed before the output can be called metric depth.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The model learns relative geometry, meaning the shape and order of depths, because the loss aligns each prediction to its ground truth before comparing (p.7). It does not learn absolute scale, and the slide calls the model \"not a calibrated metric sensor by itself\" (p.7). Metric depth requires a separate step, such as intrinsics-aware training or fitting scale on a held-out LiDAR split (pp.13 and 20).",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2262,
+    "type": "sa",
+    "question": "A paper reports a single AbsRel value for one depth model on nuScenes and claims it is ready for driving. Name the missing measurements from pp.19 and 20 and describe how you would add them.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The paper omits the aligned versus metric split (p.19), the error per range bin (p.20), and the source of scale (intrinsics or LiDAR fit). Add a table with raw and aligned AbsRel, error per range bin, the number of held-out LiDAR points, and the scale source. The slide's KITTI example shows that aligned and metric results can differ by a wide margin.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2263,
+    "type": "sa",
+    "question": "Explain why the pseudo-label student is trained with strong perturbations, and describe a control experiment that would test whether the perturbations help.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "Strong perturbations such as color jitter, blur, and CutMix make the student robust to inputs where the teacher's labels could carry errors (p.12). A control keeps the teacher, data, and schedule fixed, trains one student with the perturbations and one without, and reports depth error on a held-out real set by range bin. The slides do not report this comparison, so the benefit is a hypothesis until measured.",
+    "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
+  },
+  {
+    "num": 2264,
+    "type": "tf",
+    "question": "Along a camera ray, a metric depth value gives both free cells before the surface and an occupied cell at the surface.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.22 gives the rule: free for t < D(u, v), occupied near t = D(u, v).",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2265,
+    "type": "tf",
+    "question": "The ray rule on p.22 labels every cell beyond the measured depth as free.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The rule labels cells before the depth as free. Cells beyond the surface are not given the free label.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2266,
+    "type": "tf",
+    "question": "Slide p.22 states that occupancy is more useful than depth when planners need unknown space, occlusion, and dynamic obstacles.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The slide makes this statement directly.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2267,
+    "type": "tf",
+    "question": "The Tesla public stack on p.23 is described as depth-map-first, with occupancy added afterward.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.23 says Tesla prioritizes occupancy over depth maps.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2268,
+    "type": "tf",
+    "question": "Slide p.23 lists eight camera video inputs.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The slide lists 8 camera video as the input.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2269,
+    "type": "tf",
+    "question": "Slide p.23 reports that Tesla describes public FSD as fully unsupervised.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide reports that Tesla describes FSD as supervised and requiring active driver attention.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2270,
+    "type": "tf",
+    "question": "The projection on p.24 uses the camera pose at each frame time.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The slide's formula is labels_t = Project(3D_world_model, camera_t, pose_t).",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2271,
+    "type": "tf",
+    "question": "Slide p.24 states that the 2026 patent publication proves exact production deployment.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide says patents are evidence of disclosed methods, not proof of exact production deployment.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2272,
+    "type": "tf",
+    "question": "The research formulation on p.25 keeps LiDAR out of inference.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The slide says LiDAR labels or prompts training depth, while inference stays camera-only.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2273,
+    "type": "tf",
+    "question": "Slide p.25 recommends using a different backbone for each method so that each receives its own best setup.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide asks for the same backbone, same head, same data budget, and same fine-tuning schedule.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2274,
+    "type": "tf",
+    "question": "The student backbone named on p.25 is BEVDet or FlashOcc.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The slide lists BEVDet or FlashOcc as the student backbone.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2275,
+    "type": "tf",
+    "question": "Slide p.22 states that depth teachers provide semantic labels for tail classes with no extra supervision.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide says semantics and tail classes still require careful supervision.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2276,
+    "type": "mcq",
+    "question": "Under the ray rule on slide p.22, which cells are labelled occupied?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Cells near t = D(u, v)",
+      "B": "The camera origin",
+      "C": "All cells beyond the measured depth",
+      "D": "The image plane"
+    },
+    "answer": "A",
+    "explanation": "Slide p.22 says occupied near t = D(u, v).",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2277,
+    "type": "mcq",
+    "question": "What outputs does slide p.23 list for the Tesla public stack?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "A single depth map per camera",
+      "B": "Occupancy and flow",
+      "C": "A lane polyline only",
+      "D": "A driver-attention score"
+    },
+    "answer": "B",
+    "explanation": "Slide p.23 lists occupancy and flow.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2278,
+    "type": "mcq",
+    "question": "In the pipeline on slide p.22, which step comes first?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Semantic head",
+      "B": "Occupancy grid",
+      "C": "Metric depth",
+      "D": "Ray tracing"
+    },
+    "answer": "C",
+    "explanation": "The pipeline starts with metric depth, followed by surface samples and ray tracing.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2279,
+    "type": "mcq",
+    "question": "Which two stages does slide p.24 list before auto labels are produced?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Quantization and pruning",
+      "B": "Warmup and cooldown",
+      "C": "Tokenization and patching",
+      "D": "Multi-trip alignment and 3D reconstruction"
+    },
+    "answer": "D",
+    "explanation": "Slide p.24 lists multi-trip alignment and 3D reconstruction before auto labels.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2280,
+    "type": "mcq",
+    "question": "Which teacher models does slide p.25 name?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "DA-V2 metric or UniDepthV2",
+      "B": "PointPillars",
+      "C": "VGG-16",
+      "D": "MobileNetV3"
+    },
+    "answer": "A",
+    "explanation": "Slide p.25 names DA-V2 metric or UniDepthV2 as the teacher.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2281,
+    "type": "mcq",
+    "question": "Which student backbone does slide p.25 list?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A ResNet-50 classifier",
+      "B": "BEVDet or FlashOcc",
+      "C": "YOLOv3",
+      "D": "PointNet++"
+    },
+    "answer": "B",
+    "explanation": "Slide p.25 lists BEVDet or FlashOcc.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2282,
+    "type": "mcq",
+    "question": "Which requirement does slide p.25 give for fair comparisons?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Different data budgets are allowed.",
+      "B": "Different image resolutions for each method.",
+      "C": "Same backbone, same head, same data budget, and same fine-tuning schedule.",
+      "D": "The test set may be used for training."
+    },
+    "answer": "C",
+    "explanation": "Slide p.25 gives this list.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2283,
+    "type": "mcq",
+    "question": "Which expression matches the label projection on slide p.24?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "labels = argmax(depth)",
+      "B": "labels_t = depth_t",
+      "C": "labels = softmax(bins)",
+      "D": "labels_t = Project(3D_world_model, camera_t, pose_t)"
+    },
+    "answer": "D",
+    "explanation": "Slide p.24 gives this expression.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2284,
+    "type": "mcq",
+    "question": "A camera with focal length 1266 px and principal point c_x = 800 px sees a point at X = 2.0 m and Z = 20.0 m. What is the horizontal pixel coordinate u?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "926.6 px",
+      "B": "800.0 px",
+      "C": "1066.0 px",
+      "D": "1266.0 px"
+    },
+    "answer": "A",
+    "explanation": "u = 1266 x 2.0 / 20.0 + 800 = 126.6 + 800 = 926.6 px.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2285,
+    "type": "mcq",
+    "question": "With 0.5 m voxels and a measured surface at 20.2 m, how many free voxels lie before the surface?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "20",
+      "B": "40",
+      "C": "39",
+      "D": "41"
+    },
+    "answer": "B",
+    "explanation": "Voxels 0 to 39 span 0.0 to 20.0 m, which gives 40 free voxels. The voxel size is an assumption.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2286,
+    "type": "mcq",
+    "question": "What does slide p.22 say about depth teachers and semantics?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Tail classes are always solved by depth supervision.",
+      "B": "Semantic labels come for free with depth.",
+      "C": "Semantics and tail classes still require careful supervision.",
+      "D": "Semantic labels are unnecessary for planning."
+    },
+    "answer": "C",
+    "explanation": "Slide p.22 gives this statement.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2287,
+    "type": "mcq",
+    "question": "What does slide p.22 say happens when per-frame geometry flickers?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The AbsRel becomes lower.",
+      "B": "Inference becomes faster.",
+      "C": "The batch size must grow.",
+      "D": "Occupancy becomes unstable."
+    },
+    "answer": "D",
+    "explanation": "Slide p.22 says flickering geometry becomes unstable occupancy.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2288,
+    "type": "mcq",
+    "question": "What does slide p.24 say a patent publication can show?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Disclosed methods, not proof of exact production deployment",
+      "B": "Proof of production use",
+      "C": "Benchmark numbers for the model",
+      "D": "Exact production deployment"
+    },
+    "answer": "A",
+    "explanation": "Slide p.24 gives this distinction.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2289,
+    "type": "mcq",
+    "question": "What safety wording does slide p.23 report for public FSD?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Fully autonomous",
+      "B": "Supervised, requiring active driver attention",
+      "C": "Hands-free anywhere",
+      "D": "Certified L5"
+    },
+    "answer": "B",
+    "explanation": "Slide p.23 reports supervised operation with driver attention.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2290,
+    "type": "mcq",
+    "question": "What does the label-efficient formulation on slide p.25 use at inference?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "LiDAR and camera",
+      "B": "Radar only",
+      "C": "Camera only",
+      "D": "A map prior only"
+    },
+    "answer": "C",
+    "explanation": "Slide p.25 says the student is camera-only at inference.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2291,
+    "type": "mcq",
+    "question": "Which statement matches slide p.25 about depth quality as a paper's claim?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A downstream test is unnecessary once depth error is low.",
+      "B": "Depth quality is the paper's main claim.",
+      "C": "Depth error is the only metric needed.",
+      "D": "Depth quality alone is not the paper's claim; show that the teacher improves downstream autonomy."
+    },
+    "answer": "D",
+    "explanation": "Slide p.25 gives this statement.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2292,
+    "type": "sa",
+    "question": "Explain how a metric depth map along one camera ray becomes occupancy labels. Name the free cells, the occupied cell, and the step that produces the grid.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "Cells with t less than the measured depth D(u, v) are free, and the cell near t = D(u, v) is occupied (p.22). Surface samples come from the metric depth, then ray tracing marks free-before-surface cells, and the result is an occupancy grid with free, occupied, and unknown states (p.22). The semantic head adds class and motion labels on top of that grid.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2293,
+    "type": "sa",
+    "question": "Describe the fleet auto-labelling pipeline on slide p.24 and explain why projecting the reconstruction into each frame needs the camera pose.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "Fleet clips from many trips are aligned across trips, reconstructed into a stable 3D scene, and used to auto-label lanes, objects, and occupancy (p.24). Each label is then projected into a camera frame. The pose at time t sets where the camera is when the frame is taken, so the same world point maps to the correct pixel in each frame.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2294,
+    "type": "sa",
+    "question": "Design a fair experiment to test whether a depth teacher improves a camera-only occupancy student. Name the controls and the downstream metric.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "Fix the backbone, head, data budget, and fine-tuning schedule (p.25). Train one student with teacher ray labels and one without, using identical settings otherwise. Compare occupancy or detection quality on held-out data, reported with variance across seeds. A depth error table alone does not test the claim, since p.25 requires the downstream autonomy check.",
+    "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
+  },
+  {
+    "num": 2295,
+    "type": "tf",
+    "question": "FCOS3D is an anchor-free detector in which each pixel inside an object predicts its own 3D box.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.28 gives this description.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2296,
+    "type": "tf",
+    "question": "PGD models depth as a softmax over depth bins and reports an expectation and an uncertainty.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.28 describes probabilistic depth in these terms.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2297,
+    "type": "tf",
+    "question": "The slide reports FCOS3D at 42.8 mAP and 35.8 NDS on nuScenes test.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.28 reports 35.8 mAP and 42.8 NDS. The values are reversed in this statement.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2298,
+    "type": "tf",
+    "question": "FCOS3D regresses depth directly as part of its per-pixel head.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.28 says depth is regressed directly.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2299,
+    "type": "tf",
+    "question": "The per-camera limit on p.28 means that an object cut by an image border is seen once across all cameras.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.28 says such objects are duplicated, which is why the cameras are merged with NMS.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2300,
+    "type": "tf",
+    "question": "The slide reports PGD at 44.8 mAP and 38.6 NDS on nuScenes test.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.28 gives 38.6 / 44.8, and the mAP and NDS order is the reverse of this statement.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2301,
+    "type": "tf",
+    "question": "A 10 percent depth error at 30 m is 3 m, according to slide p.28.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The slide makes this example.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2302,
+    "type": "tf",
+    "question": "A 10 percent depth error at 30 m is smaller than the 2 m matching threshold.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "3 m is larger than 2 m. The slide says this error is larger than the threshold.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2303,
+    "type": "tf",
+    "question": "Slide p.26 lists Tesla in the industry row of camera 3D detection.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The slide names Tesla, Horizon, XPeng, Li Auto, and Huawei in that row.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2304,
+    "type": "tf",
+    "question": "The lift-splat family on p.26 uses a depth distribution per pixel to form BEV features.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.26 gives this description.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2305,
+    "type": "tf",
+    "question": "Slide p.28 says the KITTI line, including MonoFlex and MonoDETR, removes the depth ceiling.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide says the KITTI line improves the depth head but has the same limit.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2306,
+    "type": "tf",
+    "question": "The timeline on p.27 gives exact release dates for each method.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The positions on the chart are read by eye, and only the order within each row is reliable.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2307,
+    "type": "mcq",
+    "question": "Which family on slide p.26 uses a 2D detector with depth and 3D size per object, per camera?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Monocular",
+      "B": "3D queries",
+      "C": "Lift-splat",
+      "D": "Industry"
+    },
+    "answer": "A",
+    "explanation": "Slide p.26 gives this description for the monocular family.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2308,
+    "type": "mcq",
+    "question": "What kind of head does slide p.28 describe for FCOS3D?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Anchor-based two-stage proposals",
+      "B": "Anchor-free, per-pixel prediction",
+      "C": "Set prediction with Hungarian matching",
+      "D": "A voxel occupancy grid"
+    },
+    "answer": "B",
+    "explanation": "Slide p.28 describes an anchor-free design.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2309,
+    "type": "mcq",
+    "question": "What does slide p.28 say PGD's probabilistic depth provides?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A single hard depth value",
+      "B": "A depth map from LiDAR",
+      "C": "A softmax over depth bins, giving an expectation and an uncertainty",
+      "D": "A fixed depth of 20 m"
+    },
+    "answer": "C",
+    "explanation": "Slide p.28 gives this description.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2310,
+    "type": "mcq",
+    "question": "What does slide p.28 identify as a limit of processing each camera alone?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Cameras share no features.",
+      "B": "LiDAR is required for every object.",
+      "C": "Each camera has too few pixels.",
+      "D": "Objects cut by an image border are duplicated across cameras."
+    },
+    "answer": "D",
+    "explanation": "Slide p.28 gives this limit.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2311,
+    "type": "mcq",
+    "question": "How does slide p.28 merge the per-camera detections?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "NMS after lifting to 3D",
+      "B": "Averaging the depth maps",
+      "C": "Concatenating the images",
+      "D": "Dropping objects near the border"
+    },
+    "answer": "A",
+    "explanation": "Slide p.28 lists lift to 3D and merge cameras (NMS).",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2312,
+    "type": "mcq",
+    "question": "A relative depth error of 10 percent is applied to an object at 30 m. What is the absolute error?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "0.3 m",
+      "B": "3.0 m",
+      "C": "2.0 m",
+      "D": "1.0 m"
+    },
+    "answer": "B",
+    "explanation": "0.10 x 30 = 3.0 m, which matches the slide's example.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2313,
+    "type": "mcq",
+    "question": "At what distance does a 10 percent relative error reach the 2 m threshold?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "10 m",
+      "B": "30 m",
+      "C": "20 m",
+      "D": "40 m"
+    },
+    "answer": "C",
+    "explanation": "Solve 0.10 x D = 2 m, which gives D = 20 m.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2314,
+    "type": "mcq",
+    "question": "At what distance does a 5 percent relative error reach the 2 m threshold?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "10 m",
+      "B": "20 m",
+      "C": "60 m",
+      "D": "40 m"
+    },
+    "answer": "D",
+    "explanation": "Solve 0.05 x D = 2 m, which gives D = 40 m.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2315,
+    "type": "mcq",
+    "question": "Which backbone does slide p.28 give with the FCOS3D nuScenes result?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "R101-DCN",
+      "B": "R50",
+      "C": "Swin-T",
+      "D": "ViT-B"
+    },
+    "answer": "A",
+    "explanation": "Slide p.28 lists R101-DCN.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2316,
+    "type": "mcq",
+    "question": "Which pair does slide p.28 give for FCOS3D on nuScenes test?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "42.8 mAP and 35.8 NDS",
+      "B": "35.8 mAP and 42.8 NDS",
+      "C": "38.6 mAP and 44.8 NDS",
+      "D": "44.8 mAP and 38.6 NDS"
+    },
+    "answer": "B",
+    "explanation": "Slide p.28 gives 35.8 mAP and 42.8 NDS.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2317,
+    "type": "mcq",
+    "question": "Which family on slide p.26 contains DETR3D?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Lift-splat",
+      "B": "Monocular",
+      "C": "3D queries",
+      "D": "Industry"
+    },
+    "answer": "C",
+    "explanation": "Slide p.26 lists DETR3D, PETR, and BEVFormer under 3D queries.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2318,
+    "type": "mcq",
+    "question": "Which family on slide p.26 contains StreamPETR?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Monocular",
+      "B": "Lift-splat",
+      "C": "3D queries",
+      "D": "Sparse queries"
+    },
+    "answer": "D",
+    "explanation": "Slide p.26 lists StreamPETR under sparse queries.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2319,
+    "type": "mcq",
+    "question": "What does slide p.28 give as the reason the monocular approach hits a ceiling?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Depth of a car from one image is ill-posed, and errors grow with distance.",
+      "B": "LiDAR cost",
+      "C": "Temporal input is forbidden",
+      "D": "Too many object classes"
+    },
+    "answer": "A",
+    "explanation": "Slide p.28 gives this reason first.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2320,
+    "type": "mcq",
+    "question": "Which subtitle does slide p.27 give for the timeline?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Camera-only methods lost ground.",
+      "B": "Two camera families in parallel; temporal reasoning delivered the late gains.",
+      "C": "LiDAR alone is best on every benchmark.",
+      "D": "Monocular detection is deployed everywhere."
+    },
+    "answer": "B",
+    "explanation": "Slide p.27 gives this subtitle.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2321,
+    "type": "mcq",
+    "question": "Which row of the p.27 timeline contains PETR?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Monocular",
+      "B": "Lift-splat",
+      "C": "Dense BEV query",
+      "D": "Camera plus LiDAR fusion"
+    },
+    "answer": "C",
+    "explanation": "PETR appears in the dense BEV query row of the chart.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2322,
+    "type": "mcq",
+    "question": "What does slide p.28 say about PGD's geometric depth?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "It ignores geometry.",
+      "B": "It uses LiDAR points for every object.",
+      "C": "It uses a fixed prior per class.",
+      "D": "It uses perspective relations between objects, drawn as a graph."
+    },
+    "answer": "D",
+    "explanation": "Slide p.28 gives this description.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2323,
+    "type": "sa",
+    "question": "Explain why a monocular 3D detector's depth error matters more for distant objects than for near ones, using a numeric example.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The absolute error equals a relative error times the true distance. A 10 percent relative error gives 1 m at 10 m and 3 m at 30 m (p.28). At this error level, the absolute error passes a fixed 2 m matching threshold at about 20 m, so an object beyond that distance can be off by more than the threshold even when its relative error is the same.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2324,
+    "type": "sa",
+    "question": "A student proposes using only the monocular family for a nuScenes study with all six cameras, and reports the per-camera detections without merging. Name the problem and the step that fixes it.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "Objects cut by image borders appear in more than one camera (p.28). Without merging, the same object is counted more than once, which inflates false positives. The fix is to lift each camera's detections to 3D and merge them with NMS, as the slide describes.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2325,
+    "type": "sa",
+    "question": "A paper quotes PGD's nuScenes test score from a secondary table. Describe the check you would run before quoting the number in your proposal.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "Find the original PGD paper and confirm the test score there, or read it from the official nuScenes leaderboard. The slide says the number is \"as listed in later comparison tables,\" which makes it a secondary source (p.28). Mark the number as unverified until that check is done.",
+    "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
+  },
+  {
+    "num": 2326,
+    "type": "tf",
+    "question": "LSS computes a softmax over D depth bins for each pixel and combines it with a context feature.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.29 gives the lift step as a per-pixel softmax over D depth bins (alpha) and a context feature (c).",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2327,
+    "type": "tf",
+    "question": "The splat step sums frustum points into BEV cells using voxel or pillar pooling.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.29 describes the splat step as sum-pooling frustum points into BEV cells.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2328,
+    "type": "tf",
+    "question": "BEVDet adds a BEV encoder and a CenterPoint-style head on top of the LSS view transform.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.29 lists the BEV encoder and CenterPoint head for BEVDet, and p.34 names the CenterHead.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2329,
+    "type": "tf",
+    "question": "BEVDet4D concatenates the previous BEV feature, aligned for ego-motion, with the current BEV feature.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.32 gives this description of BEVDet4D.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2330,
+    "type": "tf",
+    "question": "The BEVDepth total loss has the form L = L_det + lambda_depth x L_depth, where L_det is the detection loss.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.35 gives this formula and names L_det as the standard detection loss.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2331,
+    "type": "tf",
+    "question": "The deck gives lambda_depth = 1.0 as the weight used in BEVDepth.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.35 gives the formula but does not state a value for lambda_depth.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2332,
+    "type": "tf",
+    "question": "Halving the BEV cell size in a 2D grid roughly doubles the number of cells.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Halving the cell size in both axes gives four times as many cells. Slide p.31 describes BEV memory growth as quadratic.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2333,
+    "type": "tf",
+    "question": "The BEVDepth depth loss is computed against LiDAR points projected into the image.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide p.32 describes the explicit depth loss as coming from projected LiDAR points, and p.35 says the same.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2334,
+    "type": "tf",
+    "question": "The camera-aware DepthNet in BEVDepth ignores camera intrinsics and extrinsics.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slides p.32 and p.36 say the intrinsics and extrinsics are fed into the depth network.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2335,
+    "type": "tf",
+    "question": "Slide p.36 describes BEVDet's depth supervision as explicit and LiDAR-driven.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.36 describes BEVDet's depth supervision as implicit, relying on the detection loss. Slide p.34 conflicts with this, and the topic guide flags the inconsistency.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2336,
+    "type": "tf",
+    "question": "Better depth estimates alone let a single-frame detector estimate object velocity.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.35 says a single-frame model cannot determine whether an object is moving, regardless of depth accuracy.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2337,
+    "type": "tf",
+    "question": "The deck gives Fast-BEV, with an R50 backbone, a throughput of 26.3 FPS on a 2080Ti.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide p.32 gives 52.6 FPS for Fast-BEV with R50 on a 2080Ti.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2338,
+    "type": "mcq",
+    "question": "What does the lift step compute for each pixel, according to slide p.29?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "A softmax over D depth bins and a context feature, combined by an outer product",
+      "B": "A BEV cell index from the quantizer",
+      "C": "A learned NMS score",
+      "D": "A camera extrinsic matrix"
+    },
+    "answer": "A",
+    "explanation": "Slide p.29 defines the lift as a per-pixel softmax over D depth bins and a context feature, combined as an outer product.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2339,
+    "type": "mcq",
+    "question": "Which two components does BEVDet add to the LSS view transform, according to slide p.29?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A transformer decoder for depth and a LiDAR encoder",
+      "B": "A BEV encoder and a CenterPoint head",
+      "C": "A LiDAR input at inference time and a segmentation head",
+      "D": "A ResNet-101 backbone and a set prediction head"
+    },
+    "answer": "B",
+    "explanation": "Slide p.29 lists the BEV encoder and CenterPoint head as the additions.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2340,
+    "type": "mcq",
+    "question": "In the BEVDepth objective on slide p.35, which expression is the explicit depth term?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "L_det alone",
+      "B": "lambda_depth alone",
+      "C": "lambda_depth multiplied by L_depth",
+      "D": "The output of the BEV encoder"
+    },
+    "answer": "C",
+    "explanation": "The slide writes the total loss as L_det + lambda_depth L_depth, so the explicit depth term is the product.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2341,
+    "type": "mcq",
+    "question": "With x_min = -50 m and a cell size of 0.5 m, which cell index does x = 12.30 m fall into?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "124.6",
+      "B": "125",
+      "C": "123",
+      "D": "124"
+    },
+    "answer": "D",
+    "explanation": "(12.30 + 50) / 0.5 = 124.6, and floor(124.6) = 124. The index formula is on slide p.31.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2342,
+    "type": "mcq",
+    "question": "Which BEVDepth component conditions the depth prediction on camera geometry?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The camera-aware DepthNet",
+      "B": "The BEV encoder",
+      "C": "The CenterHead",
+      "D": "The BEVPool kernel"
+    },
+    "answer": "A",
+    "explanation": "Slide p.36 names the camera-aware DepthNet as the component that takes intrinsics and extrinsics.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2343,
+    "type": "mcq",
+    "question": "A 100 m by 100 m BEV grid changes from 0.5 m cells to 0.25 m cells. By what factor does the number of cells change?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "2",
+      "B": "4",
+      "C": "8",
+      "D": "16"
+    },
+    "answer": "B",
+    "explanation": "200 x 200 = 40,000 cells before and 400 x 400 = 160,000 after. The factor is 4.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2344,
+    "type": "mcq",
+    "question": "A voxel grid halves its resolution in all three axes. By what factor does the voxel count change?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "2",
+      "B": "4",
+      "C": "8",
+      "D": "16"
+    },
+    "answer": "C",
+    "explanation": "Each of the three axes doubles its cell count, so the total multiplies by 2 x 2 x 2 = 8. Slide p.31 describes voxel growth as cubic.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2345,
+    "type": "mcq",
+    "question": "What does slide p.34 name as the source of depth supervision during BEVDet training?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Radar returns",
+      "B": "Stereo disparity from a second rig",
+      "C": "Semantic segmentation masks",
+      "D": "Sparse LiDAR points projected onto the images"
+    },
+    "answer": "D",
+    "explanation": "Slide p.34 describes sparse LiDAR points projected onto the images to penalize wrong depth guesses. The conflict with p.36 is covered in the topic guide.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2346,
+    "type": "mcq",
+    "question": "According to slide p.35, why can a single-frame model not estimate velocity?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "It cannot tell from one frame whether an object is moving, regardless of how accurate its depth is",
+      "B": "Its depth bins are too coarse",
+      "C": "Its CenterHead has no regression branch",
+      "D": "LiDAR removes motion cues at test time"
+    },
+    "answer": "A",
+    "explanation": "Slide p.35 states this limit directly.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2347,
+    "type": "mcq",
+    "question": "Which pooling option is not listed on slide p.31 for combining points in one BEV cell?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Sum",
+      "B": "Median",
+      "C": "Max",
+      "D": "Learned aggregation"
+    },
+    "answer": "B",
+    "explanation": "Slide p.31 lists sum, mean, max, and learned aggregation. Median is not on the slide.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2348,
+    "type": "mcq",
+    "question": "Which statement about the date of BEVDepth in the deck is accurate?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "The deck gives only 2021 for BEVDepth",
+      "B": "The deck gives 2020 for BEVDepth",
+      "C": "The p.29 header says 2022 and p.32 says 2023, so the deck is inconsistent",
+      "D": "The deck does not give any year for BEVDepth"
+    },
+    "answer": "C",
+    "explanation": "The slide header on p.29 reads \"BEVDepth (2022)\" and the p.32 box reads \"BEVDepth (2023)\".",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2349,
+    "type": "mcq",
+    "question": "Fast-BEV is reported at 52.6 FPS on a 2080Ti. What is the approximate time for one frame?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "1.9 ms",
+      "B": "52.6 ms",
+      "C": "5.3 ms",
+      "D": "19.0 ms"
+    },
+    "answer": "D",
+    "explanation": "1000 / 52.6 = 19.0 ms. The slide does not say what the timing includes.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2350,
+    "type": "mcq",
+    "question": "On slide p.29, the depth loss falls from 4.3 to 1.8. What is the relative reduction?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "58.1 percent",
+      "B": "41.9 percent",
+      "C": "2.5 percent",
+      "D": "139 percent"
+    },
+    "answer": "A",
+    "explanation": "(4.3 - 1.8) / 4.3 = 0.581, so the reduction is 58.1 percent.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2351,
+    "type": "mcq",
+    "question": "Which backbone does slide p.32 list for the BEVDet4D test result?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "ConvNeXt-B",
+      "B": "Swin-B",
+      "C": "R50",
+      "D": "V2-99"
+    },
+    "answer": "B",
+    "explanation": "Slide p.32 lists Swin-B with TTA for BEVDet4D.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2352,
+    "type": "mcq",
+    "question": "According to slide p.35, what does the explicit depth term do in BEVDepth?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "It replaces the detection loss",
+      "B": "It sets the BEV grid size",
+      "C": "It regularizes the view transformation while detection remains the downstream objective",
+      "D": "It selects the top-k boxes at inference"
+    },
+    "answer": "C",
+    "explanation": "Slide p.35 uses this wording.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2353,
+    "type": "mcq",
+    "question": "Which inputs does the camera-aware DepthNet take, according to slides p.32 and p.36?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Previous BEV features",
+      "B": "The CenterPoint heatmap",
+      "C": "The LiDAR point cloud at inference time",
+      "D": "Camera intrinsics and extrinsics"
+    },
+    "answer": "D",
+    "explanation": "Slides p.32 and p.36 name intrinsics and extrinsics as inputs to the DepthNet.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2354,
+    "type": "sa",
+    "question": "Trace one camera pixel through LSS from the image feature to a BEV feature. Name each step in order.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The image encoder gives a context feature and a per-pixel score for each of D depth bins. A softmax over the bins gives the depth probabilities (p.29). The context feature is multiplied by each bin probability, which places the feature along the camera ray as a frustum (p.30). Each frustum point is mapped to a BEV index using the quantizer (p.31). Points that land in the same cell are pooled into one BEV feature (p.30). The steps use illustrative numbers in the topic guide, and the slides do not give the exact camera geometry.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2355,
+    "type": "sa",
+    "question": "The deck calls depth quality \"the bottleneck, not an auxiliary detail\" (p.35). Explain what BEVDepth adds to BEVDet to act on that claim, and name one limit the deck gives on it.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "BEVDepth adds an explicit depth loss computed from projected LiDAR points, and it conditions the depth network on camera intrinsics and extrinsics (pp.35 and 36). The limit the slide gives is that depth does not supply velocity. The same slide says performance can still be dominated by the image backbone and temporal cues. The bottleneck claim is the deck's argument. The slides do not include an ablation that shows the size of the depth effect.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2356,
+    "type": "sa",
+    "question": "A student reports that BEVDepth beats BEVDet4D by 6.9 points on the first test value from p.32. Critique the comparison and describe one controlled experiment that would support the claim.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The rows differ in backbone (Swin-B for BEVDet4D, ConvNeXt-B for BEVDepth), and the slide does not show that the training schedules match. The slide does not label the two test values, and it gives no seed count or variance. The comparison therefore mixes method, backbone, and possibly temporal input. A controlled experiment would fix one backbone and one schedule, train with and without the explicit depth term over several seeds, and report the mean and standard deviation of the detection metrics on the same test split. Only that design attributes the gain to the depth loss.",
+    "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
+  },
+  {
+    "num": 2357,
+    "type": "tf",
+    "question": "In the BEV Transformer encoder, Q, K, and V all come from the same input, so the encoder uses self-attention.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 4 states that the encoder uses self-attention with Q, K, and V taken from the same input, and names ViT and Swin Transformer as examples.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2358,
+    "type": "tf",
+    "question": "In the BEV decoder's cross-attention, Q, K, and V all come from the encoder output.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 9 assigns the queries to the processed BEV features plus BEV positional encodings. Keys and values come from the encoded camera features, so Q differs from K and V, as slide 4 states.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2359,
+    "type": "tf",
+    "question": "In slide 9's cross-attention, the values are the encoded camera features.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 9 says the layer \"receives the encoded camera features as values.\"",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2360,
+    "type": "tf",
+    "question": "In slide 9's cross-attention, the keys are the encoded camera features with no positional encoding.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 9 defines the keys as the encoded camera features plus the corresponding camera feature positional encodings.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2361,
+    "type": "tf",
+    "question": "The BEV queries in the cross-attention layer are processed one cell at a time, from the top-left corner to the bottom-right.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 9 says \"the queries are processed in parallel.\" The slide does not describe a scan order.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2362,
+    "type": "tf",
+    "question": "The BEV feature map is flattened into a d x s_bev sequence with s_bev = H_bev x W_bev.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 9 states this flattening directly.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2363,
+    "type": "tf",
+    "question": "In DETR, as slide 5 describes it, the decoder's learned queries act as object slots, and the decoder emits detections for those slots.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 5 says the decoder takes a small fixed number of learned embeddings called object queries and passes each output embedding to a shared FFN that predicts a detection or a \"no object\" class.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2364,
+    "type": "tf",
+    "question": "Slide 9's decoder layer contains a self-attention module that attends from the BEV queries to the camera tokens.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The attention from BEV queries to camera tokens is the cross-attention module. Slide 9 lists self-attention, cross-attention, and a feed-forward network as separate modules.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2365,
+    "type": "tf",
+    "question": "The camera features in slide 9 are used as queries, and the BEV features are used as keys and values.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 9 uses the BEV features as queries and the camera features as keys and values.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2366,
+    "type": "tf",
+    "question": "Slide 22 uses a 200 x 200 BEV grid as its example of a dense BEV grid.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 22 says \"Building a 200x200 dense BEV grid is memory intensive.\"",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2367,
+    "type": "tf",
+    "question": "Slide 8 says the encoder component fuses features from different cameras.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 8 states \"the encoder component fuses the features from different cameras and strengthens the expression of image features.\"",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2368,
+    "type": "tf",
+    "question": "Slides 6 and 7 give a full architecture diagram for Tesla's BEV Transformer.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 6 contains the title \"BEV Transformer\" and the text \"Tesla AI Day 2021.\" Slide 7 contains \"Tesla AI Day 2022,\" an occupancy network label, and a tensor shape label. Neither slide gives a diagram or an architecture.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2369,
+    "type": "mcq",
+    "question": "In the BEV Transformer encoder on slide 4, where do Q, K, and V come from?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Q, K, and V all come from the same input (self-attention)",
+      "B": "Q comes from BEV queries and K and V come from the cameras",
+      "C": "Q, K, and V all come from DETR object queries",
+      "D": "Only V is computed, with no Q or K"
+    },
+    "answer": "A",
+    "explanation": "Slide 4 defines encoder self-attention with Q, K, and V taken from the same input.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2370,
+    "type": "mcq",
+    "question": "Which assignment matches slide 9's description of the cross-attention layer?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Values are BEV features, queries are camera features, keys are object queries",
+      "B": "Values are encoded camera features, keys are encoded camera features plus camera positional encodings, queries are processed BEV features plus BEV positional encodings",
+      "C": "Values are BEV features, keys are BEV positional encodings, queries are camera features",
+      "D": "All three are the camera features, with no positional encodings"
+    },
+    "answer": "B",
+    "explanation": "This is the assignment written on slide 9.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2371,
+    "type": "mcq",
+    "question": "Slide 9 flattens the BEV feature map with H_bev x W_bev spatial shape and d channels into what form?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A d x (H_bev + W_bev) sequence",
+      "B": "An unordered set of N 3D points",
+      "C": "A d x s_bev sequence with s_bev = H_bev x W_bev",
+      "D": "A single vector after global average pooling"
+    },
+    "answer": "C",
+    "explanation": "Slide 9 says the map is flattened into a d x s_bev sequence where s_bev = H_bev W_bev.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2372,
+    "type": "mcq",
+    "question": "Which modules does slide 9 list for the transformer decoder?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A feed-forward network only",
+      "B": "A CNN backbone and a detection head",
+      "C": "A cross-attention module and a softmax only",
+      "D": "A self-attention module, a cross-attention module, and a feed-forward network"
+    },
+    "answer": "D",
+    "explanation": "Slide 9 lists these three modules.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2373,
+    "type": "mcq",
+    "question": "How does slide 9 describe the processing of the BEV queries in the cross-attention layer?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Processed in parallel",
+      "B": "One at a time, in raster order",
+      "C": "Only at inference time",
+      "D": "Replaced by DETR object queries during training"
+    },
+    "answer": "A",
+    "explanation": "Slide 9 says \"the queries are processed in parallel.\"",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2374,
+    "type": "mcq",
+    "question": "Slide 9 says the cross-attention layer \"transforms the camera features into the BEV frame.\" What is the mechanism?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "A fixed homography warps each image onto the ground plane",
+      "B": "Each BEV query gathers camera features weighted by attention",
+      "C": "Features are averaged over past time steps",
+      "D": "Camera positional encodings are removed"
+    },
+    "answer": "B",
+    "explanation": "The slide describes queries that read camera features through keys and values, so the weighting comes from attention. The slide does not describe a homography or a temporal average.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2375,
+    "type": "mcq",
+    "question": "Slide 9 gives the camera input sequence length as s_c. Which expression matches?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "N_c + H_c + W_c",
+      "B": "N_c + H_c x W_c",
+      "C": "N_c x H_c x W_c",
+      "D": "2 x N_c x H_c"
+    },
+    "answer": "C",
+    "explanation": "The rendered slide gives s_c = N_c H_c W_c, where N_c is the camera count and H_c, W_c is the camera feature size.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2376,
+    "type": "mcq",
+    "question": "Slide 5 says DETR's decoder handles the N objects in which way?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Sequentially, one object per step",
+      "B": "Only at the final decoder layer",
+      "C": "By the encoder before decoding starts",
+      "D": "In parallel at each decoder layer"
+    },
+    "answer": "D",
+    "explanation": "Slide 5 says \"our model decodes the N objects in parallel at each decoder layer.\"",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2377,
+    "type": "mcq",
+    "question": "In the BEV decoder, what does one query correspond to?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "A location (grid cell) on the BEV plane",
+      "B": "An object instance with a class label",
+      "C": "One camera image",
+      "D": "One ground-truth box"
+    },
+    "answer": "A",
+    "explanation": "Slide 9 builds the queries from the BEV feature map, which is defined by the BEV grid's range and resolution. Slide 35 (topic `75`) describes the queries as grid cells rather than object hypotheses.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2378,
+    "type": "mcq",
+    "question": "What do slides 6 and 7 contain?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A full decoder diagram",
+      "B": "Only titles and one-line references",
+      "C": "Training code",
+      "D": "A full loss function"
+    },
+    "answer": "B",
+    "explanation": "Each slide carries a title and a one-line reference or label. The deck gives no diagram or code for them.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2379,
+    "type": "mcq",
+    "question": "Which event does slide 7 cite when it introduces the occupancy network concept?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Tesla AI Day 2019",
+      "B": "Tesla AI Day 2021",
+      "C": "Tesla AI Day 2022",
+      "D": "Tesla AI Day 2024"
+    },
+    "answer": "C",
+    "explanation": "Slide 7 says \"Tesla AI Day 2022\" and \"New concept: Occupancy network.\"",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2380,
+    "type": "mcq",
+    "question": "Which slide uses the 200 x 200 dense BEV grid as its example?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Slide 4",
+      "B": "Slide 47",
+      "C": "Slide 40",
+      "D": "Slide 22"
+    },
+    "answer": "D",
+    "explanation": "Slide 22 gives the example in the query-detector discussion.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2381,
+    "type": "mcq",
+    "question": "Which two architectures does slide 4 name as encoder examples?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "ViT and Swin Transformer",
+      "B": "PointNet and PointNet++",
+      "C": "LSTM and GRU",
+      "D": "ResNet and VGG"
+    },
+    "answer": "A",
+    "explanation": "Slide 4 lists ViT and Swin Transformer under the encoder self-attention bullet.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2382,
+    "type": "mcq",
+    "question": "In slide 9's decoder, which module reads the encoded camera features?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The self-attention module",
+      "B": "The cross-attention module",
+      "C": "The feed-forward network",
+      "D": "The positional encoding"
+    },
+    "answer": "B",
+    "explanation": "The cross-attention module takes the camera features as keys and values.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2383,
+    "type": "mcq",
+    "question": "Slide 3 cites Lift, Splat, Shoot with which venue and year?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "CVPR 2019",
+      "B": "NeurIPS 2021",
+      "C": "ECCV 2020",
+      "D": "ICLR 2022"
+    },
+    "answer": "C",
+    "explanation": "Slide 3 gives \"(ECCV2020) Lift, Splat, Shoot.\"",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2384,
+    "type": "mcq",
+    "question": "Which tensor is the key in slide 9's cross-attention layer?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The BEV queries",
+      "B": "The feed-forward network output",
+      "C": "The decoder output",
+      "D": "The encoded camera features plus camera feature positional encodings"
+    },
+    "answer": "D",
+    "explanation": "Slide 9 defines the key as the addition of encoded camera features and camera feature positional encodings.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2385,
+    "type": "sa",
+    "question": "Describe the roles of the encoder and the decoder in the BEV Transformer on slides 4 and 8 to 9. Name the attention type used in each.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The encoder uses self-attention over the multi-camera features. Slide 8 says it fuses features from different cameras and strengthens the image features. The decoder uses self-attention and cross-attention plus a feed-forward network. Its cross-attention takes BEV queries (BEV features plus BEV positional encodings) and reads encoded camera features as keys and values, which transforms the camera features into the BEV frame. The decoder output is the BEV feature representation.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2386,
+    "type": "sa",
+    "question": "Write out the source of Q, K, and V in the BEV cross-attention layer on slide 9, and state what is different about the keys compared with the values.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "Q is the processed BEV features plus BEV positional encodings. K is the encoded camera features plus camera feature positional encodings. V is the encoded camera features. The keys differ from the values by the camera positional encoding, which lets each query match camera tokens by position as well as content. The slide states the sources but does not give the reason for the positional term, so the reason is an interpretation.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2387,
+    "type": "sa",
+    "question": "Assume six cameras with 32 x 88 feature maps and the 200 x 200 BEV grid from slide 22. Compute s_c and s_bev, and the number of entries in one attention score matrix. State which of these numbers come from the deck and which are assumptions.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "s_c = 6 x 32 x 88 = 16,896. s_bev = 200 x 200 = 40,000. The score matrix has 40,000 x 16,896 = 675,840,000 entries for one head. The 200 x 200 grid is from slide 22. The six cameras and 32 x 88 feature size are assumptions, not deck values. The count ignores batch size, heads, and layers.",
+    "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
+  },
+  {
+    "num": 2388,
+    "type": "tf",
+    "question": "DETR3D uses a fixed, sparse set of learnable object queries, and the slide's example size is N = 900.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 16 states \"a fixed, sparse set of N learnable object queries (e.g., N = 900).\"",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2389,
+    "type": "tf",
+    "question": "In DETR3D, each query predicts its reference point in the 2D image plane.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 16 says the network predicts a 3D reference point c_i = (x_i, y_i, z_i) in the ego vehicle's 3D coordinate system for every query.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2390,
+    "type": "tf",
+    "question": "DETR3D projects each reference point into the camera images using the camera intrinsics and the ego-to-camera transform.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 16 gives [u, v, w]^T = K_k T_(ego to cam_k) [x, y, z, 1]^T, followed by u' = u/w and v' = v/w.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2391,
+    "type": "tf",
+    "question": "DETR3D builds a dense BEV grid by projecting every image pixel into 3D before the decoder runs.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 19 says that projecting every pixel into 3D is computationally massive, and that DETR3D \"does the reverse,\" projecting its few reference points onto the images.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2392,
+    "type": "tf",
+    "question": "When a 3D point is visible in several overlapping cameras, DETR3D averages or sums the sampled features into one vector for the query.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 16 states this aggregation rule in its note under the projection equation.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2393,
+    "type": "tf",
+    "question": "Slide 11's 3D box vector includes sin(theta) and cos(theta) for orientation.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 11 gives b = (x, y, z, w, l, h, sin theta, cos theta, v_x, v_y, c) and states that yaw is often regressed as sine and cosine.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2394,
+    "type": "tf",
+    "question": "Slide 11 says camera-only depth errors mainly affect the orientation estimate.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide says camera-only depth errors \"mainly affect translation and velocity.\"",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2395,
+    "type": "tf",
+    "question": "Slide 12 says query-based detectors use Hungarian matching to assign predictions to ground truth.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 12 states \"Query-based detectors use Hungarian matching to assign predictions to ground truth.\"",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2396,
+    "type": "tf",
+    "question": "Slide 12 says dense heatmap detectors such as CenterPoint usually avoid NMS.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 12 says the dense detector \"usually requires Non-Maximum Suppression (NMS) to filter duplicates.\"",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2397,
+    "type": "tf",
+    "question": "Slide 14 places BEVFormer in the BEV query transformer family.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The slide 14 table lists BEVFormer under \"BEV query transformer,\" with the risk \"dense query cost.\"",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2398,
+    "type": "tf",
+    "question": "Slide 17 says the DETR3D code is based on PyTorch Lightning.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 17 says the repository is \"based on mmdetection3d.\"",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2399,
+    "type": "tf",
+    "question": "Slide 19's code notes give the query coordinates in metric ego units, so no rescaling is needed before projection.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide notes state that each row is a 3D point \"in normalized coordinates [0,1].\" The slide does not show how those values are converted to metric coordinates, so the projection step needs that conversion, which the slide leaves out.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2400,
+    "type": "mcq",
+    "question": "What does DETR3D's per-query network predict on slide 16?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "A 3D reference point (x, y, z) in the ego frame",
+      "B": "A 2D pixel location in the first camera only",
+      "C": "A depth histogram for every pixel",
+      "D": "A segmentation mask"
+    },
+    "answer": "A",
+    "explanation": "Slide 16 says the network predicts a 3D reference point in the ego vehicle's coordinate system for every query.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2401,
+    "type": "mcq",
+    "question": "Which sequence matches the DETR3D sampling steps on slide 16?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "LiDAR voxelization, then a 3D convolution",
+      "B": "Project the reference point with K and the ego-to-camera transform, divide by w, then sample F_k(u', v')",
+      "C": "Back-project every pixel with depth bins, then voxel pooling",
+      "D": "Take the median LiDAR depth, then project the query"
+    },
+    "answer": "B",
+    "explanation": "This is the sequence on slide 16.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2402,
+    "type": "mcq",
+    "question": "Which assignment rule does slide 12 attribute to query-based detectors?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "IoU threshold matching at a fixed value",
+      "B": "Grid-cell assignment by object center",
+      "C": "Hungarian matching",
+      "D": "No assignment, with every prediction supervised"
+    },
+    "answer": "C",
+    "explanation": "Slide 12 states the query-based detectors use Hungarian matching.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2403,
+    "type": "mcq",
+    "question": "In slide 11's grouping, which fields make up \"motion\"?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "(w, l, h)",
+      "B": "(sin theta, cos theta)",
+      "C": "Class and score",
+      "D": "(v_x, v_y)"
+    },
+    "answer": "D",
+    "explanation": "Slide 11 labels v_x and v_y as motion.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2404,
+    "type": "mcq",
+    "question": "Slide 12 gives the dense detector loss L_dense as what?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Focal loss on the heatmap plus an L1 box loss",
+      "B": "Cross-entropy on pixels only",
+      "C": "A GIoU loss only",
+      "D": "A contrastive loss between queries"
+    },
+    "answer": "A",
+    "explanation": "Slide 12 writes L_dense = L_focal(H, H_hat) + lambda_1 L_1(b, b_hat).",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2405,
+    "type": "mcq",
+    "question": "Which statement matches slide 18?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "DETR3D uses dense BEV grids with NMS",
+      "B": "DETR3D eliminates the need for dense BEV grids, bounding box anchors, and NMS",
+      "C": "DETR3D requires LiDAR depth",
+      "D": "DETR3D has no decoder"
+    },
+    "answer": "B",
+    "explanation": "Slide 18 says DETR3D \"entirely removes the need for dense Bird's-Eye View (BEV) grids, bounding box anchors, and Non-Maximum Suppression (NMS).\"",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2406,
+    "type": "mcq",
+    "question": "Slide 16 says what happens when a 3D point is visible in several overlapping cameras?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Only the first camera is used",
+      "B": "The query is discarded",
+      "C": "The sampled features are averaged or summed into a single vector",
+      "D": "The point is projected onto the ground plane"
+    },
+    "answer": "C",
+    "explanation": "This is the rule given under the slide 16 equation.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2407,
+    "type": "mcq",
+    "question": "How does slide 18 describe the query update from step t to step t+1?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A fixed linear projection of the query",
+      "B": "NMS over the query set",
+      "C": "Hungarian matching of reference points to pixels",
+      "D": "The decoder applied to q^t and the features sampled at pi(q^t)"
+    },
+    "answer": "D",
+    "explanation": "Slide 18 writes q_i^(t+1) = Decoder(q_i^t, Sample(F^cam, pi(q_i^t))).",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2408,
+    "type": "mcq",
+    "question": "What does DETR3D's sparsity buy, according to slides 18 and 19?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "It allocates computation to a handful of 3D reference points instead of every pixel",
+      "B": "It computes depth for every pixel",
+      "C": "It needs no camera calibration",
+      "D": "It uses a 200 x 200 dense grid"
+    },
+    "answer": "A",
+    "explanation": "Slide 19 says DETR3D projects a handful of reference points, avoiding the cost of projecting all camera pixels into 3D.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2409,
+    "type": "mcq",
+    "question": "Slide 19 gives the query tensor shape as (B, N_q, 3). What do the rows hold?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Pixel coordinates",
+      "B": "3D points in normalized [0, 1] coordinates",
+      "C": "Box sizes",
+      "D": "Class logits"
+    },
+    "answer": "B",
+    "explanation": "The slide notes say each row is a 3D point in normalized coordinates in [0, 1].",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2410,
+    "type": "mcq",
+    "question": "Which codebase does slide 17 cite for DETR3D?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "The TensorFlow Object Detection API",
+      "B": "Detectron2 only",
+      "C": "A repository based on mmdetection3d",
+      "D": "Ultralytics"
+    },
+    "answer": "C",
+    "explanation": "Slide 17 gives the GitHub link and states the code is based on mmdetection3d.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2411,
+    "type": "mcq",
+    "question": "Which family does slide 14 link with the risk \"dense query cost\"?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Depth-lifted BEV",
+      "B": "Heatmap-only detectors",
+      "C": "Object-centric queries",
+      "D": "BEV query transformer"
+    },
+    "answer": "D",
+    "explanation": "The slide 14 table pairs \"BEV query transformer\" with \"dense query cost.\"",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2412,
+    "type": "mcq",
+    "question": "What does slide 20 say about depth from a single camera ray?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Depth is hard, so the network must guess it from 2D visual cues",
+      "B": "Depth is provided by the calibration file",
+      "C": "Depth requires a LiDAR sensor",
+      "D": "Depth is easy to get from one camera"
+    },
+    "answer": "A",
+    "explanation": "Slide 20 states that \"camera-only depth is hard,\" and the network must learn to guess depth from 2D cues.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2413,
+    "type": "mcq",
+    "question": "What number of queries does slide 16 use as its example?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "100",
+      "B": "900",
+      "C": "300",
+      "D": "1000"
+    },
+    "answer": "B",
+    "explanation": "Slide 16 writes \"e.g., N = 900.\"",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2414,
+    "type": "mcq",
+    "question": "Which methods does slide 14 list as object-centric query methods?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "BEVDet and CenterPoint",
+      "B": "PointPillars and SECOND",
+      "C": "DETR3D, PETR, StreamPETR, and Sparse4D",
+      "D": "RetinaNet and YOLO"
+    },
+    "answer": "C",
+    "explanation": "The slide 14 table lists these four methods under \"Object-centric queries.\"",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2415,
+    "type": "mcq",
+    "question": "In the slide 15 transfer experiment, what is \"detection-only initialization\"?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The occupancy-pretrained model",
+      "B": "BEVFormer",
+      "C": "A LiDAR-only model",
+      "D": "The no-occupancy control"
+    },
+    "answer": "D",
+    "explanation": "Slide 15 says detection-only initialization \"is the no-occupancy control, not a new method.\"",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2416,
+    "type": "sa",
+    "question": "Walk through one DETR3D query from its reference point to its refined state, using slides 16 to 18. Name each step and the object it operates on.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The network predicts a 3D reference point c_i = (x, y, z) in the ego frame for query q_i. The point is projected into camera k with the intrinsics and extrinsic transform, and divided by w to give pixel coordinates (u', v'). The image feature F_k is sampled at (u', v'). If the point is visible in several cameras, the samples are averaged or summed into f_i. The decoder then updates the query from q_i^t and the sampled features, giving q_i^(t+1).",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2417,
+    "type": "sa",
+    "question": "Compare how a dense CenterPoint-style detector and DETR3D assign training targets and remove duplicate detections, using slides 12 and 15 and topic `73`.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The dense detector supervises a heatmap near object centers with a focal loss plus an L1 box term, then decodes top-K centers and applies NMS to remove duplicates (slides 12 and 15). DETR3D keeps a fixed sparse set of queries and assigns each ground-truth object to one query by Hungarian matching (slide 12). The unmatched queries are trained as no-object, so duplicates are discouraged in training and NMS is not needed (slide 18 says the method removes NMS).",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2418,
+    "type": "sa",
+    "question": "Using the arithmetic in topic `72`, compare 900 DETR3D queries with a 200 x 200 dense grid for six cameras. State the numbers, the assumptions, and what the comparison does not measure.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "900 queries x 6 cameras = 5,400 projections per decoder layer. A 200 x 200 grid (40,000 cells) x 6 cameras = 240,000 projections. The grid size is from slide 22, the 900 queries from slide 16, and the six cameras from slide 10. The comparison counts projections only. It does not include sampling, attention cost, memory, or detection accuracy.",
+    "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
+  },
+  {
+    "num": 2419,
+    "type": "tf",
+    "question": "Hungarian matching assigns each ground-truth object to exactly one query.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 21 states \"Each ground-truth object is matched to at most one prediction\" and describes the one-to-one assignment.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2420,
+    "type": "tf",
+    "question": "The matching cost on slide 21 uses only the classification term.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 21 gives a weighted sum of a classification cross-entropy term, an L1 box term, and a 3D IoU term.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2421,
+    "type": "tf",
+    "question": "Queries left unmatched by the Hungarian assignment are trained to predict the no-object class.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 21 says \"All the other leftover queries are automatically assigned to a 'no-object' background class.\"",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2422,
+    "type": "tf",
+    "question": "Slide 21 gives the cost weights as lambda_cls = 1, lambda_L1 = 5, and lambda_iou = 2.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide uses lambda terms in the formulas but does not give numeric values. The values 1, 5, and 2 are the 2D DETR weights in topic `53`.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2423,
+    "type": "tf",
+    "question": "The slide 21 matching cost includes a term of the form 1 minus the 3D IoU.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 21 writes \"1 - IoU_3D(b_i, b_j)\" as the third term.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2424,
+    "type": "tf",
+    "question": "The slide 21 matching box includes velocity components v_x and v_y.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide 21 list is x, y, z, w, h, l, sin theta, cos theta. Velocity appears in the slide 11 box vector, not in the slide 21 list.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2425,
+    "type": "tf",
+    "question": "Slide 21 says one-to-one matching removes the need for a separate NMS post-processing step.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 21 states \"No NMS required\" and says the loss \"naturally discourages duplicate predictions, eliminating the need for Non-Maximum Suppression.\"",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2426,
+    "type": "tf",
+    "question": "Slide 12 says query-based detectors need NMS to remove duplicate predictions.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 12 says the dense heatmap detector \"usually requires NMS,\" and says the query detector uses Hungarian matching.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2427,
+    "type": "tf",
+    "question": "Slide 12 says dense heatmap detectors such as CenterPoint usually require NMS.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 12 says the dense detector \"usually requires Non-Maximum Suppression (NMS) to filter duplicates.\"",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2428,
+    "type": "tf",
+    "question": "Slide 30 says PETRv2 uses Hungarian matching for detection.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 30 states \"For detection: Use Hungarian matching (like PETR).\"",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2429,
+    "type": "tf",
+    "question": "Slide 39 describes BEVFormer's detection loss as set-based, with no NMS needed.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 39 describes the loss as \"Dense, per-grid\" and says it \"requires NMS.\"",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2430,
+    "type": "tf",
+    "question": "In the slide 21 example with 900 queries and 3 cars, all 900 queries are trained as positives.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Three queries are matched to the three cars. The other 897 are trained as no-object.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2431,
+    "type": "mcq",
+    "question": "What does the Hungarian matching on slide 21 compute?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The one-to-one assignment with the lowest total matching cost between predictions and ground truth",
+      "B": "The learning rate schedule",
+      "C": "A non-maximum suppression mask",
+      "D": "The camera calibration matrix"
+    },
+    "answer": "A",
+    "explanation": "Slide 21 defines sigma* as the argmin over assignments of the total matching cost.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2432,
+    "type": "mcq",
+    "question": "What label does slide 21 give the leftover queries?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The class of the nearest object",
+      "B": "A \"no-object\" background class",
+      "C": "The largest object class in the scene",
+      "D": "The class of the highest-scoring query"
+    },
+    "answer": "B",
+    "explanation": "Slide 21 says the leftover queries are assigned to a \"no-object\" background class.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2433,
+    "type": "mcq",
+    "question": "Which terms make up the slide 21 matching cost?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Classification and depth only",
+      "B": "2D IoU only",
+      "C": "Classification cross-entropy, L1 box distance, and 3D IoU cost",
+      "D": "A mask loss and a contrastive loss"
+    },
+    "answer": "C",
+    "explanation": "Slide 21 lists these three terms.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2434,
+    "type": "mcq",
+    "question": "Which field is absent from the slide 21 list of matching box fields?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "x, y, z",
+      "B": "sin theta and cos theta",
+      "C": "w, h, and l",
+      "D": "v_x and v_y"
+    },
+    "answer": "D",
+    "explanation": "Slide 21 lists x, y, z, w, h, l, sin theta, and cos theta. Velocity is in the slide 11 box vector.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2435,
+    "type": "mcq",
+    "question": "Which assignment does slide 12 attribute to query-based detectors?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Hungarian matching over a fixed sparse set of queries",
+      "B": "NMS applied after a dense heatmap",
+      "C": "A fixed IoU threshold of 0.5",
+      "D": "Random assignment"
+    },
+    "answer": "A",
+    "explanation": "Slide 12 says query-based detectors use Hungarian matching, and describes a fixed sparse set of queries.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2436,
+    "type": "mcq",
+    "question": "Under the slide 21 rule, what happens to a second query that sits on the same car as the matched query?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "It is merged with the matched query by averaging",
+      "B": "It is left unmatched and labeled no-object",
+      "C": "It is allowed as a positive during training",
+      "D": "Its matching weights are set to zero"
+    },
+    "answer": "B",
+    "explanation": "Slide 21 says the strict one-to-one rule penalizes duplicates, which means the extra query gets no positive match.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2437,
+    "type": "mcq",
+    "question": "Slide 21 uses 900 queries and 3 cars. How many queries are matched and how many are no-object?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "3 no-object and 897 matched",
+      "B": "900 matched and none no-object",
+      "C": "3 matched and 897 no-object",
+      "D": "300 matched and 600 no-object"
+    },
+    "answer": "C",
+    "explanation": "Each car gets one matched query, and the remaining 897 are no-object.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2438,
+    "type": "mcq",
+    "question": "Slide 12 describes what the dense heatmap detector outputs near an object?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "No candidates, since it works on the grid only",
+      "B": "Exactly one box per object by construction",
+      "C": "A Hungarian assignment of one query per object",
+      "D": "Many overlapping candidates, which usually need NMS"
+    },
+    "answer": "D",
+    "explanation": "Slide 12 says the dense detector \"outputs many overlapping candidates\" and usually requires NMS.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2439,
+    "type": "mcq",
+    "question": "Which algorithm solves the assignment in slide 21 exactly?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The Hungarian algorithm, which solves the assignment problem optimally in polynomial time",
+      "B": "A greedy NMS variant",
+      "C": "Random sampling of queries",
+      "D": "A learned routing network"
+    },
+    "answer": "A",
+    "explanation": "The Hungarian algorithm (Kuhn-Munkres) is the standard exact solver for this assignment problem.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2440,
+    "type": "mcq",
+    "question": "Which expression matches slide 21's optimal assignment equation?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The argmax over predictions of the confidence score",
+      "B": "sigma* = argmin over sigma of the sum over j of C(y_sigma(j), y_j)",
+      "C": "The sum of softmax probabilities",
+      "D": "The mean squared error between box centers"
+    },
+    "answer": "B",
+    "explanation": "This is the equation on slide 21, with sigma* the minimizing assignment.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2441,
+    "type": "mcq",
+    "question": "What does slide 30 say PETRv2 uses for detection?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Focal loss only",
+      "B": "L1 loss only",
+      "C": "Hungarian matching, like PETR",
+      "D": "A contrastive loss"
+    },
+    "answer": "C",
+    "explanation": "Slide 30 states \"For detection: Use Hungarian matching (like PETR).\"",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2442,
+    "type": "mcq",
+    "question": "Which IoU does the slide 21 cost use?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "2D IoU in the image plane",
+      "B": "No IoU term",
+      "C": "Mask IoU",
+      "D": "3D IoU"
+    },
+    "answer": "D",
+    "explanation": "Slide 21 writes IoU_3D.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2443,
+    "type": "mcq",
+    "question": "How does slide 39 describe the BEVFormer detection loss?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Dense per-grid, and the slide says it requires NMS",
+      "B": "One-to-one matching with a Hungarian algorithm",
+      "C": "Learned NMS inside the network",
+      "D": "Set-based and NMS-free"
+    },
+    "answer": "A",
+    "explanation": "Slide 39 says \"Dense, per-grid. More stable, faster training, requires NMS.\"",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2444,
+    "type": "mcq",
+    "question": "Why do dense detectors produce duplicates that need NMS, according to slide 12?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The model has too few candidates",
+      "B": "Many grid cells near one object center produce overlapping candidates",
+      "C": "The Hungarian matching is absent",
+      "D": "NMS is needed to estimate velocity"
+    },
+    "answer": "B",
+    "explanation": "Slide 12 describes many overlapping candidates from a dense heatmap around object centers.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2445,
+    "type": "mcq",
+    "question": "What does slide 21 say about the lambda weights in the matching cost?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "lambda_cls = 1, lambda_L1 = 5, lambda_iou = 2",
+      "B": "All lambda values equal 0.5",
+      "C": "The slide does not give numeric lambda values",
+      "D": "The lambda values are chosen on the test set"
+    },
+    "answer": "C",
+    "explanation": "Slide 21 uses lambda symbols in the formula and gives no numeric values.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2446,
+    "type": "mcq",
+    "question": "Which items does slide 12 list under hybrid systems?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A pure dense heatmap with NMS",
+      "B": "Rule-based association only",
+      "C": "LiDAR-only point clouds",
+      "D": "A BEV encoder with queries, denoising training, and temporal memory"
+    },
+    "answer": "D",
+    "explanation": "Slide 12 lists \"BEV encoder + queries,\" \"denoising training,\" and \"temporal memory\" under hybrid systems.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2447,
+    "type": "sa",
+    "question": "Explain how the one-to-one rule on slide 21 removes the need for NMS. Refer to what happens to a second query near the same car.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "Each ground-truth object is matched to at most one query, and the matched query is the only positive for that object. A second query near the same car is not matched, so it is trained as no-object. The loss therefore penalizes the duplicate during training. The slide makes this argument. Whether the trained model produces no duplicates at inference is a separate question that the slides do not measure.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2448,
+    "type": "sa",
+    "question": "Use the cost matrix C = [[0.5, 0.2], [0.1, 0.6], [0.3, 0.4]], where rows are predictions p1, p2, p3 and columns are ground-truth objects g1 and g2. Find the optimal one-to-one assignment and its total cost. Which prediction is unmatched?",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The six valid assignments cost: g1 to p1 and g2 to p2 is 1.1; g1 to p1 and g2 to p3 is 0.9; g1 to p2 and g2 to p1 is 0.3; g1 to p2 and g2 to p3 is 0.5; g1 to p3 and g2 to p1 is 0.5; g1 to p3 and g2 to p2 is 0.9. The minimum is 0.3, at g1 to p2 and g2 to p1. Prediction p3 is unmatched and is trained as no-object. The costs are illustrative.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2449,
+    "type": "sa",
+    "question": "Name the three terms in the slide 21 matching cost and say what each one rewards. Then state one thing the slide does not give that you would need to reproduce the matching.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The classification cross-entropy term rewards the correct class. The L1 term rewards a predicted box whose parameters are close to the ground truth. The 3D IoU term rewards predicted boxes with high volumetric overlap. The slide does not give the lambda weights, so a reproduction would need them from the official code or from a cited configuration.",
+    "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
+  },
+  {
+    "num": 2450,
+    "type": "tf",
+    "question": "PETR computes a 3D coordinate for each image pixel from the camera intrinsics, the extrinsics, and depth hypotheses sampled from a discrete range.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 24 describes this per-pixel 3D coordinate computation as the core of PETR.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2451,
+    "type": "tf",
+    "question": "PETR needs a LiDAR depth map to build its 3D position embedding.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 24 says the depth comes from hypotheses sampled from a discrete depth range, with no LiDAR input.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2452,
+    "type": "tf",
+    "question": "Slide 26 says PETR processes single frames, which leaves its temporal consistency weak.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 26 states \"PETR only processes single frames\" and calls temporal consistency weak.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2453,
+    "type": "tf",
+    "question": "StreamPETR re-encodes every past frame at each time step, so its cost grows with the number of stored frames.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 27 says StreamPETR \"keeps a feature queue\" and does not re-encode all frames.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2454,
+    "type": "tf",
+    "question": "StreamPETR moves stored previous-frame features into the current ego frame using the vehicle pose.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 27 says the past features are transformed into the current ego coordinate frame using the vehicle's pose.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2455,
+    "type": "tf",
+    "question": "StreamPETR aligns its temporal features by first building a BEV grid.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 27 says the temporal alignment is achieved \"without BEV projection.\"",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2456,
+    "type": "tf",
+    "question": "PETRv2's feature-guided position encoder (FPE) makes the 3D position embedding depend on image features.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 29 says FPE uses the actual 2D image features to modulate the 3D position embedding.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2457,
+    "type": "tf",
+    "question": "PETRv2 uses detection queries only, and it drops the segmentation and lane queries.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 30 lists detection, BEV segmentation, and lane queries in one decoder that shares the backbone and transformer.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2458,
+    "type": "tf",
+    "question": "Slide 30 gives Hungarian matching as the assignment rule for PETRv2 detection.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 30 says detection uses Hungarian matching, like PETR.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2459,
+    "type": "tf",
+    "question": "Slide 26 gives the StreamPETR venue as ECCV 2022.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 26 gives \"CVPR 2023 (Wang et al.).\" The venue on the slide is not checked against the paper in this note, and it is marked [VERIFY] in the study material.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2460,
+    "type": "tf",
+    "question": "PETR's depth hypotheses are sampled from a continuous range with no discretization.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 24 says the depth values are sampled from \"a discrete depth range.\"",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2461,
+    "type": "tf",
+    "question": "PETRv2 aligns the 3D coordinates of previous frames with the current frame inside the 3D position embedding space.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 29 states this alignment in the 3D PE space as its temporal modeling approach.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2462,
+    "type": "mcq",
+    "question": "What does PETR use to compute the 3D coordinate of each image pixel?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The camera intrinsics, the extrinsics, and depth hypotheses from a discrete range",
+      "B": "A LiDAR point cloud projected into each camera",
+      "C": "A learned lookup table indexed by pixel",
+      "D": "Optical flow between consecutive frames"
+    },
+    "answer": "A",
+    "explanation": "Slide 24 gives this computation, with the depth hypotheses sampled from a discrete range.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2463,
+    "type": "mcq",
+    "question": "How does StreamPETR handle past frames?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "It re-encodes all past frames at every step.",
+      "B": "It keeps a feature queue and moves its entries into the current ego frame with the vehicle pose.",
+      "C": "It keeps only the LiDAR map.",
+      "D": "It builds a fixed BEV voxel grid from each frame."
+    },
+    "answer": "B",
+    "explanation": "Slide 27 describes the feature queue and the pose-based transform.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2464,
+    "type": "mcq",
+    "question": "Which limit does slide 26 give for PETR?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "It supports too many cameras.",
+      "B": "It has no ego pose.",
+      "C": "It processes single frames, so temporal consistency is weak.",
+      "D": "It uses a dense BEV grid."
+    },
+    "answer": "C",
+    "explanation": "Slide 26 states the single-frame limit.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2465,
+    "type": "mcq",
+    "question": "What does PETR output for each query, according to slide 24?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "A 2D box in the first camera only",
+      "B": "A pixel-wise segmentation mask",
+      "C": "A depth histogram for every pixel",
+      "D": "Class probabilities and 3D box parameters (x, y, z, w, l, h, yaw)"
+    },
+    "answer": "D",
+    "explanation": "Slide 24 gives the output as class probabilities and 3D box parameters.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2466,
+    "type": "mcq",
+    "question": "What does the vehicle pose do in StreamPETR?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "It moves stored previous-frame features into the current ego frame.",
+      "B": "It warps image pixels with optical flow.",
+      "C": "It deletes past frames.",
+      "D": "It resamples the LiDAR sweep."
+    },
+    "answer": "A",
+    "explanation": "Slide 27 says the pose transforms past features into the current ego frame.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2467,
+    "type": "mcq",
+    "question": "What does PETRv2's feature-guided position encoder change compared with PETR?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "It removes the 3D position embedding.",
+      "B": "It modulates the 3D position embedding with image features.",
+      "C": "It replaces 3D coordinates with 2D pixel coordinates.",
+      "D": "It requires LiDAR depth."
+    },
+    "answer": "B",
+    "explanation": "Slide 29 describes FPE as using image features to modulate the embedding.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2468,
+    "type": "mcq",
+    "question": "In which space does slide 30 initialize the lane queries?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The BEV grid",
+      "B": "The image plane only",
+      "C": "The 3D space",
+      "D": "A random space that changes each frame"
+    },
+    "answer": "C",
+    "explanation": "Slide 30 says lane queries are initialized in 3D space, and segmentation queries in BEV space.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2469,
+    "type": "mcq",
+    "question": "Which loss does slide 30 give for the BEV segmentation task?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "L1 only",
+      "B": "IoU only",
+      "C": "Hungarian matching",
+      "D": "Focal loss or cross-entropy on the BEV segmentation map"
+    },
+    "answer": "D",
+    "explanation": "Slide 30 gives focal loss or cross-entropy for segmentation.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2470,
+    "type": "mcq",
+    "question": "What does \"without BEV projection\" mean in slide 27?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "StreamPETR aligns temporal features without building a BEV grid.",
+      "B": "StreamPETR builds a BEV grid for each frame.",
+      "C": "StreamPETR uses no temporal information.",
+      "D": "StreamPETR uses LiDAR points for alignment."
+    },
+    "answer": "A",
+    "explanation": "Slide 27 says temporal alignment is achieved without BEV projection.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2471,
+    "type": "mcq",
+    "question": "Which problem does slide 25 attribute to DETR3D?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Too few queries",
+      "B": "The predicted reference point may be inaccurate, so the sampled features may fall outside the object.",
+      "C": "No camera calibration",
+      "D": "No decoder"
+    },
+    "answer": "B",
+    "explanation": "Slide 25 gives this problem for the reference point.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2472,
+    "type": "mcq",
+    "question": "How does slide 27 describe frame-level feature extraction in StreamPETR?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "It runs a new LiDAR encoder for each frame.",
+      "B": "It uses optical flow.",
+      "C": "It is the same as PETR.",
+      "D": "It requires a separate detector per camera."
+    },
+    "answer": "C",
+    "explanation": "Slide 27 says frame-level feature extraction is \"same to PETR.\"",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2473,
+    "type": "mcq",
+    "question": "How many task-specific query types does slide 30 list?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Five",
+      "B": "Two (detection and segmentation)",
+      "C": "Four",
+      "D": "Three (detection, segmentation, lane)"
+    },
+    "answer": "D",
+    "explanation": "Slide 30 lists \"det queries,\" \"seg queries,\" and \"lane queries.\"",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2474,
+    "type": "mcq",
+    "question": "What does slide 30 say about the backbone and transformer in PETRv2?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Detection, segmentation, and lane queries share the backbone and transformer.",
+      "B": "Only the detection task is trained.",
+      "C": "Each task trains its own full model.",
+      "D": "Only the lane head uses FPE."
+    },
+    "answer": "A",
+    "explanation": "Slide 30 says the queries \"share the same backbone/transformer.\"",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2475,
+    "type": "mcq",
+    "question": "Which method does slide 27 describe as designed for online real-time 3D detection on video sequences?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "PETR",
+      "B": "StreamPETR",
+      "C": "DETR3D",
+      "D": "PETRv2"
+    },
+    "answer": "B",
+    "explanation": "Slide 27 describes StreamPETR as designed for online real-time detection on video.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2476,
+    "type": "mcq",
+    "question": "Using the worked example in topic 74, with pixel ray (x/z, y/z) = (0.4, 0.2) and depth hypotheses 5, 15, 25, and 35 m, what is the 3D point at z = 15 m?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "(4.0, 2.0, 15.0)",
+      "B": "(2.0, 1.0, 15.0)",
+      "C": "(6.0, 3.0, 15.0)",
+      "D": "(6.0, 3.0, 5.0)"
+    },
+    "answer": "C",
+    "explanation": "The point is (0.4 x 15, 0.2 x 15, 15) = (6.0, 3.0, 15.0) m.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2477,
+    "type": "mcq",
+    "question": "A camera feature map has 100 x 56 cells, the depth set has 4 hypotheses, and there are 6 cameras. How many 3D points does one frame hold?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "240,000",
+      "B": "22,400",
+      "C": "5,600",
+      "D": "134,400"
+    },
+    "answer": "D",
+    "explanation": "100 x 56 x 4 = 22,400 points per camera, and 6 x 22,400 = 134,400 points per frame. The feature-map size is an assumption, since the slides do not give it.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2478,
+    "type": "sa",
+    "question": "Walk through how PETR turns a pixel into a position-aware feature, using slide 24. Name the inputs, the depth step, and the embedding step.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "PETR takes a pixel (u, v) and the camera intrinsics and extrinsics. For each depth hypothesis sampled from a discrete range, it computes a 3D point in the ego frame. The set of 3D coordinates for the pixel is turned into a position embedding and added to the 2D image feature. Queries then attend to these 3D-aware features across all views. The depth hypotheses are the only source of depth, so the embedding encodes candidate locations rather than a measured distance.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2479,
+    "type": "sa",
+    "question": "Compare how DETR3D and StreamPETR use past information, using slides 25 and 27. State what each method samples or stores and where the query gets its evidence.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "DETR3D samples image features at projected reference points in the current frame (slide 25). The slides do not describe a temporal memory for DETR3D in this section. StreamPETR keeps a queue of previous frame features and moves them into the current ego frame with the pose (slide 27). Each new query attends to both the current frame and the aligned past frames. The difference is that StreamPETR adds a temporal memory and aligns it by pose, while DETR3D's evidence comes from the current frame only, as the slides present it.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2480,
+    "type": "sa",
+    "question": "PETRv2 changes the position embedding and the task structure. Using slides 29 and 30, state the two changes and one risk the deck does not measure.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The first change is FPE, which modulates the 3D position embedding with image features (slide 29). The second is multi-task queries (detection, BEV segmentation, and lane) that share one backbone and transformer, with different losses per task (slide 30). The deck does not give per-task accuracy or ablations for either change, so the size of the gain and the cost to each task are not established by these slides. A shared backbone can also make the tasks compete for capacity.",
+    "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
+  },
+  {
+    "num": 2481,
+    "type": "tf",
+    "question": "LSS, as described on slide 31, predicts depth for every 2D pixel and lifts each pixel into 3D.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 31 describes LSS as working \"bottom-up,\" predicting depth for every single 2D pixel.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2482,
+    "type": "tf",
+    "question": "BEVFormer starts from a predefined metric grid of learnable BEV queries.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 31 says BEVFormer starts from \"a predefined metric grid of BEV queries\" that are learnable parameters.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2483,
+    "type": "tf",
+    "question": "BEVFormer builds explicit dense depth bins for every image pixel before it samples features.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 31 says attention \"avoids explicit dense depth bins,\" and slide 32 says the model avoids generating depth probability distributions.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2484,
+    "type": "tf",
+    "question": "Slide 37 defines a hit view as a camera where the BEV query's projected point falls outside the image.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 37 defines hit views as the camera views where the BEV query lands inside the image.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2485,
+    "type": "tf",
+    "question": "The temporal self-attention in BEVFormer uses the previous BEV map after warping it by ego motion.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 31 says temporal self-attention \"recurrently carries the previous BEV after ego-motion alignment,\" and slide 32 describes the warp.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2486,
+    "type": "tf",
+    "question": "Slide 33 says ego-motion compensation removes the misalignment of moving objects.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 33 says ego-motion compensation aligns the static world, and moving objects \"remain misaligned.\"",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2487,
+    "type": "tf",
+    "question": "Slide 35 reports 56.9% NDS for BEVFormer on the nuScenes test set, against 47.9% for DETR3D.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 35 gives both numbers and the 9.0 point difference.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2488,
+    "type": "tf",
+    "question": "The code on slide 40 is the official BEVFormer head file, and it can be quoted directly.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 40 is a short pseudo-code excerpt with an undefined weight alpha. Topic 75 says to check the official repository before quoting it.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2489,
+    "type": "tf",
+    "question": "Slide 45 says the Tesla occupancy network does not use queries, and it relies only on convolutions to lift features.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 45 says the spatial attention engine \"uses 3D Spatial Queries to look at the 2D images.\"",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2490,
+    "type": "tf",
+    "question": "Slide 45 gives six surround cameras as the visual input for the occupancy network.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 45 gives eight cameras for the surround view.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2491,
+    "type": "tf",
+    "question": "Slide 46 says the high-resolution volume is held in VRAM for a fraction of a second.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 46 says this volume \"is 'saved' (held in VRAM) for that fraction of a second.\"",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2492,
+    "type": "tf",
+    "question": "Slide 42 gives the shape change from [C, T, X, Y, Z] to [C, 16X, 16Y, 16Z].",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 42 shows both shapes. Topic 09 covers the same notation in more detail.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2493,
+    "type": "mcq",
+    "question": "Which description matches LSS on slide 31?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "It predicts depth for every 2D pixel and lifts each pixel into 3D.",
+      "B": "It places grid queries and samples pixels from them.",
+      "C": "It uses only LiDAR points.",
+      "D": "It learns a scene graph over objects."
+    },
+    "answer": "A",
+    "explanation": "Slide 31 describes LSS as predicting depth per pixel to lift it into 3D.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2494,
+    "type": "mcq",
+    "question": "What does BEVFormer start from, according to slide 31?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Dense depth bins for each pixel",
+      "B": "A predefined metric grid of learnable BEV queries",
+      "C": "A LiDAR voxel grid",
+      "D": "A set of 100 object boxes"
+    },
+    "answer": "B",
+    "explanation": "Slide 31 gives this starting point.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2495,
+    "type": "mcq",
+    "question": "Which definition matches a hit view on slide 37?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The camera with the largest attention weight",
+      "B": "A camera with no image features",
+      "C": "A camera where the BEV query's projected point lands inside the image",
+      "D": "The camera nearest to the ego vehicle"
+    },
+    "answer": "C",
+    "explanation": "Slide 37 defines hit views this way.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2496,
+    "type": "mcq",
+    "question": "What does BEVFormer's temporal self-attention warp before the query reads the current cameras?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Image pixels by optical flow",
+      "B": "LiDAR points",
+      "C": "Depth bins",
+      "D": "The previous BEV map after ego-motion alignment"
+    },
+    "answer": "D",
+    "explanation": "Slide 31 describes this order.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2497,
+    "type": "mcq",
+    "question": "What does slide 33 say about moving objects after ego-motion compensation?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "They stay misaligned, so object-centric memory, tracking, or learned motion compensation is needed.",
+      "B": "They are aligned perfectly.",
+      "C": "They are removed from the BEV map.",
+      "D": "They need no temporal data."
+    },
+    "answer": "A",
+    "explanation": "Slide 33 states this limit.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2498,
+    "type": "mcq",
+    "question": "What does slide 33 say about longer temporal context?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "It always reduces error.",
+      "B": "It can improve recall while amplifying calibration and timestamp errors.",
+      "C": "It has no effect on recall.",
+      "D": "It removes the need for calibration."
+    },
+    "answer": "B",
+    "explanation": "Slide 33 gives this trade-off.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2499,
+    "type": "mcq",
+    "question": "What NDS does slide 35 report for BEVFormer on the nuScenes test set?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "47.9%",
+      "B": "42.5%",
+      "C": "56.9%",
+      "D": "9.0%"
+    },
+    "answer": "C",
+    "explanation": "Slide 35 reports 56.9%.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2500,
+    "type": "mcq",
+    "question": "What gain over DETR3D does slide 35 state?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "47.9 points",
+      "B": "56.9 points",
+      "C": "5.0 points",
+      "D": "9.0 points"
+    },
+    "answer": "D",
+    "explanation": "Slide 35 states \"by 9.0 points (56.9% vs. 47.9%).\"",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2501,
+    "type": "mcq",
+    "question": "How does topic 75 describe the code on slide 40?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Illustrative pseudo-code",
+      "B": "The official full head class",
+      "C": "A training log",
+      "D": "A benchmark table"
+    },
+    "answer": "A",
+    "explanation": "The code is a short illustrative excerpt, and it uses an undefined weight alpha.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2502,
+    "type": "mcq",
+    "question": "Which loss does slide 38 assign to the heatmap classification?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "L1 loss",
+      "B": "Focal loss",
+      "C": "Smooth L1 for direction",
+      "D": "Pixel-wise cross-entropy"
+    },
+    "answer": "B",
+    "explanation": "Slide 38 lists L_cls as a focal loss on the heatmap.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2503,
+    "type": "mcq",
+    "question": "How many cameras does slide 45 give as the visual input for the occupancy network?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "6",
+      "B": "4",
+      "C": "8",
+      "D": "12"
+    },
+    "answer": "C",
+    "explanation": "Slide 45 says \"8 Cameras x Surround View.\"",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2504,
+    "type": "mcq",
+    "question": "Which components does slide 45 name for the occupancy network's feature extraction?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "VGG-16 only",
+      "B": "ResNet-50 and FPN only",
+      "C": "ViT-B and Swin only",
+      "D": "RegNets for feature extraction and BiFPNs for multi-scale fusion"
+    },
+    "answer": "D",
+    "explanation": "Slide 45 names RegNets and BiFPNs.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2505,
+    "type": "mcq",
+    "question": "How does slide 46 align previous feature volumes?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "By shifting previous feature volumes with ego motion from odometry",
+      "B": "By resetting the memory each frame",
+      "C": "By warping image pixels",
+      "D": "By propagating labels"
+    },
+    "answer": "A",
+    "explanation": "Slide 46 describes ego-motion compensation using the vehicle's trajectory.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2506,
+    "type": "mcq",
+    "question": "What does slide 46 say the network does with the small-scale features?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "It outputs 2D masks.",
+      "B": "It upsamples them into a large-scale volume output.",
+      "C": "It outputs a depth map.",
+      "D": "It outputs boxes only."
+    },
+    "answer": "B",
+    "explanation": "Slide 46 describes the upsampling into the high-resolution volume output.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2507,
+    "type": "mcq",
+    "question": "Using the topic 75 memory example, how much memory does a 1000^3 grid with one channel at fp16 take?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "1 GB",
+      "B": "64 GB",
+      "C": "2 GB",
+      "D": "32 MB"
+    },
+    "answer": "C",
+    "explanation": "10^9 voxels x 1 channel x 2 bytes = 2 x 10^9 bytes, about 2 GB.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2508,
+    "type": "mcq",
+    "question": "With fx = 1000, cx = 800, Z = 10 m, and X = 2.0 m, what is u for a pillar point?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "200",
+      "B": "800",
+      "C": "1200",
+      "D": "1000"
+    },
+    "answer": "D",
+    "explanation": "u = 1000 x 2.0 / 10 + 800 = 1000.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2509,
+    "type": "sa",
+    "question": "Contrast explicit lifting and query sampling for one BEV cell. State what each method computes per pixel or per cell, and where depth enters.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "Explicit lifting (LSS) predicts a depth distribution for each pixel and places the pixel's feature at those depths in 3D (slide 31). Depth enters through that per-pixel distribution. Query sampling (BEVFormer) gives each BEV cell a learnable query. The query projects a set of 3D reference points along a vertical pillar into each hit camera and samples features there (slides 32 and 37). Depth enters through the pillar heights and the attention weights, so the model does not predict a per-pixel depth distribution. Both still rely on the camera geometry.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2510,
+    "type": "sa",
+    "question": "A car is 12.0 m ahead of the ego at time t-1. The ego moves 2.0 m forward, and the car moves 1.0 m forward in the global frame. Compute the warped position and the true position at time t, and explain what a longer temporal window would and would not fix.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The warped position is 12.0 - 2.0 = 10.0 m. The true ego-frame position is 12.0 + 1.0 - 2.0 = 11.0 m. The residual error is 1.0 m, which is the car's own motion. Adding more past frames repeats the same ego-motion warp, so the offset stays. Slide 33 says longer context can improve recall while amplifying calibration and timestamp errors. Object-centric memory, tracking, or learned motion compensation is needed for the moving car.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
+  },
+  {
+    "num": 2511,
+    "type": "sa",
+    "question": "Slides 38 to 40 and slide 12 conflict with slide 14 on how BEVFormer assigns targets and removes duplicates. Explain the conflict, and state the check a student should run before using either claim in a proposal.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "Slides 38 to 39 describe a dense, per-cell head with a Gaussian heatmap, focal and L1 losses, and an NMS step. Slide 12 says dense heads need NMS, and slide 14 places BEVFormer in the query family, which uses set-level matching. The deck does not reconcile these. The check is to open the official BEVFormer repository, find the head class and the assigner, and confirm which assignment and decoding steps it uses. The proposal should cite that location. Topic 73 records the same conflict for the matching step.",
+    "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
   }
 ]

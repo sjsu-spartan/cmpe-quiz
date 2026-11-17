@@ -21132,5 +21132,2895 @@
     "tier": "Tier 2 — Medium Probability",
     "answerText": "Perplexity is the exponential of the per-token loss, so a difference in nats per token is magnified in the perplexity. Bits per byte divides the total code length by the byte count, which is the same for both models, so the difference is expressed on a different scale. A reader should trust the per-token number more when both models use the same tokenizer, because the token counts then match and the per-token number is directly comparable (slide 34). Under different tokenizers, the bits-per-byte value is the one that supports comparison.",
     "lectureReference": "Part 51: Bits per Byte: Tokenizer-Independent Evaluation of Language Models"
+  },
+  {
+    "num": 1560,
+    "type": "tf",
+    "question": "Slide 2 treats the language model as the policy and the vocabulary tokens as the action space.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 2 says the policy is the language model and that the action space is all tokens in the vocabulary.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1561,
+    "type": "tf",
+    "question": "In the slide 19 pipeline, PPO fine-tuning comes before pretraining.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 19 lists pretraining first, then SFT, then reward modeling, then PPO fine-tuning.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1562,
+    "type": "tf",
+    "question": "Labelers rank several model responses to the same prompt, and the reward model is trained to predict those rankings.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 19 describes this step under reward modeling, and slide 22 repeats it.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1563,
+    "type": "tf",
+    "question": "In the deck's pipeline, PPO is used to train the reward model, and the policy is frozen afterwards.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 19 places reward modeling before PPO. PPO updates the language model, and the reward model is a fixed scorer during PPO (slide 3 calls it frozen).",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1564,
+    "type": "tf",
+    "question": "Slide 22 says the SFT model acts as the RL policy in the third step.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 22 states that the SFT model is the RL policy and that the RM scores its generations.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1565,
+    "type": "tf",
+    "question": "Slide 2 gives the size of the vocabulary action space as often on the order of 50k tokens.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 2 uses this figure.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1566,
+    "type": "tf",
+    "question": "Slide 23 gives a formal specification of how ChatGPT was trained.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 23 lists feature goals and four labels. It does not give training details.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1567,
+    "type": "tf",
+    "question": "Slide 19 says the constraint on policy shift is enforced only by the KL penalty, and clipping plays no role.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 19 says PPO keeps the policy close to the original model \"via clipping.\" Slides 8 and 10 describe the KL penalty. The slides name both mechanisms, but they do not reconcile them.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1568,
+    "type": "tf",
+    "question": "Slide 20 loads a reward model from the Hugging Face hub using `transformers`.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 20 calls `from_pretrained` on a sequence classification model.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1569,
+    "type": "tf",
+    "question": "Slide 21 uses a `PPOTrainer` class from the `trl` library.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 21 imports `PPOTrainer` and `PPOConfig` from `trl`.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1570,
+    "type": "tf",
+    "question": "Slide 2 describes the observation as a set of individual tokens rather than sequences.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 2 describes the observation space as the distribution of possible input token sequences.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1571,
+    "type": "mcq",
+    "question": "In the slide 2 framing, what is the action space?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The vocabulary tokens",
+      "B": "The reward values",
+      "C": "The labeler panel",
+      "D": "The gradient steps"
+    },
+    "answer": "A",
+    "explanation": "Slide 2 defines the action space as all tokens in the vocabulary.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1572,
+    "type": "mcq",
+    "question": "Which pipeline stage trains a model on labeler rankings of responses?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Pretraining",
+      "B": "Reward modeling",
+      "C": "PPO fine-tuning",
+      "D": "SFT"
+    },
+    "answer": "B",
+    "explanation": "Slide 19 describes labelers ranking responses under reward modeling.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1573,
+    "type": "mcq",
+    "question": "Which stage comes first in the slide 19 pipeline?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "PPO fine-tuning",
+      "B": "Reward modeling",
+      "C": "Pretraining",
+      "D": "Chat-specific fine-tuning"
+    },
+    "answer": "C",
+    "explanation": "Slide 19 lists pretraining first, on large internet text with supervised learning.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1574,
+    "type": "mcq",
+    "question": "During PPO fine-tuning in slide 19, which model's weights are adjusted?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The reward model",
+      "B": "The tokenizer",
+      "C": "The vocabulary",
+      "D": "The language model being fine-tuned"
+    },
+    "answer": "D",
+    "explanation": "Slide 19 says PPO adjusts the base model's weights.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1575,
+    "type": "mcq",
+    "question": "Slide 22 names which model as the RL policy?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The SFT model",
+      "B": "The reward model",
+      "C": "The pretraining corpus",
+      "D": "The labeler panel"
+    },
+    "answer": "A",
+    "explanation": "Slide 22 says the SFT model acts as the RL policy.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1576,
+    "type": "mcq",
+    "question": "Slide 2 says the observation space is roughly vocabulary^(input length). With a vocabulary of 50,000 and an input of 500 tokens, which order of magnitude is the count of possible inputs?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "About 10^50",
+      "B": "About 10^2349",
+      "C": "About 2,500",
+      "D": "About 50,500"
+    },
+    "answer": "B",
+    "explanation": "log10(50,000^500) = 500 x 4.699 = 2349.5, so the count is about 3 x 10^2349. The 500-token length is an assumed value.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1577,
+    "type": "mcq",
+    "question": "What does the feature list on slide 23 represent?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The exact training budget",
+      "B": "Benchmark scores",
+      "C": "Design goals for a chat model",
+      "D": "The reward model architecture"
+    },
+    "answer": "C",
+    "explanation": "Slide 23 lists features the chat model should include. It gives no training budget, benchmark, or architecture.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1578,
+    "type": "mcq",
+    "question": "Which slide 19 stage is the only one that is not supervised learning?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Pretraining",
+      "B": "SFT",
+      "C": "Reward modeling",
+      "D": "PPO fine-tuning"
+    },
+    "answer": "D",
+    "explanation": "PPO fine-tuning uses reward signals from the reward model, and the first three stages use supervised targets.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1579,
+    "type": "mcq",
+    "question": "In the slide 20 code, what does `compute_reward` return?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A Python list of reward scores from `scores.tolist()`",
+      "B": "A tokenized batch",
+      "C": "A gradient tensor",
+      "D": "A probability distribution over the vocabulary"
+    },
+    "answer": "A",
+    "explanation": "The function returns `scores.tolist()`, which is a Python list of scores.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1580,
+    "type": "mcq",
+    "question": "Which library does slide 21 use for its PPO trainer?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Ray",
+      "B": "trl",
+      "C": "JAX",
+      "D": "scikit-learn"
+    },
+    "answer": "B",
+    "explanation": "Slide 21 says `trl` wraps PPO and imports `PPOTrainer` from it.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1581,
+    "type": "mcq",
+    "question": "Slide 24 gives which example of an off-policy method?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "PPO",
+      "B": "GRPO",
+      "C": "DPO",
+      "D": "On-policy RL"
+    },
+    "answer": "C",
+    "explanation": "Slide 24 lists DPO as off-policy and PPO and GRPO as on-policy.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1582,
+    "type": "mcq",
+    "question": "In the InstructGPT pipeline, what does the reward model learn to predict?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "The next token",
+      "B": "The number of labelers",
+      "C": "The gradient norm",
+      "D": "Human rankings of model answers"
+    },
+    "answer": "D",
+    "explanation": "Slide 22 says humans rank the answers and the RM is trained to predict those rankings.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1583,
+    "type": "mcq",
+    "question": "Slide 2 describes the reward as which of the following?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "A combination of the preference model and a constraint on policy shift",
+      "B": "The raw token log-likelihood",
+      "C": "The number of labelers per prompt",
+      "D": "A constant 1 for every response"
+    },
+    "answer": "A",
+    "explanation": "Slide 2 gives this definition.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1584,
+    "type": "mcq",
+    "question": "According to slide 19, what does PPO fine-tuning aim to do?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Replace the reward model with human labelers",
+      "B": "Raise the reward while keeping the policy close to the original model",
+      "C": "Skip SFT",
+      "D": "Train a new tokenizer"
+    },
+    "answer": "B",
+    "explanation": "Slide 19 says PPO adjusts the weights to increase the reward while keeping the policy close to the original model.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1585,
+    "type": "mcq",
+    "question": "Slide 3 describes the reward model as which kind of model?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Trainable by PPO",
+      "B": "A copy of the tokenizer",
+      "C": "Frozen, trained on human preference data",
+      "D": "The policy model"
+    },
+    "answer": "C",
+    "explanation": "Slide 3 calls the reward model frozen and says it is trained on human preference data.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1586,
+    "type": "mcq",
+    "question": "Which stage uses human labelers writing ideal answers to prompts?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Pretraining",
+      "B": "Reward modeling",
+      "C": "PPO fine-tuning",
+      "D": "SFT"
+    },
+    "answer": "D",
+    "explanation": "Slide 19 says labelers provide ideal answers and the model is trained to imitate them.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1587,
+    "type": "sa",
+    "question": "Trace one pass of the loop on slide 4 for the prompt \"Solve x*(x-1)=0.\" Use the 0.99 and 0.01 scores on the slide.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The policy receives the prompt and generates a response, such as \"Let's start by opening...\". The reward LLM assigns a scalar score, 0.99 for the correct response and 0.01 for the hallucinated one. The policy update computes a change that makes the 0.99-scored sequence more likely and the 0.01-scored sequence less likely. The loop then repeats with the updated policy.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1588,
+    "type": "sa",
+    "question": "Explain why the reward model is frozen during PPO. Use the slide 3 description and the pipeline on slide 19.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "Slide 3 describes the reward model as frozen, and slide 19 places reward modeling before PPO. With a fixed reward model, the PPO stage optimizes against one scoring function. If the reward model were updated along with the policy, the scorer would change during training, and the target that the policy optimizes would move. The slides do not discuss this point directly, so this answer is an inference from the pipeline design.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1589,
+    "type": "sa",
+    "question": "Slide 23 lists feature goals for a chat model and four labels. State what a reader can conclude from the slide and what the reader cannot conclude.",
+    "tier": "Tier 3 — Low Probability",
+    "answerText": "The reader can conclude that the slide sets out goals a chat model should meet, such as being helpful, inoffensive, and correct, and that the deck groups instruction tuning, RLHF or RAG training, and chat-specific fine-tuning as parts of a chat model. The reader cannot conclude how each label was implemented, what data was used, or whether the goals were met. The slide gives no measurements or training details, so it does not support claims about how any particular system was built.",
+    "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
+  },
+  {
+    "num": 1590,
+    "type": "tf",
+    "question": "Slide 3 lists four models for PPO in RLHF: the actor, the reference model, the reward model, and the critic.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 3 names these four models.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1591,
+    "type": "tf",
+    "question": "Slide 3 describes the critic as frozen during PPO.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 3 calls the critic a trainable value network. The reward model and reference model are the frozen ones.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1592,
+    "type": "tf",
+    "question": "Slide 3 says the actor starts from the supervised fine-tuned model.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 3 states that the actor is initialized from the SFT model.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1593,
+    "type": "tf",
+    "question": "Slide 3 says the reward model takes a prompt and a response and outputs a scalar score.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 3 gives this description of the reward model.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1594,
+    "type": "tf",
+    "question": "The reference model is refreshed from the actor at every PPO iteration.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slides 3 and 8 describe the reference model as a frozen copy of the original SFT model.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1595,
+    "type": "tf",
+    "question": "Slide 13 gives the parameter count of each of the four models.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 13 says PPO loads four LLMs at once and calls the cost expensive. It gives no parameter counts.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1596,
+    "type": "tf",
+    "question": "Slide 13 says PPO requires four LLMs to be loaded into VRAM simultaneously.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 13 makes this statement under \"The Hardware Cost.\"",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1597,
+    "type": "tf",
+    "question": "Slide 9 splits one PPO iteration into rollout, reward calculation with the KL penalty, advantage estimation, and the optimization step.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 9 lists these four phases.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1598,
+    "type": "tf",
+    "question": "Slide 8 describes beta as the learning rate of the actor.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 8 describes beta as a coefficient that controls the strength of the KL penalty.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1599,
+    "type": "tf",
+    "question": "On slide 4, the reward LLM assigns 0.99 to the hallucinated answer and 0.01 to the correct one.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 4 gives 0.99 for a good answer and 0.01 for a hallucinated answer.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1600,
+    "type": "tf",
+    "question": "Slide 18 says the PPO loop repeats for thousands of iterations.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 18 makes this statement.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1601,
+    "type": "mcq",
+    "question": "Which two models have their weights updated during PPO in the slide 3 setup?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The actor and the critic",
+      "B": "The reference and the reward model",
+      "C": "The reward model and the critic",
+      "D": "The actor and the reference model"
+    },
+    "answer": "A",
+    "explanation": "Slide 3 calls the actor and critic trainable. The reference and reward models are frozen.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1602,
+    "type": "mcq",
+    "question": "Which model is a frozen copy of the original SFT model?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The actor",
+      "B": "The reference model",
+      "C": "The critic",
+      "D": "The reward model"
+    },
+    "answer": "B",
+    "explanation": "Slide 3 describes the reference model as a frozen copy of the SFT model.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1603,
+    "type": "mcq",
+    "question": "Slide 3 says the critic is usually initialized from which model?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Random weights, always",
+      "B": "The tokenizer",
+      "C": "The reward model",
+      "D": "The labeler rankings"
+    },
+    "answer": "C",
+    "explanation": "Slide 3 says the critic is \"usually initialized from the Reward Model.\"",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1604,
+    "type": "mcq",
+    "question": "What does the reward model output for a prompt and response?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "A distribution over the vocabulary",
+      "B": "A list of prompts",
+      "C": "A tokenizer",
+      "D": "A scalar score"
+    },
+    "answer": "D",
+    "explanation": "Slide 3 says the reward model outputs a scalar score.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1605,
+    "type": "mcq",
+    "question": "Which model supplies the probabilities that the KL penalty compares against?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The reference model",
+      "B": "The critic",
+      "C": "The reward model",
+      "D": "The labelers"
+    },
+    "answer": "A",
+    "explanation": "Slides 8 and 10 compare the actor against the frozen reference model.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1606,
+    "type": "mcq",
+    "question": "In the slide 4 loop, what does the policy update do with the sequence scored 0.99?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Makes it less likely",
+      "B": "Makes it more likely",
+      "C": "Ignores it",
+      "D": "Deletes it from the batch"
+    },
+    "answer": "B",
+    "explanation": "Slide 4 says the update pushes the policy toward generating the 0.99-scoring sequences more often.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1607,
+    "type": "mcq",
+    "question": "Using the slide 4 scores of 0.99 and 0.01, what is the difference between them?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "0.01",
+      "B": "0.50",
+      "C": "0.98",
+      "D": "1.00"
+    },
+    "answer": "C",
+    "explanation": "0.99 minus 0.01 is 0.98.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1608,
+    "type": "mcq",
+    "question": "Four 7B-parameter models stored in 16-bit precision need about how much memory for weights only, under the Example 1 assumptions?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "7 GB",
+      "B": "14 GB",
+      "C": "28 GB",
+      "D": "56 GB"
+    },
+    "answer": "D",
+    "explanation": "Each model is 7 x 10^9 x 2 bytes = 14 GB, and four models total 56 GB.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1609,
+    "type": "mcq",
+    "question": "Which item is left out of the Example 1 weights-only total?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Gradients and optimizer states for the trainable models",
+      "B": "The reference model weights",
+      "C": "The reward model weights",
+      "D": "The actor weights"
+    },
+    "answer": "A",
+    "explanation": "The total counts the weights of all four models. Gradients, optimizer states, activations, and the KV cache are not included.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1610,
+    "type": "mcq",
+    "question": "What happens to the slide 8 objective when beta is 0?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The reward is ignored",
+      "B": "The KL penalty is removed",
+      "C": "The critic is removed",
+      "D": "The reward model is updated"
+    },
+    "answer": "B",
+    "explanation": "With beta at 0 the penalty term vanishes, leaving the reward term. This follows from the formula and is not stated on the slide.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1611,
+    "type": "mcq",
+    "question": "Which phase on slide 9 records the actor's log-probabilities for each token?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Advantage estimation",
+      "B": "Reward calculation with the KL penalty",
+      "C": "Rollout",
+      "D": "The optimization step"
+    },
+    "answer": "C",
+    "explanation": "Slide 9 says the rollout records the state, the action, and the log probabilities chosen by the actor.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1612,
+    "type": "mcq",
+    "question": "Slide 10 applies the KL penalty at which level?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Only at the end of the sequence",
+      "B": "Only to the critic",
+      "C": "Only to the labelers",
+      "D": "At the token level"
+    },
+    "answer": "D",
+    "explanation": "Slide 10 says PPO applies the KL penalty at the token level.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1613,
+    "type": "mcq",
+    "question": "Slide 18 gives the critic loss as which kind of loss?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Mean squared error between the value prediction and the returns",
+      "B": "Cross-entropy over the vocabulary",
+      "C": "Hinge loss",
+      "D": "KL divergence alone"
+    },
+    "answer": "A",
+    "explanation": "Slide 18 says the critic is updated with standard MSE loss against the returns.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1614,
+    "type": "mcq",
+    "question": "Slide 13 describes the advantage as which of the following?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "The probability of the token",
+      "B": "The difference between the actual reward and the Value LLM's prediction",
+      "C": "The KL term",
+      "D": "The number of models in memory"
+    },
+    "answer": "B",
+    "explanation": "Slide 13 gives this description.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1615,
+    "type": "mcq",
+    "question": "According to slide 15, what does the PPO optimization step update?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Only the reward model",
+      "B": "Only the reference model",
+      "C": "The actor and the critic",
+      "D": "Only the tokenizer"
+    },
+    "answer": "C",
+    "explanation": "Slide 15 says PPO updates both the actor and the critic using mini-batches of rollout data.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1616,
+    "type": "mcq",
+    "question": "Slide 9 defines the state recorded during rollout as which of the following?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "The reward score only",
+      "B": "The labeler ID",
+      "C": "The vocabulary",
+      "D": "The context up to token t"
+    },
+    "answer": "D",
+    "explanation": "Slide 9 defines the state as the context up to token t.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1617,
+    "type": "sa",
+    "question": "Name the four models used in PPO for RLHF, and state which two are trained.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The four models are the actor, the reference model, the reward model, and the critic (slide 3). The actor and the critic are trained. The reference model and the reward model are frozen.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1618,
+    "type": "sa",
+    "question": "Explain why the reference model should stay frozen as a copy of the SFT model, rather than being updated to match the actor each iteration.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The KL penalty measures how far the actor has moved from the reference (slide 8). If the reference were updated to match the actor, the penalty would measure drift from the most recent policy instead of from the original behavior, and the anchor against reward hacking would weaken. This reasoning follows from the objective. The slides describe the reference as frozen and do not discuss updating it.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1619,
+    "type": "sa",
+    "question": "The loop on slide 4 uses a frozen reward model to score the policy's outputs. Explain what limits the improvement the policy can reach under this loop.",
+    "tier": "Tier 3 — Low Probability",
+    "answerText": "The policy receives only the scores the reward model gives it (slides 4 and 3). If the reward model scores some poor responses highly, the policy learns to produce those responses. The KL penalty limits drift, but it does not correct errors in the reward model. The quality of the final policy therefore depends on how well the reward model's scores match the intended goal. The slides do not measure this, so the point is reasoning from the pipeline.",
+    "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
+  },
+  {
+    "num": 1620,
+    "type": "tf",
+    "question": "The simplified RL objective on slide 5 contains no KL penalty term.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 5 shows the objective as the maximum of the expected reward, with no constraint term.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1621,
+    "type": "tf",
+    "question": "Slide 6 describes reward hacking as the policy finding a loophole in the reward model that yields high scores.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 6 gives this description and the repeated-word example.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1622,
+    "type": "tf",
+    "question": "Slide 15 gives the usual clipping value eps as 0.5.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 15 says eps is usually set to 0.2.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1623,
+    "type": "tf",
+    "question": "The rollout phase on slide 9 records the log-probabilities of the tokens the actor chose.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 9 says the system records the state, the action, and the log probabilities.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1624,
+    "type": "tf",
+    "question": "Slide 10 applies the KL penalty only to the final token of the response.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 10 says PPO applies the KL penalty at the token level, for each token t.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1625,
+    "type": "tf",
+    "question": "On slide 15, when the ratio passes 1 + eps for a positive advantage, the clipped branch is selected and its gradient is zero.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 15 says the clipping function activates and flatlines the gradient.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1626,
+    "type": "tf",
+    "question": "Slide 15 presents the clip as a proven guarantee of training stability.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide uses guarantee language, but it gives no proof or experiment. The clip limits the incentive for large steps on the sampled batch.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1627,
+    "type": "tf",
+    "question": "Slide 19 says PPO keeps the policy close to the original model via clipping.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 19 makes this statement. Slides 8 and 10 attribute the same closeness to the KL penalty, and the deck does not reconcile the two.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1628,
+    "type": "tf",
+    "question": "Slide 8 says the reference model is refreshed to match the actor at every iteration.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 8 describes the reference model as a frozen copy, usually of the SFT model.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1629,
+    "type": "tf",
+    "question": "Slide 8 describes beta as the coefficient that controls the strength of the penalty.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 8 gives this description.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1630,
+    "type": "tf",
+    "question": "Slide 10 defines the adjusted reward as the reward model score plus beta times the log-ratio of the policy to the reference.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 10 subtracts the term: R = r_phi - beta log(pi_theta / pi_ref).",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1631,
+    "type": "mcq",
+    "question": "Which description matches reward hacking as defined on slides 6 and 8?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The policy exploits the reward model with outputs that score high but are poor text",
+      "B": "The critic overfits to the training prompts",
+      "C": "The labelers disagree with each other",
+      "D": "The vocabulary size grows during training"
+    },
+    "answer": "A",
+    "explanation": "Slides 6 and 8 describe the policy triggering high scores with nonsensical text.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1632,
+    "type": "mcq",
+    "question": "Which term in the slide 8 objective ties the policy to a frozen model?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The critic loss",
+      "B": "The KL penalty against the frozen reference",
+      "C": "The labeler agreement rate",
+      "D": "The token count"
+    },
+    "answer": "B",
+    "explanation": "Slide 8 places a KL penalty against pi_ref in the objective.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1633,
+    "type": "mcq",
+    "question": "What value of eps does slide 15 give as the usual setting for the clip?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.02",
+      "B": "2.0",
+      "C": "0.2",
+      "D": "0.5"
+    },
+    "answer": "C",
+    "explanation": "Slide 15 says the usual setting is 0.2.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1634,
+    "type": "mcq",
+    "question": "What does a positive advantage mean on slide 13?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The vocabulary is larger than expected",
+      "B": "The learning rate should be raised",
+      "C": "The KL divergence is zero",
+      "D": "The token was better than expected"
+    },
+    "answer": "D",
+    "explanation": "Slide 13 says a positive advantage means the token was better than expected.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1635,
+    "type": "mcq",
+    "question": "With r = 1.5, A = 2, and eps = 0.2, what is the objective term?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "2.4",
+      "B": "3.0",
+      "C": "1.2",
+      "D": "1.5"
+    },
+    "answer": "A",
+    "explanation": "The unclipped term is 3.0 and the clipped term is 1.2 x 2 = 2.4. The min is 2.4.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1636,
+    "type": "mcq",
+    "question": "With r = 0.5, A = -1, and eps = 0.2, what is the objective term?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "-0.5",
+      "B": "-0.8",
+      "C": "0.8",
+      "D": "0.5"
+    },
+    "answer": "B",
+    "explanation": "The unclipped term is -0.5 and the clipped term is 0.8 x (-1) = -0.8. The min is -0.8.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1637,
+    "type": "mcq",
+    "question": "With r = 1.5, A = -1, and eps = 0.2, what is the objective term?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "-1.2",
+      "B": "1.2",
+      "C": "-1.5",
+      "D": "1.5"
+    },
+    "answer": "C",
+    "explanation": "The unclipped term is -1.5 and the clipped term is -1.2. The min is -1.5, the unclipped term.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1638,
+    "type": "mcq",
+    "question": "With pi_theta = 0.9, pi_ref = 0.3, and beta = 0.1, what is the per-token reward r_1 from slide 10?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "0.109861",
+      "B": "-0.1",
+      "C": "0.0",
+      "D": "-0.109861"
+    },
+    "answer": "D",
+    "explanation": "r_1 = -0.1 x ln(3) = -0.1 x 1.098612 = -0.109861.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1639,
+    "type": "mcq",
+    "question": "The eps constraint in the clipped objective is measured against which policy?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The old policy that generated the batch",
+      "B": "Only the frozen reference",
+      "C": "The reward model",
+      "D": "The critic"
+    },
+    "answer": "A",
+    "explanation": "Slide 15 defines the ratio against pi_old.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1640,
+    "type": "mcq",
+    "question": "The beta penalty in the KL objective is measured against which policy?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The old policy",
+      "B": "The frozen reference policy",
+      "C": "A uniform distribution",
+      "D": "The labeler panel"
+    },
+    "answer": "B",
+    "explanation": "Slide 8 uses pi_ref in the KL term.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1641,
+    "type": "mcq",
+    "question": "At what level does slide 10 apply the KL penalty?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The batch level",
+      "B": "The critic level",
+      "C": "The token level",
+      "D": "The vocabulary level"
+    },
+    "answer": "C",
+    "explanation": "Slide 10 says the penalty is applied at the token level.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1642,
+    "type": "mcq",
+    "question": "When the per-token rewards include the reward model score at the last token, their sum equals which quantity?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "The raw reward model score only",
+      "B": "Zero",
+      "C": "The KL divergence only",
+      "D": "The sequence-level adjusted reward R"
+    },
+    "answer": "D",
+    "explanation": "Example 1 shows the sum of per-token rewards equals R. The placement of the score at the last token is the standard form, not written on slide 10.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1643,
+    "type": "mcq",
+    "question": "Setting beta to zero in the slide 8 objective removes which term?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "The KL penalty",
+      "B": "The reward model",
+      "C": "The rollout",
+      "D": "The critic"
+    },
+    "answer": "A",
+    "explanation": "With beta at 0, the penalty term is zero. This follows from the formula.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1644,
+    "type": "mcq",
+    "question": "Which mechanism does slide 19 credit with keeping the policy close to the original model?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Labeler agreement",
+      "B": "Clipping",
+      "C": "The tokenizer",
+      "D": "The vocabulary size"
+    },
+    "answer": "B",
+    "explanation": "Slide 19 says \"via clipping.\"",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1645,
+    "type": "mcq",
+    "question": "Which example does slide 6 give of reward hacking?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "A correct mathematical proof",
+      "B": "A longer prompt",
+      "C": "Repeating a specific word that glitches the reward model",
+      "D": "A lower learning rate"
+    },
+    "answer": "C",
+    "explanation": "Slide 6 gives the repeated-word example.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1646,
+    "type": "mcq",
+    "question": "Which phase on slide 9 computes the KL-adjusted reward?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Rollout",
+      "B": "Advantage estimation",
+      "C": "Optimization step",
+      "D": "Reward calculation with KL penalty"
+    },
+    "answer": "D",
+    "explanation": "Slide 9 lists this phase, and slide 10 gives the adjusted reward.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1647,
+    "type": "mcq",
+    "question": "During rollout, what does the actor record for each token it generates?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "The log-probability of the chosen token under the actor",
+      "B": "The critic's weights",
+      "C": "The labeler's ranking",
+      "D": "The reference model's weights"
+    },
+    "answer": "A",
+    "explanation": "Slide 9 says the rollout records the log probabilities chosen by the actor, which serve as pi_old in the ratio.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1648,
+    "type": "sa",
+    "question": "Explain reward hacking in one paragraph and name the two mechanisms the slides give to limit it.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "Reward hacking happens when the policy finds outputs that the reward model scores highly without being good text, such as a repeated word that the reward model rates well (slides 6 and 8). The slides give two defenses: the KL penalty against a frozen reference model (slides 8 and 10), and the clipped surrogate objective that limits the probability ratio (slide 15). The clip mainly limits the size of each update, so it is not a complete defense on its own.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1649,
+    "type": "sa",
+    "question": "A student writes that the clip stops the policy from changing at all. Correct the statement using the slide 15 mechanism.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The clip does not stop the policy from changing. It limits the ratio between the new and old policy to the interval [1 - eps, 1 + eps] for the purpose of the objective. For a positive advantage, the objective gains nothing once the ratio passes 1 + eps, so the gradient from that token is zero. Other tokens and other batches still produce gradients, and the policy keeps changing across updates. The clip limits the incentive for large changes on each sampled token.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1650,
+    "type": "sa",
+    "question": "Give one scenario where the KL penalty against pi_ref is the binding constraint, and one scenario where the clip against pi_old is the binding constraint. Explain how you would tell them apart.",
+    "tier": "Tier 3 — Low Probability",
+    "answerText": "The KL penalty binds when the policy has drifted far from the SFT model over many iterations, so the accumulated log-ratio to pi_ref is large and the penalty reduces the reward strongly (slide 8). The clip binds within an update when a token's ratio to pi_old passes 1 + eps or 1 - eps for the sampled advantage (slide 15). One way to tell them apart is to log the sequence-level KL to pi_ref across iterations, which measures the long-run drift, and the fraction of tokens whose ratio is clipped in each batch, which measures the per-update step. These logs are a standard diagnostic, and the slides do not describe them.",
+    "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
+  },
+  {
+    "num": 1651,
+    "type": "tf",
+    "question": "Slide 13 says the Value LLM predicts the expected future reward from a given token state.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 13 defines the Value LLM's job as predicting expected future reward from any given state.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1652,
+    "type": "tf",
+    "question": "Slide 13 says the critic adds little memory cost because it is only a small head on top of the actor.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 13 says the setup loads four entire LLMs into VRAM at once and calls the cost \"brutally expensive.\"",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1653,
+    "type": "tf",
+    "question": "On slide 13, a positive advantage means the sampled token was better than expected, so its probability should increase.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 13 states that if the advantage is greater than 0, the token's probability is increased.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1654,
+    "type": "tf",
+    "question": "Slide 3 describes the reward model as trainable during the PPO step.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 3 describes the reward model as a frozen model trained earlier on human preference data.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1655,
+    "type": "tf",
+    "question": "The one-step quantity described on slide 13 is the same as the Generalized Advantage Estimate on slide 11.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 11 defines the advantage with GAE, which sums discounted TD errors. The slide 13 wording describes the intuition only.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1656,
+    "type": "tf",
+    "question": "Slide 16 uses a tensor gather to extract one scalar probability for the sampled token from a vocabulary-sized output.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 16 describes a gather operation at index 2530 that returns the probability of \"Apple\" as a scalar.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1657,
+    "type": "tf",
+    "question": "Slide 17 averages the token-level loss values for a 500-token response into one scalar loss.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 17 says the 500 token-level loss values are averaged into one global scalar loss for the sequence.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1658,
+    "type": "tf",
+    "question": "Slide 18 defines the return target as R_t = A_t - V_old(s_t).",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 18 defines R_t = A_t + V_old(s_t), with a plus sign.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1659,
+    "type": "tf",
+    "question": "Slide 18 defines the unclipped critic loss as one half times the expected squared difference between V(s_t) and R_t.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 18 gives L^VF(omega) = (1/2) E[(V(s_t) - R_t)^2].",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1660,
+    "type": "tf",
+    "question": "Slide 24 classifies DPO as on-policy because it generates new trajectories during training.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 24 classifies DPO as off-policy and says it does not generate new trajectories during training.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1661,
+    "type": "tf",
+    "question": "Slide 24 says on-policy methods such as PPO and GRPO generate their own outputs during training and learn from feedback on those outputs.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 24 gives this mechanism for on-policy learning.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1662,
+    "type": "tf",
+    "question": "Slide 24 describes off-policy training as memory-intensive because it stores the full generation history.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 24 describes off-policy training as extremely fast and memory-efficient, and names performance degradation on misaligned static data as the risk.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1663,
+    "type": "mcq",
+    "question": "What does the Value LLM predict, according to slide 13?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The expected future reward from a token state",
+      "B": "The probability of the sampled token",
+      "C": "The KL divergence to the reference model",
+      "D": "The vocabulary size"
+    },
+    "answer": "A",
+    "explanation": "Slide 13 defines the Value LLM as predicting expected future reward from a state.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1664,
+    "type": "mcq",
+    "question": "On slide 13, what should happen to a token whose advantage is less than 0?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Its probability should increase",
+      "B": "Its probability should decrease",
+      "C": "Training should stop",
+      "D": "The critic should be reset"
+    },
+    "answer": "B",
+    "explanation": "Slide 13 says a token that did worse than expected should have its probability decreased.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1665,
+    "type": "mcq",
+    "question": "Which four LLMs does slide 13 say must be loaded into VRAM simultaneously?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Actor, Teacher, Student, Judge",
+      "B": "Actor, Reward, Labeler, Critic",
+      "C": "Actor, Reference, Reward, Value",
+      "D": "Encoder, Decoder, Reward, Value"
+    },
+    "answer": "C",
+    "explanation": "Slide 13 lists Actor, Reference, Reward, and Value.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1666,
+    "type": "mcq",
+    "question": "Which model does slide 3 say the critic is usually initialized from?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The labeler panel",
+      "B": "The actor",
+      "C": "The reference model",
+      "D": "The reward model"
+    },
+    "answer": "D",
+    "explanation": "Slide 3 says the critic is usually initialized from the Reward Model.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1667,
+    "type": "mcq",
+    "question": "With r = 2.0, A = 2.0, and eps = 0.2, what is the objective term for that token?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "2.4",
+      "B": "4.0",
+      "C": "1.2",
+      "D": "0.4"
+    },
+    "answer": "A",
+    "explanation": "The unclipped term is 4.0 and the clipped term is 1.2 x 2.0 = 2.4. The min is 2.4.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1668,
+    "type": "mcq",
+    "question": "With r = 0.9, A = -0.5, and eps = 0.2, what is the objective term?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "-0.5",
+      "B": "-0.45",
+      "C": "-0.4",
+      "D": "0.45"
+    },
+    "answer": "B",
+    "explanation": "The ratio is inside the interval, so both terms equal 0.9 x (-0.5) = -0.45.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1669,
+    "type": "mcq",
+    "question": "Four tokens have objective terms 1.2, -0.45, 2.4, and 0.0. What is their average, which is the scalar objective in the slide 17 style?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "3.15",
+      "B": "0.9",
+      "C": "0.7875",
+      "D": "1.2"
+    },
+    "answer": "C",
+    "explanation": "The sum is 3.15, and 3.15 / 4 = 0.7875.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1670,
+    "type": "mcq",
+    "question": "For a 500-token response, how many probability ratios does slide 17 compute?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "1",
+      "B": "50",
+      "C": "100,000",
+      "D": "500"
+    },
+    "answer": "D",
+    "explanation": "Slide 17 divides the new 1D tensor by the old one element by element, which gives 500 ratios.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1671,
+    "type": "mcq",
+    "question": "With V = 1.0, V_old = 0.5, R_t = 1.5, and eps = 0.2, what is the clipped squared error (V_clipped - R_t)^2?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "0.64",
+      "B": "0.49",
+      "C": "0.70",
+      "D": "0.25"
+    },
+    "answer": "A",
+    "explanation": "V_clipped = 0.5 + clip(0.5, -0.2, 0.2) = 0.7, and (0.7 - 1.5)^2 = 0.64. The value 0.70 is V_clipped, not the squared error.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1672,
+    "type": "mcq",
+    "question": "How does the clipped critic loss on slide 18 combine the unclipped and clipped squared errors?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "It sums them",
+      "B": "It takes the element-wise maximum",
+      "C": "It uses only the unclipped error",
+      "D": "It takes the element-wise minimum"
+    },
+    "answer": "B",
+    "explanation": "Slide 18 writes the clipped value loss with max(...) over the two squared errors.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1673,
+    "type": "mcq",
+    "question": "Which methods does slide 24 list as on-policy?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Supervised fine-tuning alone",
+      "B": "DPO",
+      "C": "PPO and GRPO",
+      "D": "Reward modeling alone"
+    },
+    "answer": "C",
+    "explanation": "Slide 24 labels PPO and GRPO as on-policy.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1674,
+    "type": "mcq",
+    "question": "What does slide 24 say off-policy training relies on?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Generating new trajectories during every step",
+      "B": "No data at all",
+      "C": "A critic model that predicts advantage",
+      "D": "Pre-collected static datasets, or data from an older or different model"
+    },
+    "answer": "D",
+    "explanation": "Slide 24 says off-policy training relies solely on pre-collected static datasets or data generated by an older or different model.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1675,
+    "type": "mcq",
+    "question": "What risk does slide 24 attach to off-policy training?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Performance degradation when the static dataset does not match the model's generation distribution",
+      "B": "Requirement for too many GPUs",
+      "C": "Critic overfitting",
+      "D": "Slow token generation during training"
+    },
+    "answer": "A",
+    "explanation": "Slide 24 names this degradation as the main cost of off-policy training.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1676,
+    "type": "mcq",
+    "question": "Which description of the advantage matches slide 14?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "The vocabulary size of the model",
+      "B": "How much good or bad an action is compared to the average actions",
+      "C": "The learning rate used in the update",
+      "D": "The coefficient of the KL penalty"
+    },
+    "answer": "B",
+    "explanation": "Slide 14 uses this wording for the advantage.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1677,
+    "type": "mcq",
+    "question": "On slide 18, if A_t = 0.4 and V_old(s_t) = 0.9, what is the return target R_t?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "0.36",
+      "B": "0.5",
+      "C": "1.3",
+      "D": "-0.5"
+    },
+    "answer": "C",
+    "explanation": "R_t = A_t + V_old(s_t) = 0.4 + 0.9 = 1.3.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1678,
+    "type": "mcq",
+    "question": "Which quantity does slide 17 pass to backpropagation for the actor update?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "The critic's MSE loss alone",
+      "B": "The reward model's ranking loss",
+      "C": "The KL penalty alone",
+      "D": "One scalar, the average of the clipped token-level objective over the sequence"
+    },
+    "answer": "D",
+    "explanation": "Slide 17 averages the token-level loss into one scalar and computes gradients of that scalar with respect to theta.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1679,
+    "type": "sa",
+    "question": "Explain in one paragraph what the value model contributes to PPO in RLHF, and how the advantage is used to update the actor.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The value model predicts the expected future reward from each token state (slide 13), which gives PPO a per-token baseline. The advantage is the gap between the return and that prediction (slides 11 and 13). A positive advantage raises the probability of the sampled token, and a negative advantage lowers it (slide 13). In the loss, each token's probability ratio is multiplied by its advantage, and the token-level terms are averaged into one scalar for the actor update (slides 15 and 17). The critic is trained separately with a squared-error loss against R_t = A_t + V_old(s_t) (slide 18).",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1680,
+    "type": "sa",
+    "question": "A student says that PPO can reuse one rollout for several mini-batch updates because the ratio makes the data on-policy at every step. Correct the statement.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The ratio does not make the data on-policy at every step. Slide 15 describes mini-batch updates on rollout data. After the first update, the current policy differs from the policy that generated the rollout. The ratio r_t = pi_theta / pi_old reweights each sample to correct for that difference, which is the standard importance-sampling reading that the slides do not state. The clip limits how far this correction can move the update (topic 54). The data is sampled from the old policy, and the ratio is the mechanism that keeps reusing it reasonable.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1681,
+    "type": "sa",
+    "question": "Using the pros and cons on slide 24, state when an off-policy method such as DPO is the better choice than an on-policy method such as PPO. Name the risk you would check before choosing it.",
+    "tier": "Tier 3 — Low Probability",
+    "answerText": "Slide 24 says off-policy training is extremely fast and memory-efficient, and it does not generate trajectories during training. When generation is the main cost and a suitable static preference dataset exists, DPO is the better fit. The slide also says performance can degrade when the static dataset does not match the model's own generation distribution. Before choosing DPO, one would check how far the static data is from the samples the current model produces. The slides give no measurement for this comparison.",
+    "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
+  },
+  {
+    "num": 1682,
+    "type": "tf",
+    "question": "Slide 26 states that GRPO does not require a Value Model.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The slide 26 diagram carries this label.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1683,
+    "type": "tf",
+    "question": "Slide 13 says PPO loads four LLMs (Actor, Reference, Reward, Value) into VRAM at the same time.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 13 lists these four models and describes the setup as brutally expensive.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1684,
+    "type": "tf",
+    "question": "Slide 27 says GRPO estimates its baseline with a neural network trained to predict rewards.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 27 says GRPO calculates advantage \"purely through statistical normalization\" of the group's rewards. No network is trained for the baseline.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1685,
+    "type": "tf",
+    "question": "Slide 27 says GRPO generates a group of different responses, with 4 to 8 outputs as the example, for the same prompt.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 27 gives \"e.g., 4 to 8 outputs\" for the exact same prompt.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1686,
+    "type": "tf",
+    "question": "Under the slide 27 formula, a response whose reward is above the group average has a positive advantage.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 27 states this directly.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1687,
+    "type": "tf",
+    "question": "Slide 26 shows the GRPO diagram without a Reward LLM.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide 26 diagram still shows the Reward LLM. Only the value model is removed on this slide.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1688,
+    "type": "tf",
+    "question": "Slide 13 says the Value LLM predicts the expected future reward from a given token state.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 13 defines the Value LLM's job this way.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1689,
+    "type": "tf",
+    "question": "The slide 27 advantage divides the mean-centered reward by the group mean.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The formula divides by the standard deviation of the group rewards, not the mean.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1690,
+    "type": "tf",
+    "question": "Slide 24 classifies GRPO as an off-policy method.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 24 lists GRPO under on-policy learning, where the model generates its own training samples.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1691,
+    "type": "tf",
+    "question": "Slide 27 gives a numeric memory saving for GRPO compared with PPO.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 27 says the method \"slashes memory requirements\" but gives no number.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1692,
+    "type": "tf",
+    "question": "Under the slide 27 formula, the advantage is undefined when all G rewards in a group are equal.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The standard deviation is 0, so the formula divides 0 by 0.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1693,
+    "type": "tf",
+    "question": "Slide 13 defines the advantage as the Value LLM's prediction minus the actual reward received.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 13 defines the advantage as the actual reward received minus the Value LLM's prediction.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1694,
+    "type": "mcq",
+    "question": "What does the Value LLM predict in PPO, according to slide 13?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The expected future reward from a token state",
+      "B": "The reference model's token probabilities",
+      "C": "The number of tokens in a group",
+      "D": "The KL coefficient beta"
+    },
+    "answer": "A",
+    "explanation": "Slide 13 defines the Value LLM's job as predicting the expected future reward from any given state.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1695,
+    "type": "mcq",
+    "question": "How many LLMs does slide 13 say PPO loads into VRAM at once?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "2",
+      "B": "4",
+      "C": "3",
+      "D": "6"
+    },
+    "answer": "B",
+    "explanation": "Slide 13 lists Actor, Reference, Reward, and Value.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1696,
+    "type": "mcq",
+    "question": "What does GRPO use as its advantage baseline?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A learned value network",
+      "B": "The log probability from the SFT model",
+      "C": "The mean reward of the sampled group for the same prompt",
+      "D": "A human preference label"
+    },
+    "answer": "C",
+    "explanation": "Slide 27 computes advantage from the group mean and standard deviation.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1697,
+    "type": "mcq",
+    "question": "Which group size range does slide 27 give as its example?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "1 to 2",
+      "B": "2 to 3",
+      "C": "2 to 4",
+      "D": "4 to 8"
+    },
+    "answer": "D",
+    "explanation": "Slide 27 says \"e.g., 4 to 8 outputs.\"",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1698,
+    "type": "mcq",
+    "question": "According to slide 13, a token has a positive advantage when it was:",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Better than expected",
+      "B": "Worse than expected",
+      "C": "Penalized by the KL term",
+      "D": "Sampled from the reference model"
+    },
+    "answer": "A",
+    "explanation": "Slide 13 says a positive advantage means the token was better than expected, so its probability should increase.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1699,
+    "type": "mcq",
+    "question": "Slide 3 says the Critic model is usually initialized from which model?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The Actor",
+      "B": "The Reward model",
+      "C": "The Reference model",
+      "D": "A randomly initialized network"
+    },
+    "answer": "B",
+    "explanation": "Slide 3 says the Critic (value network) is usually initialized from the Reward Model.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1700,
+    "type": "mcq",
+    "question": "Slide 27 says a response that scores higher than the group average receives which advantage?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Negative",
+      "B": "Zero",
+      "C": "Positive",
+      "D": "Undefined"
+    },
+    "answer": "C",
+    "explanation": "Slide 27 states that such a response gets a positive advantage.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1701,
+    "type": "mcq",
+    "question": "Slide 24 classifies GRPO as which type of learning?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Offline-only",
+      "B": "Off-policy",
+      "C": "Supervised fine-tuning",
+      "D": "On-policy"
+    },
+    "answer": "D",
+    "explanation": "Slide 24 lists \"On-Policy (e.g., PPO, GRPO).\"",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1702,
+    "type": "mcq",
+    "question": "For a response with reward r_i, group mean m, and group standard deviation s, which expression matches slide 27?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "(r_i minus m) divided by s",
+      "B": "r_i times m",
+      "C": "s divided by (r_i minus m)",
+      "D": "(r_i plus m) divided by s"
+    },
+    "answer": "A",
+    "explanation": "This is the slide 27 formula.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1703,
+    "type": "mcq",
+    "question": "Why does slide 13 call the PPO setup expensive?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "It needs a GPU cluster for tokenization",
+      "B": "It loads four full LLMs into VRAM at once",
+      "C": "The reward model runs in fp16",
+      "D": "It needs a human label at every step"
+    },
+    "answer": "B",
+    "explanation": "Slide 13 gives the four-LLM VRAM load as the hardware cost.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1704,
+    "type": "mcq",
+    "question": "What does slide 27 say GRPO achieves?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Removal of the KL penalty",
+      "B": "Off-policy speed",
+      "C": "Lower memory use while keeping on-policy RL benefits",
+      "D": "Use of human rankings during training"
+    },
+    "answer": "C",
+    "explanation": "Slide 27 says the method slashes memory requirements while maintaining on-policy RL benefits.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1705,
+    "type": "mcq",
+    "question": "Compared with PPO, which model does GRPO remove?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Actor",
+      "B": "Reference",
+      "C": "Reward",
+      "D": "Value"
+    },
+    "answer": "D",
+    "explanation": "Slide 26 states GRPO does not require a Value Model. The Actor, Reference, and Reward models remain.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1706,
+    "type": "mcq",
+    "question": "On slide 27, the group of responses is generated for:",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The exact same prompt",
+      "B": "A random sample of the training corpus",
+      "C": "Different prompts from the batch",
+      "D": "The reward model's training set"
+    },
+    "answer": "A",
+    "explanation": "Slide 27 says the responses are for \"the exact same prompt.\"",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1707,
+    "type": "mcq",
+    "question": "What is the advantage when all four rewards in a group are 0.5?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "0.5 for each response",
+      "B": "Undefined, because the standard deviation is 0",
+      "C": "1 for each response",
+      "D": "0 for each response"
+    },
+    "answer": "B",
+    "explanation": "The numerator and the denominator of the slide 27 formula are both 0, so the value is undefined.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1708,
+    "type": "mcq",
+    "question": "In the slide 27 formula, which symbol is the group size?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "r",
+      "B": "pi",
+      "C": "G",
+      "D": "beta"
+    },
+    "answer": "C",
+    "explanation": "G is the number of responses in the group (slide 28 also uses G for the group size).",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1709,
+    "type": "mcq",
+    "question": "The slide 26 diagram labels the advantage box as estimated from which model?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Tokenizer",
+      "B": "Value Model",
+      "C": "Reference LLM",
+      "D": "Reward Model"
+    },
+    "answer": "D",
+    "explanation": "The label reads \"Advantage Estimated from Reward Model.\"",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1710,
+    "type": "sa",
+    "question": "Explain how GRPO computes an advantage for a response without a value model. Use the slide 27 formula.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "GRPO samples a group of G responses to the same prompt and scores each with the reward model. The advantage of response i is its reward minus the group mean, divided by the group standard deviation (slide 27). The baseline comes from the group itself, so no network predicts it. A response above the group average is pushed up, and one below is pushed down.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1711,
+    "type": "sa",
+    "question": "The slides say GRPO \"slashes memory requirements.\" Identify what the slides support and what they leave unsupported.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The slides support a count: PPO holds four LLMs, and GRPO as shown on slide 26 holds three, since the Value model is removed. The slides do not give parameter counts, byte sizes, or measured peak memory for either method. The memory benefit is therefore a qualitative claim in the deck, and any number would need a source outside these slides.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1712,
+    "type": "sa",
+    "question": "A group of four responses all receive reward 0.5. Describe what the slide 27 formula produces and what a training implementation must do about it.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "Each deviation from the mean is 0, and the standard deviation is 0. The formula gives 0 divided by 0 for every response, so the advantage is undefined. The slides do not give a rule for this case. An implementation needs an explicit choice, such as setting the advantage to zero for an all-equal group, and that choice should be stated in any write-up.",
+    "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
+  },
+  {
+    "num": 1713,
+    "type": "tf",
+    "question": "In the slide 28 objective, the outer 1/G factor averages the per-response term over the G responses in the group.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 28 describes the outer summation and 1/G as group averaging over G responses to the same prompt.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1714,
+    "type": "tf",
+    "question": "The slide 28 objective divides each response's token sum by its length T_i.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "As printed, the formula divides only by G. The inner sum over t has no per-response 1/T_i factor.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1715,
+    "type": "tf",
+    "question": "Slide 29 says the advantage A_i has no t subscript, so the same value applies to every token of response i.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 29 describes A_i as a sequence-level scalar broadcast to every token of the response.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1716,
+    "type": "tf",
+    "question": "Slide 30 says the clipping range is usually 1 plus or minus 0.2.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 30 gives the trust region as usually 1 plus or minus 0.2.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1717,
+    "type": "tf",
+    "question": "Slide 30 describes the KL term as a sequence-level penalty subtracted once per response.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 30 calls it a token-level penalty applied at every step t.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1718,
+    "type": "tf",
+    "question": "Slide 29 describes the probability ratio as comparing the current policy with the older policy for the same token.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The ratio is pi_theta(a_{i,t} given s_{i,t}) divided by pi_old(a_{i,t} given s_{i,t}).",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1719,
+    "type": "tf",
+    "question": "Slide 27 specifies that the standard deviation in the advantage formula uses a denominator of G minus 1.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 27 does not specify the convention. Topic 57 Example 1 shows both.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1720,
+    "type": "tf",
+    "question": "Slide 30 says the min in the clipped surrogate keeps the more pessimistic of the clipped and unclipped terms.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 30 describes the min as the pessimistic bound.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1721,
+    "type": "tf",
+    "question": "Slide 28 defines beta as the group size.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 30 describes beta as the coefficient that sets how strictly the model stays close to the reference. The group size is G.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1722,
+    "type": "tf",
+    "question": "For a response with A_i = -1.0954 and ratio 0.7 with eps = 0.2, the clipped term is the larger of the two values.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The unclipped term is -0.7668 and the clipped term is -0.8763. The min selects -0.8763, which is the smaller of the two.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1723,
+    "type": "tf",
+    "question": "Using the rewards (0.9, 0.2, 0.6, 0.3), the response with reward 0.6 has a positive group advantage.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The group mean is 0.5, and 0.6 is above it, so its advantage is positive (+0.3651 under the population standard deviation).",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1724,
+    "type": "tf",
+    "question": "Slide 28 says the responses in a group are generated for different prompts, so the baseline is shared across prompts.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 28 and slide 27 both say the group is generated for the exact same prompt.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1725,
+    "type": "mcq",
+    "question": "Which expression is the advantage A_i in slide 27?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "(r_i minus the group mean) divided by the group standard deviation",
+      "B": "r_i minus the KL term",
+      "C": "r_i times G",
+      "D": "r_i divided by the group maximum"
+    },
+    "answer": "A",
+    "explanation": "This is the slide 27 formula.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1726,
+    "type": "mcq",
+    "question": "Which term in the slide 28 objective is the clipped surrogate?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "1/G",
+      "B": "min(ratio times A_i, clip(...) times A_i)",
+      "C": "beta times KL_t",
+      "D": "The token index t"
+    },
+    "answer": "B",
+    "explanation": "Slide 30 describes this term as the clipped surrogate objective, inherited from PPO.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1727,
+    "type": "mcq",
+    "question": "Over what does the outer summation in slide 28 run?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The tokens in one response",
+      "B": "The policy parameters",
+      "C": "A group of G different responses to the same prompt",
+      "D": "The KL coefficient"
+    },
+    "answer": "C",
+    "explanation": "Slide 28 says the outer sum iterates over the G responses for the same prompt.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1728,
+    "type": "mcq",
+    "question": "What does the ratio in slide 29 compare?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The actor and the reward model",
+      "B": "The group mean and the group standard deviation",
+      "C": "Two different prompts",
+      "D": "The new policy pi_theta and the old policy pi_old for the same token"
+    },
+    "answer": "D",
+    "explanation": "Slide 29 describes the ratio as the current network's probability of a token divided by the older network's probability.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1729,
+    "type": "mcq",
+    "question": "According to slide 30, what does the coefficient beta control?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "How strictly the model is kept close to the reference model",
+      "B": "The group size",
+      "C": "The clip range",
+      "D": "The sign of the advantage"
+    },
+    "answer": "A",
+    "explanation": "Slide 30 says beta dictates how strictly the model is forced to preserve its language capabilities.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1730,
+    "type": "mcq",
+    "question": "Slide 29 describes A_i as which kind of quantity?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A per-token quantity with a t subscript",
+      "B": "A sequence-level scalar applied to all tokens of response i",
+      "C": "The KL divergence",
+      "D": "A value predicted by a critic network"
+    },
+    "answer": "B",
+    "explanation": "Slide 29 states that A_i lacks a t subscript and is broadcast to every token of the sequence.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1731,
+    "type": "mcq",
+    "question": "For rewards 0.9, 0.2, 0.6, and 0.3, the group mean is:",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "0.3",
+      "B": "0.6",
+      "C": "0.5",
+      "D": "2.0"
+    },
+    "answer": "C",
+    "explanation": "The sum is 2.0 and the mean is 2.0 / 4 = 0.5.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1732,
+    "type": "mcq",
+    "question": "For the same four rewards, the population standard deviation (divide by 4) is:",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "0.075",
+      "B": "0.3",
+      "C": "0.3162",
+      "D": "0.2739"
+    },
+    "answer": "D",
+    "explanation": "The sum of squared deviations is 0.30, the variance is 0.30 / 4 = 0.075, and the square root is 0.2739.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1733,
+    "type": "mcq",
+    "question": "Using the population standard deviation, the advantage of the response with reward 0.9 is about:",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "1.46",
+      "B": "0.40",
+      "C": "0.37",
+      "D": "-1.10"
+    },
+    "answer": "A",
+    "explanation": "The deviation is 0.4, and 0.4 / 0.2739 = 1.4606.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1734,
+    "type": "mcq",
+    "question": "Using the population standard deviation, the advantage of the response with reward 0.2 is about:",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "1.10",
+      "B": "-1.10",
+      "C": "0.37",
+      "D": "-0.73"
+    },
+    "answer": "B",
+    "explanation": "The deviation is -0.3, and -0.3 / 0.2739 = -1.0954.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1735,
+    "type": "mcq",
+    "question": "For the same four rewards, the sample standard deviation (divide by G minus 1 = 3) is:",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "0.075",
+      "B": "0.2739",
+      "C": "0.3162",
+      "D": "0.1"
+    },
+    "answer": "C",
+    "explanation": "The variance is 0.30 / 3 = 0.10, and the square root is 0.3162.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1736,
+    "type": "mcq",
+    "question": "For A_i = 1.4606 and ratio 1.3 with eps = 0.2, the clipped term is:",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "1.8988",
+      "B": "1.2",
+      "C": "1.4606",
+      "D": "1.7527"
+    },
+    "answer": "D",
+    "explanation": "The ratio is clipped to 1.2, and 1.2 times 1.4606 = 1.7527. This is smaller than the unclipped 1.8988, so the min selects it.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1737,
+    "type": "mcq",
+    "question": "For A_i = -1.0954 and ratio 0.7 with eps = 0.2, the min of the two terms is:",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "-0.8763",
+      "B": "0.7",
+      "C": "-1.0954",
+      "D": "-0.7668"
+    },
+    "answer": "A",
+    "explanation": "The unclipped term is -0.7668 and the clipped term is -0.8763. The min is -0.8763.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1738,
+    "type": "mcq",
+    "question": "For rewards (0.99, 0.01, 0.99, 0.01) with population standard deviation, the advantages are:",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "0.5 for each response",
+      "B": "+1, -1, +1, -1",
+      "C": "0 for each response",
+      "D": "0.99, 0.01, 0.99, 0.01"
+    },
+    "answer": "B",
+    "explanation": "The mean is 0.5, the standard deviation is 0.49, and each deviation is plus or minus 0.49.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1739,
+    "type": "mcq",
+    "question": "Which description matches the KL term on slide 30?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "A sequence-level penalty subtracted once",
+      "B": "A replacement for the clipping",
+      "C": "A token-level penalty applied at each step t",
+      "D": "A term that uses the reward model"
+    },
+    "answer": "C",
+    "explanation": "Slide 30 describes the term as a token-level guardrail applied at every step.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1740,
+    "type": "mcq",
+    "question": "Slide 28 names the inner summation over t as:",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Group averaging",
+      "B": "Clipped surrogate",
+      "C": "KL penalty",
+      "D": "Token-level summation"
+    },
+    "answer": "D",
+    "explanation": "Slide 28 labels the inner sum \"Token-Level Summation.\"",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1741,
+    "type": "sa",
+    "question": "Walk through the group advantage for rewards (0.9, 0.2, 0.6, 0.3) and state which standard deviation convention you use.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The mean is 0.5. The deviations are +0.4, -0.3, +0.1, -0.2. With the population standard deviation of 0.2739, the advantages are +1.4606, -1.0954, +0.3651, and -0.7303. With the sample standard deviation of 0.3162, they are +1.2649, -0.9487, +0.3162, and -0.6325. The advantages sum to zero in both cases. The two conventions differ by a common factor of about 1.155, and the slides do not say which one is used.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1742,
+    "type": "sa",
+    "question": "Explain the clipped surrogate in slide 30. Describe what the clip and the min do for a positive advantage and for a negative advantage.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The ratio is clipped to the range [1 minus eps, 1 plus eps], usually [0.8, 1.2], and the min of the unclipped and clipped products is taken. For a positive advantage, a ratio above 1.2 is capped, so the gain from raising that token's probability stops increasing past the clip. For a negative advantage, a ratio below 0.8 is capped on the other side, so the push down stops at the clip. In both cases the min is the pessimistic choice, which keeps each update within a trust region (slide 30).",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1743,
+    "type": "sa",
+    "question": "Explain what the slide 28 formula implies for a long response compared with a short response, and what the slide leaves unspecified.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "As printed, each response contributes a sum over its tokens, and the formula divides only by G. A longer response therefore has more token terms in its sum than a shorter one with the same A_i. The slide does not say whether this is intended, whether the sum should be normalized by length, or how this interacts with the per-token KL penalty. These are open questions for the source paper or the implementation.",
+    "lectureReference": "Part 57: The GRPO Objective, Group Advantage, and the KL Term"
+  },
+  {
+    "num": 1744,
+    "type": "tf",
+    "question": "Slide 32 says rule-based rewards replace a model-based reward in the training loop.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 32 labels the reward step \"No Model-based Reward\" and \"Rule-based rewards.\"",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1745,
+    "type": "tf",
+    "question": "Slide 32 says the rule-based approach works only for verifiable problems.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 32 states this limit directly.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1746,
+    "type": "tf",
+    "question": "Slide 32 says a response that is correct and follows the format receives a higher reward.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 32 gives \"Being correct and following format = higher reward.\"",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1747,
+    "type": "tf",
+    "question": "Slide 32 gives numeric weights for correctness and format rewards.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide gives no weights, scale, or format specification.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1748,
+    "type": "tf",
+    "question": "Slide 32 presents rule-based rewards as suitable for open-ended creative writing.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide restricts the approach to verifiable problems.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1749,
+    "type": "tf",
+    "question": "Slide 31 is a section divider that asks, \"Do we need a reward LLM?\"",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 31 shows this question as its title.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1750,
+    "type": "tf",
+    "question": "The slide 32 diagram still includes a Reference LLM.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The slide 32 diagram shows the Reference LLM alongside the policy.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1751,
+    "type": "tf",
+    "question": "Slide 32 cites a 2024 DeepSeekMath paper as the source of the rule-based reward approach.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slide 32 cites DeepSeek-R1 (DeepSeek-AI, 2025, arXiv 2501.12948). The DeepSeekMath citation appears on slide 26, for GRPO.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1752,
+    "type": "tf",
+    "question": "Slide 32 says a trained Reward LLM scores each response in the rule-based approach.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide says rewards are computed from rules, with no model-based reward.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1753,
+    "type": "tf",
+    "question": "In the slide 32 example, the first guess \"x=0 and x=4\" gives a correct final answer, because 4 is a root of x(x-1)=0.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Substituting 4 gives 4 times 3 = 12, not 0, so 4 is not a root. The correct final answer is x = 0 or 1.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1754,
+    "type": "mcq",
+    "question": "Which question does the slide 31 section title pose?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Do we need a reward LLM?",
+      "B": "Do we need a tokenizer?",
+      "C": "Do we need a KL term?",
+      "D": "Do we need a value LLM?"
+    },
+    "answer": "A",
+    "explanation": "Slide 31 is titled \"Do we need a reward LLM?\"",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1755,
+    "type": "mcq",
+    "question": "What does slide 32 use in place of the Reward LLM?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Human rankings collected at each step",
+      "B": "Rule-based verifiable rewards",
+      "C": "A value network",
+      "D": "A larger reference model"
+    },
+    "answer": "B",
+    "explanation": "Slide 32 labels the reward \"Rule-based verifiable rewards.\"",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1756,
+    "type": "mcq",
+    "question": "According to slide 32, which response receives higher reward?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The longest response",
+      "B": "The response with the most tokens",
+      "C": "A response that is correct and follows the format",
+      "D": "A response that matches the reference model exactly"
+    },
+    "answer": "C",
+    "explanation": "Slide 32 gives correctness and format as the criteria for higher reward.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1757,
+    "type": "mcq",
+    "question": "Which type of problem does slide 32 say the rule-based approach works for?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Creative writing",
+      "B": "Problems with no answer key",
+      "C": "Any dialogue",
+      "D": "Verifiable problems"
+    },
+    "answer": "D",
+    "explanation": "Slide 32 says \"Only works for verifiable problems.\"",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1758,
+    "type": "mcq",
+    "question": "Which example prompt does slide 32 use?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Solve x*(x-1)=0",
+      "B": "Write a poem",
+      "C": "Translate a sentence",
+      "D": "Summarize an article"
+    },
+    "answer": "A",
+    "explanation": "The prompt appears in the slide 32 diagram.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1759,
+    "type": "mcq",
+    "question": "What are the roots of x(x-1)=0?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "0 and 4",
+      "B": "0 and 1",
+      "C": "0 and -1",
+      "D": "1 and 4"
+    },
+    "answer": "B",
+    "explanation": "Each factor gives a root: x = 0 and x - 1 = 0, so x = 1.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1760,
+    "type": "mcq",
+    "question": "Is x = 4 a solution of x(x-1)=0?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Yes, because 4 appears in the first guess",
+      "B": "Yes, because 4 is an integer",
+      "C": "No, because 4 times 3 = 12",
+      "D": "Only under the reference model"
+    },
+    "answer": "C",
+    "explanation": "The expression equals 12 at x = 4, so 4 is not a root.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1761,
+    "type": "mcq",
+    "question": "What does slide 32 show for the Reference LLM?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "It is removed from the diagram",
+      "B": "It is replaced by a reward model",
+      "C": "It is used only at test time",
+      "D": "It is still present in the diagram"
+    },
+    "answer": "D",
+    "explanation": "The slide 32 diagram includes the Reference LLM.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1762,
+    "type": "mcq",
+    "question": "Which reference does slide 32 give for the approach?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "DeepSeek-AI, DeepSeek-R1, 2025",
+      "B": "Ouyang et al., 2022",
+      "C": "Shao et al., 2024 (DeepSeekMath)",
+      "D": "Schulman et al., 2017"
+    },
+    "answer": "A",
+    "explanation": "Slide 32 cites DeepSeek-AI (2025) for DeepSeek-R1. Ouyang et al. appears on slides 5, 7, and 14, and Shao et al. appears on slide 26.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1763,
+    "type": "mcq",
+    "question": "What does the slide 32 label \"No Model-based Reward\" mean?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "The policy has no trainable weights",
+      "B": "The reward is computed from rules rather than a learned model",
+      "C": "Only the reference model is used",
+      "D": "The reward is produced by a learned model"
+    },
+    "answer": "B",
+    "explanation": "The label means the reward is computed from rules.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1764,
+    "type": "mcq",
+    "question": "When the reward is rule-based, which GRPO element does the slide 32 diagram still show?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Human rankings for reward model training",
+      "B": "A critic network",
+      "C": "The advantage (A_t) estimation step",
+      "D": "A pretraining corpus"
+    },
+    "answer": "C",
+    "explanation": "The slide 32 diagram includes \"Advantage (A_t) estimation.\"",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1765,
+    "type": "mcq",
+    "question": "Which stage of the InstructGPT pipeline on slide 22 is replaced by rule-based rewards?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Supervised fine-tuning",
+      "B": "PPO fine-tuning",
+      "C": "Pretraining",
+      "D": "Reward modeling"
+    },
+    "answer": "D",
+    "explanation": "Slide 22 lists reward modeling as the stage that trains a model to predict human rankings. Rule-based rewards remove that model.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1766,
+    "type": "mcq",
+    "question": "Which statement matches the reward criterion on slide 32?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Being correct and following format",
+      "B": "Confident wording",
+      "C": "Correct answers in any format",
+      "D": "Long responses"
+    },
+    "answer": "A",
+    "explanation": "Slide 32 states that being correct and following format yields higher reward.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1767,
+    "type": "mcq",
+    "question": "What is the correct reading of the first guess \"x=0 and x=4\" in the slide 32 diagram?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "It is correct, because the diagram says so",
+      "B": "It is wrong, and a rule checker should judge the final answer",
+      "C": "It is the reward value",
+      "D": "It shows that the reward model works"
+    },
+    "answer": "B",
+    "explanation": "The final answer on the slide is \"x=0 or 1,\" and 4 is not a root.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1768,
+    "type": "mcq",
+    "question": "Under the slide 32 approach, when is a reward LLM not needed?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "Always",
+      "B": "For all tasks",
+      "C": "For verifiable tasks",
+      "D": "Only for image tasks"
+    },
+    "answer": "C",
+    "explanation": "Slide 32 describes rule-based rewards for verifiable problems, so a reward LLM is not needed for those tasks. The other options contradict the slide's scope.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1769,
+    "type": "mcq",
+    "question": "What reward scale does slide 32 give for rule-based rewards?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "0 to 1",
+      "B": "0 to 100",
+      "C": "-1 to 1",
+      "D": "The slide does not specify a scale"
+    },
+    "answer": "D",
+    "explanation": "The slide gives qualitative criteria and no numeric scale.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1770,
+    "type": "sa",
+    "question": "Compare the reward source in the slide 26 diagram with the reward source in the slide 32 diagram. Say what else stays the same.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "Slide 26 uses a Reward LLM that scores each response, and the advantage is labeled \"Estimated from Reward Model.\" Slide 32 replaces that model with rule-based rewards computed from correctness and format. The Reference LLM, the advantage estimation step, and the policy update remain in the diagram. The change affects the reward source, not the group-based advantage structure from slides 26 and 27.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1771,
+    "type": "sa",
+    "question": "For the prompt x(x-1)=0, use the rule \"reward 1 if the final answer is {0, 1} and the format tag is present, else 0\" (an assumption, not from the slides). Four responses give rewards (1, 0, 0, 1). Compute the group advantages with the population standard deviation.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "The mean is 0.5. The deviations are +0.5, -0.5, -0.5, +0.5, and the population standard deviation is 0.5. The advantages are (+1, -1, -1, +1). With the sample standard deviation, they would be (+0.8660, -0.8660, -0.8660, +0.8660). The rule itself is an illustrative choice, since slide 32 gives no weights or format definition.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
+  },
+  {
+    "num": 1772,
+    "type": "sa",
+    "question": "Name two limits of rule-based rewards that follow from slide 32's wording, and two concerns the slides do not address. Say which is which.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "Slide 32 limits the approach to verifiable problems, so open-ended quality has no rule in the deck. It also says rewards depend on correctness and format, so any task where format or correctness cannot be stated as a rule is outside the approach. The slides do not address whether a rule can be satisfied without a correct solution, and they do not address whether a rule rejects correct answers written in another form. Both concerns would need a measured check (for example, comparing rule scores with an independent check on sampled responses) rather than an assumption.",
+    "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
   }
 ]
