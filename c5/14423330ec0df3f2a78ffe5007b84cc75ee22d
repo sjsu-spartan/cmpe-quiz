@@ -1,0 +1,21 @@
+data/cmpe249.json
+  s_a98468ff9786d5::t_8d3aabc51c3179 30136-34335
+data/cmpe258.json
+  s_a98468ff9786d5::t_e7176e97074a6c 21135-24024
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "c514423330ec0df3f2a78ffe5007b84cc75ee22d",
+  "prompts": {},
+  "sessions": {
+    "s_a98468ff9786d5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e2cc8412-eb4c-4c5b-b47a-e167e9f33abc",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "pyadav <pyadav@paloaltonetworks.com>"
+    }
+  }
+}
