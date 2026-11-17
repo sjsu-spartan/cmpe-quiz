@@ -1,0 +1,19 @@
+src/components/ModeSelection.tsx
+  s_a98468ff9786d5::t_22a40ed0febb74 39-50,60-80,91-94,99-100,102
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.24",
+  "base_commit_sha": "da93c273b99557e0ce14c3b25906da20f68ab4f9",
+  "prompts": {},
+  "sessions": {
+    "s_a98468ff9786d5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e2cc8412-eb4c-4c5b-b47a-e167e9f33abc",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "pyadav <pyadav@paloaltonetworks.com>"
+    }
+  }
+}
