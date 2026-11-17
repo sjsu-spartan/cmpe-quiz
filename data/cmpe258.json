@@ -21393,7 +21393,7 @@
       "D": "PPO fine-tuning"
     },
     "answer": "D",
-    "explanation": "PPO fine-tuning uses reward signals from the reward model, and the first three stages use supervised targets.",
+    "explanation": "PPO fine-tuning uses reward signals from the reward model. Slide 19 labels pretraining as supervised learning, SFT trains on labeler-written answers, and reward modeling trains on labeler rankings. The slide does not label reward modeling as supervised, so this is the standard reading and not a statement from the deck.",
     "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
   },
   {
@@ -21537,7 +21537,7 @@
     "type": "sa",
     "question": "Slide 23 lists feature goals for a chat model and four labels. State what a reader can conclude from the slide and what the reader cannot conclude.",
     "tier": "Tier 3 — Low Probability",
-    "answerText": "The reader can conclude that the slide sets out goals a chat model should meet, such as being helpful, inoffensive, and correct, and that the deck groups instruction tuning, RLHF or RAG training, and chat-specific fine-tuning as parts of a chat model. The reader cannot conclude how each label was implemented, what data was used, or whether the goals were met. The slide gives no measurements or training details, so it does not support claims about how any particular system was built.",
+    "answerText": "The reader can conclude that the slide sets out goals a chat model should meet, such as being helpful, inoffensive, and correct, and that the slide names four labels (chat-specific fine-tuning, RLHF/RAG training, instruction fine-tuning, and \"many bells and whistles\") without stating how they relate. The reader cannot conclude how each label was implemented, what data was used, or whether the goals were met. The slide gives no measurements or training details, so it does not support claims about how any particular system was built.",
     "lectureReference": "Part 52: RLHF as a Reinforcement Learning Problem and Pipeline"
   },
   {
@@ -21641,7 +21641,7 @@
       "B": "False"
     },
     "answer": "A",
-    "explanation": "Slide 9 lists these four phases.",
+    "explanation": "Slide 9 introduces four phases, and its list shows phase 1 (rollout). Phases 2 to 4 appear on slides 10, 11, and 15.",
     "lectureReference": "Part 53: PPO in RLHF: The Four Models and the Training Loop"
   },
   {
@@ -21791,7 +21791,7 @@
   {
     "num": 1608,
     "type": "mcq",
-    "question": "Four 7B-parameter models stored in 16-bit precision need about how much memory for weights only, under the Example 1 assumptions?",
+    "question": "Four 7B-parameter models stored in 16-bit precision need about how much memory for weights only? Use 1 GB = 10^9 bytes.",
     "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "7 GB",
@@ -21806,7 +21806,7 @@
   {
     "num": 1609,
     "type": "mcq",
-    "question": "Which item is left out of the Example 1 weights-only total?",
+    "question": "Which item is left out of a weights-only memory total for four 7B-parameter models in 16-bit precision?",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "Gradients and optimizer states for the trainable models",
@@ -22028,14 +22028,14 @@
   {
     "num": 1626,
     "type": "tf",
-    "question": "Slide 15 presents the clip as a proven guarantee of training stability.",
+    "question": "Slide 15 gives a proof that the clip ensures training stability.",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The slide uses guarantee language, but it gives no proof or experiment. The clip limits the incentive for large steps on the sampled batch.",
+    "explanation": "The slide uses guarantee language (\"guarantees that the model only takes safe, incremental steps\"), but it gives no proof or experiment. The clip limits the incentive for large steps on the sampled batch.",
     "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
   },
   {
@@ -22198,7 +22198,7 @@
   {
     "num": 1638,
     "type": "mcq",
-    "question": "With pi_theta = 0.9, pi_ref = 0.3, and beta = 0.1, what is the per-token reward r_1 from slide 10?",
+    "question": "With pi_theta = 0.9, pi_ref = 0.3, and beta = 0.1, what is the per-token reward r_1 from slide 10 for an unfinished token (t < T)?",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "0.109861",
@@ -22366,7 +22366,7 @@
     "type": "sa",
     "question": "Give one scenario where the KL penalty against pi_ref is the binding constraint, and one scenario where the clip against pi_old is the binding constraint. Explain how you would tell them apart.",
     "tier": "Tier 2 — Medium Probability",
-    "answerText": "The KL penalty binds when the policy has drifted far from the SFT model over many iterations, so the accumulated log-ratio to pi_ref is large and the penalty reduces the reward strongly (slide 8). The clip binds within an update when a token's ratio to pi_old passes 1 + eps or 1 - eps for the sampled advantage (slide 15). One way to tell them apart is to log the sequence-level KL to pi_ref across iterations, which measures the long-run drift, and the fraction of tokens whose ratio is clipped in each batch, which measures the per-update step. These logs are a standard diagnostic, and the slides do not describe them.",
+    "answerText": "The KL penalty binds when the policy has drifted far from the SFT model over many iterations, so the accumulated log-ratio to pi_ref is large and the penalty reduces the reward strongly (slide 8). The clip binds within an update when a token's ratio to pi_old passes 1 + eps or 1 - eps for the sampled advantage (slide 15). One way to tell them apart is to log the sequence-level KL to pi_ref across iterations, which measures the long-run drift, and the fraction of tokens whose ratio is clipped in each batch, which measures the per-update step. The slides do not describe these logs.",
     "lectureReference": "Part 54: PPO Clipped Objective, KL Penalty, and Reward Hacking"
   },
   {
@@ -22502,14 +22502,14 @@
   {
     "num": 1661,
     "type": "tf",
-    "question": "Slide 24 says on-policy methods such as PPO and GRPO generate their own outputs during training and learn from feedback on those outputs.",
+    "question": "According to the slide 24 label, on-policy methods such as PPO and GRPO generate their own outputs during training and learn from feedback on those outputs.",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "A",
-    "explanation": "Slide 24 gives this mechanism for on-policy learning.",
+    "explanation": "Slide 24 gives this mechanism for on-policy learning. The label is the deck's; SA2 notes that PPO reuses rollout data after the first mini-batch step, so the data is not strictly on-policy after that point.",
     "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
   },
   {
@@ -22648,7 +22648,7 @@
   {
     "num": 1671,
     "type": "mcq",
-    "question": "With V = 1.0, V_old = 0.5, R_t = 1.5, and eps = 0.2, what is the clipped squared error (V_clipped - R_t)^2?",
+    "question": "With V = 1.0, V_old = 0.5, R_t = 1.5, and eps = 0.2, and using the standard PPO value-clip form V_clipped = V_old + clip(V - V_old, -eps, eps) (slide 18 shows the max form but does not define V_clipped), what is the clipped squared error (V_clipped - R_t)^2?",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "0.64",
@@ -22678,7 +22678,7 @@
   {
     "num": 1673,
     "type": "mcq",
-    "question": "Which methods does slide 24 list as on-policy?",
+    "question": "According to the slide 24 label, which methods are on-policy?",
     "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "Supervised fine-tuning alone",
@@ -22687,7 +22687,7 @@
       "D": "Reward modeling alone"
     },
     "answer": "C",
-    "explanation": "Slide 24 labels PPO and GRPO as on-policy.",
+    "explanation": "Slide 24 labels PPO and GRPO as on-policy. This is the deck's label. SA2 explains that PPO reuses rollout data across mini-batch updates, so the data is not strictly on-policy after the first update.",
     "lectureReference": "Part 55: The Value Model, Advantage, and On-Policy vs. Off-Policy Learning"
   },
   {
@@ -22896,14 +22896,14 @@
   {
     "num": 1690,
     "type": "tf",
-    "question": "Slide 24 classifies GRPO as an off-policy method.",
+    "question": "According to the slide 24 label, GRPO is an off-policy method.",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "Slide 24 lists GRPO under on-policy learning, where the model generates its own training samples.",
+    "explanation": "Slide 24 lists GRPO under on-policy learning, where the model generates its own training samples. The label is the deck's; the caveat on reusing rollout data across mini-batch updates in topic 55 SA2 applies to GRPO as well.",
     "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
   },
   {
@@ -23053,7 +23053,7 @@
   {
     "num": 1701,
     "type": "mcq",
-    "question": "Slide 24 classifies GRPO as which type of learning?",
+    "question": "According to the slide 24 label, GRPO is which type of learning?",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "Offline-only",
@@ -23062,7 +23062,7 @@
       "D": "On-policy"
     },
     "answer": "D",
-    "explanation": "Slide 24 lists \"On-Policy (e.g., PPO, GRPO).\"",
+    "explanation": "Slide 24 lists \"On-Policy (e.g., PPO, GRPO).\" The label is the deck's; the caveat in topic 55 SA2 about reusing rollout data applies here as well.",
     "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
   },
   {
@@ -23143,13 +23143,13 @@
   {
     "num": 1707,
     "type": "mcq",
-    "question": "What is the advantage when all four rewards in a group are 0.5?",
+    "question": "Under the literal slide 27 formula, what is the advantage when all four rewards in a group are 0.5?",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "0.5 for each response",
       "B": "Undefined, because the standard deviation is 0",
       "C": "1 for each response",
-      "D": "0 for each response"
+      "D": "-0.5 for each response"
     },
     "answer": "B",
     "explanation": "The numerator and the denominator of the slide 27 formula are both 0, so the value is undefined.",
@@ -23198,7 +23198,7 @@
     "type": "sa",
     "question": "The slides say GRPO \"slashes memory requirements.\" Identify what the slides support and what they leave unsupported.",
     "tier": "Tier 2 — Medium Probability",
-    "answerText": "The slides support a count: PPO holds four LLMs, and GRPO as shown on slide 26 holds three, since the Value model is removed. The slides do not give parameter counts, byte sizes, or measured peak memory for either method. The memory benefit is therefore a qualitative claim in the deck, and any number would need a source outside these slides.",
+    "answerText": "Slide 13 states that PPO holds four LLMs. The slide 26 diagram shows three LLM boxes (policy, Reference LLM, Reward LLM) because the Value model is removed. The slides do not give parameter counts, byte sizes, or measured peak memory for either method. The memory benefit is therefore a qualitative claim in the deck, and any number would need a source outside these slides.",
     "lectureReference": "Part 56: Do We Need a Value LLM? The GRPO Group Baseline"
   },
   {
@@ -23972,7 +23972,7 @@
   {
     "num": 1768,
     "type": "mcq",
-    "question": "Under the slide 32 approach, when is a reward LLM not needed?",
+    "question": "Under the slide 32 approach, which tasks use rule-based rewards instead of a reward LLM?",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "Always",
@@ -23981,7 +23981,7 @@
       "D": "Only for image tasks"
     },
     "answer": "C",
-    "explanation": "Slide 32 describes rule-based rewards for verifiable problems, so a reward LLM is not needed for those tasks. The other options contradict the slide's scope.",
+    "explanation": "Slide 32 limits rule-based rewards to verifiable problems. The other options contradict that scope.",
     "lectureReference": "Part 58: Do We Need a Reward LLM? Rule-Based Rewards in the DeepSeek-R1 Approach"
   },
   {

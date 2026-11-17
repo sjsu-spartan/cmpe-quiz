@@ -24883,14 +24883,14 @@
   {
     "num": 1851,
     "type": "tf",
-    "question": "A narrow kernel always gives a more faithful explanation of the black box than a wide kernel.",
+    "question": "A narrow kernel always gives a more stable explanation of the black box than a wide kernel.",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "A narrow kernel fits only the nearest samples and can be noisy. A wide kernel can be more stable, but it describes a larger region. Neither width is more faithful in general. The deck's table (slide 7) shows the trade-off through the weighted R-squared and the coefficients.",
+    "explanation": "A narrow kernel fits only the nearest samples, gives a higher weighted R-squared (0.994 at omega = 0.3 in the recomputed run), and its coefficients vary more across seeds. A wide kernel is more stable across seeds but describes a larger region. Neither width is better in general. The deck's table (slide 7) shows the trade-off through the weighted R-squared and the coefficients.",
     "lectureReference": "Part 68: LIME Kernel Width and Sensitivity of the Explanation"
   },
   {
@@ -24955,7 +24955,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The weighted R-squared falls as omega grows (0.994 at omega = 0.3 to 0.932 at omega = 6.0 in the recomputed run). A straight line fits a curved surface worse over a wider region.",
+    "explanation": "The weighted R-squared falls as omega grows (0.994 at omega = 0.3 to 0.932 at omega = 6.0 in the recomputed run). The printed slide 7 table shows 0.928 at omega = 6.0, so the recomputed values differ slightly from the printed table. A straight line fits a curved surface worse over a wider region.",
     "lectureReference": "Part 68: LIME Kernel Width and Sensitivity of the Explanation"
   },
   {
@@ -25026,7 +25026,7 @@
       "D": "Income"
     },
     "answer": "C",
-    "explanation": "Delinquencies is +0.174 and DTI is +0.170. The gap is inside the seed-to-seed noise, so the result should be reported as a near-tie.",
+    "explanation": "Delinquencies is +0.174 and DTI is +0.170. Across 30 seeds at this setting the mean gap is 0.0051 with a spread of 0.0026, and top-1 agreement is 0.933, so Delinquencies is top in most seeds. The near-tie wording applies at n = 25, where agreement is 0.520.",
     "lectureReference": "Part 68: LIME Kernel Width and Sensitivity of the Explanation"
   },
   {
@@ -25041,7 +25041,7 @@
       "D": "falls"
     },
     "answer": "D",
-    "explanation": "The recomputed values are 0.994, 0.973, 0.950, 0.936, and 0.932, which fall monotonically.",
+    "explanation": "The recomputed values are 0.994, 0.973, 0.950, 0.936, and 0.932, which fall monotonically. The printed slide 7 table gives 0.994, 0.972, 0.951, 0.935, and 0.928 for the same widths.",
     "lectureReference": "Part 68: LIME Kernel Width and Sensitivity of the Explanation"
   },
   {
@@ -25146,7 +25146,7 @@
       "D": "Util changes sign at omega = 0.3."
     },
     "answer": "C",
-    "explanation": "The gaps are about 0.003, 0.003, 0.004, 0.006, and 0.007 at omega = 0.3, 0.75, 1.5, 3.0, and 6.0. No feature changes sign across the sweep.",
+    "explanation": "The absolute DTI and Delinquencies gaps are 0.0025, 0.0026, 0.0045, 0.0060, and 0.0065 at omega = 0.3, 0.75, 1.5, 3.0, and 6.0. No feature changes sign across the sweep.",
     "lectureReference": "Part 68: LIME Kernel Width and Sensitivity of the Explanation"
   },
   {
@@ -25200,13 +25200,13 @@
     "question": "Which statement about the deck's LIME examples is correct?",
     "tier": "Tier 1 — High Probability",
     "options": {
-      "A": "They use K-Lasso by default for feature selection.",
+      "A": "They select a feature subset before the weighted fit.",
       "B": "They have no proximity kernel.",
       "C": "They do not apply a sparsity or feature-selection step.",
       "D": "They sample from the empirical joint distribution of the training rows."
     },
     "answer": "C",
-    "explanation": "The deck's one-feature and four-feature examples fit all features with weighted least squares. Standard LIME includes a sparsity step, which the deck omits.",
+    "explanation": "The deck's one-feature and four-feature examples fit all features with weighted least squares and apply no sparsity or feature-selection step. The deck does not describe how other LIME implementations select features, so check the original paper before comparing.",
     "lectureReference": "Part 68: LIME Kernel Width and Sensitivity of the Explanation"
   },
   {
@@ -25353,14 +25353,14 @@
   {
     "num": 1886,
     "type": "tf",
-    "question": "In the husky-versus-wolf case study, the classifier relied mainly on snow in the image background.",
+    "question": "In the husky-versus-wolf case study, the training images paired wolves with snow, and LIME highlighted the snow.",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "A",
-    "explanation": "Slide 29 gives this lesson, and LIME highlighted the snow.",
+    "explanation": "Slide 29 says wolves almost always appeared on snow in the training images, and LIME super-pixels lit up the snow.",
     "lectureReference": "Part 69: Stability, Method Agreement, and Deletion Faithfulness on the Loan Model"
   },
   {
@@ -25416,7 +25416,7 @@
     "options": {
       "A": "not faithful",
       "B": "weakly faithful",
-      "C": "audit-grade",
+      "C": "unstable",
       "D": "faithful"
     },
     "answer": "D",
@@ -25540,7 +25540,7 @@
       "D": "a control that should decay slowest if the attribution ranking is informative"
     },
     "answer": "D",
-    "explanation": "A faithful ranking should beat the random order, and the reverse order gives a lower bound on informativeness.",
+    "explanation": "A faithful ranking should beat the random order. The reverse order is the slowest-decaying reference curve (AUC 2.927 in the recomputed run).",
     "lectureReference": "Part 69: Stability, Method Agreement, and Deletion Faithfulness on the Loan Model"
   },
   {
@@ -25555,13 +25555,13 @@
       "D": "They are both log-odds."
     },
     "answer": "A",
-    "explanation": "The scale difference is why rank agreement needs care (slide 20).",
+    "explanation": "The scale difference is why rank agreement needs care (LIME scale on slide 5, SHAP values on slide 11).",
     "lectureReference": "Part 69: Stability, Method Agreement, and Deletion Faithfulness on the Loan Model"
   },
   {
     "num": 1900,
     "type": "mcq",
-    "question": "The husky-versus-wolf case study (Ribeiro, Singh, and Guestrin, 2016) shows that:",
+    "question": "The husky-versus-wolf case study on deck slide 29 (cited there as Ribeiro, Singh, and Guestrin, 2016) shows that:",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "explanations always remove shortcut learning",
@@ -25576,7 +25576,7 @@
   {
     "num": 1901,
     "type": "mcq",
-    "question": "The Slack et al. (2020) case study shows that:",
+    "question": "The Slack et al. case study on deck slide 29 (cited there as AIES 2020) shows that:",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "post hoc explanations audit any model they are run on",
@@ -25593,7 +25593,7 @@
     "type": "sa",
     "question": "A report gives a faithfulness of \"25.2 percent\" from the deck and states that the explanation is faithful. Using the recomputed numbers, state the value the report should give, the reason, and whether the conclusion changes.",
     "tier": "Tier 1 — High Probability",
-    "answerText": "The printed random-order AUC (2.341) gives 22.3 percent. The averaged random order over 200 permutations per applicant (2.382) gives 23.6 percent. The 25.2 percent value uses 2.433, which the deck's printed table does not contain. The report should give a value in the 22 to 24 percent range and state which random curve it used. The conclusion (faithful, band 20 or above) does not change.",
+    "answerText": "The printed random-order AUC (2.341) gives 22.3 percent. A recomputed average over 200 permutations per applicant (2.381) gives 23.6 percent. The 25.2 percent value uses 2.433, which the deck's printed table does not contain. The report should give a value in the 22 to 24 percent range and state which random curve it used. The conclusion (faithful, band 20 or above) does not change.",
     "lectureReference": "Part 69: Stability, Method Agreement, and Deletion Faithfulness on the Loan Model"
   },
   {
@@ -25601,7 +25601,7 @@
     "type": "sa",
     "question": "Explain how the sample count, the number of seeds, and the spread of the coefficients together decide whether the top feature can be reported.",
     "tier": "Tier 1 — High Probability",
-    "answerText": "The seed-to-seed standard deviation of each coefficient falls with the square root of the sample count. The top-1 claim is supported only when the gap between the two largest mean coefficients is large compared with their spread across seeds. At n = 1,000 the recomputed gap of 0.005 is about 1.4 times the spread of the difference, so the claim is not settled. Increasing the sample count narrows the spread. The seed count determines how well the agreement rate itself is estimated. A report should give all three, and call the top feature a tie when the gap is within the spread.",
+    "answerText": "The seed-to-seed standard deviation of each coefficient falls with the square root of the sample count. The top-1 claim is supported only when the gap between the two largest mean coefficients is large compared with their spread across seeds. At n = 1,000 the recomputed gap of 0.005 is about 2 times the seed-to-seed spread of the difference (SD 0.0026). Top-1 agreement at n = 1,000 is 0.933 over 435 pairs, so the top feature is stable at that size, while at n = 200 agreement is only 0.713. Increasing the sample count narrows the spread. The seed count determines how well the agreement rate itself is estimated. A report should give all three, and call the top feature a tie when the gap is within the spread.",
     "lectureReference": "Part 69: Stability, Method Agreement, and Deletion Faithfulness on the Loan Model"
   },
   {
@@ -25674,7 +25674,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "Those values are illustrative inputs for the linear example. The loan background has means of about 0.339, 0.339, 0.571, and 63.9.",
+    "explanation": "Those are the E[x] values printed in the slide 8 table. The recomputed loan background (Lab 2 code) has means of about 0.339, 0.339, 0.571, and 63.9, so the slide 8 values are not the background means.",
     "lectureReference": "Part 70: Shapley Axioms, Baseline Choice, and Sampled SHAP"
   },
   {
@@ -25700,7 +25700,7 @@
       "B": "False"
     },
     "answer": "A",
-    "explanation": "The base is 0.2142 and the attributions sum to 0.5175, which gives 0.7317 after rounding, the model output at x0 (0.7316).",
+    "explanation": "The base is 0.2142 and the attributions sum to 0.5175, a total of 0.7317 against a model output of 0.7316 at x0. At three decimals both round to 0.732.",
     "lectureReference": "Part 70: Shapley Axioms, Baseline Choice, and Sampled SHAP"
   },
   {
@@ -26040,7 +26040,7 @@
       "B": "False"
     },
     "answer": "A",
-    "explanation": "The ceiling is about 1 - 0.09 / 1.824 = 0.951, and the oracle on the same sample is 0.950.",
+    "explanation": "The ceiling is about 1 - 0.09 / 1.824 = 0.951, and the oracle on the same sample is 0.950. The deck prints only the 0.947 fit. The 1.824, 0.09, and 0.950 values are recomputed from the Lab 7 code and are not printed in the deck.",
     "lectureReference": "Part 71: GAM Fitting by Backfitting and What a PDP Hides"
   },
   {
@@ -26208,7 +26208,7 @@
       "D": "the ICE curves"
     },
     "answer": "B",
-    "explanation": "It measures how much variance the true signal explains on the same sample.",
+    "explanation": "It measures how much variance the true signal explains on the same sample. The 0.950 value is a recomputation from the Lab 7 code and is not printed in the deck.",
     "lectureReference": "Part 71: GAM Fitting by Backfitting and What a PDP Hides"
   },
   {
@@ -26223,7 +26223,7 @@
       "D": "0.950"
     },
     "answer": "C",
-    "explanation": "The values are 0.070 (f1), 0.078 (f2), and 0.054 (f3).",
+    "explanation": "The recomputed values are 0.070 (f1), 0.078 (f2), and 0.054 (f3). The deck does not print these errors.",
     "lectureReference": "Part 71: GAM Fitting by Backfitting and What a PDP Hides"
   },
   {
@@ -26373,14 +26373,14 @@
   {
     "num": 1961,
     "type": "tf",
-    "question": "For the deck's applicant (DTI 0.60, Delinquencies 1, Income $55k), the logit is 0.6 and the approval probability is about 0.646.",
+    "question": "In the slide 26 LP model (weights 3.0, 0.9, -0.02, bias -1.0), the applicant with DTI 0.60, Delinquencies 1, and Income $55k has logit 0.6 and denial probability about 0.646.",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "A",
-    "explanation": "z = 1.80 + 0.90 - 1.10 - 1.00 = 0.60, and 1 / (1 + exp(-0.6)) = 0.646.",
+    "explanation": "z = 1.80 + 0.90 - 1.10 - 1.00 = 0.60, and 1 / (1 + exp(-0.6)) = 0.646. The output is P(DENY) (slide 3), so 0.646 is the denial probability. The slide 25 model, with bias -2.0 and no income term, gives a different logit (0.70) for the same DTI and Delinquencies.",
     "lectureReference": "Part 72: Cheapest Recourse as a Linear Program and Adverse-Action Reasons"
   },
   {
@@ -26503,7 +26503,7 @@
   {
     "num": 1971,
     "type": "mcq",
-    "question": "In the deck's logit convention, the applicant is approved when:",
+    "question": "In the deck's logit convention, with the model output read as P(DENY), the applicant is approved when:",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "z <= 0",
@@ -26512,7 +26512,7 @@
       "D": "z = 1"
     },
     "answer": "A",
-    "explanation": "The threshold corresponds to a probability of 0.5.",
+    "explanation": "The threshold corresponds to P(DENY) = 0.5, so z <= 0 means P(DENY) <= 0.5.",
     "lectureReference": "Part 72: Cheapest Recourse as a Linear Program and Adverse-Action Reasons"
   },
   {
@@ -26683,7 +26683,7 @@
   {
     "num": 1983,
     "type": "mcq",
-    "question": "Which rule requires a creditor to give specific reasons for an adverse action on credit?",
+    "question": "Which rule does deck slide 30 cite for specific reasons on a credit denial?",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "ECOA and Regulation B",
@@ -26692,7 +26692,7 @@
       "D": "No rule applies to this decision"
     },
     "answer": "A",
-    "explanation": "Slide 30 cites ECOA and Regulation B, and the exact text should be checked before citing it.",
+    "explanation": "Slide 30 cites ECOA and Regulation B. The regulation's exact wording is not in the deck and should be checked before citing it.",
     "lectureReference": "Part 72: Cheapest Recourse as a Linear Program and Adverse-Action Reasons"
   },
   {
@@ -27132,7 +27132,7 @@
     "type": "sa",
     "question": "Explain how a weighted score can hide a step with no owner, and describe one rule that prevents the hiding without changing the formula.",
     "tier": "Tier 1 — High Probability",
-    "answerText": "A weighted sum lets high completeness on other steps offset a zero on one step. The offset size depends on that step's weight. A floor rule fixes the problem: any step with c = 0 blocks release, whatever the total. The rule is borrowed from Algorithm 36 and is not part of the deck's RAS definition. The team must decide which steps may be zero before scoring.",
+    "answerText": "A weighted sum lets high completeness on other steps offset a zero on one step. The offset size depends on that step's weight. A floor rule fixes the problem: any step with c = 0 blocks release, whatever the total. The rule is the guide's addition (the floor-rule discussion is topic 36 of this guide) and is not part of the deck's RAS definition. Deck slide 35 notes that composites still need floor rules. The team must decide which steps may be zero before scoring.",
     "lectureReference": "Part 73: RACI-Weighted Accountability Score (RAS)"
   },
   {
@@ -27224,7 +27224,7 @@
   {
     "num": 2024,
     "type": "tf",
-    "question": "A P1 result is possible when the drift and security terms together contribute 35 points and the governance and documentation terms are at their maximum.",
+    "question": "A P1 result is possible when the drift and security terms together contribute 35 points and the accountability and documentation terms are at their maximum.",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
@@ -27475,7 +27475,7 @@
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "taken from a published standard",
-      "B": "value judgments that the deck does not derive",
+      "B": "stated as defaults without a derivation",
       "C": "copied from the RACI matrix",
       "D": "fitted to incident data"
     },
@@ -27526,7 +27526,7 @@
     "type": "sa",
     "question": "For the TrustScore case, explain why changing |z| cannot move EPS into tier P1, and name the input that would have to change.",
     "tier": "Tier 1 — High Probability",
-    "answerText": "The security term is saturated at |z| = 6.0, contributing 35 points. The drift term is 14.98 at PSI = 0.107, the accountability term is 3.75, and the documentation term is 4.38. Together the non-security terms give 23.11, so the largest EPS is 58.11 for any |z|. Reaching 70 requires a larger drift or accountability input. A PSI of 0.25 alone adds 35 points, and with the security term saturated that gives 70 before the other two terms.",
+    "answerText": "The security term is saturated at |z| = 6.0, contributing 35 points. The drift term is 14.98 at PSI = 0.107, the accountability term is 3.75, and the documentation term is 4.38. Together the non-security terms give 23.11, so the largest EPS is 58.11 for any |z|. A PSI of 0.25 raises the drift term from 14.98 to 35.00 (+20.02). With the security term saturated and the other two terms unchanged, EPS is 78.13 (P1). Drift alone reaches 70 once the drift term reaches 26.87, which is PSI of about 0.192. Accountability alone reaches at most 69.36 and documentation alone at most 68.73, so neither single change reaches P1.",
     "lectureReference": "Part 74: Escalation Priority Score (EPS)"
   },
   {
@@ -27651,7 +27651,7 @@
       "B": "False"
     },
     "answer": "A",
-    "explanation": "The deck states this in its MTTD and MTTR notes.",
+    "explanation": "Slide 23, third bullet, states this.",
     "lectureReference": "Part 75: Incident Timing, MTTD and MTTR from Start, Detection, and Resolution Times"
   },
   {
@@ -27918,9 +27918,9 @@
   {
     "num": 2074,
     "type": "sa",
-    "question": "Explain why average MTTR alone understates user-facing exposure, using the numbers from slide 24.",
+    "question": "Explain why average MTTR alone understates the logged start-to-resolution time, using the numbers from slide 24.",
     "tier": "Tier 1 — High Probability",
-    "answerText": "MTTR starts at detection, so it leaves out the detection delay. The slide 24 log gives average MTTR of 116.7 min and average MTTD of 65 min. The start-to-resolution average is 181.7 min, which is the relevant figure for the period users were affected. Reporting 116.7 min alone omits the 65 min detection delay.",
+    "answerText": "MTTR starts at detection, so it leaves out the detection delay. The slide 24 log gives average MTTR of 116.7 min and average MTTD of 65 min. The start-to-resolution average is 181.7 min. Reporting 116.7 min alone omits the 65 min detection delay from the logged start time.",
     "lectureReference": "Part 75: Incident Timing, MTTD and MTTR from Start, Detection, and Resolution Times"
   },
   {
@@ -27928,7 +27928,7 @@
     "type": "sa",
     "question": "The MTTD of 65 min comes from three incidents. Explain what should be reported alongside the mean, and why.",
     "tier": "Tier 2 — Medium Probability",
-    "answerText": "Report the median (45 min), the individual values (20, 45, and 130 min), and the count (3). One long detection delay dominates the mean with a small number of incidents. The median shows the typical case, and the count shows how little data supports the mean. Algorithm 35 uses the same reasoning for the bootstrap interval.",
+    "answerText": "Report the median (45 min), the individual values (20, 45, and 130 min), and the count (3). One long detection delay dominates the mean with a small number of incidents. The median shows the typical case, and the count shows how little data supports the mean. This guide's topic 35 applies the same reasoning to the bootstrap interval.",
     "lectureReference": "Part 75: Incident Timing, MTTD and MTTR from Start, Detection, and Resolution Times"
   },
   {
@@ -27993,7 +27993,7 @@
       "B": "False"
     },
     "answer": "A",
-    "explanation": "P(X >= 26) = 4.46%. The deck reports 4.7% from 10,000 runs, which differs by about 1.1 standard errors.",
+    "explanation": "P(X >= 26) = 4.46%. The deck reports 4.7% from 10,000 runs, which differs by about 1.2 standard errors.",
     "lectureReference": "Part 78: Monte Carlo Incident Count: Funnel Simulation"
   },
   {
@@ -28038,14 +28038,14 @@
   {
     "num": 2084,
     "type": "tf",
-    "question": "The deck's reported 4.7% and the closed-form value of 4.46% differ by more than the standard error of a 10,000-run estimate.",
+    "question": "The deck's reported 4.7% and the closed-form value of 4.46% differ by more than two standard errors of a 10,000-run estimate.",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The standard error at 4.46% is about 0.21 percentage points. The gap of 0.24 points is about 1.1 standard errors, within sampling noise.",
+    "explanation": "The standard error at 4.46% is about 0.21 percentage points. The gap of 0.24 points is about 1.2 standard errors, which is inside two standard errors and so within sampling noise.",
     "lectureReference": "Part 78: Monte Carlo Incident Count: Funnel Simulation"
   },
   {
@@ -28199,7 +28199,7 @@
   {
     "num": 2095,
     "type": "mcq",
-    "question": "Incidents arrive in bursts of exactly 2, with burst arrivals Poisson with mean 9 per month. What is the variance of the monthly incident count?",
+    "question": "This is a hypothetical burst model, not a deck model. Incidents arrive in bursts of exactly 2, with burst arrivals Poisson with mean 9 per month. What is the variance of the monthly incident count?",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "18",
@@ -28378,7 +28378,7 @@
   {
     "num": 2109,
     "type": "tf",
-    "question": "The owner sign-off path has a mean of 50 minutes, which is 83% of a 60-minute SLA.",
+    "question": "Under this guide's assumed low-severity path (SecOps triage, then owner sign-off), the mean is 50 minutes, which is 83% of a 60-minute SLA.",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
@@ -28391,14 +28391,14 @@
   {
     "num": 2110,
     "type": "tf",
-    "question": "A check that compares only the mean path length would flag the sign-off path as breaching the 60-minute SLA.",
+    "question": "Under this guide's assumed sign-off path (SecOps triage, then owner sign-off), a check that compares only the mean path length would flag the path as breaching the 60-minute SLA.",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "A mean of 50 minutes is below 60 minutes, so a mean-only check passes the path. The simulated breach rate for that path is 24%.",
+    "explanation": "A mean of 50 minutes is below 60 minutes, so a mean-only check passes the path. Under the same assumed path, the simulated breach rate is 24%. Slide 11 reports 24% for low-severity breaches with sign-off but does not list the roles.",
     "lectureReference": "Part 79: Containment SLA Monte Carlo: Lognormal Decision Latency"
   },
   {
@@ -28411,7 +28411,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "SecOps triage alone has a breach rate of about 0.52%. The 24% matches SecOps triage plus owner sign-off, which is this guide's inference.",
+    "explanation": "SecOps triage alone has a breach rate of about 0.52%. The deck's 0.6% without sign-off is within sampling noise of that value for 10,000 runs, and the roles behind the deck's figure are not stated. The 24% matches SecOps triage plus owner sign-off, which is this guide's inference.",
     "lectureReference": "Part 79: Containment SLA Monte Carlo: Lognormal Decision Latency"
   },
   {
@@ -28512,13 +28512,13 @@
       "D": "About 1"
     },
     "answer": "A",
-    "explanation": "0.00084 x 10,000 = 8.4. A count of 13 is plausible in one run (about 8% probability), which is why a single run's rate should not be quoted to two decimals.",
+    "explanation": "0.00084 x 10,000 = 8.4. A count of 13 or more is plausible in one run (P(X >= 13) is about 8.5% for a Poisson approximation with mean 8.4; P(X = 13) is about 3.7%), which is why a single run's rate should not be quoted to two decimals.",
     "lectureReference": "Part 79: Containment SLA Monte Carlo: Lognormal Decision Latency"
   },
   {
     "num": 2119,
     "type": "mcq",
-    "question": "What is the mean sign-off path (SecOps triage plus owner sign-off) and its share of the 60-minute SLA?",
+    "question": "What is the mean of this guide's assumed sign-off path (SecOps triage plus owner sign-off), and its share of the 60-minute SLA?",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "30 minutes, 50%",
@@ -28548,7 +28548,7 @@
   {
     "num": 2121,
     "type": "mcq",
-    "question": "Under the stated model, what is the probability that SecOps triage plus owner sign-off exceeds 60 minutes?",
+    "question": "Under the stated model, what is the probability that SecOps triage plus owner sign-off (this guide's assumed path) exceeds 60 minutes?",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "0.6%",
@@ -28557,7 +28557,7 @@
       "D": "24%"
     },
     "answer": "D",
-    "explanation": "The numerical convolution of the two lognormals gives 24.0%. Option A is the deck's reported figure without sign-off.",
+    "explanation": "The numerical convolution of the two lognormals gives 24.0%. Option A (0.6%) is the deck's reported figure without sign-off. It is within sampling noise of the guide's SecOps-alone value (0.52%).",
     "lectureReference": "Part 79: Containment SLA Monte Carlo: Lognormal Decision Latency"
   },
   {
@@ -28572,7 +28572,7 @@
       "D": "The 240-minute high-severity SLA"
     },
     "answer": "A",
-    "explanation": "The deck reports the 24% and 0.6% figures but does not list the roles. Options B, C, and D are stated on slides 8, 10, and 11.",
+    "explanation": "The deck reports the 24% and 0.6% figures but does not list the roles. Options B, C, and D are stated on slides 10 and 11.",
     "lectureReference": "Part 79: Containment SLA Monte Carlo: Lognormal Decision Latency"
   },
   {
@@ -28593,7 +28593,7 @@
   {
     "num": 2124,
     "type": "mcq",
-    "question": "Which statement about a mean-only check of the sign-off path is correct?",
+    "question": "Which statement about a mean-only check of this guide's assumed sign-off path (SecOps then owner) is correct?",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "It flags the path as breaching the SLA.",
@@ -28632,7 +28632,7 @@
       "D": "A coefficient of variation of 0.5 for each role"
     },
     "answer": "A",
-    "explanation": "The model has no queue. Options B, C, and D are all stated on slide 11.",
+    "explanation": "The model has no queue. Options C and D are stated on slide 11. Independence is not stated on slide 11; it is implied by adding the role variances.",
     "lectureReference": "Part 79: Containment SLA Monte Carlo: Lognormal Decision Latency"
   },
   {
@@ -28668,9 +28668,9 @@
   {
     "num": 2129,
     "type": "sa",
-    "question": "Compare the deterministic critical path (topic 52) with the simulated breach probability. State what each measures and which one should drive the sign-off decision.",
+    "question": "Compare the deterministic critical path (the sum of role means) with the simulated breach probability. State what each measures and which one should drive the sign-off decision.",
     "tier": "Tier 1 — High Probability",
-    "answerText": "The deterministic path is 95 minutes against 240 for high severity and 50 minutes against 60 for the low-severity sign-off path. It measures the mean. The simulated breach probability measures the chance that the sum of random step durations exceeds the SLA. For the low-severity sign-off path, the mean is below the SLA while the breach probability is 24%. The breach probability is the quantity that determines how often the SLA fails, so the sign-off decision should be based on it.",
+    "answerText": "The deterministic path is 95 minutes against 240 for high severity and 50 minutes against 60 for the low-severity sign-off path. It measures the mean. The simulated breach probability measures the chance that the sum of random step durations exceeds the SLA. For this guide's assumed low-severity sign-off path, the mean is below the SLA while the breach probability is 24%. The breach probability is the quantity that determines how often the SLA fails. The guide recommends using it for the sign-off decision; the deck does not make this recommendation.",
     "lectureReference": "Part 79: Containment SLA Monte Carlo: Lognormal Decision Latency"
   },
   {
@@ -28731,27 +28731,27 @@
   {
     "num": 2135,
     "type": "tf",
-    "question": "Under the stated model, TEVV contributes the largest share of PMRI variance.",
+    "question": "Under the variance decomposition derived for this guide (not on the slides), TEVV contributes the largest share of PMRI variance.",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "A",
-    "explanation": "The TEVV term contributes 1.44 of the total 3.63, about 40%. The efficacy term contributes 1.19 and the KPI term 1.00.",
+    "explanation": "Derived for this guide: the TEVV term contributes 1.44 of the total 3.63, about 40%. The efficacy term contributes 1.19 and the KPI term 1.00. The deck does not report a variance decomposition.",
     "lectureReference": "Part 80: PMRI Uncertainty: Monte Carlo Go Probability and Input Sensitivity"
   },
   {
     "num": 2136,
     "type": "tf",
-    "question": "The efficacy term contributes more PMRI variance than the KPI term under the slide 26 input spreads.",
+    "question": "Under the variance decomposition derived for this guide, the efficacy term contributes more PMRI variance than the KPI term under the slide 26 input spreads.",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "A",
-    "explanation": "The efficacy term is 18.9^2 x (0.20^2 / 12) = 1.19, and the KPI term is 0.25^2 x 4^2 = 1.00.",
+    "explanation": "Derived for this guide: the efficacy term is 18.9^2 x (0.20^2 / 12) = 1.19, and the KPI term is 0.25^2 x 4^2 = 1.00.",
     "lectureReference": "Part 80: PMRI Uncertainty: Monte Carlo Go Probability and Input Sensitivity"
   },
   {
@@ -28764,7 +28764,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The standard error is sqrt(0.97 x 0.03 / 10,000) = 0.17 percentage points.",
+    "explanation": "The binomial standard error (standard statistics, applied to the simulation count) is sqrt(0.97 x 0.03 / 10,000) = 0.17 percentage points.",
     "lectureReference": "Part 80: PMRI Uncertainty: Monte Carlo Go Probability and Input Sensitivity"
   },
   {
@@ -28790,7 +28790,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The probability falls to about 89.4%, because the spread of PMRI increases while the mean stays at 83.52.",
+    "explanation": "Derived for this guide (a sensitivity case, not a deck result): the probability falls to about 89.4%, because the spread of PMRI increases while the mean stays at 83.52.",
     "lectureReference": "Part 80: PMRI Uncertainty: Monte Carlo Go Probability and Input Sensitivity"
   },
   {
@@ -28882,7 +28882,7 @@
   {
     "num": 2146,
     "type": "mcq",
-    "question": "In the reduced form PMRI = 35 + 0.40 TEVV + 0.25 KPI - k x (1 - e), what is k?",
+    "question": "In the reduced form PMRI = 35 + 0.40 TEVV + 0.25 KPI - k x (1 - e), a rewriting derived for this guide, what is k?",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "18.9",
@@ -28957,7 +28957,7 @@
   {
     "num": 2151,
     "type": "mcq",
-    "question": "Under the stated model, what is the probability that PMRI reaches 90?",
+    "question": "Under the analytic model (slide 26 input distributions), what is the probability that PMRI reaches 90?",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "0.5%",
@@ -28981,7 +28981,7 @@
       "D": "75.0 to 90.0"
     },
     "answer": "C",
-    "explanation": "The exact 5th and 95th percentiles are 80.39 and 86.66. Option B is the TEVV tornado range.",
+    "explanation": "The computed 5th and 95th percentiles are 80.39 and 86.65. Option B is the TEVV tornado range.",
     "lectureReference": "Part 80: PMRI Uncertainty: Monte Carlo Go Probability and Input Sensitivity"
   },
   {
@@ -29017,7 +29017,7 @@
   {
     "num": 2155,
     "type": "mcq",
-    "question": "What is the PMRI swing from varying efficacy from 70% to 90% on slide 25?",
+    "question": "What is the exact PMRI swing from varying efficacy from 70% to 90% under the slide 25 setting?",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "4.0",
@@ -29026,7 +29026,7 @@
       "D": "0.2"
     },
     "answer": "B",
-    "explanation": "0.35 x 54 x 0.20 = 3.78. Option D is the efficacy width, not the PMRI swing.",
+    "explanation": "Derived for this guide: 0.35 x 54 x 0.20 = 3.78. Slide 25 shows only the endpoints 81.6 and 85.4 (a rounded swing of 3.8). Option D is the efficacy width, not the PMRI swing.",
     "lectureReference": "Part 80: PMRI Uncertainty: Monte Carlo Go Probability and Input Sensitivity"
   },
   {
@@ -29049,7 +29049,7 @@
     "type": "sa",
     "question": "Name what the 97.0% go probability depends on, and identify the two assumptions in the slide 26 model that would change it most.",
     "tier": "Tier 1 — High Probability",
-    "answerText": "The probability depends on the stated input distributions: TEVV ~ Normal(79.5, 3), efficacy ~ Uniform(70%, 90%), and KPI ~ Normal(82, 4), all independent, together with the deterministic formula. The two inputs with the largest effect on the probability are the TEVV spread and the KPI spread. Raising the TEVV spread to 6 lowers the probability to about 89.4%, and raising the KPI spread to 8 lowers it to about 91.4%. The deck does not justify the chosen spreads.",
+    "answerText": "The probability depends on the stated input distributions: TEVV ~ Normal(79.5, 3), efficacy ~ Uniform(70%, 90%), and KPI ~ Normal(82, 4), all independent, together with the deterministic formula. Derived for this guide (not on the slides), the sensitivity cases are: raising the TEVV spread to 6 lowers the probability to about 89.4%; raising the KPI spread to 8 lowers it to about 91.4%; and widening the efficacy range to 60% to 100% lowers it to about 89.9%. In these cases the two assumptions that change the probability most are the TEVV spread and the efficacy range. The KPI spread change is smaller. Slide 25 shows only endpoints for each input, not these cases. The deck does not justify the chosen spreads.",
     "lectureReference": "Part 80: PMRI Uncertainty: Monte Carlo Go Probability and Input Sensitivity"
   },
   {
@@ -29110,14 +29110,14 @@
   {
     "num": 2163,
     "type": "tf",
-    "question": "A signal with base 24 and a signal with base 12 tie at exactly one pair of ages.",
+    "question": "A signal with base 24 and a signal with base 12 can tie at some pair of ages.",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "A",
-    "explanation": "24 x 0.5 = 12 x 1.0, so the tie occurs when the 24 signal is at the floor and the 12 signal is fresh.",
+    "explanation": "24 x 0.5 = 12 x 1.0, so a tie occurs when the 24 signal is at the floor and the 12 signal is fresh. That is a set of age pairs: every age of 10 days or more for the 24 signal ties with age 0 for the 12 signal.",
     "lectureReference": "Part 81: Sensitivity Breakpoints: Signal Ageing, Containment Choice, and AWTCS What-If"
   },
   {
@@ -29130,7 +29130,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The rollback breakpoint is 19.5 minutes. At 25 minutes the rollback costs 20,000 x 0.417 + 500 = 8,833, which is above 7,000.",
+    "explanation": "The rollback breakpoint is 19.5 minutes. At 25 minutes the rollback costs 20,000 x 25/60 + 500 = 8,833, which is above 7,000.",
     "lectureReference": "Part 81: Sensitivity Breakpoints: Signal Ageing, Containment Choice, and AWTCS What-If"
   },
   {
@@ -29175,14 +29175,14 @@
   {
     "num": 2168,
     "type": "tf",
-    "question": "The statement \"a score of 15 or more requires both factors to be at least 3\" holds for any escalation threshold.",
+    "question": "On the slide 12 grid, every cell scoring 15 or more has both factors at least 3. This property holds for any escalation threshold.",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The statement depends on the threshold. It holds at 12 and 15, but at a threshold of 10 the cell (2, 5) would escalate with one factor of 2.",
+    "explanation": "The property depends on the threshold. It holds at 12 and 15, but at a threshold of 10 the cell (2, 5) would escalate with one factor of 2.",
     "lectureReference": "Part 81: Sensitivity Breakpoints: Signal Ageing, Containment Choice, and AWTCS What-If"
   },
   {
@@ -29195,7 +29195,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "With five points the estimate is very uncertain. The approximate 95% interval is about 0.91 to 1.00, and the deck says to treat the value as a hint.",
+    "explanation": "With five points the estimate is very uncertain. A Fisher z approximation (derived for this guide, n = 5) gives a 95% interval of about 0.90 to 1.00, and the deck says to treat the value as a hint.",
     "lectureReference": "Part 81: Sensitivity Breakpoints: Signal Ageing, Containment Choice, and AWTCS What-If"
   },
   {
@@ -29444,7 +29444,7 @@
     "type": "sa",
     "question": "Explain the cost assumption behind the slide 28 what-if ranking, and describe the evidence a program would need before it uses the ranking to allocate budget.",
     "tier": "Tier 1 — High Probability",
-    "answerText": "Ranking by headroom assumes that one unit of coverage costs the same in every category. The deck gives no cost data. Prompt injection gives more AWTCS per unit of coverage (20 / 69 = 0.29, against 0.22 for supply chain), so the ranking changes if supply-chain coverage costs more per unit. The evidence needed is a cost per coverage point for each category, from vendor quotes, staff hours, or past projects. The program should then rank by headroom per unit cost.",
+    "answerText": "Ranking by headroom assumes that one unit of coverage costs the same in every category. The deck gives no cost data. Prompt injection gives more AWTCS per unit of coverage (20 / 69 = 0.29, against 0.22 for supply chain), so ranking by headroom per unit cost can reverse the order if supply-chain coverage costs more per unit than prompt-injection coverage. The evidence needed is a cost per coverage point for each category, from vendor quotes, staff hours, or past projects. The program should then rank by headroom per unit cost.",
     "lectureReference": "Part 81: Sensitivity Breakpoints: Signal Ageing, Containment Choice, and AWTCS What-If"
   },
   {
@@ -29457,7 +29457,7 @@
       "B": "False"
     },
     "answer": "A",
-    "explanation": "The government row of the slide 33 table has a gate of 90, and slide 31's tier threshold is also 90.",
+    "explanation": "The government row of the slide 33 table has a gate of 90, and slide 32 solves for PMRI 90 as the government target.",
     "lectureReference": "Part 82: Government Gate Paths and Sector Use Cases"
   },
   {
@@ -29496,7 +29496,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "A TEVV composite of 87.6 can be reached with Validation at 65 by raising Testing and Evaluation, as Example 3 shows.",
+    "explanation": "Path 2 needs a TEVV composite of 87.6, so the four pillars must sum to about 350.3. With Validation at 65, the other three must sum to about 285.3, which is below their maximum of 300. The arithmetic does not require Validation to rise. Which pillars Path 2 raises is a derivation for this guide, not a deck statement.",
     "lectureReference": "Part 82: Government Gate Paths and Sector Use Cases"
   },
   {
@@ -29535,7 +29535,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The 86 figure applies only when residual risk is zero. At today's values the requirement is 95.7.",
+    "explanation": "The 86 figure applies only when residual risk is zero and KPI health is 82, where the requirement is 86.25. At today's residual and KPI values the requirement is 95.7.",
     "lectureReference": "Part 82: Government Gate Paths and Sector Use Cases"
   },
   {
@@ -29548,7 +29548,7 @@
       "B": "False"
     },
     "answer": "A",
-    "explanation": "The two rules are separate. Slide 34 describes the government case as \"No-go / conditions\".",
+    "explanation": "The two rules are separate. Slide 34 describes the government case as \"No-go / conditions\". The deck does not reconcile the two labels for the same value (Go on slide 23, No-go / conditions on slide 34), so the label for PMRI 85 is unresolved in the deck.",
     "lectureReference": "Part 82: Government Gate Paths and Sector Use Cases"
   },
   {
@@ -29574,7 +29574,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "Slide 38, question 6, asks it, and the deck does not give an answer.",
+    "explanation": "Slide 38, question 6, asks it, and the deck does not answer it. Slide 33 maps healthcare to the 80 gate as an illustrative entry, which is a mapping and not an answer to the question.",
     "lectureReference": "Part 82: Government Gate Paths and Sector Use Cases"
   },
   {
@@ -29670,7 +29670,7 @@
   {
     "num": 2204,
     "type": "mcq",
-    "question": "In Path 2, with Testing at 20 of 20, Evaluation at 48 of 50, Verification at 18 of 20, and Validation at 13 of 20, what is the TEVV composite?",
+    "question": "Suppose Testing is 20 of 20, Evaluation 48 of 50, Verification 18 of 20, and Validation 13 of 20. These pillar values are a hypothetical, not a deck state. What is the TEVV composite?",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "86.25",
@@ -29679,13 +29679,13 @@
       "D": "79.5"
     },
     "answer": "C",
-    "explanation": "(100 + 96 + 90 + 65) / 4 = 87.75. Option B is the PMRI for the same state.",
+    "explanation": "(100 + 96 + 90 + 65) / 4 = 87.75. Option B is the PMRI for the same hypothetical state, not a TEVV value.",
     "lectureReference": "Part 82: Government Gate Paths and Sector Use Cases"
   },
   {
     "num": 2205,
     "type": "mcq",
-    "question": "What is the PMRI for the state in MC7 with safety 89.2 and KPI 95?",
+    "question": "In the hypothetical state Testing 20 of 20, Evaluation 48 of 50, Verification 18 of 20, Validation 13 of 20, with safety 89.2 and KPI 95, what is the PMRI?",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "83.52",
@@ -29700,7 +29700,7 @@
   {
     "num": 2206,
     "type": "mcq",
-    "question": "In the Path 2 solution, what is the Validation pillar?",
+    "question": "If Path 2 is reached by raising Testing and Evaluation only (a derivation for this guide, not a deck statement), what is the Validation pillar?",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "Unchanged at 65",
@@ -29709,7 +29709,7 @@
       "D": "Lowered to 60"
     },
     "answer": "A",
-    "explanation": "Path 2 changes only Testing and Evaluation. Validation stays at 65.",
+    "explanation": "Under that derived assumption, Path 2 changes only Testing and Evaluation, so Validation stays at 65. The deck does not state which pillars Path 2 changes.",
     "lectureReference": "Part 82: Government Gate Paths and Sector Use Cases"
   },
   {
@@ -29775,7 +29775,7 @@
   {
     "num": 2211,
     "type": "mcq",
-    "question": "What source does the deck cite for the government gate of 90?",
+    "question": "Which external standard does the deck cite for the government gate of 90?",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "NIST AI RMF",
@@ -29784,7 +29784,7 @@
       "D": "NSC Final Report"
     },
     "answer": "B",
-    "explanation": "Topic 58 notes that the deck cites no standard for 90. The references on slide 40 do not state the value.",
+    "explanation": "Slide 33's footnote attributes the gates of 80 and 90 to the companion deck, but the deck cites no external standard for 90. The references on slide 40 do not state the value.",
     "lectureReference": "Part 82: Government Gate Paths and Sector Use Cases"
   },
   {
@@ -29805,9 +29805,9 @@
   {
     "num": 2213,
     "type": "sa",
-    "question": "Explain why Path 1 requires a change to Validation and Path 2 does not, using the composite ceiling.",
+    "question": "Explain why Path 1 requires a change to Validation and Path 2 need not, using the composite ceiling.",
     "tier": "Tier 1 — High Probability",
-    "answerText": "The composite is the mean of four pillars, each capped at 100. With Validation at 65, the composite cannot exceed 91.25. Path 1 needs a composite of 95.7, which is above that ceiling, so Validation must rise to at least 82.8 (with the other three at 100). Path 2 needs a composite of 87.6, which is below the ceiling, so it can be reached by raising Testing and Evaluation with Validation fixed at 65. The difference is the target, which depends on the residual and KPI values in each path.",
+    "answerText": "The composite is the mean of four pillars, each capped at 100. With Validation at 65, the composite cannot exceed 91.25. Path 1 needs a composite of 95.7, which is above that ceiling, so Validation must rise to at least 82.8 (with the other three at 100). Path 2 needs a composite of 87.6, which is below the ceiling, so the arithmetic allows it with Validation fixed at 65 (the other three pillars would need to sum to 285.3). This is a derived feasibility check; the deck does not say which pillars Path 2 raises. The difference is the target, which depends on the residual and KPI values in each path.",
     "lectureReference": "Part 82: Government Gate Paths and Sector Use Cases"
   },
   {

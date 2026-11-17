@@ -30222,7 +30222,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "Slide p.5 says Resample-0.5 upsamples the feature map by a factor of 2 because the stride is halved.",
+    "explanation": "Slide p.5 says Resample-0.5 halves the stride, which doubles the spatial resolution. The statement reverses this.",
     "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
   },
   {
@@ -30235,7 +30235,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The slides do not state the input size. The 384 x 384 value in this topic's worked example is an assumption.",
+    "explanation": "The slides do not state the input size. The 384 x 384 value is an illustrative assumption, not a slide value.",
     "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
   },
   {
@@ -30260,8 +30260,8 @@
       "A": "True",
       "B": "False"
     },
-    "answer": "B",
-    "explanation": "Pages 14 to 16 describe architectures and their intended use. The numeric results appear on later pages, not in a comparison table on these pages.",
+    "answer": "A",
+    "explanation": "Slide p.19 gives a table of KITTI results (60 frames, LiDAR ground truth) for DPT-hybrid (MiDaS), Depth Anything V2-Small, and ZoeDepth-KITTI, with AbsRel and delta-1 scores. Pages 14 to 16 describe the architectures and do not carry the numbers.",
     "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
   },
   {
@@ -30287,7 +30287,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The fusion path starts from the coarsest features and upsamples toward the finer ones (p.5).",
+    "explanation": "p.3 says the Fusion modules progressively fuse and upsample the multi-scale representations. The coarse-to-fine order follows from the chain of upsampling steps on p.5 and is standard DPT practice, not a direct slide statement.",
     "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
   },
   {
@@ -30362,7 +30362,7 @@
       "D": "24"
     },
     "answer": "A",
-    "explanation": "384 / 16 = 24 per side, and 24 x 24 = 576. This assumes the 384 input size from the worked example.",
+    "explanation": "384 / 16 = 24 per side, and 24 x 24 = 576. This assumes the 384 x 384 input stated in the question.",
     "lectureReference": "Part 65: DPT: Vision Transformer for Dense Prediction"
   },
   {
@@ -30842,7 +30842,7 @@
       "D": "0.97"
     },
     "answer": "A",
-    "explanation": "1266 divided by 721 is about 1.76. Option A is the inverse ratio.",
+    "explanation": "1266 divided by 721 is about 1.76. Option B (0.57) is the inverse ratio, 721 divided by 1266.",
     "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
   },
   {
@@ -30971,7 +30971,7 @@
     "type": "sa",
     "question": "Explain why the pseudo-label student is trained with strong perturbations, and describe a control experiment that would test whether the perturbations help.",
     "tier": "Tier 2 — Medium Probability",
-    "answerText": "Strong perturbations such as color jitter, blur, and CutMix make the student robust to inputs where the teacher's labels could carry errors (p.12). A control keeps the teacher, data, and schedule fixed, trains one student with the perturbations and one without, and reports depth error on a held-out real set by range bin. The slides do not report this comparison, so the benefit is a hypothesis until measured.",
+    "answerText": "Strong perturbations such as color jitter, blur, and CutMix are meant to improve the student's robustness and generalization (p.12). A control keeps the teacher, data, and schedule fixed, trains one student with the perturbations and one without, and reports depth error on a held-out real set by range bin. The slides do not report this comparison, so the benefit is a hypothesis until measured.",
     "lectureReference": "Part 66: Depth Foundation Models: Losses, Data, and Metric Depth"
   },
   {
@@ -31268,7 +31268,7 @@
   {
     "num": 2285,
     "type": "mcq",
-    "question": "With 0.5 m voxels and a measured surface at 20.2 m, how many free voxels lie before the surface?",
+    "question": "With 0.5 m voxels and a measured surface at 20.2 m, how many voxels lie entirely before the surface?",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "20",
@@ -31277,7 +31277,7 @@
       "D": "41"
     },
     "answer": "B",
-    "explanation": "Voxels 0 to 39 span 0.0 to 20.0 m, which gives 40 free voxels. The voxel size is an assumption.",
+    "explanation": "Voxels 0 to 39 span 0.0 to 20.0 m, all entirely before the 20.2 m surface, which gives 40. Voxel 40 spans 20.0 to 20.5 m and is not entirely before the surface.",
     "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
   },
   {
@@ -31469,7 +31469,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "Slide p.28 gives 38.6 / 44.8, and the mAP and NDS order is the reverse of this statement.",
+    "explanation": "Slide p.28 gives 38.6 / 44.8 with no metric labels. The assignment of 38.6 to mAP and 44.8 to NDS comes from the PGD paper (CoRL 2021), not from the deck. [VERIFY] against that paper before relying on this key.",
     "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
   },
   {
@@ -31547,7 +31547,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The positions on the chart are read by eye, and only the order within each row is reliable.",
+    "explanation": "The chart on p.27 gives approximate year-level positions and no release dates.",
     "lectureReference": "Part 68: Camera 3D Detection Timeline: FCOS3D and PGD"
   },
   {
@@ -31915,7 +31915,7 @@
       "B": "False"
     },
     "answer": "A",
-    "explanation": "Slide p.32 describes the explicit depth loss as coming from projected LiDAR points, and p.35 says the same.",
+    "explanation": "Slide p.32 describes the explicit depth loss as coming from projected LiDAR points, and p.36 says the same.",
     "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
   },
   {
@@ -31928,20 +31928,20 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "Slides p.32 and p.36 say the intrinsics and extrinsics are fed into the depth network.",
+    "explanation": "Slide p.32 says intrinsics and extrinsics are fed into the depth network, and p.36 says the network takes intrinsic parameters.",
     "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
   },
   {
     "num": 2335,
     "type": "tf",
-    "question": "Slide p.36 describes BEVDet's depth supervision as explicit and LiDAR-driven.",
+    "question": "Slide p.36 lists BEVDet's depth supervision as explicit and LiDAR-driven.",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "Slide p.36 describes BEVDet's depth supervision as implicit, relying on the detection loss. Slide p.34 conflicts with this, and the topic guide flags the inconsistency.",
+    "explanation": "This is the reading of p.36, which lists BEVDet's depth supervision as implicit, relying on the detection loss. Pages 33 and 34 state that BEVDet uses LiDAR-projected depth supervision, so the deck contradicts itself on this point.",
     "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
   },
   {
@@ -32063,7 +32063,7 @@
   {
     "num": 2344,
     "type": "mcq",
-    "question": "A voxel grid halves its resolution in all three axes. By what factor does the voxel count change?",
+    "question": "A voxel grid halves its voxel size in all three axes. By what factor does the voxel count change?",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "2",
@@ -32087,7 +32087,7 @@
       "D": "Sparse LiDAR points projected onto the images"
     },
     "answer": "D",
-    "explanation": "Slide p.34 describes sparse LiDAR points projected onto the images to penalize wrong depth guesses. The conflict with p.36 is covered in the topic guide.",
+    "explanation": "Slide p.34 describes sparse LiDAR points projected onto the images to penalize wrong depth guesses. Slide p.36 lists BEVDet's depth supervision as implicit, so the deck is internally inconsistent on this point.",
     "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
   },
   {
@@ -32153,7 +32153,7 @@
   {
     "num": 2350,
     "type": "mcq",
-    "question": "On slide p.29, the depth loss falls from 4.3 to 1.8. What is the relative reduction?",
+    "question": "On slide p.29, the lab's LiDAR-anchored fusion model has its depth loss fall from 4.3 to 1.8. What is the relative reduction?",
     "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "58.1 percent",
@@ -32215,7 +32215,7 @@
     "type": "sa",
     "question": "Trace one camera pixel through LSS from the image feature to a BEV feature. Name each step in order.",
     "tier": "Tier 1 — High Probability",
-    "answerText": "The image encoder gives a context feature and a per-pixel score for each of D depth bins. A softmax over the bins gives the depth probabilities (p.29). The context feature is multiplied by each bin probability, which places the feature along the camera ray as a frustum (p.30). Each frustum point is mapped to a BEV index using the quantizer (p.31). Points that land in the same cell are pooled into one BEV feature (p.30). The steps use illustrative numbers in the topic guide, and the slides do not give the exact camera geometry.",
+    "answerText": "The image encoder gives a context feature and a per-pixel score for each of D depth bins. A softmax over the bins gives the depth probabilities (p.29). The context feature is multiplied by each bin probability, which places the feature along the camera ray as a frustum (p.30). Each frustum point is mapped to a BEV index using the quantizer (p.31). Points that land in the same cell are pooled into one BEV feature (p.30). The slides give no numeric example for this trace and do not give the exact camera geometry.",
     "lectureReference": "Part 69: LSS, BEVDet, and BEVDepth: Explicit Depth Lifting"
   },
   {
@@ -32522,7 +32522,7 @@
       "D": "One ground-truth box"
     },
     "answer": "A",
-    "explanation": "Slide 9 builds the queries from the BEV feature map, which is defined by the BEV grid's range and resolution. Slide 35 (topic `75`) describes the queries as grid cells rather than object hypotheses.",
+    "explanation": "Slide 9 builds the queries from the BEV feature map, which is defined by the BEV grid's range and resolution. Slide 34 describes the BEVFormer queries as grid-shaped BEV embeddings, each representing a cell in BEV space rather than an object hypothesis.",
     "lectureReference": "Part 71: BEV Transformer: Encoder, Decoder, and Cross-Attention"
   },
   {
@@ -32807,7 +32807,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "The slide notes state that each row is a 3D point \"in normalized coordinates [0,1].\" The slide does not show how those values are converted to metric coordinates, so the projection step needs that conversion, which the slide leaves out.",
+    "explanation": "The slide notes state that each row is a 3D point \"in normalized coordinates [0,1].\" The slide does not show how those values are converted to metric coordinates before projection.",
     "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
   },
   {
@@ -33061,17 +33061,17 @@
   {
     "num": 2417,
     "type": "sa",
-    "question": "Compare how a dense CenterPoint-style detector and DETR3D assign training targets and remove duplicate detections, using slides 12 and 15 and topic `73`.",
+    "question": "Compare how a dense CenterPoint-style detector and DETR3D assign training targets and remove duplicate detections, using slides 12, 15, and 21.",
     "tier": "Tier 1 — High Probability",
-    "answerText": "The dense detector supervises a heatmap near object centers with a focal loss plus an L1 box term, then decodes top-K centers and applies NMS to remove duplicates (slides 12 and 15). DETR3D keeps a fixed sparse set of queries and assigns each ground-truth object to one query by Hungarian matching (slide 12). The unmatched queries are trained as no-object, so duplicates are discouraged in training and NMS is not needed (slide 18 says the method removes NMS).",
+    "answerText": "The dense detector supervises a heatmap near object centers with a focal loss plus an L1 box term, then decodes top-K centers and applies NMS to remove duplicates (slides 12 and 15). DETR3D keeps a fixed sparse set of queries and assigns each ground-truth object to one query by Hungarian matching (slides 12 and 21). The unmatched queries are trained as no-object, so duplicates are discouraged in training and NMS is not needed (slide 18 says the method removes NMS).",
     "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
   },
   {
     "num": 2418,
     "type": "sa",
-    "question": "Using the arithmetic in topic `72`, compare 900 DETR3D queries with a 200 x 200 dense grid for six cameras. State the numbers, the assumptions, and what the comparison does not measure.",
+    "question": "Compare 900 DETR3D queries with a 200 x 200 dense grid for six cameras, counting projections. State the numbers, the assumptions, and what the comparison does not measure.",
     "tier": "Tier 2 — Medium Probability",
-    "answerText": "900 queries x 6 cameras = 5,400 projections per decoder layer. A 200 x 200 grid (40,000 cells) x 6 cameras = 240,000 projections. The grid size is from slide 22, the 900 queries from slide 16, and the six cameras from slide 10. The comparison counts projections only. It does not include sampling, attention cost, memory, or detection accuracy.",
+    "answerText": "900 queries x 6 cameras = 5,400 projections. A 200 x 200 grid (40,000 cells) x 6 cameras = 240,000 projections, counted the same way. The grid size is from slide 22, the 900 queries from slide 16, and the six cameras from slide 10. The comparison counts projections only. It does not include sampling, attention cost, memory, or detection accuracy.",
     "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
   },
   {
@@ -33084,7 +33084,7 @@
       "B": "False"
     },
     "answer": "A",
-    "explanation": "Slide 21 states \"Each ground-truth object is matched to at most one prediction\" and describes the one-to-one assignment.",
+    "explanation": "Slide 21 states \"Each ground truth object is claimed by exactly one query\" and describes the one-to-one assignment.",
     "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
   },
   {
@@ -33207,14 +33207,14 @@
   {
     "num": 2429,
     "type": "tf",
-    "question": "Slide 39 describes BEVFormer's detection loss as set-based, with no NMS needed.",
+    "question": "According to slide 39, the detection loss is set-based and needs no NMS.",
     "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "B",
-    "explanation": "Slide 39 describes the loss as \"Dense, per-grid\" and says it \"requires NMS.\"",
+    "explanation": "Slide 39 describes the loss as \"Dense, per-grid\" and says it \"requires NMS.\" This is the deck's text on p.39 only. Pages 10, 14, and 34 describe BEV queries and a query-based design, so the deck conflicts with itself on this point. The item records what p.39 says and does not state how BEVFormer is actually trained.",
     "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
   },
   {
@@ -33413,7 +33413,7 @@
   {
     "num": 2443,
     "type": "mcq",
-    "question": "How does slide 39 describe the BEVFormer detection loss?",
+    "question": "What does slide 39 say about the detection loss?",
     "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "Dense per-grid, and the slide says it requires NMS",
@@ -33422,7 +33422,7 @@
       "D": "Set-based and NMS-free"
     },
     "answer": "A",
-    "explanation": "Slide 39 says \"Dense, per-grid. More stable, faster training, requires NMS.\"",
+    "explanation": "Slide 39 says \"Dense, per-grid. More stable, faster training, requires NMS.\" Slides 10, 14, and 34 describe query-based or BEV-query designs, so this is one of two conflicting descriptions in the deck.",
     "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
   },
   {
@@ -33437,7 +33437,7 @@
       "D": "NMS is needed to estimate velocity"
     },
     "answer": "B",
-    "explanation": "Slide 12 describes many overlapping candidates from a dense heatmap around object centers.",
+    "explanation": "Slide 12 says the dense detector \"outputs many overlapping candidates\" and usually requires NMS.",
     "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
   },
   {
@@ -33489,9 +33489,9 @@
   {
     "num": 2449,
     "type": "sa",
-    "question": "Name the three terms in the slide 21 matching cost and say what each one rewards. Then state one thing the slide does not give that you would need to reproduce the matching.",
+    "question": "Name the three terms in the slide 21 matching cost and say what each one measures. Then state one thing the slide does not give that you would need to reproduce the matching.",
     "tier": "Tier 2 — Medium Probability",
-    "answerText": "The classification cross-entropy term rewards the correct class. The L1 term rewards a predicted box whose parameters are close to the ground truth. The 3D IoU term rewards predicted boxes with high volumetric overlap. The slide does not give the lambda weights, so a reproduction would need them from the official code or from a cited configuration.",
+    "answerText": "Each term adds to the matching cost. The classification cross-entropy term is low when the predicted class is correct. The L1 term is low when the predicted box parameters are close to the ground truth. The 3D IoU term is low when the predicted box overlaps the ground truth more in volume. The slide does not give the lambda weights, so a reproduction would need them from the official code or from a cited configuration.",
     "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
   },
   {
@@ -33621,7 +33621,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "Slide 26 gives \"CVPR 2023 (Wang et al.).\" The venue on the slide is not checked against the paper in this note, and it is marked [VERIFY] in the study material.",
+    "explanation": "Slide 26 gives \"CVPR 2023 (Wang et al.).\" [VERIFY]: the venue has not been checked against the StreamPETR paper, and the study material marks it [VERIFY].",
     "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
   },
   {
@@ -33863,7 +33863,7 @@
   {
     "num": 2476,
     "type": "mcq",
-    "question": "Using the worked example in topic 74, with pixel ray (x/z, y/z) = (0.4, 0.2) and depth hypotheses 5, 15, 25, and 35 m, what is the 3D point at z = 15 m?",
+    "question": "With pixel ray (x/z, y/z) = (0.4, 0.2) and depth hypotheses 5, 15, 25, and 35 m, what is the 3D point at z = 15 m?",
     "tier": "Tier 1 — High Probability",
     "options": {
       "A": "(4.0, 2.0, 15.0)",
@@ -33903,7 +33903,7 @@
     "type": "sa",
     "question": "Compare how DETR3D and StreamPETR use past information, using slides 25 and 27. State what each method samples or stores and where the query gets its evidence.",
     "tier": "Tier 1 — High Probability",
-    "answerText": "DETR3D samples image features at projected reference points in the current frame (slide 25). The slides do not describe a temporal memory for DETR3D in this section. StreamPETR keeps a queue of previous frame features and moves them into the current ego frame with the pose (slide 27). Each new query attends to both the current frame and the aligned past frames. The difference is that StreamPETR adds a temporal memory and aligns it by pose, while DETR3D's evidence comes from the current frame only, as the slides present it.",
+    "answerText": "DETR3D samples image features at projected reference points in the current frame (slide 25). The slides do not describe a temporal memory for DETR3D in this section. StreamPETR keeps a queue of previous frame features and moves them into the current ego frame with the pose (slide 27). Each new query attends to both the current frame and the aligned past frames. StreamPETR adds a temporal memory aligned by pose. The slides describe DETR3D's query update as running from time step t to t+1 (PDF p.19), but they describe no multi-frame memory for DETR3D, so this answer treats its evidence as the current frame only.",
     "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
   },
   {
@@ -34015,7 +34015,7 @@
       "B": "False"
     },
     "answer": "B",
-    "explanation": "Slide 40 is a short pseudo-code excerpt with an undefined weight alpha. Topic 75 says to check the official repository before quoting it.",
+    "explanation": "Slide 40 is a short pseudo-code excerpt with an undefined weight alpha, and pages 38 to 40 conflict with other slides (see SA3). Check the official repository before quoting it.",
     "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
   },
   {
@@ -34060,14 +34060,14 @@
   {
     "num": 2492,
     "type": "tf",
-    "question": "Slide 42 gives the shape change from [C, T, X, Y, Z] to [C, 16X, 16Y, 16Z].",
+    "question": "Slide 42 lists the shapes [C, T, X, Y, Z] and [C, 16X, 16Y, 16Z].",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
     },
     "answer": "A",
-    "explanation": "Slide 42 shows both shapes. Topic 09 covers the same notation in more detail.",
+    "explanation": "Slide 42 lists both shapes without an arrow or stated direction. Slide 46 says the small-scale features [C, T, X, Y, Z] are upsampled into the volume output. Topic 09 covers the same notation in more detail.",
     "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
   },
   {
@@ -34178,7 +34178,7 @@
   {
     "num": 2500,
     "type": "mcq",
-    "question": "What gain over DETR3D does slide 35 state?",
+    "question": "What gain over DETR3D on nuScenes NDS does slide 35 state?",
     "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "47.9 points",
@@ -34193,7 +34193,7 @@
   {
     "num": 2501,
     "type": "mcq",
-    "question": "How does topic 75 describe the code on slide 40?",
+    "question": "How does the deck describe the code on slide 40?",
     "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "Illustrative pseudo-code",
@@ -34202,7 +34202,7 @@
       "D": "A benchmark table"
     },
     "answer": "A",
-    "explanation": "The code is a short illustrative excerpt, and it uses an undefined weight alpha.",
+    "explanation": "Slide 40 presents a short excerpt with an undefined weight alpha. Its header names the official file, but the excerpt is illustrative.",
     "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
   },
   {
@@ -34217,7 +34217,7 @@
       "D": "Pixel-wise cross-entropy"
     },
     "answer": "B",
-    "explanation": "Slide 38 lists L_cls as a focal loss on the heatmap.",
+    "explanation": "Slide 38 lists L_cls as a focal loss on the heatmap. Pages 38 to 40 are the dense-head descriptions that conflict with the query-based ones elsewhere in the deck (see SA3).",
     "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
   },
   {
@@ -34283,7 +34283,7 @@
   {
     "num": 2507,
     "type": "mcq",
-    "question": "Using the topic 75 memory example, how much memory does a 1000^3 grid with one channel at fp16 take?",
+    "question": "The deck mentions a 1000^3 voxel grid on slide 46. With one channel at fp16, how much memory does it take?",
     "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "1 GB",
@@ -34331,7 +34331,7 @@
     "type": "sa",
     "question": "Slides 38 to 40 and slide 12 conflict with slide 14 on how BEVFormer assigns targets and removes duplicates. Explain the conflict, and state the check a student should run before using either claim in a proposal.",
     "tier": "Tier 2 — Medium Probability",
-    "answerText": "Slides 38 to 39 describe a dense, per-cell head with a Gaussian heatmap, focal and L1 losses, and an NMS step. Slide 12 says dense heads need NMS, and slide 14 places BEVFormer in the query family, which uses set-level matching. The deck does not reconcile these. The check is to open the official BEVFormer repository, find the head class and the assigner, and confirm which assignment and decoding steps it uses. The proposal should cite that location. Topic 73 records the same conflict for the matching step.",
+    "answerText": "Slides 38 to 39 describe a dense, per-cell head with a Gaussian heatmap, focal and L1 losses, and an NMS step. Slide 12 says dense heads need NMS. Slide 14 places BEVFormer in the BEV query family, and slide 12 says query-based detectors use Hungarian matching (set-level matching). The deck does not reconcile these. The check is to open the official BEVFormer repository, find the head class and the assigner, and confirm which assignment and decoding steps it uses. The proposal should cite that location. Topic 73 records the same conflict for the matching step.",
     "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
   }
 ]
