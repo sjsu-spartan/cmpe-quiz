@@ -36,16 +36,18 @@ function stripPartPrefix(part: string): string {
   return part.replace(/^Part \d+:\s*/, '');
 }
 
-/** CMPE 249's 56 parts each contain a mix of per-question tiers (unlike CMPE 253's
- * single-tier-per-part banks), so there's no one tier to show in the Part dropdown
- * by default. This is a manual topic-level judgment call (not a plurality of the
- * per-question tiers) distinguishing historical/survey/company-trivia content
- * (lower exam priority per course emphasis) from actual model/architecture/mechanism
- * content (higher priority) -- display-only, does not alter any question's stored
- * per-question tier in the data file. Keyed by part number parsed from
- * "Part N: ...". Parts not listed here (or for any other mixed-tier course) fall
- * back to whichever tier has the most questions in that part. */
-const CMPE249_PART_TOPIC_TIER: Record<number, 'high' | 'medium' | 'low'> = {
+type TopicTier = 'high' | 'medium' | 'low';
+
+/** CMPE 249 and CMPE 258 parts each contain a mix of per-question tiers (unlike
+ * CMPE 253's single-tier-per-part banks), so there's no one tier to show in the Part
+ * dropdown by default. These are manual topic-level judgment calls (not a plurality
+ * of the per-question tiers) distinguishing historical/survey/company-trivia content
+ * (lower exam priority) from foundational, mechanism-level content that later topics
+ * build on and that is central to current practice (higher priority) -- display-only,
+ * does not alter any question's stored per-question tier in the data file. Keyed by
+ * part number parsed from "Part N: ...", per course. Parts not listed fall back to
+ * whichever tier has the most questions in that part. */
+const CMPE249_PART_TOPIC_TIER: Record<number, TopicTier> = {
   1: 'high', 2: 'low', 3: 'low', 4: 'medium', 5: 'high', 6: 'high', 7: 'high',
   8: 'high', 9: 'medium', 10: 'medium', 11: 'high', 12: 'high', 13: 'medium',
   14: 'low', 15: 'medium', 16: 'medium', 17: 'medium', 18: 'high', 19: 'medium',
@@ -55,6 +57,27 @@ const CMPE249_PART_TOPIC_TIER: Record<number, 'high' | 'medium' | 'low'> = {
   40: 'high', 41: 'medium', 42: 'high', 43: 'low', 44: 'high', 45: 'high',
   46: 'high', 47: 'high', 48: 'high', 49: 'high', 50: 'high', 51: 'high',
   52: 'high', 53: 'high', 54: 'high', 55: 'high', 56: 'high',
+  57: 'high', 58: 'high', 59: 'medium', 60: 'medium', 61: 'high', 62: 'high',
+  63: 'high', 64: 'high', 65: 'medium', 66: 'medium', 67: 'low', 68: 'low',
+  69: 'high', 71: 'high', 72: 'high', 73: 'high', 74: 'medium', 75: 'high',
+};
+
+const CMPE258_PART_TOPIC_TIER: Record<number, TopicTier> = {
+  1: 'medium', 2: 'low', 3: 'low', 4: 'medium', 5: 'high', 6: 'medium', 7: 'high',
+  8: 'high', 9: 'medium', 10: 'high', 11: 'medium', 12: 'medium', 13: 'high',
+  14: 'high', 15: 'medium', 16: 'high', 17: 'high', 18: 'high', 19: 'low',
+  20: 'high', 21: 'high', 22: 'low', 23: 'medium', 24: 'high', 25: 'high',
+  26: 'low', 27: 'low', 28: 'medium', 29: 'low', 30: 'medium', 31: 'high',
+  32: 'high', 33: 'high', 34: 'medium', 35: 'high', 36: 'high', 37: 'high',
+  38: 'high', 39: 'medium', 40: 'high', 41: 'medium', 42: 'medium', 43: 'low',
+  44: 'medium', 45: 'medium', 46: 'low', 47: 'high', 48: 'medium', 49: 'high',
+  50: 'high', 51: 'low', 52: 'high', 53: 'high', 54: 'high', 55: 'medium',
+  56: 'high', 57: 'high', 58: 'medium',
+};
+
+const PART_TOPIC_TIER_BY_COURSE: Record<string, Record<number, TopicTier>> = {
+  cmpe249: CMPE249_PART_TOPIC_TIER,
+  cmpe258: CMPE258_PART_TOPIC_TIER,
 };
 
 const TOPIC_TIER_LABEL: Record<'high' | 'medium' | 'low', string> = {
@@ -65,18 +88,18 @@ const TOPIC_TIER_LABEL: Record<'high' | 'medium' | 'low', string> = {
 
 /** Returns a short tier label to show in front of a Part's name in the dropdown.
  * Single-tier parts (e.g. CMPE 253) just use their one real tier. Mixed-tier parts
- * use the manual topic-level override table above (currently only populated for
- * CMPE 249's Part numbers; other mixed-tier courses, e.g. CMPE 258, fall through
- * to the per-part dominant-tier computation below since CMPE249_PART_TOPIC_TIER's
- * keys are plain Part numbers with no course scoping, and every course restarts
- * its own Part numbering at 1). */
+ * use the per-course topic-level override tables above (CMPE 249 and CMPE 258;
+ * each course restarts its own Part numbering at 1, so lookups are keyed by
+ * course). Parts without an entry fall through to the per-part dominant-tier
+ * computation below. */
 function getPartTierLabel(courseId: string, part: string, partTiers: string[], partQuestions: Question[]): string {
   if (partTiers.length === 1) {
     return partTiers[0].replace(/^Tier \S+ — /, '');
   }
-  if (courseId === 'cmpe249') {
+  const topicTiers = PART_TOPIC_TIER_BY_COURSE[courseId];
+  if (topicTiers) {
     const partNum = parseInt(part.match(/^Part (\d+):/)?.[1] ?? '', 10);
-    const override = CMPE249_PART_TOPIC_TIER[partNum];
+    const override = topicTiers[partNum];
     if (override) {
       return TOPIC_TIER_LABEL[override];
     }
