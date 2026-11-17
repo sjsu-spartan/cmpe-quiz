@@ -26778,7 +26778,7 @@
     "num": 1954,
     "type": "tf",
     "question": "PointPillars uses a single vertical bin per grid cell, so each cell is a full-height column.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -26791,7 +26791,7 @@
     "num": 1955,
     "type": "tf",
     "question": "In the example grid, the x axis has 496 cells and the y axis has 432 cells.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -26804,7 +26804,7 @@
     "num": 1956,
     "type": "tf",
     "question": "The Pillar Feature Net applies a shared per-point MLP and then takes a max across the points in each pillar.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -26843,7 +26843,7 @@
     "num": 1959,
     "type": "tf",
     "question": "The OpenPCDet version adds the offset from the pillar's z center, which makes 10 features per point.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -26856,7 +26856,7 @@
     "num": 1960,
     "type": "tf",
     "question": "Scatter places each pillar feature at its x-y grid index, which produces a dense BEV pseudo-image.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -26869,7 +26869,7 @@
     "num": 1961,
     "type": "tf",
     "question": "After scatter, PointPillars runs 2D convolutions over the pseudo-image, and that is its main speed advantage over full 3D convolution.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -26908,7 +26908,7 @@
     "num": 1964,
     "type": "tf",
     "question": "In the slide's example frame, the number of pillars equals the number of points because each cell holds exactly one point.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -26934,7 +26934,7 @@
     "num": 1966,
     "type": "mcq",
     "question": "What is the total number of BEV cells in the example grid?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "214,272",
       "B": "496",
@@ -26949,7 +26949,7 @@
     "num": 1967,
     "type": "mcq",
     "question": "The example frame has 14,290 non-empty pillars in a 214,272-cell grid. What fraction of cells is non-empty?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "0.67 percent",
       "B": "6.67 percent",
@@ -27009,7 +27009,7 @@
     "num": 1971,
     "type": "mcq",
     "question": "Given input [M, 32, 10] in the slide example, what is the PFN output for each pillar?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "[M, 32, 64]",
       "B": "[M, 64]",
@@ -27039,7 +27039,7 @@
     "num": 1973,
     "type": "mcq",
     "question": "A pillar has x_idx = 3, y_idx = 2, z_idx = 0 in a grid with N_x = 432. What is its flat index?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "435",
       "B": "866",
@@ -27054,7 +27054,7 @@
     "num": 1974,
     "type": "mcq",
     "question": "A frame has 113,898 points and 61,340 remain after the range mask. What percentage was removed?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "46.1 percent",
       "B": "53.9 percent",
@@ -27069,7 +27069,7 @@
     "num": 1975,
     "type": "mcq",
     "question": "The raw voxel tensor for 14,290 pillars, 32 points each, and 4 raw features has how many values?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "4,572,800",
       "B": "1,829,120",
@@ -27099,7 +27099,7 @@
     "num": 1977,
     "type": "mcq",
     "question": "Which operation gives PointPillars its main speed advantage over full 3D convolution?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "Using fewer points",
       "B": "Skipping batch normalization",
@@ -27159,7 +27159,7 @@
     "num": 1981,
     "type": "mcq",
     "question": "In the KITTI configuration on slide 5, what is the maximum number of points per voxel?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "100",
       "B": "4",
@@ -27174,7 +27174,7 @@
     "num": 1982,
     "type": "sa",
     "question": "Trace one LiDAR point from its raw (x, y, z, r) values to a pillar feature vector. Name each stage and the shape of its output.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "answerText": "The point is first assigned to a pillar by its x and y indices, after the range mask. It is augmented with its offsets from the pillar mean and from the pillar center, giving 10 features in the OpenPCDet version (9 in the paper). Pillars are capped at P per sample and N points per pillar, which gives the dense (D, P, N) tensor. The PFN applies a shared linear layer, BN, and ReLU to each point, giving [M, 32, 64] for the slide's example, and max over points gives [M, 64].",
     "lectureReference": "Part 57: PointPillars: Pillarization and the Pillar Feature Net"
   },
@@ -27211,7 +27211,7 @@
     "num": 1986,
     "type": "tf",
     "question": "Block 3 outputs 128 channels.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -27237,7 +27237,7 @@
     "num": 1988,
     "type": "tf",
     "question": "The spatial_features_2d tensor has 384 channels because three 128-channel maps are concatenated.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -27250,7 +27250,7 @@
     "num": 1989,
     "type": "tf",
     "question": "The classification head outputs 3 channels at each BEV location, one per class.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -27263,7 +27263,7 @@
     "num": 1990,
     "type": "tf",
     "question": "The anchor count in the example equals 248 x 216 x 6 = 321,408.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -27276,7 +27276,7 @@
     "num": 1991,
     "type": "tf",
     "question": "The box head predicts 6 values per anchor.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -27341,7 +27341,7 @@
     "num": 1996,
     "type": "tf",
     "question": "The ZeroPad2d setting Pad=(1,1,1,1,1) on slide 10 is a valid four-value padding argument.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -27354,7 +27354,7 @@
     "num": 1997,
     "type": "mcq",
     "question": "What is the shape of the concatenated spatial_features_2d tensor?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "[1, 384, 248, 216]",
       "B": "[1, 128, 248, 216]",
@@ -27384,7 +27384,7 @@
     "num": 1999,
     "type": "mcq",
     "question": "How many anchors does the head predict at each BEV location in the example?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "3",
       "B": "2",
@@ -27414,7 +27414,7 @@
     "num": 2001,
     "type": "mcq",
     "question": "How many anchors does one frame contain in the example?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "321,408",
       "B": "53,568",
@@ -27429,7 +27429,7 @@
     "num": 2002,
     "type": "mcq",
     "question": "Which configuration matches deblock 2 on slide 10?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "1 x 1, stride 1, 64 to 128 channels",
       "B": "2 x 2, stride 2, 128 to 128 channels",
@@ -27444,7 +27444,7 @@
     "num": 2003,
     "type": "mcq",
     "question": "Why does each location carry several classes and two rotations?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "To fuse multi-scale features",
       "B": "To set the NMS cutoff",
@@ -27459,7 +27459,7 @@
     "num": 2004,
     "type": "mcq",
     "question": "With 384 input channels, what is the total parameter count of the three 1 x 1 head convolutions?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "6,930",
       "B": "16,170",
@@ -27474,7 +27474,7 @@
     "num": 2005,
     "type": "mcq",
     "question": "What is the size of one BEV output cell on the 248 x 216 grid?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "0.32 m",
       "B": "0.16 m",
@@ -27519,7 +27519,7 @@
     "num": 2008,
     "type": "mcq",
     "question": "Which permutation converts the head outputs from channel-first to [N, H, W, C]?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "0123",
       "B": "1032",
@@ -27549,7 +27549,7 @@
     "num": 2010,
     "type": "mcq",
     "question": "Why is the flattened box tensor shape [1, 321408, 7]?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "7 is the number of classes",
       "B": "It has 7 residuals per anchor, flattened over all anchors",
@@ -27564,7 +27564,7 @@
     "num": 2011,
     "type": "mcq",
     "question": "Which statement about the BEV backbone is correct?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "It is a 3D sparse convolution network",
       "B": "It has no downsampling",
@@ -27579,7 +27579,7 @@
     "num": 2012,
     "type": "mcq",
     "question": "Which value equals 248 x 216?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "496 x 432",
       "B": "62 x 54",
@@ -27594,7 +27594,7 @@
     "num": 2013,
     "type": "sa",
     "question": "Trace the tensor shapes from the scatter output through the backbone and into the three head outputs, giving sizes at each stage.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "answerText": "Scatter gives [1, 64, 496, 432]. Block 1 gives [1, 64, 248, 216], block 2 gives [1, 128, 124, 108], and block 3 gives [1, 256, 62, 54]. The three deblocks each give [1, 128, 248, 216], and concatenation gives [1, 384, 248, 216]. The heads give [1, 18, 248, 216] for class logits, [1, 42, 248, 216] for box residuals, and [1, 12, 248, 216] for direction logits, which are permuted to [N, H, W, C] and flattened to 321,408 anchors.",
     "lectureReference": "Part 58: PointPillars BEV Backbone and Anchor Head"
   },
@@ -27602,7 +27602,7 @@
     "num": 2014,
     "type": "sa",
     "question": "Explain why the anchor head uses 6 anchors per location and what the 7 box values per anchor represent before decoding.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "answerText": "The 6 anchors are 3 classes times 2 rotations (0 and 90 degrees), each with its own size prior. Each anchor's 7 box values are residuals relative to that anchor: normalized offsets for x, y, and z, log-ratio size changes for length, width, and height, and a heading difference. The residuals are decoded into a metric box only after training, as covered in the next topic.",
     "lectureReference": "Part 58: PointPillars BEV Backbone and Anchor Head"
   },
@@ -27610,7 +27610,7 @@
     "num": 2015,
     "type": "sa",
     "question": "The backbone combines three scales into one feature map. Explain what each scale contributes and why the deblocks are needed before concatenation.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "answerText": "Block 1 keeps fine spatial detail at 248 x 216. Block 2 and block 3 give larger receptive fields at 124 x 108 and 62 x 54, which carry more context. The deblocks bring the two coarser scales back to 248 x 216 so the three maps can be concatenated along the channel axis. Without the deblocks, the maps have different spatial sizes and cannot be stacked into one 384-channel map for the head.",
     "lectureReference": "Part 58: PointPillars BEV Backbone and Anchor Head"
   },
@@ -27618,7 +27618,7 @@
     "num": 2016,
     "type": "tf",
     "question": "Positive anchors receive a class label and box regression targets.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -27644,7 +27644,7 @@
     "num": 2018,
     "type": "tf",
     "question": "Ignored anchors are masked out of the loss.",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -27657,7 +27657,7 @@
     "num": 2019,
     "type": "tf",
     "question": "The slides give fixed IoU thresholds that apply to every dataset and class.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -27670,7 +27670,7 @@
     "num": 2020,
     "type": "tf",
     "question": "The position target is t_x = (x_g - x_a) / d_a, where d_a = sqrt(l_a^2 + w_a^2).",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -27683,7 +27683,7 @@
     "num": 2021,
     "type": "tf",
     "question": "Decoding recovers the length as exp(t_l) times the anchor length.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -27696,7 +27696,7 @@
     "num": 2022,
     "type": "tf",
     "question": "Decoding recovers x as t_x times d_a plus the anchor x.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -27709,7 +27709,7 @@
     "num": 2023,
     "type": "tf",
     "question": "The height residual t_z is normalized by the anchor diagonal d_a.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -27748,7 +27748,7 @@
     "num": 2026,
     "type": "tf",
     "question": "The slides use anchor rotations of 45 and 135 degrees.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -27819,7 +27819,7 @@
     "num": 2031,
     "type": "mcq",
     "question": "The ground-truth center is 0.8 m ahead of the anchor center in x, and d_a = 4.2154 m. What is t_x?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "0.1431",
       "B": "0.5",
@@ -27849,7 +27849,7 @@
     "num": 2033,
     "type": "mcq",
     "question": "Which quantity normalizes the z residual?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "d_a",
       "B": "h_a",
@@ -27879,7 +27879,7 @@
     "num": 2035,
     "type": "mcq",
     "question": "Why does the head classify direction in addition to regressing heading?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "To predict the class label",
       "B": "To compute the IoU threshold",
@@ -27894,7 +27894,7 @@
     "num": 2036,
     "type": "mcq",
     "question": "Which two BEV rotations do the slides give as defaults?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "0 and 90 degrees",
       "B": "0 and 180 degrees",
@@ -27924,7 +27924,7 @@
     "num": 2038,
     "type": "mcq",
     "question": "Which rule defines a positive anchor on slide 14?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "IoU at or below tau_neg",
       "B": "IoU between the two thresholds",
@@ -27939,7 +27939,7 @@
     "num": 2039,
     "type": "mcq",
     "question": "Which residual is normalized by the anchor's diagonal d_a?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "t_z",
       "B": "t_l",
@@ -27969,7 +27969,7 @@
     "num": 2041,
     "type": "mcq",
     "question": "Why does the slide say anchor settings depend on the dataset?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "Anchors are learned during training",
       "B": "Typical object sizes differ by dataset and class",
@@ -27999,7 +27999,7 @@
     "num": 2043,
     "type": "mcq",
     "question": "The anchor heading is theta_a = 0 rad and the residual is t_theta = 0.3 rad. What is the decoded heading?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "0.0 rad",
       "B": "3.0 rad",
@@ -28014,7 +28014,7 @@
     "num": 2044,
     "type": "sa",
     "question": "Explain why negative anchors receive only a classification target and ignored anchors receive nothing. What would go wrong if negatives were also used for box regression?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "answerText": "A negative anchor has low overlap with every ground-truth box, so it has no object to regress toward. Its only correct target is background. Ignored anchors have ambiguous overlap, so a label would be noisy. If negatives were used for box regression, the network would be asked to regress boxes that do not correspond to any object, which would pull predictions toward meaningless targets.",
     "lectureReference": "Part 59: Anchor Target Assignment and Residual Box Coding"
   },
@@ -28051,7 +28051,7 @@
     "num": 2048,
     "type": "tf",
     "question": "The gamma in the total loss and the gamma in the focal term are the same quantity.",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28077,7 +28077,7 @@
     "num": 2050,
     "type": "tf",
     "question": "The focal factor increases the weight of easy negatives.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28129,7 +28129,7 @@
     "num": 2054,
     "type": "tf",
     "question": "The training step assigns targets after the forward pass and before the loss is computed.",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28142,7 +28142,7 @@
     "num": 2055,
     "type": "tf",
     "question": "Inference returns the training loss dictionary as the final detections.",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28155,7 +28155,7 @@
     "num": 2056,
     "type": "tf",
     "question": "Inference applies a sigmoid to the class logits and takes the maximum class score per anchor.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28168,7 +28168,7 @@
     "num": 2057,
     "type": "tf",
     "question": "NMS is needed only during training, to remove duplicate anchors from the loss.",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28181,7 +28181,7 @@
     "num": 2058,
     "type": "tf",
     "question": "Dense prediction produces about 321,000 candidate boxes per frame before NMS.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28254,7 +28254,7 @@
     "num": 2063,
     "type": "mcq",
     "question": "With the same settings, what is the focal loss for p_t = 0.1?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "1.865",
       "B": "0.00105",
@@ -28284,7 +28284,7 @@
     "num": 2065,
     "type": "mcq",
     "question": "Using the standard SmoothL1 definition (0.5 x^2 for |x| < 1), what is the loss at residual 0.5?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "0.5",
       "B": "0.25",
@@ -28299,7 +28299,7 @@
     "num": 2066,
     "type": "mcq",
     "question": "What kind of loss does the slide use for the direction term?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "SmoothL1",
       "B": "Focal loss",
@@ -28314,7 +28314,7 @@
     "num": 2067,
     "type": "mcq",
     "question": "Which OpenPCDet function returns the training loss that is used for backpropagation, per slide 15?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "get_loss, which returns rpn_loss",
       "B": "forward_inference",
@@ -28329,7 +28329,7 @@
     "num": 2068,
     "type": "mcq",
     "question": "Which values does the logging dictionary tb_dict record?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "Boxes",
       "B": "cls, loc, dir, and total",
@@ -28374,7 +28374,7 @@
     "num": 2071,
     "type": "mcq",
     "question": "How does inference compute the score for each anchor?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "Sigmoid on class logits, then the maximum over classes",
       "B": "Softmax over anchors",
@@ -28419,7 +28419,7 @@
     "num": 2074,
     "type": "mcq",
     "question": "Which output is the scalar used for backpropagation?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "tb_dict",
       "B": "disp_dict",
@@ -28450,7 +28450,7 @@
     "num": 2077,
     "type": "sa",
     "question": "Describe the inference path from dense head outputs to final detections, including the score step and why NMS is applied.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "answerText": "The head outputs 321,408 anchors with class logits, box residuals, and direction logits. Inference applies a sigmoid to the class logits and takes the maximum class score per anchor, decodes residuals into boxes of the form [x, y, z, l, w, h, theta], and runs class-agnostic or multi-class NMS. The final output is pred_boxes, pred_scores, and pred_labels. NMS is needed because dense anchors produce many overlapping boxes around one object.",
     "lectureReference": "Part 60: PointPillars Loss, Training Loop, and NMS Inference"
   },
@@ -28458,7 +28458,7 @@
     "num": 2078,
     "type": "tf",
     "question": "CenterPoint predicts a BEV center heatmap for each class.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28471,7 +28471,7 @@
     "num": 2079,
     "type": "tf",
     "question": "CenterPoint needs a hand-designed anchor grid for each class.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28510,7 +28510,7 @@
     "num": 2082,
     "type": "tf",
     "question": "At each peak, the regression head predicts z, size, yaw, velocity, and a local offset.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28575,7 +28575,7 @@
     "num": 2087,
     "type": "tf",
     "question": "Decoding usually extracts the top-K peaks, with 500 given as an example.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28588,7 +28588,7 @@
     "num": 2088,
     "type": "tf",
     "question": "Before CenterPoint, all LiDAR detectors used anchor-based heads.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28601,7 +28601,7 @@
     "num": 2089,
     "type": "tf",
     "question": "The heatmap loss is divided by the number of pixels in the BEV grid.",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28644,7 +28644,7 @@
     "num": 2092,
     "type": "mcq",
     "question": "With sigma = 2 cells, what is the Gaussian value at a distance of 2 cells from the center?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "0.8825",
       "B": "0.1353",
@@ -28674,7 +28674,7 @@
     "num": 2094,
     "type": "mcq",
     "question": "How many values does the box vector b have in the slide's definition?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "9",
       "B": "7",
@@ -28689,7 +28689,7 @@
     "num": 2095,
     "type": "mcq",
     "question": "Which symbol weights the velocity loss in the total loss?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "lambda_box",
       "B": "lambda_vel",
@@ -28704,7 +28704,7 @@
     "num": 2096,
     "type": "mcq",
     "question": "In the modified focal loss, which exponent appears in the term used when y = 1?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "beta",
       "B": "gamma",
@@ -28749,7 +28749,7 @@
     "num": 2099,
     "type": "mcq",
     "question": "With the same prediction y_hat = 0.6, a far miss (y = 0) costs about how many times a near miss (y = 0.8)?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "62.5",
       "B": "625",
@@ -28764,7 +28764,7 @@
     "num": 2100,
     "type": "mcq",
     "question": "Which top-K value does slide 25 give as an example?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "10",
       "B": "50",
@@ -28779,7 +28779,7 @@
     "num": 2101,
     "type": "mcq",
     "question": "On a 496 x 432 BEV grid (the PointPillars grid used as a hypothetical), how many heatmap cells does each class have?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "496",
       "B": "432",
@@ -28878,7 +28878,7 @@
     "num": 2109,
     "type": "tf",
     "question": "Pillars are vertical columns on a 2D grid, which allows a pure 2D CNN to process the result.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28904,7 +28904,7 @@
     "num": 2111,
     "type": "tf",
     "question": "Dense 3D convolution on voxels has cubic memory growth, so practical systems use sparse convolution.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28917,7 +28917,7 @@
     "num": 2112,
     "type": "tf",
     "question": "A BEV grid squashes height information.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28930,7 +28930,7 @@
     "num": 2113,
     "type": "tf",
     "question": "A camera frustum representation gives accurate depth for free.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28956,7 +28956,7 @@
     "num": 2115,
     "type": "tf",
     "question": "Raw points form an ordered, regular grid, which makes them easy for standard CNNs.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28969,7 +28969,7 @@
     "num": 2116,
     "type": "tf",
     "question": "The voxel and sparse CNN family includes SECOND and VoxelNeXt.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -28995,7 +28995,7 @@
     "num": 2118,
     "type": "tf",
     "question": "The BEV center-based family includes CenterPoint.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29021,7 +29021,7 @@
     "num": 2120,
     "type": "tf",
     "question": "A 0.5 m error at 30 m is about 10 percent relative error.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29064,7 +29064,7 @@
     "num": 2123,
     "type": "mcq",
     "question": "Which methods are listed as range image users on slide 27?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "VoxelNet, SECOND, CenterPoint",
       "B": "PointNet++, PointRCNN, PTv3",
@@ -29094,7 +29094,7 @@
     "num": 2125,
     "type": "mcq",
     "question": "What is the range image shape of the Waymo TOP LiDAR on slide 30?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "64 x 2650",
       "B": "32 x 2650",
@@ -29139,7 +29139,7 @@
     "num": 2128,
     "type": "mcq",
     "question": "Which family includes TransFusion and attention-based fusion?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "Voxel or sparse CNN",
       "B": "Point-voxel hybrid",
@@ -29154,7 +29154,7 @@
     "num": 2129,
     "type": "mcq",
     "question": "Which family is described as \"simple anchor-free detection and tracking\"?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "BEV center-based",
       "B": "Voxel or sparse CNN",
@@ -29169,7 +29169,7 @@
     "num": 2130,
     "type": "mcq",
     "question": "Which statement is the slide's rule of thumb?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "Cameras give geometry for free",
       "B": "LiDAR gives geometry for free, and cameras give semantics for free",
@@ -29229,7 +29229,7 @@
     "num": 2134,
     "type": "mcq",
     "question": "What relative error does a 0.5 m error at 30 m represent?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "0.5 percent",
       "B": "1.7 percent",
@@ -29259,7 +29259,7 @@
     "num": 2136,
     "type": "mcq",
     "question": "Why are raw points hard to process with a standard CNN?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "There are too few points",
       "B": "They are ordered",
@@ -29311,7 +29311,7 @@
     "num": 2141,
     "type": "tf",
     "question": "KITTI AP3D for cars uses an IoU threshold of 0.5.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29324,7 +29324,7 @@
     "num": 2142,
     "type": "tf",
     "question": "nuScenes matches predictions to ground truth by BEV center distance at 0.5, 1, 2, and 4 m.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29337,7 +29337,7 @@
     "num": 2143,
     "type": "tf",
     "question": "nuScenes matches predictions to ground truth by 3D IoU.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29350,7 +29350,7 @@
     "num": 2144,
     "type": "tf",
     "question": "The NDS formula gives the mAP term a weight of 5 out of a total of 10.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29363,7 +29363,7 @@
     "num": 2145,
     "type": "tf",
     "question": "The NDS formula has no velocity term.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29389,7 +29389,7 @@
     "num": 2147,
     "type": "tf",
     "question": "Segmentation mIoU is the mean over classes of TP / (TP + FP + FN).",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29402,7 +29402,7 @@
     "num": 2148,
     "type": "tf",
     "question": "AbsRel is the mean absolute depth error without dividing by the true depth.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29428,7 +29428,7 @@
     "num": 2150,
     "type": "tf",
     "question": "The slides report the same AP for one checkpoint under the IoU rule and the center-distance rule.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29441,7 +29441,7 @@
     "num": 2151,
     "type": "tf",
     "question": "The nuScenes LiDAR is a 64-beam unit at 10 Hz.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29469,7 +29469,7 @@
     "num": 2153,
     "type": "mcq",
     "question": "What IoU threshold does KITTI AP3D use for pedestrians and cyclists?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "0.7",
       "B": "0.5",
@@ -29499,7 +29499,7 @@
     "num": 2155,
     "type": "mcq",
     "question": "How many classes does nuScenes use for mAP in the slide?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "3",
       "B": "5",
@@ -29529,7 +29529,7 @@
     "num": 2157,
     "type": "mcq",
     "question": "Given mAP = 0.5 and true-positive errors ATE = 0.30, ASE = 0.25, AOE = 0.40, AVE = 0.30, and AAE = 0.20, what is NDS?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "0.355",
       "B": "0.605",
@@ -29574,7 +29574,7 @@
     "num": 2160,
     "type": "mcq",
     "question": "Which formula defines AbsRel on slide 32?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "Mean of |d_hat - d| / d",
       "B": "Mean of |d_hat - d|",
@@ -29604,7 +29604,7 @@
     "num": 2162,
     "type": "mcq",
     "question": "Which LiDAR configuration does slide 31 give for Waymo?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "32-beam at 20 Hz",
       "B": "64-beam at 20 Hz",
@@ -29619,7 +29619,7 @@
     "num": 2163,
     "type": "mcq",
     "question": "The nuScenes sweep has 34,720 raw points and the Waymo TOP return count is 115,603. What is the ratio?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "0.3",
       "B": "1.0",
@@ -29634,7 +29634,7 @@
     "num": 2164,
     "type": "mcq",
     "question": "What share of the nuScenes sweep's points fall in CAM_FRONT on slide 29?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "9.4 percent",
       "B": "26 percent",
@@ -29664,7 +29664,7 @@
     "num": 2166,
     "type": "mcq",
     "question": "Why must numbers from KITTI, nuScenes, and Waymo be compared with care?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "The sensors are identical",
       "B": "The splits are identical",
@@ -29679,7 +29679,7 @@
     "num": 2167,
     "type": "mcq",
     "question": "Which benchmark does slide 32 describe as the camera-3D benchmark?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "KITTI",
       "B": "Waymo",
@@ -29694,7 +29694,7 @@
     "num": 2168,
     "type": "sa",
     "question": "A paper reports AP 0.271 for cars and does not state its matcher. Explain why the number cannot be compared with a KITTI IoU 0.7 result.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "answerText": "The two numbers come from different matching rules. An IoU rule requires 3D overlap, while a center-distance rule accepts predictions whose centers are close. The slide's own example shows one checkpoint scoring 0.008 under the IoU rule and 0.271 under the center-distance rule. Without the matcher, the number has no defined meaning for comparison.",
     "lectureReference": "Part 63: Detection Metrics Across KITTI, nuScenes, and Waymo"
   },
@@ -29718,7 +29718,7 @@
     "num": 2171,
     "type": "tf",
     "question": "The depth probabilities for a pixel are a softmax over bin logits and sum to 1 across the bins.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29744,7 +29744,7 @@
     "num": 2173,
     "type": "tf",
     "question": "A pixel feature is distributed along its ray rather than committed to one depth.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29757,7 +29757,7 @@
     "num": 2174,
     "type": "tf",
     "question": "The slide's example bins are 2, 4, 6, and 8 m.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29770,7 +29770,7 @@
     "num": 2175,
     "type": "tf",
     "question": "PON collapses the horizontal dimension of the image feature map and applies a 1D convolution along the vertical axis.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29783,7 +29783,7 @@
     "num": 2176,
     "type": "tf",
     "question": "LSS lifts each image into a frustum and splats the frustums into a BEV grid.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29796,7 +29796,7 @@
     "num": 2177,
     "type": "tf",
     "question": "VPN was evaluated only on real driving data, with no simulator data.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29809,7 +29809,7 @@
     "num": 2178,
     "type": "tf",
     "question": "PanopticBEV uses feature strides of 4, 8, 16, and 32.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29822,7 +29822,7 @@
     "num": 2179,
     "type": "tf",
     "question": "The deck gives a BEV mAP table comparing VPN, PON, LSS, and PanopticBEV on one split.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -29889,7 +29889,7 @@
     "num": 2184,
     "type": "mcq",
     "question": "For the same logits, what is the probability of the 2 m bin?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "0.140",
       "B": "0.231",
@@ -29919,7 +29919,7 @@
     "num": 2186,
     "type": "mcq",
     "question": "For the probabilities 0.231, 0.629, and 0.140 at 2, 4, and 6 m, what is the expected depth?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "4.00 m",
       "B": "3.50 m",
@@ -29949,7 +29949,7 @@
     "num": 2188,
     "type": "mcq",
     "question": "In LSS, what does the splat step do?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "Predicts depth",
       "B": "Projects frustum features onto a BEV grid",
@@ -29979,7 +29979,7 @@
     "num": 2190,
     "type": "mcq",
     "question": "Which simulators does slide 35 name for VPN's cross-view data?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "KITTI and nuScenes",
       "B": "Waymo and Argoverse",
@@ -29994,7 +29994,7 @@
     "num": 2191,
     "type": "mcq",
     "question": "Which feature strides does PanopticBEV use?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "4, 8, 16, and 32",
       "B": "2, 4, and 8",
@@ -30024,7 +30024,7 @@
     "num": 2193,
     "type": "mcq",
     "question": "Which statement describes the camera-to-BEV section of the deck accurately?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "It gives benchmark tables for each method",
       "B": "It contains a full derivation of each method",
@@ -30054,7 +30054,7 @@
     "num": 2195,
     "type": "mcq",
     "question": "In the DenseTransformer code, what does the Conv1d layer named fc do?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "Maps UV features to UZ features",
       "B": "Reduces the number of points",
@@ -30099,7 +30099,7 @@
     "num": 2198,
     "type": "mcq",
     "question": "Which venue does slide 42 give for Lift, Splat, Shoot?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "CVPR 2019",
       "B": "CVPR 2021",
@@ -30114,7 +30114,7 @@
     "num": 2199,
     "type": "sa",
     "question": "Explain what the depth distribution buys over a single depth per pixel, and why a student should not claim a measured accuracy gain from the slides alone.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "answerText": "A single depth is a hard decision, so a wrong depth puts the feature in the wrong BEV cell. A distribution keeps several depth hypotheses with probabilities, so uncertain pixels can contribute to nearby bins. The slides describe this qualitatively and report no measured effect, so any accuracy claim needs a controlled experiment.",
     "lectureReference": "Part 64: Camera Depth Bins and Lifting to BEV"
   },
@@ -30130,7 +30130,7 @@
     "num": 2201,
     "type": "sa",
     "question": "Compare how PON and the lift-and-splat method move image features toward BEV, naming the first operation in each.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "answerText": "PON first collapses the vertical dimension of the image feature map into bottleneck features, then applies a 1D convolution along the horizontal axis and resamples to BEV with camera parameters (slides 37). The lift-and-splat method first lifts each image into a per-pixel depth frustum, then splats all frustums into the BEV grid (slide 42). The first operations differ: PON compresses the vertical axis, while the frustum method expands each pixel along depth.",
     "lectureReference": "Part 64: Camera Depth Bins and Lifting to BEV"
   },
@@ -30242,7 +30242,7 @@
     "num": 2210,
     "type": "tf",
     "question": "The DPT-style decoder appears in the Depth Anything V2 model described on the slides.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -30255,7 +30255,7 @@
     "num": 2211,
     "type": "tf",
     "question": "The slides present a table that compares DPT, Depth Anything V2, and ZoeDepth on one benchmark with numeric scores.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -30268,7 +30268,7 @@
     "num": 2212,
     "type": "tf",
     "question": "A ViT with 16 x 16 patches on a 384 x 384 input produces a 24 x 24 grid of patch tokens.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -30281,7 +30281,7 @@
     "num": 2213,
     "type": "tf",
     "question": "The fusion path in DPT upsamples from the finest map to the coarsest map.",
-    "tier": "Tier 3 — Low Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -30324,7 +30324,7 @@
     "num": 2216,
     "type": "mcq",
     "question": "How many Transformer stages are tapped and sent to Reassemble modules, according to slide p.3?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "Two",
       "B": "Three",
@@ -30354,7 +30354,7 @@
     "num": 2218,
     "type": "mcq",
     "question": "A 384 x 384 image is cut into 16 x 16 patches. How many patch tokens are produced, before the readout token is added?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "576",
       "B": "96",
@@ -30399,7 +30399,7 @@
     "num": 2221,
     "type": "mcq",
     "question": "Which two inputs does a Fusion block combine, according to slide p.5?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "The patch embeddings and the head output",
       "B": "The raw image and the readout token",
@@ -30444,7 +30444,7 @@
     "num": 2224,
     "type": "mcq",
     "question": "Which decoder does slide p.14 describe for Depth Anything V2?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "A PointNet decoder",
       "B": "A set prediction head",
@@ -30459,7 +30459,7 @@
     "num": 2225,
     "type": "mcq",
     "question": "For a 384 x 384 input, what size is the Reassemble-32 feature map?",
-    "tier": "Tier 3 — Low Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "96 x 96",
       "B": "48 x 48",
@@ -30474,7 +30474,7 @@
     "num": 2226,
     "type": "mcq",
     "question": "According to slide p.3, what do the Fusion modules do?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "They progressively fuse multi-scale representations and upsample them",
       "B": "They replace the Transformer stages",
@@ -30489,7 +30489,7 @@
     "num": 2227,
     "type": "mcq",
     "question": "What are the positional embeddings added to the image embeddings for?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "To remove the readout token",
       "B": "To retain spatial information",
@@ -30519,7 +30519,7 @@
     "num": 2229,
     "type": "mcq",
     "question": "Which DPT variant uses a ResNet-50 feature extractor for tokenization?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "DPT-Base",
       "B": "DPT-Large",
@@ -30584,7 +30584,7 @@
     "num": 2235,
     "type": "tf",
     "question": "The teacher in the pseudo-label pipeline is trained on a labelled mix of 1.5 million images.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -30597,7 +30597,7 @@
     "num": 2236,
     "type": "tf",
     "question": "The pseudo-labelled set on the slides is about 41 times the size of the labelled set.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -30610,7 +30610,7 @@
     "num": 2237,
     "type": "tf",
     "question": "The slides describe centering and sharpening applied to the teacher outputs to prevent collapse.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -30623,7 +30623,7 @@
     "num": 2238,
     "type": "tf",
     "question": "The EMA teacher in DINOv2 is updated by backpropagating the cross-entropy loss.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -30636,7 +30636,7 @@
     "num": 2239,
     "type": "tf",
     "question": "AbsRel is defined as the mean of |D_hat - D| / D.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -30649,7 +30649,7 @@
     "num": 2240,
     "type": "tf",
     "question": "delta-1 is defined as the mean of |D_hat - D| / D.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -30662,7 +30662,7 @@
     "num": 2241,
     "type": "tf",
     "question": "The slides give focal lengths of about 721 px for KITTI and about 1266 px for nuScenes.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -30675,7 +30675,7 @@
     "num": 2242,
     "type": "tf",
     "question": "On nuScenes, the DA-V2-Metric raw AbsRel is 0.185, and the median-scaled AbsRel is 0.555.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -30688,7 +30688,7 @@
     "num": 2243,
     "type": "tf",
     "question": "The KITTI measurement on slide p.19 uses 600 frames.",
-    "tier": "Tier 3 — Low Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -30729,7 +30729,7 @@
     "num": 2246,
     "type": "mcq",
     "question": "What does slide p.7 list as the strength of the scale-shift-invariant objective?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "Calibrated metric output",
       "B": "Robust relative geometry across many domains",
@@ -30744,7 +30744,7 @@
     "num": 2247,
     "type": "mcq",
     "question": "In the teacher-student pipeline on p.12, how many labelled and unlabelled images does the deck give?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "1.5 million labelled and 1.5 million unlabelled",
       "B": "62 million labelled and 1.5 million unlabelled",
@@ -30789,7 +30789,7 @@
     "num": 2250,
     "type": "mcq",
     "question": "A prediction of [9, 21] is compared to a ground truth of [10, 20] in meters. What is the AbsRel?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "0.005",
       "B": "0.075",
@@ -30834,7 +30834,7 @@
     "num": 2253,
     "type": "mcq",
     "question": "Using the focal lengths on p.20, what is the ratio of nuScenes focal length to KITTI focal length?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "1.76",
       "B": "0.57",
@@ -30894,7 +30894,7 @@
     "num": 2257,
     "type": "mcq",
     "question": "Which synthetic dataset does slide p.16 give as supervision for the DA-V2-Metric-Outdoor model?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "Virtual KITTI 2",
       "B": "Argoverse",
@@ -30909,7 +30909,7 @@
     "num": 2258,
     "type": "mcq",
     "question": "What output range does slide p.16 give for the DA-V2-Metric-Outdoor model?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "0 to 10 m",
       "B": "0 to 80 m",
@@ -30939,7 +30939,7 @@
     "num": 2260,
     "type": "mcq",
     "question": "Which metric does slide p.21 list for sharpness around object edges?",
-    "tier": "Tier 3 — Low Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "delta-1",
       "B": "AbsRel",
@@ -31017,7 +31017,7 @@
     "num": 2267,
     "type": "tf",
     "question": "The Tesla public stack on p.23 is described as depth-map-first, with occupancy added afterward.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31030,7 +31030,7 @@
     "num": 2268,
     "type": "tf",
     "question": "Slide p.23 lists eight camera video inputs.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31056,7 +31056,7 @@
     "num": 2270,
     "type": "tf",
     "question": "The projection on p.24 uses the camera pose at each frame time.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31069,7 +31069,7 @@
     "num": 2271,
     "type": "tf",
     "question": "Slide p.24 states that the 2026 patent publication proves exact production deployment.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31082,7 +31082,7 @@
     "num": 2272,
     "type": "tf",
     "question": "The research formulation on p.25 keeps LiDAR out of inference.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31095,7 +31095,7 @@
     "num": 2273,
     "type": "tf",
     "question": "Slide p.25 recommends using a different backbone for each method so that each receives its own best setup.",
-    "tier": "Tier 3 — Low Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31121,7 +31121,7 @@
     "num": 2275,
     "type": "tf",
     "question": "Slide p.22 states that depth teachers provide semantic labels for tail classes with no extra supervision.",
-    "tier": "Tier 3 — Low Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31149,7 +31149,7 @@
     "num": 2277,
     "type": "mcq",
     "question": "What outputs does slide p.23 list for the Tesla public stack?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "A single depth map per camera",
       "B": "Occupancy and flow",
@@ -31164,7 +31164,7 @@
     "num": 2278,
     "type": "mcq",
     "question": "In the pipeline on slide p.22, which step comes first?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "Semantic head",
       "B": "Occupancy grid",
@@ -31209,7 +31209,7 @@
     "num": 2281,
     "type": "mcq",
     "question": "Which student backbone does slide p.25 list?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "A ResNet-50 classifier",
       "B": "BEVDet or FlashOcc",
@@ -31239,7 +31239,7 @@
     "num": 2283,
     "type": "mcq",
     "question": "Which expression matches the label projection on slide p.24?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "labels = argmax(depth)",
       "B": "labels_t = depth_t",
@@ -31254,7 +31254,7 @@
     "num": 2284,
     "type": "mcq",
     "question": "A camera with focal length 1266 px and principal point c_x = 800 px sees a point at X = 2.0 m and Z = 20.0 m. What is the horizontal pixel coordinate u?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "926.6 px",
       "B": "800.0 px",
@@ -31269,7 +31269,7 @@
     "num": 2285,
     "type": "mcq",
     "question": "With 0.5 m voxels and a measured surface at 20.2 m, how many free voxels lie before the surface?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "20",
       "B": "40",
@@ -31344,7 +31344,7 @@
     "num": 2290,
     "type": "mcq",
     "question": "What does the label-efficient formulation on slide p.25 use at inference?",
-    "tier": "Tier 3 — Low Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "LiDAR and camera",
       "B": "Radar only",
@@ -31390,7 +31390,7 @@
     "num": 2294,
     "type": "sa",
     "question": "Design a fair experiment to test whether a depth teacher improves a camera-only occupancy student. Name the controls and the downstream metric.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "answerText": "Fix the backbone, head, data budget, and fine-tuning schedule (p.25). Train one student with teacher ray labels and one without, using identical settings otherwise. Compare occupancy or detection quality on held-out data, reported with variance across seeds. A depth error table alone does not test the claim, since p.25 requires the downstream autonomy check.",
     "lectureReference": "Part 67: Driving Stack: Depth to Occupancy, Tesla Public Stack, and Research Strategy"
   },
@@ -31424,7 +31424,7 @@
     "num": 2297,
     "type": "tf",
     "question": "The slide reports FCOS3D at 42.8 mAP and 35.8 NDS on nuScenes test.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31437,7 +31437,7 @@
     "num": 2298,
     "type": "tf",
     "question": "FCOS3D regresses depth directly as part of its per-pixel head.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31463,7 +31463,7 @@
     "num": 2300,
     "type": "tf",
     "question": "The slide reports PGD at 44.8 mAP and 38.6 NDS on nuScenes test.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31476,7 +31476,7 @@
     "num": 2301,
     "type": "tf",
     "question": "A 10 percent depth error at 30 m is 3 m, according to slide p.28.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31502,7 +31502,7 @@
     "num": 2303,
     "type": "tf",
     "question": "Slide p.26 lists Tesla in the industry row of camera 3D detection.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31515,7 +31515,7 @@
     "num": 2304,
     "type": "tf",
     "question": "The lift-splat family on p.26 uses a depth distribution per pixel to form BEV features.",
-    "tier": "Tier 3 — Low Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31554,7 +31554,7 @@
     "num": 2307,
     "type": "mcq",
     "question": "Which family on slide p.26 uses a 2D detector with depth and 3D size per object, per camera?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "Monocular",
       "B": "3D queries",
@@ -31584,7 +31584,7 @@
     "num": 2309,
     "type": "mcq",
     "question": "What does slide p.28 say PGD's probabilistic depth provides?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "A single hard depth value",
       "B": "A depth map from LiDAR",
@@ -31614,7 +31614,7 @@
     "num": 2311,
     "type": "mcq",
     "question": "How does slide p.28 merge the per-camera detections?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "NMS after lifting to 3D",
       "B": "Averaging the depth maps",
@@ -31629,7 +31629,7 @@
     "num": 2312,
     "type": "mcq",
     "question": "A relative depth error of 10 percent is applied to an object at 30 m. What is the absolute error?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "0.3 m",
       "B": "3.0 m",
@@ -31659,7 +31659,7 @@
     "num": 2314,
     "type": "mcq",
     "question": "At what distance does a 5 percent relative error reach the 2 m threshold?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "10 m",
       "B": "20 m",
@@ -31689,7 +31689,7 @@
     "num": 2316,
     "type": "mcq",
     "question": "Which pair does slide p.28 give for FCOS3D on nuScenes test?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "42.8 mAP and 35.8 NDS",
       "B": "35.8 mAP and 42.8 NDS",
@@ -31734,7 +31734,7 @@
     "num": 2319,
     "type": "mcq",
     "question": "What does slide p.28 give as the reason the monocular approach hits a ceiling?",
-    "tier": "Tier 3 — Low Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "Depth of a car from one image is ill-posed, and errors grow with distance.",
       "B": "LiDAR cost",
@@ -31749,7 +31749,7 @@
     "num": 2320,
     "type": "mcq",
     "question": "Which subtitle does slide p.27 give for the timeline?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "Camera-only methods lost ground.",
       "B": "Two camera families in parallel; temporal reasoning delivered the late gains.",
@@ -31883,7 +31883,7 @@
     "num": 2331,
     "type": "tf",
     "question": "The deck gives lambda_depth = 1.0 as the weight used in BEVDepth.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31909,7 +31909,7 @@
     "num": 2333,
     "type": "tf",
     "question": "The BEVDepth depth loss is computed against LiDAR points projected into the image.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31935,7 +31935,7 @@
     "num": 2335,
     "type": "tf",
     "question": "Slide p.36 describes BEVDet's depth supervision as explicit and LiDAR-driven.",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31948,7 +31948,7 @@
     "num": 2336,
     "type": "tf",
     "question": "Better depth estimates alone let a single-frame detector estimate object velocity.",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -31989,7 +31989,7 @@
     "num": 2339,
     "type": "mcq",
     "question": "Which two components does BEVDet add to the LSS view transform, according to slide p.29?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "A transformer decoder for depth and a LiDAR encoder",
       "B": "A BEV encoder and a CenterPoint head",
@@ -32004,7 +32004,7 @@
     "num": 2340,
     "type": "mcq",
     "question": "In the BEVDepth objective on slide p.35, which expression is the explicit depth term?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "L_det alone",
       "B": "lambda_depth alone",
@@ -32034,7 +32034,7 @@
     "num": 2342,
     "type": "mcq",
     "question": "Which BEVDepth component conditions the depth prediction on camera geometry?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "The camera-aware DepthNet",
       "B": "The BEV encoder",
@@ -32079,7 +32079,7 @@
     "num": 2345,
     "type": "mcq",
     "question": "What does slide p.34 name as the source of depth supervision during BEVDet training?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "Radar returns",
       "B": "Stereo disparity from a second rig",
@@ -32094,7 +32094,7 @@
     "num": 2346,
     "type": "mcq",
     "question": "According to slide p.35, why can a single-frame model not estimate velocity?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "It cannot tell from one frame whether an object is moving, regardless of how accurate its depth is",
       "B": "Its depth bins are too coarse",
@@ -32109,7 +32109,7 @@
     "num": 2347,
     "type": "mcq",
     "question": "Which pooling option is not listed on slide p.31 for combining points in one BEV cell?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "Sum",
       "B": "Median",
@@ -32139,7 +32139,7 @@
     "num": 2349,
     "type": "mcq",
     "question": "Fast-BEV is reported at 52.6 FPS on a 2080Ti. What is the approximate time for one frame?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "1.9 ms",
       "B": "52.6 ms",
@@ -32154,7 +32154,7 @@
     "num": 2350,
     "type": "mcq",
     "question": "On slide p.29, the depth loss falls from 4.3 to 1.8. What is the relative reduction?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "58.1 percent",
       "B": "41.9 percent",
@@ -32184,7 +32184,7 @@
     "num": 2352,
     "type": "mcq",
     "question": "According to slide p.35, what does the explicit depth term do in BEVDepth?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "It replaces the detection loss",
       "B": "It sets the BEV grid size",
@@ -32264,7 +32264,7 @@
     "num": 2359,
     "type": "tf",
     "question": "In slide 9's cross-attention, the values are the encoded camera features.",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -32277,7 +32277,7 @@
     "num": 2360,
     "type": "tf",
     "question": "In slide 9's cross-attention, the keys are the encoded camera features with no positional encoding.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -32316,7 +32316,7 @@
     "num": 2363,
     "type": "tf",
     "question": "In DETR, as slide 5 describes it, the decoder's learned queries act as object slots, and the decoder emits detections for those slots.",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -32342,7 +32342,7 @@
     "num": 2365,
     "type": "tf",
     "question": "The camera features in slide 9 are used as queries, and the BEV features are used as keys and values.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -32368,7 +32368,7 @@
     "num": 2367,
     "type": "tf",
     "question": "Slide 8 says the encoder component fuses features from different cameras.",
-    "tier": "Tier 3 — Low Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -32381,7 +32381,7 @@
     "num": 2368,
     "type": "tf",
     "question": "Slides 6 and 7 give a full architecture diagram for Tesla's BEV Transformer.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -32454,7 +32454,7 @@
     "num": 2373,
     "type": "mcq",
     "question": "How does slide 9 describe the processing of the BEV queries in the cross-attention layer?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "Processed in parallel",
       "B": "One at a time, in raster order",
@@ -32499,7 +32499,7 @@
     "num": 2376,
     "type": "mcq",
     "question": "Slide 5 says DETR's decoder handles the N objects in which way?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "Sequentially, one object per step",
       "B": "Only at the final decoder layer",
@@ -32529,7 +32529,7 @@
     "num": 2378,
     "type": "mcq",
     "question": "What do slides 6 and 7 contain?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "A full decoder diagram",
       "B": "Only titles and one-line references",
@@ -32559,7 +32559,7 @@
     "num": 2380,
     "type": "mcq",
     "question": "Which slide uses the 200 x 200 dense BEV grid as its example?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "Slide 4",
       "B": "Slide 47",
@@ -32658,7 +32658,7 @@
     "num": 2388,
     "type": "tf",
     "question": "DETR3D uses a fixed, sparse set of learnable object queries, and the slide's example size is N = 900.",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -32775,7 +32775,7 @@
     "num": 2397,
     "type": "tf",
     "question": "Slide 14 places BEVFormer in the BEV query transformer family.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -32919,7 +32919,7 @@
     "num": 2407,
     "type": "mcq",
     "question": "How does slide 18 describe the query update from step t to step t+1?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "A fixed linear projection of the query",
       "B": "NMS over the query set",
@@ -32949,7 +32949,7 @@
     "num": 2409,
     "type": "mcq",
     "question": "Slide 19 gives the query tensor shape as (B, N_q, 3). What do the rows hold?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "Pixel coordinates",
       "B": "3D points in normalized [0, 1] coordinates",
@@ -32994,7 +32994,7 @@
     "num": 2412,
     "type": "mcq",
     "question": "What does slide 20 say about depth from a single camera ray?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "Depth is hard, so the network must guess it from 2D visual cues",
       "B": "Depth is provided by the calibration file",
@@ -33009,7 +33009,7 @@
     "num": 2413,
     "type": "mcq",
     "question": "What number of queries does slide 16 use as its example?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "100",
       "B": "900",
@@ -33062,7 +33062,7 @@
     "num": 2417,
     "type": "sa",
     "question": "Compare how a dense CenterPoint-style detector and DETR3D assign training targets and remove duplicate detections, using slides 12 and 15 and topic `73`.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "answerText": "The dense detector supervises a heatmap near object centers with a focal loss plus an L1 box term, then decodes top-K centers and applies NMS to remove duplicates (slides 12 and 15). DETR3D keeps a fixed sparse set of queries and assigns each ground-truth object to one query by Hungarian matching (slide 12). The unmatched queries are trained as no-object, so duplicates are discouraged in training and NMS is not needed (slide 18 says the method removes NMS).",
     "lectureReference": "Part 72: DETR3D: Sparse 3D Object Queries"
   },
@@ -33091,7 +33091,7 @@
     "num": 2420,
     "type": "tf",
     "question": "The matching cost on slide 21 uses only the classification term.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -33117,7 +33117,7 @@
     "num": 2422,
     "type": "tf",
     "question": "Slide 21 gives the cost weights as lambda_cls = 1, lambda_L1 = 5, and lambda_iou = 2.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -33130,7 +33130,7 @@
     "num": 2423,
     "type": "tf",
     "question": "The slide 21 matching cost includes a term of the form 1 minus the 3D IoU.",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -33182,7 +33182,7 @@
     "num": 2427,
     "type": "tf",
     "question": "Slide 12 says dense heatmap detectors such as CenterPoint usually require NMS.",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -33195,7 +33195,7 @@
     "num": 2428,
     "type": "tf",
     "question": "Slide 30 says PETRv2 uses Hungarian matching for detection.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -33208,7 +33208,7 @@
     "num": 2429,
     "type": "tf",
     "question": "Slide 39 describes BEVFormer's detection loss as set-based, with no NMS needed.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -33249,7 +33249,7 @@
     "num": 2432,
     "type": "mcq",
     "question": "What label does slide 21 give the leftover queries?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "The class of the nearest object",
       "B": "A \"no-object\" background class",
@@ -33264,7 +33264,7 @@
     "num": 2433,
     "type": "mcq",
     "question": "Which terms make up the slide 21 matching cost?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "Classification and depth only",
       "B": "2D IoU only",
@@ -33279,7 +33279,7 @@
     "num": 2434,
     "type": "mcq",
     "question": "Which field is absent from the slide 21 list of matching box fields?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "x, y, z",
       "B": "sin theta and cos theta",
@@ -33354,7 +33354,7 @@
     "num": 2439,
     "type": "mcq",
     "question": "Which algorithm solves the assignment in slide 21 exactly?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "The Hungarian algorithm, which solves the assignment problem optimally in polynomial time",
       "B": "A greedy NMS variant",
@@ -33369,7 +33369,7 @@
     "num": 2440,
     "type": "mcq",
     "question": "Which expression matches slide 21's optimal assignment equation?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "The argmax over predictions of the confidence score",
       "B": "sigma* = argmin over sigma of the sum over j of C(y_sigma(j), y_j)",
@@ -33459,7 +33459,7 @@
     "num": 2446,
     "type": "mcq",
     "question": "Which items does slide 12 list under hybrid systems?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "A pure dense heatmap with NMS",
       "B": "Rule-based association only",
@@ -33482,7 +33482,7 @@
     "num": 2448,
     "type": "sa",
     "question": "Use the cost matrix C = [[0.5, 0.2], [0.1, 0.6], [0.3, 0.4]], where rows are predictions p1, p2, p3 and columns are ground-truth objects g1 and g2. Find the optimal one-to-one assignment and its total cost. Which prediction is unmatched?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "answerText": "The six valid assignments cost: g1 to p1 and g2 to p2 is 1.1; g1 to p1 and g2 to p3 is 0.9; g1 to p2 and g2 to p1 is 0.3; g1 to p2 and g2 to p3 is 0.5; g1 to p3 and g2 to p1 is 0.5; g1 to p3 and g2 to p2 is 0.9. The minimum is 0.3, at g1 to p2 and g2 to p1. Prediction p3 is unmatched and is trained as no-object. The costs are illustrative.",
     "lectureReference": "Part 73: Hungarian Matching: Training Without NMS"
   },
@@ -33537,7 +33537,7 @@
     "num": 2453,
     "type": "tf",
     "question": "StreamPETR re-encodes every past frame at each time step, so its cost grows with the number of stored frames.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -33602,7 +33602,7 @@
     "num": 2458,
     "type": "tf",
     "question": "Slide 30 gives Hungarian matching as the assignment rule for PETRv2 detection.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -33641,7 +33641,7 @@
     "num": 2461,
     "type": "tf",
     "question": "PETRv2 aligns the 3D coordinates of previous frames with the current frame inside the 3D position embedding space.",
-    "tier": "Tier 3 — Low Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -33744,7 +33744,7 @@
     "num": 2468,
     "type": "mcq",
     "question": "In which space does slide 30 initialize the lane queries?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "The BEV grid",
       "B": "The image plane only",
@@ -33759,7 +33759,7 @@
     "num": 2469,
     "type": "mcq",
     "question": "Which loss does slide 30 give for the BEV segmentation task?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "L1 only",
       "B": "IoU only",
@@ -33774,7 +33774,7 @@
     "num": 2470,
     "type": "mcq",
     "question": "What does \"without BEV projection\" mean in slide 27?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "StreamPETR aligns temporal features without building a BEV grid.",
       "B": "StreamPETR builds a BEV grid for each frame.",
@@ -33804,7 +33804,7 @@
     "num": 2472,
     "type": "mcq",
     "question": "How does slide 27 describe frame-level feature extraction in StreamPETR?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "It runs a new LiDAR encoder for each frame.",
       "B": "It uses optical flow.",
@@ -33834,7 +33834,7 @@
     "num": 2474,
     "type": "mcq",
     "question": "What does slide 30 say about the backbone and transformer in PETRv2?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "Detection, segmentation, and lane queries share the backbone and transformer.",
       "B": "Only the detection task is trained.",
@@ -33849,7 +33849,7 @@
     "num": 2475,
     "type": "mcq",
     "question": "Which method does slide 27 describe as designed for online real-time 3D detection on video sequences?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "PETR",
       "B": "StreamPETR",
@@ -33864,7 +33864,7 @@
     "num": 2476,
     "type": "mcq",
     "question": "Using the worked example in topic 74, with pixel ray (x/z, y/z) = (0.4, 0.2) and depth hypotheses 5, 15, 25, and 35 m, what is the 3D point at z = 15 m?",
-    "tier": "Tier 3 — Low Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "(4.0, 2.0, 15.0)",
       "B": "(2.0, 1.0, 15.0)",
@@ -33902,7 +33902,7 @@
     "num": 2479,
     "type": "sa",
     "question": "Compare how DETR3D and StreamPETR use past information, using slides 25 and 27. State what each method samples or stores and where the query gets its evidence.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "answerText": "DETR3D samples image features at projected reference points in the current frame (slide 25). The slides do not describe a temporal memory for DETR3D in this section. StreamPETR keeps a queue of previous frame features and moves them into the current ego frame with the pose (slide 27). Each new query attends to both the current frame and the aligned past frames. The difference is that StreamPETR adds a temporal memory and aligns it by pose, while DETR3D's evidence comes from the current frame only, as the slides present it.",
     "lectureReference": "Part 74: PETR and StreamPETR: Position Embedding and Temporal Memory"
   },
@@ -33944,7 +33944,7 @@
     "num": 2483,
     "type": "tf",
     "question": "BEVFormer builds explicit dense depth bins for every image pixel before it samples features.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -33957,7 +33957,7 @@
     "num": 2484,
     "type": "tf",
     "question": "Slide 37 defines a hit view as a camera where the BEV query's projected point falls outside the image.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -33970,7 +33970,7 @@
     "num": 2485,
     "type": "tf",
     "question": "The temporal self-attention in BEVFormer uses the previous BEV map after warping it by ego motion.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -33996,7 +33996,7 @@
     "num": 2487,
     "type": "tf",
     "question": "Slide 35 reports 56.9% NDS for BEVFormer on the nuScenes test set, against 47.9% for DETR3D.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -34009,7 +34009,7 @@
     "num": 2488,
     "type": "tf",
     "question": "The code on slide 40 is the official BEVFormer head file, and it can be quoted directly.",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -34035,7 +34035,7 @@
     "num": 2490,
     "type": "tf",
     "question": "Slide 45 gives six surround cameras as the visual input for the occupancy network.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -34061,7 +34061,7 @@
     "num": 2492,
     "type": "tf",
     "question": "Slide 42 gives the shape change from [C, T, X, Y, Z] to [C, 16X, 16Y, 16Z].",
-    "tier": "Tier 3 — Low Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "True",
       "B": "False"
@@ -34119,7 +34119,7 @@
     "num": 2496,
     "type": "mcq",
     "question": "What does BEVFormer's temporal self-attention warp before the query reads the current cameras?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "Image pixels by optical flow",
       "B": "LiDAR points",
@@ -34149,7 +34149,7 @@
     "num": 2498,
     "type": "mcq",
     "question": "What does slide 33 say about longer temporal context?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "options": {
       "A": "It always reduces error.",
       "B": "It can improve recall while amplifying calibration and timestamp errors.",
@@ -34164,7 +34164,7 @@
     "num": 2499,
     "type": "mcq",
     "question": "What NDS does slide 35 report for BEVFormer on the nuScenes test set?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "47.9%",
       "B": "42.5%",
@@ -34179,7 +34179,7 @@
     "num": 2500,
     "type": "mcq",
     "question": "What gain over DETR3D does slide 35 state?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "47.9 points",
       "B": "56.9 points",
@@ -34194,7 +34194,7 @@
     "num": 2501,
     "type": "mcq",
     "question": "How does topic 75 describe the code on slide 40?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "Illustrative pseudo-code",
       "B": "The official full head class",
@@ -34224,7 +34224,7 @@
     "num": 2503,
     "type": "mcq",
     "question": "How many cameras does slide 45 give as the visual input for the occupancy network?",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 3 — Low Probability",
     "options": {
       "A": "6",
       "B": "4",
@@ -34269,7 +34269,7 @@
     "num": 2506,
     "type": "mcq",
     "question": "What does slide 46 say the network does with the small-scale features?",
-    "tier": "Tier 1 — High Probability",
+    "tier": "Tier 2 — Medium Probability",
     "options": {
       "A": "It outputs 2D masks.",
       "B": "It upsamples them into a large-scale volume output.",
@@ -34322,7 +34322,7 @@
     "num": 2510,
     "type": "sa",
     "question": "A car is 12.0 m ahead of the ego at time t-1. The ego moves 2.0 m forward, and the car moves 1.0 m forward in the global frame. Compute the warped position and the true position at time t, and explain what a longer temporal window would and would not fix.",
-    "tier": "Tier 2 — Medium Probability",
+    "tier": "Tier 1 — High Probability",
     "answerText": "The warped position is 12.0 - 2.0 = 10.0 m. The true ego-frame position is 12.0 + 1.0 - 2.0 = 11.0 m. The residual error is 1.0 m, which is the car's own motion. Adding more past frames repeats the same ego-motion warp, so the offset stays. Slide 33 says longer context can improve recall while amplifying calibration and timestamp errors. Object-centric memory, tracking, or learned motion compensation is needed for the moving car.",
     "lectureReference": "Part 75: BEV Representation: Explicit Lifting vs Query Sampling"
   },
