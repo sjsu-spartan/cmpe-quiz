@@ -1,62 +1,83 @@
 [
   {
-    "module": "Adversarial Attacks — FGSM, PGD, Batch GD",
+    "module": "Ch 1: Algorithmic Fairness",
     "formulas": [
-      { "name": "FGSM Perturbation", "latex": "$$x_{adv} = x + \\epsilon \\cdot \\text{sign}(\\nabla_x J)$$" },
-      { "name": "Input Gradient (linear model + BCE)", "latex": "$$\\nabla_x J = (p - y) \\cdot w$$" },
-      { "name": "PGD Iterative Update (projected)", "latex": "$$x_{t+1} = \\text{Proj}_{\\epsilon}\\left[x_t + \\alpha \\cdot \\text{sign}(\\nabla_x J)\\right]$$" },
-      { "name": "Weight Gradient (batch, logistic loss)", "latex": "$$\\nabla_w J = \\frac{1}{n}\\sum_i (p_i - y_i)\\, x_i$$" },
-      { "name": "Gradient Descent Update", "latex": "$$w \\leftarrow w - \\eta \\, \\nabla_w J$$" }
+      { "name": "Group Rates", "latex": "$$TPR = \\frac{TP}{TP+FN},\\quad FPR = \\frac{FP}{FP+TN},\\quad PPV = \\frac{TP}{TP+FP},\\quad SR = \\frac{TP+FP}{N}$$" },
+      { "name": "Equal Opportunity & Equalized Odds", "latex": "$$EOpp = |TPR_A - TPR_B|, \\qquad EOdds = \\max(|\\Delta TPR|,\\ |\\Delta FPR|)$$" },
+      { "name": "Demographic Parity & Disparate Impact", "latex": "$$DP_{\\text{diff}} = |SR_A - SR_B|, \\qquad DI = \\frac{SR_{\\text{low}}}{SR_{\\text{high}}} \\; (< 0.80 \\Rightarrow \\text{flag})$$" },
+      { "name": "Expected Calibration Error (ECE)", "latex": "$$ECE = \\sum_b \\frac{n_b}{N}\\left|\\text{obs}_b - \\overline{\\text{score}}_b\\right|$$" },
+      { "name": "Chouldechova Identity", "latex": "$$FPR = \\frac{p}{1-p} \\cdot \\frac{1-PPV}{PPV} \\cdot TPR$$" },
+      { "name": "Kamiran-Calders Reweighing", "latex": "$$w(a,y) = \\frac{P(A=a)\\,P(Y=y)}{P(A=a, Y=y)}$$" },
+      { "name": "Randomized Threshold Mix", "latex": "$$q = \\frac{TPR^* - TPR_2}{TPR_1 - TPR_2}, \\qquad FPR_{\\text{mix}} = q\\,FPR_1 + (1-q)\\,FPR_2$$" }
     ]
   },
   {
-    "module": "Privacy — Membership Inference, DP-SGD",
+    "module": "Ch 2: Explainable AI (xAI)",
     "formulas": [
-      { "name": "Membership Advantage", "latex": "$$\\text{Advantage} = 2(\\text{AUC} - 0.5)$$" },
-      { "name": "DP-SGD Gradient Clipping", "latex": "$$g_i \\leftarrow g_i \\cdot \\min\\left(1,\\ \\frac{C}{\\|g_i\\|}\\right)$$" },
-      { "name": "Gaussian Mechanism Noise Scale", "latex": "$$\\sigma = \\frac{\\Delta \\sqrt{2\\ln(1.25/\\delta)}}{\\epsilon}$$" },
-      { "name": "DP-SGD Per-Coordinate Noise Std", "latex": "$$\\text{std} = \\frac{\\sigma C}{B}$$" }
+      { "name": "LIME Exponential Kernel", "latex": "$$\\pi(d) = \\exp\\!\\left(-\\frac{d^2}{\\omega^2}\\right), \\qquad \\omega = 0.75\\sqrt{p}$$" },
+      { "name": "WLS Local Surrogate", "latex": "$$\\beta_1 = \\frac{\\sum w\\sum wxy - \\sum wx\\sum wy}{\\sum w\\sum wx^2 - (\\sum wx)^2}, \\qquad \\beta_0 = \\frac{\\sum wy - \\beta_1\\sum wx}{\\sum w}$$" },
+      { "name": "Exact Shapley Value (n=3: 1/3, 1/6, 1/6, 1/3)", "latex": "$$\\phi_i = \\sum_{S \\subseteq N\\setminus\\{i\\}} \\frac{|S|!\\,(n-|S|-1)!}{n!}\\big[v(S\\cup\\{i\\}) - v(S)\\big]$$" },
+      { "name": "Linear SHAP & Efficiency", "latex": "$$\\phi_i = \\beta_i(x_i - \\mathbb{E}[x_i]), \\qquad v(\\emptyset) + \\sum_i \\phi_i = f(x)$$" },
+      { "name": "Stability & Deletion Faithfulness", "latex": "$$\\text{Stab} = \\overline{J}\\times 100, \\qquad \\text{Faith} = \\frac{AUC_{\\text{rand}} - AUC_{\\text{attr}}}{AUC_{\\text{rand}}}\\times 100$$" },
+      { "name": "Explanation Assurance Score (EAS)", "latex": "$$EAS = 0.35\\,\\text{Stab} + 0.40\\,\\text{Faith} + 0.25\\,\\text{Fid}, \\qquad \\text{Fid} = 100 - \\frac{|\\hat{f}(x)-f(x)|}{f(x)}\\times 100$$" },
+      { "name": "Attribution Drift Index & Spearman", "latex": "$$ADI = 0.5\\sum_i |p_i - q_i|, \\qquad \\rho = 1 - \\frac{6\\sum d_i^2}{n(n^2-1)}$$" },
+      { "name": "Minimal-L2 Counterfactual", "latex": "$$\\Delta^* = \\frac{\\text{logit}(\\tau) - w^T x - b}{\\|w\\|^2}\\,w, \\qquad \\Delta x_j = -\\frac{s(x)}{w_j}$$" }
     ]
   },
   {
-    "module": "RAG Security — Retrieval, Z-Scores",
+    "module": "Ch 3: AI Auditing & Accountability",
     "formulas": [
-      { "name": "Cosine Similarity", "latex": "$$\\cos(q, d) = \\frac{q \\cdot d}{\\|q\\|\\, \\|d\\|}$$" },
-      { "name": "Z-Score (anomaly detection)", "latex": "$$z = \\frac{\\text{score} - \\mu}{\\sigma}$$" }
+      { "name": "Population Stability Index (PSI)", "latex": "$$PSI = \\sum_i (a_i - e_i)\\ln\\!\\left(\\frac{a_i}{e_i}\\right) = KL(a\\|e) + KL(e\\|a) \\approx \\delta^2$$" },
+      { "name": "Two-Proportion Z-Test (pooled)", "latex": "$$z = \\frac{p_1 - p_2}{\\sqrt{\\hat{p}(1-\\hat{p})(1/n_1 + 1/n_2)}}$$" },
+      { "name": "Audit Sample Size & Rule of Three", "latex": "$$n = \\frac{z^2 p(1-p)}{m^2}, \\quad n' = \\frac{n}{1+(n-1)/N}, \\quad \\text{Upper (0 err)} \\approx \\frac{3}{n}$$" },
+      { "name": "Classical vs. Robust Z-Score", "latex": "$$z = \\frac{x-\\mu}{\\sigma}, \\qquad z_{\\text{rob}} = \\frac{x - \\text{median}}{1.4826\\cdot MAD} \\; (|z|>3 \\Rightarrow \\text{alert})$$" },
+      { "name": "CUSUM & EWMA", "latex": "$$C_t = \\max(0,\\ C_{t-1} + x_t - \\mu_0 - k), \\qquad z_t = \\lambda x_t + (1-\\lambda)z_{t-1}, \\quad UCL = \\mu_0 + L\\sigma\\sqrt{\\frac{\\lambda}{2-\\lambda}}$$" },
+      { "name": "CAS (floor 50), RAS, & DDI", "latex": "$$CAS = 0.30P + 0.25F + 0.25D + 0.20G, \\qquad RAS = 100\\sum w_i c_i, \\qquad DDI = 100\\frac{\\sum w_{\\text{miss}}}{\\sum w}$$" },
+      { "name": "Escalation Priority Score (EPS)", "latex": "$$EPS = 100\\left[0.35\\min\\!\\left(\\frac{PSI}{0.25},1\\right) + 0.35\\min\\!\\left(\\frac{|z|}{6},1\\right) + 0.15\\frac{100-RAS}{100} + 0.15\\frac{DDI}{100}\\right]$$" }
     ]
   },
   {
-    "module": "Drift Detection — PSI, KS Test",
+    "module": "Ch 4: Human-Centered AI Design",
     "formulas": [
-      { "name": "Population Stability Index", "latex": "$$PSI = \\sum_i (a_i - e_i)\\, \\ln\\!\\left(\\frac{a_i}{e_i}\\right)$$" },
-      { "name": "Kolmogorov–Smirnov Statistic", "latex": "$$KS = \\max_i \\left|\\Delta\\text{CDF}_i\\right|$$" },
-      { "name": "KS Critical Value (\\(\\alpha=0.05\\))", "latex": "$$KS_{crit} = 1.36\\sqrt{\\frac{2}{n}}$$" }
+      { "name": "95% Confidence Band & Width", "latex": "$$CI_{95\\%} = s \\pm 1.96\\,SE, \\qquad W = 3.92\\sqrt{\\frac{p(1-p)}{n}}, \\qquad n = \\left\\lceil\\frac{3.92^2 p(1-p)}{W^2}\\right\\rceil$$" },
+      { "name": "Trust Calibration Score (TCS)", "latex": "$$\\text{override} = rb + (1-r)a, \\qquad \\text{trust} = 1 - \\text{override}, \\qquad TCS = 1 - |\\text{trust} - r|$$" },
+      { "name": "Team Accuracy & Beat-AI Condition", "latex": "$$\\text{Acc} = r(1-b) + (1-r)a, \\qquad \\text{Beats AI} \\iff \\frac{a}{b} > \\frac{r}{1-r}$$" },
+      { "name": "Control Score & Cost Review Threshold", "latex": "$$\\text{Control} = \\text{Impact} \\times \\text{Uncertainty}, \\qquad \\text{Review if } s > \\frac{c_{\\text{review}}}{c_{\\text{harm}}}$$" },
+      { "name": "Recourse Cost & Retraining Safety Margin", "latex": "$$\\text{Cost}_j = \\frac{|\\Delta x_j|}{MAD_j}, \\qquad P(\\text{valid}) = \\Phi\\!\\left(\\frac{m}{\\sigma_s}\\right), \\qquad m_{95} = 1.645\\,\\sigma_s$$" },
+      { "name": "Accuracy False-Alarm Rate & Cadence Harm", "latex": "$$P_{\\text{FA}} = \\Phi\\!\\left(\\frac{SLO - r}{\\sqrt{r(1-r)/n}}\\right), \\qquad \\text{Excess} = \\Delta\\text{err} \\cdot V \\cdot \\left(\\frac{\\text{interval}}{2} + \\text{resp}\\right)$$" },
+      { "name": "Show / Hide / Guard Net Utility", "latex": "$$\\text{Net} = \\text{benefit} - \\text{anchoring} \\times \\text{harm} - \\text{cost}$$" }
     ]
   },
   {
-    "module": "Fairness — Confusion-Matrix Metrics, Reweighting",
+    "module": "Ch 5: Emerging Topics in AI TI",
     "formulas": [
-      { "name": "Selection Rate", "latex": "$$\\text{Selection Rate} = \\frac{TP + FP}{N}$$" },
-      { "name": "True/False Positive Rate", "latex": "$$TPR = \\frac{TP}{TP+FN}, \\qquad FPR = \\frac{FP}{FP+TN}$$" },
-      { "name": "Precision", "latex": "$$\\text{Precision} = \\frac{TP}{TP+FP}$$" },
-      { "name": "Reweighting Factor", "latex": "$$\\text{weight} = \\frac{P(g) \\cdot P(y) \\cdot N}{\\text{observed count}}$$" }
+      { "name": "Green-List Probability & Biased Softmax", "latex": "$$P(\\text{green}) = \\frac{\\gamma e^\\delta}{\\gamma e^\\delta + 1 - \\gamma}, \\qquad p_i = \\frac{e^{\\ell_i + \\delta g_i}}{\\sum_j e^{\\ell_j + \\delta g_j}}$$" },
+      { "name": "Watermark Z-Test & Tokens Needed", "latex": "$$z = \\frac{s - \\gamma T}{\\sqrt{T\\gamma(1-\\gamma)}} \\; (>4), \\qquad T^* = \\left[\\frac{z\\sqrt{\\gamma(1-\\gamma)}}{g - \\gamma}\\right]^2$$" },
+      { "name": "Paraphrase Dilution (context width 1)", "latex": "$$g' = (1 - 2r)g + 2r\\gamma$$" },
+      { "name": "Provenance, Layered Union, & Bayes Precision", "latex": "$$(1-s)^k, \\quad 1 - \\prod(1-p_i), \\quad \\text{Prec} = \\frac{TPR\\cdot b}{TPR\\cdot b + FPR(1-b)}$$" },
+      { "name": "Agent Residual Risk & Daily Attack Cost", "latex": "$$\\text{Residual} = L(1-e)I, \\qquad \\text{\\$/day} = \\rho \\cdot k \\cdot 1440 \\cdot \\pi$$" },
+      { "name": "Supply Chain, Merkle Proof, & Birthday Bounds", "latex": "$$1 - (1-p)^n, \\quad \\lceil \\log_2 n \\rceil \\times 32\\text{ B}, \\quad P \\approx \\frac{n^2}{2^{b+1}}$$" },
+      { "name": "TEE ROI & EU AI Act Training Compute", "latex": "$$\\Delta p^* = \\frac{\\text{cost}}{L}, \\qquad C \\approx 6ND \\; (\\ge 10^{25}\\text{ FLOPs}), \\qquad \\text{GPU-days} = \\frac{C}{\\text{peak}\\cdot\\text{util}\\cdot 86400}$$" }
     ]
   },
   {
-    "module": "Statistical Significance — Two-Proportion Z-Test",
+    "module": "Ch 6: Operationalizing AI TI",
     "formulas": [
-      { "name": "Standard Error of a Proportion Gap", "latex": "$$SE = \\sqrt{\\frac{p_1(1-p_1)}{n_1} + \\frac{p_2(1-p_2)}{n_2}}$$" },
-      { "name": "Z-Statistic", "latex": "$$z = \\frac{\\text{gap}}{SE}$$" },
-      { "name": "Two-Sided P-Value", "latex": "$$p = 2\\left(1 - \\Phi(|z|)\\right)$$" }
+      { "name": "Signal Funnel & Priority (0.5 Recency Floor)", "latex": "$$\\text{Incidents} = S\\prod r_i, \\qquad \\text{Priority} = \\text{Reliab}\\cdot\\text{Relev}\\cdot\\max(0.5,\\ 1 - 0.05\\,d)$$" },
+      { "name": "SLA Buffer & Triage Severity", "latex": "$$\\text{Buffer} = \\text{SLA} - \\sum \\text{latencies}, \\qquad \\text{Severity} = I \\times L \\; (1\\text{-}6\\text{ M},\\ 7\\text{-}14\\text{ R},\\ 15\\text{-}25\\text{ E})$$" },
+      { "name": "Containment Total Cost", "latex": "$$\\text{Total} = \\text{Downtime Cost} + \\text{Residual Risk Cost}$$" },
+      { "name": "KPI Sample SD (n-1) & Evidence Coverage", "latex": "$$s = \\sqrt{\\frac{\\sum (x_i - \\bar{x})^2}{n-1}}, \\qquad \\text{Coverage} = \\frac{\\text{complete}}{\\text{confirmed}} \\; (\\text{round bundles up})$$" },
+      { "name": "TEVV, FSS, & Residual Risk Gate", "latex": "$$FSS = I\\cdot E\\cdot R, \\qquad \\text{Residual} = FSS(1-e) \\le 7.0, \\qquad e_{\\text{needed}} \\ge 1 - \\frac{7}{FSS}$$" },
+      { "name": "PMRI Release Gate (80 Comm / 90 Gov)", "latex": "$$PMRI = 0.40\\,TEVV + 0.35(100 - \\text{RiskNorm}) + 0.25\\,KPI, \\qquad \\text{RiskNorm} = \\frac{\\text{residual}}{50}\\times 100$$" },
+      { "name": "AWTCS & Category Investment Headroom", "latex": "$$AWTCS = \\frac{\\sum c_i p_i s_i}{\\sum p_i s_i}, \\qquad \\text{Headroom}_i = \\frac{(1 - c_i)p_i s_i}{\\sum p_i s_i}$$" }
     ]
   },
   {
-    "module": "Risk Scoring — Triage, Bisection, Bootstrap",
+    "module": "Pre-Midterm Reference: Attacks, Privacy, & RAG",
     "formulas": [
-      { "name": "Risk Score", "latex": "$$\\text{Risk} = L \\times I \\quad (\\le 6\\ \\text{Low},\\ \\le 12\\ \\text{Med},\\ >12\\ \\text{High})$$" },
-      { "name": "Incident Triage Score", "latex": "$$\\text{Score} = \\min(5,\\ 1 + \\lfloor u/1000 \\rfloor) \\times s \\times (2 \\text{ if active else } 1)$$" },
-      { "name": "Bisection Midpoint", "latex": "$$mid = \\frac{lo + hi}{2}$$" },
-      { "name": "Bootstrap 95% CI", "latex": "$$CI_{95\\%} = \\left[\\hat\\theta_{2.5\\%},\\ \\hat\\theta_{97.5\\%}\\right] \\text{ over } B \\text{ resamples}$$" }
+      { "name": "FGSM & PGD Perturbation", "latex": "$$x_{\\text{adv}} = x + \\epsilon\\cdot\\text{sign}(\\nabla_x J), \\qquad x_{t+1} = \\text{Proj}_\\epsilon[x_t + \\alpha\\cdot\\text{sign}(\\nabla_x J)]$$" },
+      { "name": "Membership Advantage & DP-SGD Noise", "latex": "$$\\text{Adv} = 2(\\text{AUC} - 0.5), \\qquad \\sigma = \\frac{\\Delta\\sqrt{2\\ln(1.25/\\delta)}}{\\epsilon}, \\qquad \\text{std} = \\frac{\\sigma C}{B}$$" },
+      { "name": "Cosine Similarity & KS Test", "latex": "$$\\cos(q,d) = \\frac{q\\cdot d}{\\|q\\|\\,\\|d\\|}, \\qquad KS_{\\text{crit}} = 1.36\\sqrt{\\frac{2}{n}}$$" }
     ]
   }
 ]

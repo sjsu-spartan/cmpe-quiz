@@ -48,31 +48,34 @@ type TopicTier = 'high' | 'medium' | 'low';
  * part number parsed from "Part N: ...", per course. Parts not listed fall back to
  * whichever tier has the most questions in that part. */
 const CMPE249_PART_TOPIC_TIER: Record<number, TopicTier> = {
-  1: 'high', 2: 'low', 3: 'low', 4: 'medium', 5: 'high', 6: 'high', 7: 'high',
+  1: 'high', 2: 'low', 3: 'low', 4: 'high', 5: 'high', 6: 'high', 7: 'high',
   8: 'high', 9: 'medium', 10: 'medium', 11: 'high', 12: 'high', 13: 'medium',
-  14: 'low', 15: 'medium', 16: 'medium', 17: 'medium', 18: 'high', 19: 'medium',
-  20: 'low', 21: 'low', 22: 'high', 23: 'high', 24: 'high', 25: 'high', 26: 'high',
-  27: 'high', 28: 'high', 29: 'high', 30: 'high', 31: 'high', 32: 'high', 33: 'high',
-  34: 'high', 35: 'high', 36: 'medium', 37: 'high', 38: 'high', 39: 'high',
-  40: 'high', 41: 'medium', 42: 'high', 43: 'low', 44: 'high', 45: 'high',
-  46: 'high', 47: 'high', 48: 'high', 49: 'high', 50: 'high', 51: 'high',
+  14: 'medium', 15: 'medium', 16: 'medium', 17: 'medium', 18: 'high', 19: 'high',
+  20: 'medium', 21: 'low', 22: 'high', 23: 'high', 24: 'high', 25: 'high', 26: 'high',
+  27: 'high', 28: 'high', 29: 'medium', 30: 'medium', 31: 'medium', 32: 'high', 33: 'high',
+  34: 'high', 35: 'medium', 36: 'high', 37: 'medium', 38: 'low', 39: 'high',
+  40: 'high', 41: 'medium', 42: 'high', 43: 'low', 44: 'medium', 45: 'medium',
+  46: 'high', 47: 'high', 48: 'high', 49: 'high', 50: 'medium', 51: 'high',
   52: 'high', 53: 'high', 54: 'high', 55: 'high', 56: 'high',
   57: 'high', 58: 'high', 59: 'medium', 60: 'medium', 61: 'high', 62: 'high',
-  63: 'high', 64: 'high', 65: 'medium', 66: 'medium', 67: 'low', 68: 'low',
-  69: 'high', 71: 'high', 72: 'high', 73: 'high', 74: 'medium', 75: 'high',
+  63: 'high', 64: 'high', 65: 'medium', 66: 'medium', 67: 'medium', 68: 'low',
+  69: 'high', 71: 'high', 72: 'high', 73: 'high', 74: 'high', 75: 'high',
+  76: 'high', 77: 'high', 78: 'high', 79: 'medium', 80: 'medium', 81: 'high',
+  82: 'medium', 83: 'medium', 84: 'high',
 };
 
 const CMPE258_PART_TOPIC_TIER: Record<number, TopicTier> = {
-  1: 'medium', 2: 'low', 3: 'low', 4: 'medium', 5: 'high', 6: 'medium', 7: 'high',
+  1: 'medium', 2: 'medium', 3: 'low', 4: 'medium', 5: 'high', 6: 'high', 7: 'high',
   8: 'high', 9: 'medium', 10: 'high', 11: 'medium', 12: 'medium', 13: 'high',
-  14: 'high', 15: 'medium', 16: 'high', 17: 'high', 18: 'high', 19: 'low',
+  14: 'high', 15: 'medium', 16: 'high', 17: 'high', 18: 'high', 19: 'medium',
   20: 'high', 21: 'high', 22: 'low', 23: 'medium', 24: 'high', 25: 'high',
-  26: 'low', 27: 'low', 28: 'medium', 29: 'low', 30: 'medium', 31: 'high',
+  26: 'low', 27: 'low', 28: 'medium', 29: 'low', 30: 'high', 31: 'high',
   32: 'high', 33: 'high', 34: 'medium', 35: 'high', 36: 'high', 37: 'high',
-  38: 'high', 39: 'medium', 40: 'high', 41: 'medium', 42: 'medium', 43: 'low',
-  44: 'medium', 45: 'medium', 46: 'low', 47: 'high', 48: 'medium', 49: 'high',
-  50: 'high', 51: 'low', 52: 'high', 53: 'high', 54: 'high', 55: 'medium',
-  56: 'high', 57: 'high', 58: 'medium',
+  38: 'high', 39: 'medium', 40: 'high', 41: 'medium', 42: 'medium', 43: 'medium',
+  44: 'medium', 45: 'medium', 46: 'medium', 47: 'high', 48: 'high', 49: 'high',
+  50: 'high', 51: 'low', 52: 'high', 53: 'high', 54: 'high', 55: 'high',
+  56: 'high', 57: 'high', 58: 'high', 59: 'high', 60: 'medium', 61: 'high',
+  62: 'high', 63: 'medium', 64: 'medium', 65: 'medium',
 };
 
 const PART_TOPIC_TIER_BY_COURSE: Record<string, Record<number, TopicTier>> = {

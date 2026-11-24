@@ -1,0 +1,416 @@
+[
+  {
+    "paperNum": 1,
+    "totalPoints": 60,
+    "totalQuestions": 6,
+    "postMidtermShare": 1.0,
+    "sections": [
+      {
+        "type": "sa",
+        "label": "Numerical Problems (1 per chapter)",
+        "pointsEach": 10,
+        "questions": [
+          {
+            "num": 1,
+            "type": "sa",
+            "question": "Mock Final Q1: Group Metrics from Confusion Matrices\n\nA loan model is evaluated at tau = 0.5 on two groups. Test-set confusion counts:\nGroup A: TP = 150, FN = 50, FP = 40, TN = 260 (N = 500).\nGroup B: TP = 72, FN = 48, FP = 36, TN = 144 (N = 300).\n\n(a) Compute TPR, FPR, PPV, and selection rate (SR) for each group.\n(b) Compute the equal-opportunity difference (EOpp), equalized-odds difference (EOdds), demographic-parity difference (DP diff), and disparate-impact ratio (DI = SR_B / SR_A).\n(c) Does the model pass the four-fifths rule? Explain why passing it does not make the model fair under equal opportunity.",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Group A: TPR_A = 150 / (150 + 50) = 150 / 200 = 0.750; FPR_A = 40 / (40 + 260) = 40 / 300 = 0.1333; PPV_A = 150 / (150 + 40) = 150 / 190 = 0.7895; SR_A = 190 / 500 = 0.380.\nGroup B: TPR_B = 72 / (72 + 48) = 72 / 120 = 0.600; FPR_B = 36 / (36 + 144) = 36 / 180 = 0.200; PPV_B = 72 / (72 + 36) = 72 / 108 = 0.6667; SR_B = 108 / 300 = 0.360.\n(b) EOpp = |0.750 - 0.600| = 0.150. FPR gap = |0.1333 - 0.200| = 0.0667. EOdds = max(0.150, 0.0667) = 0.150 (never the sum). DP diff = |0.380 - 0.360| = 0.020. DI = 0.360 / 0.380 = 0.9474.\n(c) Yes, DI = 0.9474 >= 0.80 passes the four-fifths rule. However, selection rates ignore ground-truth labels: qualified Group B applicants are still approved 15 percentage points less often than qualified Group A applicants (EOpp = 0.150), while unqualified Group B applicants receive more false approvals (FPR 0.200 vs. 0.133).",
+            "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness",
+            "points": 10
+          },
+          {
+            "num": 2,
+            "type": "sa",
+            "question": "Mock Final Q7: LIME Kernel and Weighted Surrogate\n\nA tabular LIME explanation uses p = 9 features, kernel pi(d) = exp(-d^2 / omega^2) at LIME's default width omega = 0.75 * sqrt(p), and a one-feature surrogate on DTI fitted to four perturbed points:\n(DTI = 0.20, f = 0.30, w = 0.4); (0.40, 0.45, 1.0); (0.60, 0.70, 1.0); (0.80, 0.80, 0.6).\n\n(a) Compute omega and the kernel weights pi(d) at standardized distances d = 0.5, 1.5, and 3.0.\n(b) Fit the weighted least-squares (WLS) surrogate f_hat(DTI) = beta_0 + beta_1 * DTI to the four points.\n(c) The explained instance has DTI = 0.50 and black-box prediction f(x) = 0.60. Compute f_hat(0.50), the fidelity gap, and Fidelity = 100 - |gap| / f(x) * 100.",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) omega = 0.75 * sqrt(9) = 2.25; omega^2 = 5.0625.\npi(0.5) = exp(-0.25 / 5.0625) = exp(-0.04938) = 0.9518 (0.952).\npi(1.5) = exp(-2.25 / 5.0625) = exp(-0.4444) = 0.6412 (0.641).\npi(3.0) = exp(-9.00 / 5.0625) = exp(-1.7778) = 0.1690 (0.169).\n(b) Weighted sums:\nsum(w) = 0.4 + 1.0 + 1.0 + 0.6 = 3.00.\nsum(wx) = 0.08 + 0.40 + 0.60 + 0.48 = 1.56.\nsum(wy) = 0.12 + 0.45 + 0.70 + 0.48 = 1.75.\nsum(wxy) = 0.024 + 0.180 + 0.420 + 0.384 = 1.008.\nsum(wx^2) = 0.016 + 0.160 + 0.360 + 0.384 = 0.920.\nbeta_1 = (3.00 * 1.008 - 1.56 * 1.75) / (3.00 * 0.920 - 1.56^2) = (3.024 - 2.730) / (2.760 - 2.4336) = 0.294 / 0.3264 = 0.9007 (0.901).\nbeta_0 = (1.75 - 0.9007 * 1.56) / 3.00 = (1.75 - 1.4051) / 3.00 = 0.1150 (0.115).\nSurrogate: f_hat(DTI) = 0.115 + 0.901 * DTI.\n(c) f_hat(0.50) = 0.1150 + 0.9007 * 0.50 = 0.5653 (0.565).\nGap = |0.5653 - 0.60| = 0.0347 (0.035).\nFidelity = 100 - (0.0347 / 0.60) * 100 = 94.22 (94.2). Near this instance, +0.10 DTI raises the deny score by about +0.090.",
+            "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)",
+            "points": 10
+          },
+          {
+            "num": 3,
+            "type": "sa",
+            "question": "Mock Final Q13: PSI as a Symmetric KL Divergence\n\nA credit score's five bins have expected (training) shares e = [0.15, 0.25, 0.30, 0.20, 0.10] and actual (production) shares a = [0.10, 0.20, 0.28, 0.25, 0.17].\n\n(a) Compute each PSI term (a_i - e_i) * ln(a_i / e_i) and the total PSI. Classify the shift (< 0.10 none, 0.10 to 0.25 moderate, > 0.25 major).\n(b) Compute KL(a || e) and KL(e || a) and show that their sum equals PSI.\n(c) Using PSI approx delta^2 for a normal mean shift, estimate delta in standard deviations. Roughly what delta corresponds to the 0.25 major threshold?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Bin terms:\nBin 1: (0.10 - 0.15) * ln(0.10/0.15) = (-0.05) * (-0.4055) = 0.0203.\nBin 2: (0.20 - 0.25) * ln(0.20/0.25) = (-0.05) * (-0.2231) = 0.0112.\nBin 3: (0.28 - 0.30) * ln(0.28/0.30) = (-0.02) * (-0.0690) = 0.0014.\nBin 4: (0.25 - 0.20) * ln(0.25/0.20) = (+0.05) * (+0.2231) = 0.0112.\nBin 5: (0.17 - 0.10) * ln(0.17/0.10) = (+0.07) * (+0.5306) = 0.0371.\nTotal PSI = 0.0811 (< 0.10 -> no significant shift / stable, though Bin 5 alone accounts for 45.8% of PSI and should be watched).\n(b) KL(a || e) = sum(a * ln(a/e)) = -0.04055 - 0.04463 - 0.01932 + 0.05579 + 0.09021 = 0.0415.\nKL(e || a) = sum(e * ln(e/a)) = +0.06082 + 0.05579 + 0.02070 - 0.04463 - 0.05306 = 0.0396.\nSum: 0.0415 + 0.0396 = 0.0811 = PSI (exact).\n(c) delta approx sqrt(0.0811) = 0.285 SD (about 0.28 SD). The 0.25 major band corresponds to delta approx sqrt(0.25) = 0.50 SD.",
+            "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability",
+            "points": 10
+          },
+          {
+            "num": 4,
+            "type": "sa",
+            "question": "Mock Final Q19: Confidence Bands and Uncertainty Routing\n\nA screening model routes cases using this priority order: if 95% CI width > 0.20 -> ABSTAIN; else if score < 0.35 -> AUTO; else if score > 0.65 -> FLAG; otherwise REVIEW. The 95% CI is score +- 1.96 * SE.\nCase A: score = 0.68, SE = 0.05.\nCase B: score = 0.30, SE = 0.06.\nCase C: score = 0.50, SE = 0.03.\n\n(a) Compute each case's 95% CI and width, and route each case.\n(b) For a proportion near p = 0.70, how many cases n are needed for a 95% CI width no wider than 0.08?\n(c) Policy will flag a case only when the lower bound exceeds 0.60. What maximum SE would Case A need?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Case A: 0.68 +- 1.96(0.05) = 0.68 +- 0.098 -> [0.582, 0.778], width = 0.196 (<= 0.20, score > 0.65) -> FLAG.\nCase B: 0.30 +- 1.96(0.06) = 0.30 +- 0.1176 -> [0.182, 0.418], width = 0.235 (> 0.20) -> ABSTAIN (width is checked first, preventing unsafe auto-clearing).\nCase C: 0.50 +- 1.96(0.03) = 0.50 +- 0.0588 -> [0.441, 0.559], width = 0.118 (<= 0.20, 0.35 <= score <= 0.65) -> REVIEW.\n(b) n >= 3.92^2 * p * (1 - p) / W^2 = 15.3664 * 0.70 * 0.30 / 0.08^2 = 3.2269 / 0.0064 = 504.21 -> round UP to n = 505 cases.\n(c) Need 0.68 - 1.96 * SE > 0.60 -> 1.96 * SE < 0.08 -> SE < 0.08 / 1.96 = 0.0408 (about 0.041).",
+            "lectureReference": "Part 94: Final Review Ch 4: Human-Centered AI Design",
+            "points": 10
+          },
+          {
+            "num": 5,
+            "type": "sa",
+            "question": "Mock Final Q25: Green-List Watermark Probabilities and Biased Softmax\n\nA green-list watermark adds bias delta = 1.5 to green-token logits. With equal raw logits, P(green) = gamma * e^delta / (gamma * e^delta + 1 - gamma). Three candidate tokens have raw logits:\n\"risk\": 2.0 (Green); \"threat\": 1.8 (Red); \"hazard\": 1.5 (Green).\n\n(a) For delta = 1.5 compute e^delta and P(green) under equal logits for gamma = 0.25 and gamma = 0.50.\n(b) Compute softmax probabilities of the three tokens before and after adding delta = 1.5 to the green tokens. Give the total green mass before and after.\n(c) By what factor do the odds of a green token rise? Why does the red token's probability fall even though its logit is unchanged?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) e^1.5 = 4.4817 (4.482).\nAt gamma = 0.25: P(green) = (0.25 * 4.4817) / (0.25 * 4.4817 + 0.75) = 1.1204 / 1.8704 = 0.5990 (0.599).\nAt gamma = 0.50: P(green) = (0.50 * 4.4817) / (0.50 * 4.4817 + 0.50) = 4.4817 / 5.4817 = 0.8176 (0.818).\n(b) Before bias: exp(2.0) = 7.3891, exp(1.8) = 6.0496, exp(1.5) = 4.4817; sum = 17.9204.\nProbabilities before: \"risk\" = 0.4123 (41.2%), \"threat\" = 0.3376 (33.8%), \"hazard\" = 0.2501 (25.0%). Green mass before = 0.4123 + 0.2501 = 0.6624 (0.662).\nAfter bias (green logits +1.5 -> 3.5, 1.8, 3.0): exp(3.5) = 33.1155, exp(1.8) = 6.0496, exp(3.0) = 20.0855; sum = 59.2506.\nProbabilities after: \"risk\" = 0.5589 (55.9%), \"threat\" = 0.1021 (10.2%), \"hazard\" = 0.3390 (33.9%). Green mass after = 0.5589 + 0.3390 = 0.8979 (0.898).\n(c) Odds of a green token multiply by e^delta = 4.482. Red token \"threat\" drops from 33.8% to 10.2% because adding bias to green tokens expands the softmax denominator by 59.25 / 17.92 = 3.31x while the red numerator stays fixed.",
+            "lectureReference": "Part 95: Final Review Ch 5: Emerging Topics in AI TI",
+            "points": 10
+          },
+          {
+            "num": 6,
+            "type": "sa",
+            "question": "Mock Final Q31: Signal Funnel and Priority Scoring with Recency Floor\n\nAn AI TI program ingests 15,000 signals/month: 2.4% become alerts, 30% of alerts reach triage, and 20% of triaged alerts become confirmed incidents.\nPriority = Reliability * Relevance * Recency, where Recency = max(0.5, 1 - 0.05 * age_days).\nSignals:\nInternal eval regression: Reliab 4, Relev 5, Age 6 d.\nISAC injection report: Reliab 3, Relev 5, Age 0 d.\nVendor disclosure: Reliab 5, Relev 3, Age 12 d.\nAnonymous jailbreak claim: Reliab 2, Relev 2, Age 1 d.\n\n(a) Compute alerts, triaged alerts, and confirmed incidents per month, plus \"1 in how many\" signals becomes an incident.\n(b) Compute each signal's recency factor and priority, and rank them.\n(c) At what age does the internal signal fall below the fresh ISAC report? Why can ageing never overturn a 2x raw-score gap?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Alerts = 15,000 * 0.024 = 360. Triaged = 360 * 0.30 = 108. Confirmed incidents = 108 * 0.20 = 21.6/month.\nConversion ratio: 15,000 / 21.6 = 694.4 -> about 1 in 694 signals becomes a confirmed incident.\n(b) Recency and priority:\nInternal: max(0.5, 1 - 0.30) = 0.70 -> 4 * 5 * 0.70 = 14.0.\nISAC: max(0.5, 1 - 0) = 1.00 -> 3 * 5 * 1.00 = 15.0.\nVendor: max(0.5, 1 - 0.60) = max(0.5, 0.40) = 0.50 (floor!) -> 5 * 3 * 0.50 = 7.5.\nAnonymous: max(0.5, 1 - 0.05) = 0.95 -> 2 * 2 * 0.95 = 3.8.\nRanking: ISAC (15.0) > Internal (14.0) > Vendor (7.5) > Anonymous (3.8).\n(c) Internal (raw 20) drops below fresh ISAC (15) when 20 * (1 - 0.05 * d) < 15 -> 1 - 0.05 * d < 0.75 -> d > 5 days.\nBecause Recency floors at 0.5, ageing can at most halve a signal's raw score; therefore it can never invert a 2x raw-score gap.",
+            "lectureReference": "Part 96: Final Review Ch 6: Operationalizing AI Threat Intelligence",
+            "points": 10
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paperNum": 2,
+    "totalPoints": 60,
+    "totalQuestions": 6,
+    "postMidtermShare": 1.0,
+    "sections": [
+      {
+        "type": "sa",
+        "label": "Numerical Problems (1 per chapter)",
+        "pointsEach": 10,
+        "questions": [
+          {
+            "num": 1,
+            "type": "sa",
+            "question": "Mock Final Q2: Expected Calibration Error by Hand\n\nA risk model's 800 validation cases are binned by score:\nBin 0.0 to 0.2: n = 160, mean score = 0.10, observed rate = 0.15.\nBin 0.2 to 0.4: n = 240, mean score = 0.30, observed rate = 0.22.\nBin 0.4 to 0.6: n = 200, mean score = 0.50, observed rate = 0.48.\nBin 0.6 to 0.8: n = 120, mean score = 0.70, observed rate = 0.80.\nBin 0.8 to 1.0: n = 80, mean score = 0.90, observed rate = 0.85.\n\n(a) Compute each bin's weighted gap (n_b / N) * |observed - score| and the total ECE.\n(b) Label each bin over-confident or under-confident. Which bin contributes most to ECE?\n(c) If recalibration fixed bin 0.2 to 0.4 perfectly and left the rest unchanged, what is the new ECE and the percentage reduction?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Weighted gaps:\nBin 1 (0.0 to 0.2): (160/800) * |0.15 - 0.10| = 0.20 * 0.05 = 0.0100.\nBin 2 (0.2 to 0.4): (240/800) * |0.22 - 0.30| = 0.30 * 0.08 = 0.0240.\nBin 3 (0.4 to 0.6): (200/800) * |0.48 - 0.50| = 0.25 * 0.02 = 0.0050.\nBin 4 (0.6 to 0.8): (120/800) * |0.80 - 0.70| = 0.15 * 0.10 = 0.0150.\nBin 5 (0.8 to 1.0): (80/800) * |0.85 - 0.90| = 0.10 * 0.05 = 0.0050.\nTotal ECE = 0.0100 + 0.0240 + 0.0050 + 0.0150 + 0.0050 = 0.0590 (5.90 percentage points).\n(b) Over-confident (mean score > observed): bins 2, 3, and 5. Under-confident (mean score < observed): bins 1 and 4. Bin 2 (0.2 to 0.4) contributes the most at 0.0240 (40.7% of total ECE).\n(c) New ECE = 0.0590 - 0.0240 = 0.0350. Percentage reduction = (0.0240 / 0.0590) * 100 = 40.68% (about 40.7%).",
+            "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness",
+            "points": 10
+          },
+          {
+            "num": 2,
+            "type": "sa",
+            "question": "Mock Final Q8: Exact Shapley Values for Three Features\n\nA credit model with features A = DTI, B = delinquencies, and C = income has coalition values v(S) (absent features set to baseline):\nv(empty) = 0.40, v({A}) = 0.55, v({B}) = 0.46, v({C}) = 0.36, v({A,B}) = 0.66, v({A,C}) = 0.50, v({B,C}) = 0.44, v({A,B,C}) = 0.68.\n\n(a) State the Shapley weight |S|!(n - |S| - 1)! / n! for coalitions of size |S| = 0, 1, and 2 when n = 3.\n(b) Compute phi_A, phi_B, and phi_C exactly.\n(c) Verify local accuracy (efficiency) and rank the features as adverse-action reasons.",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) For n = 3 (n! = 6): |S| = 0 -> 0!2!/6 = 1/3; |S| = 1 -> 1!1!/6 = 1/6 (two subsets); |S| = 2 -> 2!0!/6 = 1/3.\n(b) Marginals and Shapley values:\nphi_A = (1/3)*(0.55 - 0.40) + (1/6)*(0.66 - 0.46) + (1/6)*(0.50 - 0.36) + (1/3)*(0.68 - 0.44)\n= (1/3)(0.15) + (1/6)(0.20) + (1/6)(0.14) + (1/3)(0.24) = 0.0500 + 0.0333 + 0.0233 + 0.0800 = +0.1867 (+0.187).\nphi_B = (1/3)*(0.46 - 0.40) + (1/6)*(0.66 - 0.55) + (1/6)*(0.44 - 0.36) + (1/3)*(0.68 - 0.50)\n= (1/3)(0.06) + (1/6)(0.11) + (1/6)(0.08) + (1/3)(0.18) = 0.0200 + 0.0183 + 0.0133 + 0.0600 = +0.1117 (+0.112).\nphi_C = (1/3)*(0.36 - 0.40) + (1/6)*(0.50 - 0.55) + (1/6)*(0.44 - 0.46) + (1/3)*(0.68 - 0.66)\n= (1/3)(-0.04) + (1/6)(-0.05) + (1/6)(-0.02) + (1/3)(0.02) = -0.0133 - 0.0083 - 0.0033 + 0.0067 = -0.0183 (-0.018).\n(c) Efficiency check: phi_A + phi_B + phi_C = 0.1867 + 0.1117 - 0.0183 = 0.2800 = 0.68 - 0.40 = v(N) - v(empty). Adverse-action reasons (positive drivers of denial): (1) DTI (+0.187), (2) delinquencies (+0.112). Income lowers the deny score (-0.018), so it is not cited as a denial reason.",
+            "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)",
+            "points": 10
+          },
+          {
+            "num": 3,
+            "type": "sa",
+            "question": "Mock Final Q14: Disparate Impact, Significance, and Audit Sample Size\n\nA hiring screen selected 180 of 400 reference-group applicants and 51 of 150 protected-group applicants.\n\n(a) Compute both selection rates and the disparate-impact ratio. Does it pass the four-fifths rule?\n(b) Run a two-proportion z-test using the pooled rate. Is the gap significant at alpha = 0.05 (two-sided)?\n(c) An auditor samples decisions with expected error rate 8%, margin +-2.5%, and 95% confidence (z = 1.96): compute n, then adjust for finite population N = 4,000. If 500 sampled decisions show 0 errors, give the approximate 95% upper bound on true error rate.",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) p_ref = 180 / 400 = 0.450; p_prot = 51 / 150 = 0.340.\nDI = 0.340 / 0.450 = 0.7556 (0.756 < 0.80 -> fails four-fifths rule).\n(b) Pooled rate p_hat = (180 + 51) / (400 + 150) = 231 / 550 = 0.420.\nSE = sqrt(0.420 * 0.580 * (1/400 + 1/150)) = sqrt(0.2436 * 0.009167) = 0.04725 (0.0473).\nz = (0.450 - 0.340) / 0.04725 = 2.328 (2.33); two-sided p = 0.0199 (0.020 < 0.05). Yes, statistically significant; both ratio and significance agree, so escalate to full adverse-impact review.\n(c) n = (1.96^2 * 0.08 * 0.92) / 0.025^2 = 0.28274 / 0.000625 = 452.39 -> round UP to n = 453.\nFinite-population correction: n' = 453 / (1 + 452 / 4000) = 453 / 1.113 = 407.01 (407, or 408 if strictly rounding up).\nRule of three (0 errors in 500): approximate 95% upper bound = 3 / 500 = 0.006 = 0.6%.",
+            "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability",
+            "points": 10
+          },
+          {
+            "num": 4,
+            "type": "sa",
+            "question": "Mock Final Q20: Trust Calibration versus Team Accuracy\n\nAn AI recommender is correct r = 85% of the time. Team 1 overrides 15% of recommendations regardless of correctness (a = b = 0.15). Team 2 overrides 60% of wrong recommendations and 4% of correct recommendations (a = 0.60, b = 0.04). An override flips the outcome.\n\n(a) For each team compute override rate = r*b + (1 - r)*a, trust = 1 - override rate, and TCS = 1 - |trust - r|.\n(b) Compute team accuracy = r*(1 - b) + (1 - r)*a and discrimination a - b for each team.\n(c) Derive the condition on a/b for a team to beat the AI alone and evaluate it at r = 0.85. Which team does TCS favour, and is that right?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Team 1: override = 0.85(0.15) + 0.15(0.15) = 0.150 -> trust = 0.850 -> TCS = 1 - |0.850 - 0.850| = 1.000.\nTeam 2: override = 0.85(0.04) + 0.15(0.60) = 0.034 + 0.090 = 0.124 -> trust = 0.876 -> TCS = 1 - |0.876 - 0.850| = 0.974.\n(b) Team 1: Acc = 0.85(0.85) + 0.15(0.15) = 0.7225 + 0.0225 = 0.745 (74.5%, worse than AI alone); a - b = 0.00.\nTeam 2: Acc = 0.85(0.96) + 0.15(0.60) = 0.816 + 0.090 = 0.906 (90.6%, beats AI by +5.6 pp); a - b = 0.56 (a/b = 15).\n(c) Team beats AI iff r(1 - b) + (1 - r)a > r, which simplifies to (1 - r)a > r*b, or a/b > r / (1 - r). At r = 0.85, a/b > 0.85 / 0.15 = 5.67.\nTCS favours blind Team 1 (1.000 vs. 0.974) because TCS only compares aggregate compliance rate to AI accuracy, ignoring whether overrides target errors. That is wrong; always report discrimination a - b beside TCS.",
+            "lectureReference": "Part 94: Final Review Ch 4: Human-Centered AI Design",
+            "points": 10
+          },
+          {
+            "num": 5,
+            "type": "sa",
+            "question": "Mock Final Q26: Watermark Detection Z-Test, Sample Size, and Paraphrasing\n\nA detector scores T = 300 tokens with gamma = 0.5 using z = (s - gamma * T) / sqrt(T * gamma * (1 - gamma)) and flags watermarked text at z > 4.\n\n(a) Compute z for a suspect text with s = 195 green tokens and a human text with s = 146 green tokens. State both verdicts.\n(b) Using expected z = (g - gamma) * sqrt(T) / sqrt(gamma * (1 - gamma)), how many tokens T* are needed to reach z = 4 when the true green fraction is g = 0.70? And when g = 0.65?\n(c) A paraphraser replaces r = 25% of tokens; each swap spoils two positions, so g' = (1 - 2r) * g + 2r * gamma. For g = 0.75 and T = 300, compute g' and the expected z. Is it still detected?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Expected green count gamma * T = 150; SD = sqrt(300 * 0.5 * 0.5) = sqrt(75) = 8.6603.\nSuspect (s = 195): z = (195 - 150) / 8.6603 = 5.196 (5.20 > 4 -> FLAGGED as watermarked, p approx 1e-7).\nHuman (s = 146): z = (146 - 150) / 8.6603 = -0.462 (-0.46 <= 4 -> not watermarked).\n(b) T* = [z * sqrt(gamma*(1 - gamma)) / (g - gamma)]^2 = [4 * 0.5 / (g - 0.5)]^2 = [2 / (g - 0.5)]^2.\nAt g = 0.70: T* = (2 / 0.20)^2 = 10^2 = 100 tokens.\nAt g = 0.65: T* = (2 / 0.15)^2 = 13.333^2 = 177.8 -> 178 tokens.\n(c) g' = (1 - 2*0.25) * 0.75 + 2*0.25 * 0.50 = 0.50 * 0.75 + 0.50 * 0.50 = 0.625.\nExpected z = (0.625 - 0.50) * sqrt(300) / 0.50 = 0.125 * 17.3205 / 0.50 = 4.330 (4.33 > 4 -> YES, still detected).",
+            "lectureReference": "Part 95: Final Review Ch 5: Emerging Topics in AI TI",
+            "points": 10
+          },
+          {
+            "num": 6,
+            "type": "sa",
+            "question": "Mock Final Q32: SLA Latency Buffer and Triage Severity Grid\n\nHigh-severity containment has a 240-min SLA; low severity has a 90-min SLA. Role latencies: SecOps 25 min, ML engineering 50 min, owner sign-off 35 min.\nTriage Severity = Impact * Likelihood (1 to 5 each): 1 to 6 monitor, 7 to 14 review, 15 to 25 escalate + sign-off.\nFour alerts: Latency blip (I=2, L=3); Probing from one IP (I=3, L=3); Training-data leak (I=4, L=4); Safety-critical misfire (I=5, L=2).\n\n(a) Compute the high-severity critical path, SLA buffer, and buffer as % of SLA. What share of the low-severity SLA does one owner sign-off consume?\n(b) Score and route the four alerts.\n(c) Across the full 5 x 5 grid (25 cells), how many cells (and %) fall in each band? Comment on the safety-critical alert.",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Critical path = 25 + 50 + 35 = 110 min.\nHigh-severity buffer = 240 - 110 = 130 min, which is 130 / 240 = 54.17% (54.2%) of SLA.\nLow-severity sign-off share = 35 / 90 = 38.89% (38.9%) of the entire SLA consumed by one sign-off.\n(b) Latency blip: 2 * 3 = 6 -> monitor.\nProbing from one IP: 3 * 3 = 9 -> review.\nTraining-data leak: 4 * 4 = 16 -> escalate + sign-off.\nSafety-critical misfire: 5 * 2 = 10 -> review.\n(c) On the 5 x 5 multiplication table (25 cells):\nMonitor (1 to 6): 12 cells (48%).\nReview (7 to 14): 7 cells (28%).\nEscalate (15 to 25): 6 cells (24%).\nComment: Impact 5 x Likelihood 2 = 10 lands only in \"review\", which is risky for safety-critical systems; such deployments often add an impact-only escalation override for I = 5.",
+            "lectureReference": "Part 96: Final Review Ch 6: Operationalizing AI Threat Intelligence",
+            "points": 10
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paperNum": 3,
+    "totalPoints": 60,
+    "totalQuestions": 6,
+    "postMidtermShare": 1.0,
+    "sections": [
+      {
+        "type": "sa",
+        "label": "Numerical Problems (1 per chapter)",
+        "pointsEach": 10,
+        "questions": [
+          {
+            "num": 1,
+            "type": "sa",
+            "question": "Mock Final Q3: Chouldechova's Identity\n\nA recidivism score has TPR = 0.75 and PPV = 0.60 in both groups. Base rates differ: p_A = 0.40 and p_B = 0.25. Use FPR = [p / (1 - p)] * [(1 - PPV) / PPV] * TPR.\n\n(a) Compute each group's forced FPR.\n(b) By what factor does FPR_A exceed FPR_B? Which fairness criteria are satisfied and which is violated?\n(c) Keeping TPR_B = 0.75, what PPV would Group B need for FPR_B to equal FPR_A? Interpret the result.",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Common factor: (1 - PPV) / PPV = 0.40 / 0.60 = 2/3 (0.6667).\nGroup A: p_A / (1 - p_A) = 0.40 / 0.60 = 2/3, so FPR_A = (2/3) * (2/3) * 0.75 = 1/3 = 0.3333.\nGroup B: p_B / (1 - p_B) = 0.25 / 0.75 = 1/3, so FPR_B = (1/3) * (2/3) * 0.75 = 1/6 = 0.1667.\n(b) Ratio FPR_A / FPR_B = 0.3333 / 0.1667 = 2.0x. Predictive parity (equal PPV = 0.60) and equal opportunity (equal TPR = 0.75) are satisfied, while equalized odds is violated because FPR differs by 2x (0.3333 vs. 0.1667).\n(c) Set 1/3 = (1/3) * [(1 - PPV_B) / PPV_B] * 0.75. Solving gives (1 - PPV_B) / PPV_B = 4/3, so 1 / PPV_B = 7/3 and PPV_B = 3/7 = 0.4286 (about 0.429). Equalizing FPR forces Group B's precision down from 0.60 to 0.429, breaking predictive parity.",
+            "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness",
+            "points": 10
+          },
+          {
+            "num": 2,
+            "type": "sa",
+            "question": "Mock Final Q9: Linear SHAP and an Interaction Game\n\nPart 1: A linear model f(x) = beta_0 + sum(beta_i * x_i) has:\nDTI: beta = 0.50, x = 0.60, E[x] = 0.40.\nIncome ($k): beta = -0.02, x = 80, E[x] = 65.\nDelinquencies: beta = 1.20, x = 2, E[x] = 0.8.\nPart 2: Interaction game f = 2 * x_1 * x_2 + 3 * x_3 at x = (2, 3, 1), with absent features set to 0.\n\n(a) Compute phi_i = beta_i * (x_i - E[x_i]) for each feature and their sum. If E[f(x)] = 0.30, what is f(x)?\n(b) For the interaction game, list v(S) for all 8 coalitions and compute phi_1, phi_2, and phi_3.\n(c) Check efficiency for part (b). Which Shapley axioms explain phi_1 = phi_2 and the value of phi_3?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) phi_DTI = 0.50 * (0.60 - 0.40) = +0.100.\nphi_Income = -0.02 * (80 - 65) = -0.300.\nphi_Delinq = 1.20 * (2 - 0.8) = +1.440.\nSum = 0.100 - 0.300 + 1.440 = +1.240. Thus f(x) = E[f(x)] + sum(phi) = 0.30 + 1.24 = 1.54.\n(b) Coalition values: v(empty) = 0, v({1}) = 0, v({2}) = 0, v({3}) = 3, v({1,2}) = 12, v({1,3}) = 3, v({2,3}) = 3, v({1,2,3}) = 15.\nphi_1 = (1/3)(0 - 0) + (1/6)(12 - 0) + (1/6)(3 - 3) + (1/3)(15 - 3) = 0 + 2 + 0 + 4 = 6.\nphi_2 = (1/3)(0 - 0) + (1/6)(12 - 0) + (1/6)(3 - 3) + (1/3)(15 - 3) = 6.\nphi_3 = (1/3)(3 - 0) + (1/6)(3 - 0) + (1/6)(3 - 0) + (1/3)(15 - 12) = 1 + 0.5 + 0.5 + 1 = 3.\n(c) Efficiency: 6 + 6 + 3 = 15 = v({1,2,3}) - v(empty). Symmetry explains phi_1 = phi_2 = 6 (features 1 and 2 enter the product 2*x_1*x_2 identically in coalition values, splitting the interaction value 12 equally). Additivity explains phi_3 = 3 (x_3 enters purely additively, receiving exactly its own term 3*x_3 = 3).",
+            "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)",
+            "points": 10
+          },
+          {
+            "num": 3,
+            "type": "sa",
+            "question": "Mock Final Q15: Robust Z-Scores and Heavy-Tailed MTTD\n\nDaily query volume on a scoring endpoint for 8 baseline days (day 8 was an earlier attack): 40, 44, 38, 46, 42, 36, 48, 150. Today's volume is 85.\nSeparately, eight incidents took 10, 15, 22, 28, 35, 40, 55, and 480 minutes to detect.\n\n(a) Compute the classical z-score of today's volume using the baseline mean and population sigma. Is it flagged at |z| > 3?\n(b) Compute the robust z = (x - median) / (1.4826 * MAD). Is it flagged? Why do the two scores disagree?\n(c) For the incident times, compute the mean, median, and 90th percentile (linear interpolation at index 0.9 * (n - 1)). Which numbers should be reported?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Baseline sum = 444, mu = 444 / 8 = 55.5.\nPopulation variance = sum((x_i - 55.5)^2) / 8 = 10,318 / 8 = 1,289.75, so sigma = 35.913 (35.9).\nClassical z = (85 - 55.5) / 35.913 = 0.821 (0.82 <= 3 -> NOT flagged / missed).\n(b) Sorted baseline: [36, 38, 40, 42, 44, 46, 48, 150]. Median = (42 + 44) / 2 = 43.0.\nAbsolute deviations |x - 43|: [7, 5, 3, 1, 1, 3, 5, 107] -> sorted [1, 1, 3, 3, 5, 5, 7, 107].\nMAD = (3 + 5) / 2 = 4.0. Robust sigma = 1.4826 * 4.0 = 5.9304.\nz_rob = (85 - 43) / 5.9304 = 7.082 (7.08 > 3 -> ALERT). The earlier attack of 150 massively inflates classical sigma (35.9 vs. 5.93), masking today's spike.\n(c) Mean MTTD = 685 / 8 = 85.625 (85.6 min). Median = (28 + 35) / 2 = 31.5 min.\np90: index = 0.9 * (8 - 1) = 6.3 (0-indexed: between value[6] = 55 and value[7] = 480). p90 = 55 + 0.3 * (480 - 55) = 55 + 127.5 = 182.5 min.\nReport the median (31.5 min) for typical performance and p90 (182.5 min) for tail exposure; the mean (85.6 min) is distorted by the single 480-minute outlier.",
+            "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability",
+            "points": 10
+          },
+          {
+            "num": 4,
+            "type": "sa",
+            "question": "Mock Final Q21: Control Pattern, Reviewer Workload, and Cost Threshold\n\nA benefits-fraud screen makes 2,000 decisions/day. The AI is wrong on 15% of cases. A human review takes 3 minutes and catches 50% of the errors it sees. The top-20% risk slice holds 45% of AI errors. A missed high-risk case costs 10 units; a review costs 2 units.\n\n(a) With Impact = 4 and Uncertainty = 4, compute the control score and pattern (>= 15 in-the-loop, 6 to 14 on-the-loop, < 6 out-of-loop). What changes if better data cuts Uncertainty to 3?\n(b) Compare in-the-loop (review all 2,000) with on-the-loop (review top 20% = 400): compute reviewer hours/day, errors caught/day, and errors caught per hour.\n(c) Using the cost rule \"review if s > c_review / c_harm\", what risk-score threshold minimises expected cost?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Score = 4 * 4 = 16 >= 15 -> human-in-the-loop. If Uncertainty drops to 3, score = 4 * 3 = 12 (6 to 14 -> human-on-the-loop, though an impact-4 floor policy may still mandate review on the highest-stakes subset).\n(b) Total AI errors/day = 0.15 * 2,000 = 300.\nIn-the-loop: 2,000 * 3 / 60 = 100 reviewer-hours/day; errors caught = 0.50 * 300 = 150/day; efficiency = 150 / 100 = 1.50 errors/hour.\nOn-the-loop (top 20%): 400 * 3 / 60 = 20 reviewer-hours/day; errors in slice = 0.45 * 300 = 135; errors caught = 0.50 * 135 = 67.5/day; efficiency = 67.5 / 20 = 3.375 (3.38) errors/hour (2.25x higher efficiency, keeping 45% of catches at 20% of workload).\n(c) Optimal threshold t* = c_review / c_harm = 2 / 10 = 0.20 (review whenever estimated error/harm probability exceeds 20%).",
+            "lectureReference": "Part 94: Final Review Ch 4: Human-Centered AI Design",
+            "points": 10
+          },
+          {
+            "num": 5,
+            "type": "sa",
+            "question": "Mock Final Q27: Provenance Survival, Bayes Alert Precision, and Layered Defense\n\nA threat-intelligence team screens images and agent requests with layered signals.\n\n(a) Content credentials are stripped with probability s = 0.20 per re-share. What share keeps credentials after k = 4 re-shares? If credentials (0.41), watermark (0.55), and forensics (0.65) fire independently, what is P(at least one fires)?\n(b) A prompt-attack detector has TPR = 90% and FPR = 0.5%. Attacks are 0.2% of 1,000,000 requests. Compute TP, FP, and alert precision.\n(c) Four defensive layers miss an attack with probabilities 0.40, 0.30, 0.10, and 0.05. How many of 1,000,000 attacks survive all layers? State the key assumption behind this product.",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Survival = (1 - 0.20)^4 = 0.80^4 = 0.4096 (about 41.0%).\nP(at least one fires) = 1 - (1 - 0.41) * (1 - 0.55) * (1 - 0.65) = 1 - 0.59 * 0.45 * 0.35 = 1 - 0.0929 = 0.9071 (90.7%).\n(b) Attacks = 0.002 * 1,000,000 = 2,000 -> TP = 0.90 * 2,000 = 1,800.\nBenign = 998,000 -> FP = 0.005 * 998,000 = 4,990.\nPrecision = 1,800 / (1,800 + 4,990) = 1,800 / 6,790 = 26.51% (26.5%; almost 3 in 4 alerts are false positives because the base rate is low).\n(c) Survivors = 1,000,000 * 0.40 * 0.30 * 0.10 * 0.05 = 600 attacks per million.\nKey assumption: layers fail independently AND every attack crosses every layer (false in practice for attacks like prompt injection that never touch signing or attestation).",
+            "lectureReference": "Part 95: Final Review Ch 5: Emerging Topics in AI TI",
+            "points": 10
+          },
+          {
+            "num": 6,
+            "type": "sa",
+            "question": "Mock Final Q33: Choosing the Cheapest Safe Containment\n\nA data-leak alert (severity 20) has three containment options where Total cost = downtime cost + residual-risk cost:\nFull rollback: 1.5 h x $24,000/h downtime + $800 residual risk.\nFeature-flag disable: $6,000 downtime + $2,500 residual risk.\nRate-limit only: $600 downtime + p x $50,000 residual risk (currently p = 0.6).\n\n(a) Compute each option's total cost and choose the cheapest.\n(b) How short (in minutes) must the rollback outage be for full rollback to beat the feature flag?\n(c) Below what attack-continuation probability p would rate-limiting beat the feature flag? What evidence could justify such a low p?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Full rollback = 1.5 * $24,000 + $800 = $36,000 + $800 = $36,800.\nFeature-flag disable = $6,000 + $2,500 = $8,500 (CHEAPEST).\nRate-limit only = $600 + 0.6 * $50,000 = $600 + $30,000 = $30,600.\nChoose Feature-flag disable ($8,500).\n(b) Solve 24,000 * h + 800 < 8,500 -> 24,000 * h < 7,700 -> h < 0.3208 hours = 19.25 minutes (about 19.3 min).\n(c) Solve 600 + 50,000 * p < 8,500 -> 50,000 * p < 7,900 -> p < 0.158 (15.8%). Evidence justifying p < 15.8% would be historical attacker abandonment rates under rate-limiting from prior comparable incidents.",
+            "lectureReference": "Part 96: Final Review Ch 6: Operationalizing AI Threat Intelligence",
+            "points": 10
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paperNum": 4,
+    "totalPoints": 60,
+    "totalQuestions": 6,
+    "postMidtermShare": 1.0,
+    "sections": [
+      {
+        "type": "sa",
+        "label": "Numerical Problems (1 per chapter)",
+        "pointsEach": 10,
+        "questions": [
+          {
+            "num": 1,
+            "type": "sa",
+            "question": "Mock Final Q4: Kamiran-Calders Reweighing of a 2 x 2 Table\n\nA training set of 1,000 rows has these group x label counts:\n(A, Y=1) = 300; (A, Y=0) = 300; (B, Y=1) = 100; (B, Y=0) = 300.\n\n(a) Compute P(A), P(B), P(Y=1), P(Y=0), and the raw base rate of each group.\n(b) Compute the Kamiran-Calders weight w(a, y) = P(a) * P(y) / P(a, y) for all four cells.\n(c) Compute the weighted counts and weighted base rates. Verify total weight is still 1,000 and state what has become independent.",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Marginals: P(A) = 600/1000 = 0.60, P(B) = 400/1000 = 0.40, P(Y=1) = 400/1000 = 0.40, P(Y=0) = 600/1000 = 0.60. Raw base rates: Group A = 300/600 = 0.50; Group B = 100/400 = 0.25.\n(b) Joint probabilities: P(A,1) = 0.30, P(A,0) = 0.30, P(B,1) = 0.10, P(B,0) = 0.30.\nWeights: w(A,1) = (0.60 * 0.40) / 0.30 = 0.80; w(A,0) = (0.60 * 0.60) / 0.30 = 1.20; w(B,1) = (0.40 * 0.40) / 0.10 = 1.60; w(B,0) = (0.40 * 0.60) / 0.30 = 0.80.\n(c) Weighted counts: (A,1) = 300 * 0.80 = 240; (A,0) = 300 * 1.20 = 360; (B,1) = 100 * 1.60 = 160; (B,0) = 300 * 0.80 = 240. Total weight = 240 + 360 + 160 + 240 = 1,000. Group totals remain 600 and 400. Weighted base rates: A = 240/600 = 0.40, B = 160/400 = 0.40 = P(Y=1). Group membership A and label Y are now statistically independent in the weighted data, without altering any labels.",
+            "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness",
+            "points": 10
+          },
+          {
+            "num": 2,
+            "type": "sa",
+            "question": "Mock Final Q10: Explanation Assurance Score (EAS)\n\nThree LIME reruns give top-3 sets: R1 = {DTI, Income, Util}, R2 = {DTI, Util, Delinq}, R3 = {Income, DTI, Age}. The surrogate predicts 0.74 where the black box predicts 0.80.\nDeletion test (features removed k = 0, 1, 2, 3, 4):\nAttribution order: 0.80, 0.58, 0.50, 0.46, 0.42.\nRandom order: 0.80, 0.74, 0.66, 0.55, 0.42.\n\n(a) Compute the three pairwise Jaccard similarities and the Stability score, and classify it.\n(b) Compute both trapezoid AUCs and the Faithfulness score, and classify it.\n(c) Compute Fidelity and EAS = 0.35 * Stability + 0.40 * Faithfulness + 0.25 * Fidelity. May this explanation be cited alone as audit evidence?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Pairwise Jaccards:\nJ(R1, R2) = |{DTI, Util}| / |{DTI, Income, Util, Delinq}| = 2/4 = 0.50.\nJ(R1, R3) = |{DTI, Income}| / |{DTI, Income, Util, Age}| = 2/4 = 0.50.\nJ(R2, R3) = |{DTI}| / |{DTI, Util, Delinq, Income, Age}| = 1/5 = 0.20.\nStability = ((0.50 + 0.50 + 0.20) / 3) * 100 = 40.0% (< 50 -> unstable).\n(b) Trapezoid AUCs (step 1):\nAUC_attr = (0.80+0.58)/2 + (0.58+0.50)/2 + (0.50+0.46)/2 + (0.46+0.42)/2 = 0.69 + 0.54 + 0.48 + 0.44 = 2.150.\nAUC_rand = (0.80+0.74)/2 + (0.74+0.66)/2 + (0.66+0.55)/2 + (0.55+0.42)/2 = 0.77 + 0.70 + 0.605 + 0.485 = 2.560.\nFaithfulness = ((2.560 - 2.150) / 2.560) * 100 = 16.02% (10 to 19 -> weakly faithful).\n(c) Fidelity = 100 - (|0.74 - 0.80| / 0.80) * 100 = 100 - 7.50 = 92.50.\nEAS = 0.35 * 40.0 + 0.40 * 16.02 + 0.25 * 92.50 = 14.00 + 6.41 + 23.13 = 43.53 (< 60 -> low-assurance).\nNo, it cannot be cited alone as evidence: high single-point fidelity does not rescue unstable reruns and weak deletion faithfulness.",
+            "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)",
+            "points": 10
+          },
+          {
+            "num": 3,
+            "type": "sa",
+            "question": "Mock Final Q16: CUSUM versus EWMA on a Slow Creep\n\nA fraud model's daily false-positive rate (%) over days 1 to 7 is: 2.0, 2.2, 2.5, 2.9, 3.2, 3.6, 4.0. The in-control target is mu_0 = 2.0% with sigma = 0.5.\n\n(a) Run CUSUM C_t = max(0, C_{t-1} + x_t - 2.0 - k) with k = 0.5 and h = 3.0. On which day does it alarm?\n(b) Compute the EWMA upper control limit UCL = mu_0 + L * sigma * sqrt(lambda / (2 - lambda)) with lambda = 0.25 and L = 3.\n(c) Run EWMA z_t = lambda * x_t + (1 - lambda) * z_{t-1} from z_0 = 2.0. On which day does it alarm, and which chart detects the creep first?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) CUSUM increments x_t - 2.5:\nDay 1: 2.0 - 2.5 = -0.5 -> C_1 = 0.0.\nDay 2: 2.2 - 2.5 = -0.3 -> C_2 = 0.0.\nDay 3: 2.5 - 2.5 = 0.0 -> C_3 = 0.0.\nDay 4: 2.9 - 2.5 = +0.4 -> C_4 = 0.4.\nDay 5: 3.2 - 2.5 = +0.7 -> C_5 = 1.1.\nDay 6: 3.6 - 2.5 = +1.1 -> C_6 = 2.2.\nDay 7: 4.0 - 2.5 = +1.5 -> C_7 = 3.7 > 3.0 -> ALARM on Day 7.\n(b) UCL = 2.0 + 3 * 0.5 * sqrt(0.25 / 1.75) = 2.0 + 1.5 * 0.37796 = 2.5669 (2.567).\n(c) EWMA series (z_0 = 2.000):\nDay 1: 0.25(2.0) + 0.75(2.000) = 2.0000.\nDay 2: 0.25(2.2) + 0.75(2.000) = 2.0500.\nDay 3: 0.25(2.5) + 0.75(2.050) = 2.1625.\nDay 4: 0.25(2.9) + 0.75(2.1625) = 2.3469.\nDay 5: 0.25(3.2) + 0.75(2.3469) = 2.5602 (just below 2.5669).\nDay 6: 0.25(3.6) + 0.75(2.5602) = 2.8201 > 2.5669 -> ALARM on Day 6.\nDay 7: 3.1151.\nEWMA detects the slow creep first (Day 6 vs. Day 7).",
+            "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability",
+            "points": 10
+          },
+          {
+            "num": 4,
+            "type": "sa",
+            "question": "Mock Final Q22: MAD-Scaled Recourse with a Retraining Safety Margin\n\nA loan score is s = 0.03 * income_k - 0.6 * debt_ratio - 0.8 * late_payments + 0.2; approve if s >= 0. An applicant has income = $28k, debt_ratio = 0.50, and 1 late payment.\n\n(a) Compute the current score. For each feature alone, compute the change needed to reach s = 0 and judge feasibility.\n(b) Using MAD-scaled L1 distance (MAD = $10k for income, 0.20 for debt ratio), which single-feature recourse is cheaper?\n(c) After retraining the score shifts with sigma_s = 0.12, so P(valid) = Phi(m / sigma_s). Compute P(valid) at margin m = 0.01, and find the margin and total income increase needed for 95% validity.",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) s = 0.03(28) - 0.6(0.50) - 0.8(1) + 0.2 = 0.84 - 0.30 - 0.80 + 0.20 = -0.06 (denied).\nSingle-feature changes to reach s = 0 (need +0.06):\nIncome: Delta income = +0.06 / 0.03 = +$2.0k (feasible).\nDebt ratio: Delta debt = -0.06 / 0.6 = -0.10, lowering debt ratio from 0.50 to 0.40 (feasible).\nLate payments: Delta late = -0.06 / 0.8 = -0.075 (infeasible: past history is immutable and integer-valued).\n(b) MAD-scaled L1 costs: Income = 2.0 / 10 = 0.20; Debt ratio = 0.10 / 0.20 = 0.50. Income increase is cheaper (0.20 < 0.50).\n(c) At m = 0.01: z = 0.01 / 0.12 = 0.0833 -> P(valid) = Phi(0.0833) = 53.3% (barely better than a coin flip).\nFor 95% validity: m_95 = 1.645 * 0.12 = 0.1974. Extra income for margin = 0.1974 / 0.03 = +$6.58k. Total income increase = $2.0k + $6.58k = +$8.58k (about +$8.6k).",
+            "lectureReference": "Part 94: Final Review Ch 4: Human-Centered AI Design",
+            "points": 10
+          },
+          {
+            "num": 5,
+            "type": "sa",
+            "question": "Mock Final Q28: Agent Risk Reduction, Token Budgets, and Daily Attack Cost\n\nA support agent with CRM and email tools is scored with L x I; controls cut likelihood by share e, so residual = L * (1 - e) * I:\nLLM01 Prompt injection: L=4, I=5, e=0.70.\nLLM06 Excessive agency: L=3, I=4, e=0.50.\nLLM10 Unbounded consumption: L=4, I=3, e=0.75.\nLLM02 Sensitive disclosure: L=2, I=4, no control (e=0).\n\n(a) Compute every risk score before and after controls, both totals, and the % reduction. Which risk ranks first after controls?\n(b) Request tokens have mean mu = 900, SD sigma = 200. Compute the mu + 3*sigma threshold. Why can it give far more than 0.135% false alarms on real traffic?\n(c) An attacker sends 120 requests/min of 6,000 tokens at $4 per million tokens. Compute the daily cost with no guard, the 1,500-token cap only, a 30/min rate limit only, and both guards together.",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Before: LLM01 = 20, LLM06 = 12, LLM10 = 12, LLM02 = 8 -> Total = 52.\nAfter: LLM01 = 4*(0.30)*5 = 6.0; LLM06 = 3*(0.50)*4 = 6.0; LLM10 = 4*(0.25)*3 = 3.0; LLM02 = 8.0 -> Total = 23.0.\nReduction = (52 - 23) / 52 = 29 / 52 = 55.77% (55.8%). LLM02 (8.0) now ranks first because it has no control.\n(b) Threshold = 900 + 3 * 200 = 1,500 tokens. The 0.135% tail rate assumes a Gaussian distribution, whereas real prompt traffic is right-skewed and heavy-tailed; a percentile threshold (such as p99) is required instead.\n(c) Daily cost = req/min * tokens/req * 1,440 min/day * ($4 / 10^6):\nNo guard: 120 * 6,000 * 1,440 * 4e-6 = $4,147.20 ($4,147).\nToken cap only (1,500 tokens, 4x cut): $1,036.80 ($1,037).\nRate limit only (30/min, 4x cut): $1,036.80 ($1,037).\nBoth guards together (16x cut): 30 * 1,500 * 1,440 * 4e-6 = $259.20 ($259).",
+            "lectureReference": "Part 95: Final Review Ch 5: Emerging Topics in AI TI",
+            "points": 10
+          },
+          {
+            "num": 6,
+            "type": "sa",
+            "question": "Mock Final Q34: KPI Dashboard and Evidence Coverage\n\nFive incidents this month have TTD (minutes) = [10, 14, 18, 22, 36] and TTC (minutes) = [28, 40, 50, 62, 45].\nIn addition, 12 of 96 triaged alerts were overridden, and 19 of 21 confirmed incidents have complete evidence bundles (target: 95%).\n\n(a) Compute the mean, median, and sample standard deviation s (dividing by n - 1) of TTD and TTC.\n(b) Compute mean TTC / mean TTD and the override rate. Which step is less predictable in absolute terms?\n(c) Compute current evidence coverage. How many complete bundles are needed to meet the 95% target, and what coverage does that give?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) TTD [10, 14, 18, 22, 36]: mean = 100 / 5 = 20.0 min; median = 18 min; squared deviations from 20 are [100, 36, 4, 4, 256] (sum = 400); s = sqrt(400 / 4) = 10.0 min.\nTTC sorted [28, 40, 45, 50, 62]: mean = 225 / 5 = 45.0 min; median = 45 min; squared deviations from 45 are [289, 25, 0, 25, 289] (sum = 628); s = sqrt(628 / 4) = sqrt(157) = 12.53 min (12.5 min).\n(b) Mean TTC / Mean TTD = 45.0 / 20.0 = 2.25x. Override rate = 12 / 96 = 12.5%. Containment (TTC) is less predictable in absolute terms (s = 12.5 vs. 10.0 min), while TTD's spread is largely driven by the single 36-minute outlier.\n(c) Current coverage = 19 / 21 = 90.48% (90.5%).\nBundles needed for 95%: 0.95 * 21 = 19.95 -> round UP to 20 complete bundles, giving 20 / 21 = 95.24% (95.2%).",
+            "lectureReference": "Part 96: Final Review Ch 6: Operationalizing AI Threat Intelligence",
+            "points": 10
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paperNum": 5,
+    "totalPoints": 60,
+    "totalQuestions": 6,
+    "postMidtermShare": 1.0,
+    "sections": [
+      {
+        "type": "sa",
+        "label": "Numerical Problems (1 per chapter)",
+        "pointsEach": 10,
+        "questions": [
+          {
+            "num": 1,
+            "type": "sa",
+            "question": "Mock Final Q5: Randomized Threshold for Equal Opportunity\n\nGroup A operates at TPR = 0.80, FPR = 0.18. Group B's ROC has no threshold at exactly TPR = 0.80, only two neighbors:\ntau = 0.40 gives TPR_B = 0.84, FPR_B = 0.30.\ntau = 0.45 gives TPR_B = 0.76, FPR_B = 0.22.\n\n(a) Find the probability q of using tau = 0.40 (otherwise tau = 0.45) so that Group B's expected TPR is exactly 0.80. Compute FPR_B under the mix.\n(b) After mixing, compute the equal-opportunity and equalized-odds differences between A and B.\n(c) Group B has 500 qualified and 1,000 unqualified applicants. How many approvals are expected? State one ethical cost of randomizing.",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) q = (TPR* - TPR_2) / (TPR_1 - TPR_2) = (0.80 - 0.76) / (0.84 - 0.76) = 0.04 / 0.08 = 0.50.\nFPR_mix = 0.50 * 0.30 + 0.50 * 0.22 = 0.26.\n(b) EOpp = |0.80 - 0.80| = 0.00. FPR gap = |0.18 - 0.26| = 0.08. EOdds = max(0.00, 0.08) = 0.08. Equal opportunity is achieved exactly, but equalized odds still has an 8-point FPR gap.\n(c) Expected approvals = 500 * 0.80 + 1,000 * 0.26 = 400 + 260 = 660 approvals. Ethical cost: two identical applicants with scores between 0.40 and 0.45 can receive opposite decisions purely by random draw, violating individual fairness and creating contestability challenges.",
+            "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness",
+            "points": 10
+          },
+          {
+            "num": 2,
+            "type": "sa",
+            "question": "Mock Final Q11: Attribution Drift Index and Spearman Rank Agreement\n\nMonthly attribution monitoring compares each feature's percentage share of total |attribution|:\nDTI: 40% -> 33%; Delinquencies: 30% -> 20%; Income: 20% -> 15%; Tenure: 10% -> 5%; ZipCode: 0% -> 27%.\nSeparately, LIME ranks six features 1-2-3-4-5-6 while SHAP ranks the same six features 2-1-3-5-4-6.\n\n(a) Compute ADI = 0.5 * sum(|p_i - q_i|) and classify the drift.\n(b) Compute Spearman's rank correlation rho = 1 - 6 * sum(d_i^2) / (n * (n^2 - 1)).\n(c) Which feature accounts for the largest share of the total change (in %)? What governance action follows, and why is a high rho not enough?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Absolute shifts |p_i - q_i|: DTI 7, Delinquencies 10, Income 5, Tenure 5, ZipCode 27. Sum = 54.\nADI = 0.5 * 54 = 27.0 (> 25 -> significant drift / investigate).\n(b) Rank differences d_i: (-1, +1, 0, -1, +1, 0), so d_i^2 = (1, 1, 0, 1, 1, 0) and sum(d_i^2) = 4.\nWith n = 6: rho = 1 - (6 * 4) / (6 * 35) = 1 - 24/210 = 1 - 0.1143 = 0.8857 (0.886).\n(c) ZipCode accounts for 27 / 54 = 50% of the total absolute attribution shift. Because ZipCode is a likely protected-attribute proxy that jumped from 0% to 27%, governance must freeze/flag the model and open a fairness and data-pipeline audit. Even though rho = 0.886 looks high, LIME and SHAP disagree on the #1 ranked feature, which is the exact feature cited on an adverse-action notice.",
+            "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)",
+            "points": 10
+          },
+          {
+            "num": 3,
+            "type": "sa",
+            "question": "Mock Final Q17: Continuous Audit Score (CAS) and Accountability (RAS)\n\nTwo candidate models are scored 0 to 100 on Performance (P), Fairness (F), Drift stability (D), and Governance (G). CAS weights are 0.30 / 0.25 / 0.25 / 0.20, with a floor of 50 on every dimension.\nM1: P = 84, F = 72, D = 78, G = 60.\nM2: P = 92, F = 45, D = 88, G = 85.\n\n(a) Compute CAS for M1 and M2 and give the composite band (>= 85 audit-ready, 65 to 84 conditional, < 65 not ready).\n(b) Apply the floor rule. Which model may be deployed, and on what condition?\n(c) M1's incident chain: Triage (w = 0.25, owner + ticket), Containment (w = 0.35, owner only), Root cause (w = 0.20, owner + template), Remediation (w = 0.20, no owner). Compute RAS and classify it (>= 85 strong, 60 to 84 adequate, < 60 weak).",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) CAS(M1) = 0.30(84) + 0.25(72) + 0.25(78) + 0.20(60) = 25.20 + 18.00 + 19.50 + 12.00 = 74.70 (conditional).\nCAS(M2) = 0.30(92) + 0.25(45) + 0.25(88) + 0.20(85) = 27.60 + 11.25 + 22.00 + 17.00 = 77.85 (conditional on composite).\n(b) Floor rule: M2 fails with F = 45 < 50, so M2 is BLOCKED (Not Ready) despite having the higher composite score. Only M1 may be deployed, under conditional deployment with active monitoring and remediation of governance.\n(c) Completeness c_i: Triage = 1.0, Containment = 0.5, Root cause = 1.0, Remediation = 0.0.\nRAS = (0.25 * 1.0 + 0.35 * 0.5 + 0.20 * 1.0 + 0.20 * 0.0) * 100 = (0.25 + 0.175 + 0.20 + 0) * 100 = 62.5 (adequate, 60 to 84; assign an owner to Remediation first).",
+            "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability",
+            "points": 10
+          },
+          {
+            "num": 4,
+            "type": "sa",
+            "question": "Mock Final Q23: Monitoring False Alarms, Check Cadence, and Input Drift\n\nAn accuracy SLO is 80% and true accuracy is r = 83%; a monthly alarm fires when observed accuracy on n cases falls below 80%. Separately, a drift adds 5 percentage points of error on 600 cases/day; expected detection delay is half the check interval and response takes 1 day.\n\n(a) Compute the false-alarm probability P = Phi((0.80 - r) / sqrt(r*(1 - r) / n)) for n = 400 and n = 1,600.\n(b) Compute the excess errors before containment for weekly checks (7-day interval) and for daily checks (1-day interval).\n(c) Input quintiles had expected shares e = 0.20 each; production shares are 0.26, 0.22, 0.19, 0.18, 0.15. Compute PSI and classify it.",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) At n = 400: SE = sqrt(0.83 * 0.17 / 400) = 0.01878; z = (0.80 - 0.83) / 0.01878 = -1.597 (-1.60) -> P = Phi(-1.60) = 5.51% (5.5%).\nAt n = 1,600: SE = sqrt(0.83 * 0.17 / 1,600) = 0.00939; z = -0.03 / 0.00939 = -3.195 (-3.19) -> P = Phi(-3.195) = 0.070% (0.07%).\n(b) Extra errors/day = 0.05 * 600 = 30 errors/day.\nWeekly checks: total exposure = 7/2 + 1 = 4.5 days -> 30 * 4.5 = 135 excess errors.\nDaily checks: total exposure = 1/2 + 1 = 1.5 days -> 30 * 1.5 = 45 excess errors (3x less harm).\n(c) PSI terms against e = 0.20:\n(+0.06)*ln(0.26/0.20) = 0.0157; (+0.02)*ln(0.22/0.20) = 0.0019; (-0.01)*ln(0.19/0.20) = 0.0005; (-0.02)*ln(0.18/0.20) = 0.0021; (-0.05)*ln(0.15/0.20) = 0.0144.\nTotal PSI = 0.0347 (0.035 < 0.10 -> stable / no significant drift).",
+            "lectureReference": "Part 94: Final Review Ch 4: Human-Centered AI Design",
+            "points": 10
+          },
+          {
+            "num": 5,
+            "type": "sa",
+            "question": "Mock Final Q29: Supply-Chain Tampering, Merkle Proofs, and Hash Collisions\n\nAn ML team hardens its artifact pipeline.\n\n(a) Per-attempt tamper success probability is p = 0.15 at SLSA L2 and p = 0.03 at SLSA L3. Compute P(at least one success in 10 attempts) at each level.\n(b) A transparency log holds 5,000,000 entries with 32-byte SHA-256 nodes. How many hashes and bytes does an inclusion proof require?\n(c) Using birthday bound P approx n^2 / 2^(b+1), compute accidental collision probability for n = 10^9 artifacts with MD5 (b = 128) and SHA-256 (b = 256). How long does SHA-256 take for a 20 GB model (20,480 MB) at 1,200 MB/s? Why are MD5 and SHA-1 still rejected?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) SLSA L2: 1 - (1 - 0.15)^10 = 1 - 0.85^10 = 1 - 0.1969 = 0.8031 (80.3%).\nSLSA L3: 1 - (1 - 0.03)^10 = 1 - 0.97^10 = 1 - 0.7374 = 0.2626 (26.3%).\n(b) Hashes = ceil(log2(5,000,000)) = ceil(22.253) = 23 hashes (since 2^22 = 4,194,304 < 5M <= 8,388,608 = 2^23).\nSize = 23 * 32 = 736 bytes.\n(c) MD5: (10^9)^2 / 2^129 = 10^18 / 6.806e38 = 1.47e-21 (1.5e-21).\nSHA-256: 10^18 / 2^257 = 10^18 / 2.316e77 = 4.32e-60 (4.3e-60).\nHash time = 20,480 MB / 1,200 MB/s = 17.07 s (17.1 s; or 16.7 s under decimal 20,000 MB).\nEven though accidental collisions are negligible for MD5, MD5 and SHA-1 are rejected because deliberate cryptanalytic attacks construct chosen-prefix collisions in seconds to hours.",
+            "lectureReference": "Part 95: Final Review Ch 5: Emerging Topics in AI TI",
+            "points": 10
+          },
+          {
+            "num": 6,
+            "type": "sa",
+            "question": "Mock Final Q35: TEVV Composite and Red-Team Residual Risk\n\nA release review collects TEVV checklists and red-team findings (FSS = Impact * Exploitability * Blast radius; acceptable residual risk <= 7.0):\nTEVV: Testing 18/20, Evaluation 41/50, Verification 17/20, Validation 14/20.\nFindings: F1 prompt-injection leak (I=4, E=3, R=1.5); F2 jailbreak bypass (I=5, E=4, R=1.6); F3 model extraction (I=3, E=2, R=1.0).\n\n(a) Convert each TEVV pillar to 0 to 100, compute the TEVV composite and gate (>= 80 go, 60 to 79 conditional, < 60 no-go), and name the weakest pillar.\n(b) Compute each finding's FSS, rank them, and compute the minimum mitigation efficacy needed for each to reach residual risk <= 7.0.\n(c) The mitigation for F2 has 85% efficacy. Compute F2's residual risk. Can the release proceed on this finding?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Pillars: Testing = 18/20 = 90, Evaluation = 41/50 = 82, Verification = 17/20 = 85, Validation = 14/20 = 70.\nTEVV composite = (90 + 82 + 85 + 70) / 4 = 327 / 4 = 81.75 (>= 80 -> Go). Weakest pillar: Validation at 70, sitting right on the < 70 remediation threshold.\n(b) FSS values:\nF1 = 4 * 3 * 1.5 = 18.0 -> efficacy >= 1 - 7/18 = 61.11% (61.1%).\nF2 = 5 * 4 * 1.6 = 32.0 -> efficacy >= 1 - 7/32 = 78.13% (78.1%).\nF3 = 3 * 2 * 1.0 = 6.0 <= 7.0 -> efficacy needed = 0%.\nRanking: F2 (32.0) > F1 (18.0) > F3 (6.0).\n(c) F2 residual risk = 32.0 * (1 - 0.85) = 32.0 * 0.15 = 4.80 <= 7.0 -> YES, release can proceed on F2.",
+            "lectureReference": "Part 96: Final Review Ch 6: Operationalizing AI Threat Intelligence",
+            "points": 10
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paperNum": 6,
+    "totalPoints": 60,
+    "totalQuestions": 6,
+    "postMidtermShare": 1.0,
+    "sections": [
+      {
+        "type": "sa",
+        "label": "Numerical Problems (1 per chapter)",
+        "pointsEach": 10,
+        "questions": [
+          {
+            "num": 1,
+            "type": "sa",
+            "question": "Mock Final Q6: The Impossibility Theorem in Numbers\n\nTwo groups of 200 people each are scored by a model whose flags are correct 75% of the time in both groups (PPV = 0.75).\nGroup A: base rate 40% (80 positives, 120 negatives), 96 people flagged.\nGroup B: base rate 15% (30 positives, 170 negatives), 32 people flagged.\n\n(a) Compute TP, FP, TPR, and FPR for each group.\n(b) Compute the equal-opportunity and equalized-odds differences.\n(c) Verify both FPRs with Chouldechova's identity. Why can no threshold change equalize TPR, FPR, and PPV together here?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Group A: TP = 0.75 * 96 = 72, FP = 96 - 72 = 24; TPR_A = 72 / 80 = 0.900; FPR_A = 24 / 120 = 0.200.\nGroup B: TP = 0.75 * 32 = 24, FP = 32 - 24 = 8; TPR_B = 24 / 30 = 0.800; FPR_B = 8 / 170 = 0.0471.\n(b) EOpp = |0.900 - 0.800| = 0.100. FPR gap = |0.200 - 0.0471| = 0.1529. EOdds = max(0.100, 0.1529) = 0.1529 (about 0.153).\n(c) Identity check:\nGroup A: (0.40/0.60) * (0.25/0.75) * 0.90 = (2/3) * (1/3) * 0.90 = 0.200 (exact match).\nGroup B: (0.15/0.85) * (0.25/0.75) * 0.80 = (3/17) * (1/3) * 0.80 = 0.80/17 = 0.0471 (exact match).\nBecause base rates differ (40% vs. 15%) and the classifier is imperfect, Chouldechova's identity algebraically forbids equal PPV, equal TPR, and equal FPR from holding simultaneously under any threshold choice.",
+            "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness",
+            "points": 10
+          },
+          {
+            "num": 2,
+            "type": "sa",
+            "question": "Mock Final Q12: Minimal and Actionable Counterfactuals\n\nA logistic deny-model has w = (2.5 for DTI, 0.8 for delinquencies) and b = -1.5. The applicant has DTI = 0.70 and 1 delinquency. Approval requires P(deny) <= 0.5, i.e., logit <= 0.\n\n(a) Compute the logit w^T x + b and P(deny).\n(b) Compute the minimal-L2 counterfactual Delta* = (logit(tau) - w^T x - b) * w / ||w||^2 for tau = 0.5 and verify it lands on the boundary.\n(c) Past delinquencies are immutable. Compute the DTI-only recourse and compare it with (b). What does this show about unconstrained counterfactuals?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) logit = 2.5 * 0.70 + 0.8 * 1 - 1.5 = 1.75 + 0.80 - 1.50 = 1.05.\nP(deny) = 1 / (1 + exp(-1.05)) = 1 / (1 + 0.3499) = 0.7408 (0.741).\n(b) ||w||^2 = 2.5^2 + 0.8^2 = 6.25 + 0.64 = 6.89.\nScalar = (0 - 1.05) / 6.89 = -0.1524.\nDelta* = -0.1524 * (2.5, 0.8) = (-0.3810, -0.1219).\nNew point x' = (0.70 - 0.3810, 1 - 0.1219) = (0.3190, 0.8781). Boundary check: 2.5 * 0.3190 + 0.8 * 0.8781 - 1.5 = 0.7975 + 0.7025 - 1.5 = 0.000.\n(c) Holding delinquencies = 1: 2.5 * DTI + 0.8(1) - 1.5 = 0 -> 2.5 * DTI = 0.7 -> DTI = 0.28, so Delta DTI = 0.28 - 0.70 = -0.420.\nUnconstrained L2 asks for -0.122 fewer past delinquencies, which is impossible (immutable and integer-valued). Enforcing immutability requires a 10.2% larger DTI reduction (-0.420 vs. -0.381), but gives actionable recourse.",
+            "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)",
+            "points": 10
+          },
+          {
+            "num": 3,
+            "type": "sa",
+            "question": "Mock Final Q18: Documentation Debt Index (DDI) and Escalation Priority Score (EPS)\n\nModel-card field weights: model_details 3, intended_use 3, out_of_scope 3, training_data 2, eval_metrics 3, eval_slices 2, ethical_considerations 2, limitations 3, monitoring_triggers 2, owner_contact 1.\nMissing fields: intended_use, eval_slices, monitoring_triggers, owner_contact.\n\n(a) Compute DDI = (sum missing weights / sum all weights) * 100 and classify it (< 10% low, 10 to 30% moderate, > 30% high / block).\n(b) This week PSI = 0.18, query z = 4.5, and RAS = 62.5. Compute EPS = 100 * [0.35*min(PSI/0.25, 1) + 0.35*min(|z|/6, 1) + 0.15*(100 - RAS)/100 + 0.15*DDI/100] and state the escalation tier (>= 70 P1, 40 to 69 P2, < 40 P3).\n(c) Which signal contributes most to EPS? If intended_use is documented, compute the new DDI and EPS.",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Sum of all weights = 3+3+3+2+3+2+2+3+2+1 = 24. Missing weights = 3 + 2 + 2 + 1 = 8.\nDDI = (8 / 24) * 100 = 33.33% (> 30% -> High / block).\n(b) EPS terms:\nPSI term: 0.35 * min(0.18 / 0.25, 1) = 0.35 * 0.72 = 0.2520.\nz term: 0.35 * min(4.5 / 6, 1) = 0.35 * 0.75 = 0.2625.\nRAS term: 0.15 * (100 - 62.5) / 100 = 0.15 * 0.375 = 0.05625.\nDDI term: 0.15 * (33.3333 / 100) = 0.0500.\nEPS = 100 * (0.2520 + 0.2625 + 0.05625 + 0.0500) = 62.08 (62.1 -> Tier P2, 24 h response).\n(c) The query z-score contributes the most (26.25 points out of 62.08). Documenting intended_use removes weight 3: new missing = 5, new DDI = (5 / 24) * 100 = 20.83% (drops from High/block to Moderate). New DDI term = 0.15 * 0.20833 = 0.03125, so new EPS = 62.08 - 1.875 = 60.20 (still P2 because operational drift/spike signals dominate).",
+            "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability",
+            "points": 10
+          },
+          {
+            "num": 4,
+            "type": "sa",
+            "question": "Mock Final Q24: Stakeholder Impact, Show/Hide/Guard Utility, and RST Maturity\n\nA staff-facing child-welfare risk score has stakeholder ratings (Severity, Likelihood on 1 to 5):\nFamilies (5, 3); Call screeners (3, 4); Investigators (3, 3); Advocacy groups (2, 2).\nUI options:\nShow: benefit 12, anchoring rate 0.25 x harm 24.\nHide: benefit 0, harm 1.5.\nGuard: benefit 11, anchoring rate 0.08 x harm 24, implementation cost c.\nRST maturity scores (0 to 4): Reliable = 3, Safe = 2, Trustworthy = 2.\n\n(a) Compute each stakeholder's impact score (Severity x Likelihood) and tier (>= 15 High, 6 to 14 Medium, < 6 Low).\n(b) Compute each UI option's net utility and find the largest cost c for which Guard wins.\n(c) Compute the average RST maturity and the gap to \"Defined\" (level 3).",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) Families: 5 * 3 = 15 -> High (boundary score counts as High).\nCall screeners: 3 * 4 = 12 -> Medium.\nInvestigators: 3 * 3 = 9 -> Medium.\nAdvocacy groups: 2 * 2 = 4 -> Low.\n(b) Net utilities:\nShow = 12 - 0.25 * 24 = 12 - 6.0 = +6.0.\nHide = 0 - 1.5 = -1.5.\nGuard = 11 - 0.08 * 24 - c = 11 - 1.92 - c = 9.08 - c.\nGuard wins over Show (the best alternative) whenever 9.08 - c > 6.0, i.e., c < 3.08.\n(c) Average RST = (3 + 2 + 2) / 3 = 2.33. Gap to Defined (3.0) = 3.0 - 2.33 = 0.67 points.",
+            "lectureReference": "Part 94: Final Review Ch 4: Human-Centered AI Design",
+            "points": 10
+          },
+          {
+            "num": 5,
+            "type": "sa",
+            "question": "Mock Final Q30: Attestation Nonces, TEE ROI, and EU AI Act Compute\n\nA healthcare provider evaluates confidential inference in a TEE and checks a frontier-model obligation.\n\n(a) Expected nonce repeats approx N^2 / 2^(n+1). For N = 10^8 attestation challenges, compute expected repeats for 32-bit and 64-bit nonces. Which is acceptable?\n(b) 5,000,000 inferences/month cost $0.004 each; a TEE adds 25% overhead; a breach costs $8,000,000. Compute the annual TEE cost, break-even risk reduction Delta_p, and net annual value at Delta_p = 2%.\n(c) A model has N = 200B parameters trained on D = 10T tokens. Using C approx 6ND, does it cross the 10^25 FLOPs threshold? How many GPU-days does it require at 989 TFLOP/s and 40% utilization?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) 32-bit: 10^16 / 2^33 = 1.164e6 (about 1.16 million repeats -> UNSAFE, vulnerable to replay).\n64-bit: 10^16 / 2^65 = 2.71e-4 -> acceptable at N = 10^8, though 128-bit nonces are standard best practice.\n(b) Annual TEE overhead = 5,000,000 * $0.004 * 0.25 * 12 = $60,000/year.\nBreak-even Delta_p = $60,000 / $8,000,000 = 0.0075 = 0.75%.\nNet value at Delta_p = 2%: 0.02 * $8,000,000 - $60,000 = $160,000 - $60,000 = +$100,000/year.\n(c) C = 6 * (2e11) * (1e13) = 1.2e25 FLOPs -> YES, crosses the EU AI Act 10^25 FLOPs systemic-risk presumption.\nEffective GPU throughput = 989e12 * 0.40 = 3.956e14 FLOP/s; per day = 3.956e14 * 86,400 = 3.418e19 FLOP/GPU-day.\nGPU-days = 1.2e25 / 3.418e19 = 351,084 GPU-days (about 351,000 GPU-days).",
+            "lectureReference": "Part 95: Final Review Ch 5: Emerging Topics in AI TI",
+            "points": 10
+          },
+          {
+            "num": 6,
+            "type": "sa",
+            "question": "Mock Final Q36: PMRI Release Gate and AWTCS Coverage Headroom\n\nUsing Q35's TEVV = 81.75, F2 residual risk = 4.8 (of max 50), and KPI health = 78:\nPMRI = 0.40 * TEVV + 0.35 * (100 - RiskNorm) + 0.25 * KPI, with RiskNorm = (residual / 50) * 100.\nATLAS threat coverage table (Prevalence p, Severity s, Coverage c):\nPrompt injection (5, 4, 0.7); Model extraction (3, 3, 0.5); Data poisoning (2, 5, 0.4); Evasion (4, 4, 0.6); Supply chain (4, 5, 0.2).\n\n(a) Compute RiskNorm, Safety (100 - RiskNorm), and PMRI. Does the release clear the commercial (80) and government (90) gates?\n(b) Holding Safety and KPI fixed, what TEVV score would reach PMRI = 90? Is that realistic?\n(c) Compute AWTCS = sum(c*p*s) / sum(p*s) and each category's headroom (1 - c)*p*s / sum(p*s). Where should investment go, and what is the new AWTCS if that category's coverage rises to 0.6?",
+            "tier": "Tier 1 — High Probability",
+            "answerText": "(a) RiskNorm = (4.8 / 50) * 100 = 9.6; Safety = 100 - 9.6 = 90.4.\nPMRI = 0.40(81.75) + 0.35(90.4) + 0.25(78) = 32.70 + 31.64 + 19.50 = 83.84.\nVerdict: clears commercial gate (>= 80), FAILS government gate (>= 90).\n(b) Solve 0.40 * TEVV + 31.64 + 19.50 = 90 -> 0.40 * TEVV = 38.86 -> TEVV = 97.15. That is unrealistic via TEVV alone; reaching 90 requires improving KPI health and reducing residual risk alongside TEVV.\n(c) Weights p*s: PI = 20, ME = 9, DP = 10, EV = 16, SC = 20 -> sum(p*s) = 75.\nCovered weights c*p*s: PI = 14.0, ME = 4.5, DP = 4.0, EV = 9.6, SC = 4.0 -> sum(c*p*s) = 36.1.\nAWTCS = 36.1 / 75 = 0.4813 (0.481).\nHeadrooms (1 - c)*p*s / 75:\nSupply chain: 0.8 * 20 / 75 = 16 / 75 = 0.2133 (LARGEST).\nEvasion: 0.4 * 16 / 75 = 6.4 / 75 = 0.0853.\nPrompt injection: 0.3 * 20 / 75 = 6 / 75 = 0.0800.\nData poisoning: 0.6 * 10 / 75 = 6 / 75 = 0.0800.\nModel extraction: 0.5 * 9 / 75 = 4.5 / 75 = 0.0600.\nInvest in Supply chain. Raising its coverage from 0.2 to 0.6 adds (0.4 * 20) = 8.0 to the numerator: new AWTCS = (36.1 + 8.0) / 75 = 44.1 / 75 = 0.5880 (0.588).",
+            "lectureReference": "Part 96: Final Review Ch 6: Operationalizing AI Threat Intelligence",
+            "points": 10
+          }
+        ]
+      }
+    ]
+  }
+]
