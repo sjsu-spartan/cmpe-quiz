@@ -29825,5 +29825,3434 @@
     "tier": "Tier 1 — High Probability",
     "answerText": "The gates of 80 and 90 are thresholds from the companion deck. The sector assignments and the \"key number\" column are mappings made for illustration. The deck gives no measured basis for them. A program would justify a gate by (1) an impact analysis for the specific deployment, with the consequences of a missed control; (2) the procurement or regulatory expectation that applies, cited by document; and (3) a record of which controls map to each requirement. The justification should be written down before the gate is used, and the program should state which numbers came from its own measurements.",
     "lectureReference": "Part 82: Government Gate Paths and Sector Use Cases"
+  },
+  {
+    "num": 2216,
+    "type": "tf",
+    "question": "Adding a bias delta to green logits multiplies the odds of a green token by e^delta.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Each green weight is multiplied by e^delta, so the odds against red tokens scale by that factor (slide 3).",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2217,
+    "type": "tf",
+    "question": "With gamma = 0.5 and delta = 2, the closed-form green probability is about 0.881.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "0.5 x 7.389 / (0.5 x 7.389 + 0.5) = 0.881.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2218,
+    "type": "tf",
+    "question": "With delta = 0 the green probability is 1.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "With delta = 0 nothing is biased, so the green probability equals gamma (0.5 for gamma = 0.5).",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2219,
+    "type": "tf",
+    "question": "For gamma = 0.25 and delta = 1 the green probability is about 0.475.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "0.25 x 2.718 / (0.25 x 2.718 + 0.75) = 0.679 / 1.429 = 0.475.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2220,
+    "type": "tf",
+    "question": "In the three-token example, \"analysis\" falls because its logit was lowered.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Its logit stays at 2.95. Its probability falls because the green tokens' weights grew by 7.39 and the normalizer grew.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2221,
+    "type": "tf",
+    "question": "In the three-token example, green mass rises from about 0.669 to about 0.937.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Before: 0.384 + 0.285 = 0.669. After: 0.538 + 0.399 = 0.937.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2222,
+    "type": "tf",
+    "question": "At gamma = 0.5, raising delta from 2 to 3 adds about 0.07 to the green probability.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "0.953 - 0.881 = 0.072.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2223,
+    "type": "tf",
+    "question": "At gamma = 0.5, raising delta from 2 to 4 adds more than 0.2 to the green probability.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "0.982 - 0.881 = 0.101.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2224,
+    "type": "tf",
+    "question": "The closed form on slide 3 assumes that all logits are equal.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The deck calls this the maximum-entropy case.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2225,
+    "type": "tf",
+    "question": "The deck's simulation reports a green share of 0.881 at sigma = 8.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide reports 0.707 at sigma = 8, which is the peaked case. The 0.881 value is the closed form for flat logits. The simulated numbers were not rerun for this guide.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2226,
+    "type": "mcq",
+    "question": "What is e^delta at delta = 2, the odds multiplier on a green token?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "7.39",
+      "B": "2.00",
+      "C": "14.78",
+      "D": "20.09"
+    },
+    "answer": "A",
+    "explanation": "e^2 = 7.389. Doubling delta squares the multiplier, so e^4 is 54.6, not 14.78.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2227,
+    "type": "mcq",
+    "question": "At gamma = 0.5 and delta = 2, what are the odds of a green token against a red token?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "1 : 1",
+      "B": "7.39 : 1",
+      "C": "2 : 1",
+      "D": "0.88 : 1"
+    },
+    "answer": "B",
+    "explanation": "The unbiased odds are 1 : 1 at gamma = 0.5, and the bias multiplies them by 7.39. The value 0.88 is the probability, not the odds.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2228,
+    "type": "mcq",
+    "question": "What is the closed-form green probability for gamma = 0.25 and delta = 2?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.881",
+      "B": "0.475",
+      "C": "0.711",
+      "D": "0.870"
+    },
+    "answer": "C",
+    "explanation": "0.25 x 7.389 / (0.25 x 7.389 + 0.75) = 1.847 / 2.597 = 0.711.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2229,
+    "type": "mcq",
+    "question": "What is the closed-form green probability for gamma = 0.5 and delta = 3?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.881",
+      "B": "0.982",
+      "C": "0.731",
+      "D": "0.953"
+    },
+    "answer": "D",
+    "explanation": "e^3 = 20.09, so P = 20.09 / 21.09 = 0.953.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2230,
+    "type": "mcq",
+    "question": "For gamma = 0.25 and delta = 0, what is the green probability?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.25",
+      "B": "0.50",
+      "C": "0.00",
+      "D": "0.475"
+    },
+    "answer": "A",
+    "explanation": "Without bias, the green share equals the green fraction gamma.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2231,
+    "type": "mcq",
+    "question": "In the three-token example, what is the biased logit for \"report\" at delta = 2?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "3.10",
+      "B": "5.10",
+      "C": "2.95",
+      "D": "4.80"
+    },
+    "answer": "B",
+    "explanation": "The raw logit 3.10 is green, so 3.10 + 2 = 5.10. The value 4.80 belongs to \"summary\".",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2232,
+    "type": "mcq",
+    "question": "What is e^5.10, the biased weight of \"report\"?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "22.2",
+      "B": "121.5",
+      "C": "164.0",
+      "D": "19.1"
+    },
+    "answer": "C",
+    "explanation": "e^5.10 = 164.0. The value 22.2 is its weight before the bias.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2233,
+    "type": "mcq",
+    "question": "What is the sum of weights over the three candidates before the bias?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "304.6",
+      "B": "22.2",
+      "C": "1.00",
+      "D": "57.75"
+    },
+    "answer": "D",
+    "explanation": "22.20 + 19.11 + 16.44 = 57.75. The value 304.6 is the sum after the bias.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2234,
+    "type": "mcq",
+    "question": "What is the probability of \"report\" after the bias?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.538",
+      "B": "0.384",
+      "C": "0.399",
+      "D": "0.937"
+    },
+    "answer": "A",
+    "explanation": "164.0 / 304.6 = 0.538. The value 0.937 is the combined green mass.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2235,
+    "type": "mcq",
+    "question": "By what factor does the probability of \"analysis\" fall (0.331 to 0.063)?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "About 1.3",
+      "B": "About 5.3",
+      "C": "About 7.4",
+      "D": "About 0.2"
+    },
+    "answer": "B",
+    "explanation": "0.331 / 0.063 = 5.3. The factor 7.4 is e^2, the green weight growth, which is a different quantity.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2236,
+    "type": "mcq",
+    "question": "Which delta gives an odds multiplier of about 20.1?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "2",
+      "B": "4",
+      "C": "3",
+      "D": "1"
+    },
+    "answer": "C",
+    "explanation": "e^3 = 20.09. Delta 4 gives 54.6.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2237,
+    "type": "mcq",
+    "question": "What is the closed-form green probability at gamma = 0.5 and delta = 1?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.500",
+      "B": "0.881",
+      "C": "0.622",
+      "D": "0.731"
+    },
+    "answer": "D",
+    "explanation": "e / (e + 1) = 2.718 / 3.718 = 0.731. The value 0.622 is the delta = 0.5 case.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2238,
+    "type": "mcq",
+    "question": "What does a larger delta trade, according to slide 4?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Stronger signal for more distortion of the text",
+      "B": "Stronger signal for a lower false-alarm rate",
+      "C": "Lower distortion for a weaker signal with no other effect",
+      "D": "Faster detection for a larger vocabulary"
+    },
+    "answer": "A",
+    "explanation": "Slide 4 states the trade as signal strength against distortion. The slide does not tie delta to false-alarm rate.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2239,
+    "type": "mcq",
+    "question": "The biased probabilities are 0.538, 0.063, and 0.399. What do they sum to?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "0.937",
+      "B": "1.000",
+      "C": "1.063",
+      "D": "0.669"
+    },
+    "answer": "B",
+    "explanation": "A softmax output must sum to 1. The value 0.937 is the green mass, which leaves out the red token.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2240,
+    "type": "mcq",
+    "question": "Which assumption does the closed-form green probability make?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The vocabulary has exactly 500 tokens",
+      "B": "The detector uses z = 4",
+      "C": "All logits are equal",
+      "D": "Text is human-written"
+    },
+    "answer": "C",
+    "explanation": "The deck states that the closed form is the maximum-entropy case with equal logits. The vocabulary size and the detector threshold do not enter it.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2241,
+    "type": "sa",
+    "question": "Explain in your own words why the green probability depends on gamma and delta but not on the vocabulary size under the closed form on slide 3.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "Under equal logits, every token has the same weight before the bias. A fraction gamma of tokens is green and receives the multiplier e^delta, and the rest keep weight 1. The ratio of green weight to total weight is gamma x e^delta / (gamma x e^delta + 1 - gamma). The vocabulary size appears in both numerator and denominator and cancels.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2242,
+    "type": "sa",
+    "question": "Using a candidate set with logits 2.0 (green), 2.0 (red), and 1.0 (red), compute the green token's probability before and after delta = 2, and say how it compares with the closed form for gamma = 0.5.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "Before: 7.389 / (7.389 + 7.389 + 2.718) = 0.422. After: 54.60 / (54.60 + 7.389 + 2.718) = 0.844. The closed form for gamma = 0.5 and delta = 2 is 0.881. The candidate set has unequal logits and one green token out of three, so it need not match the closed form, which assumes equal logits and a green fraction of one half.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2243,
+    "type": "sa",
+    "question": "A program owner wants the watermark to survive on highly predictable text such as boilerplate. Using slide 6, state what the slide shows and what additional evidence the owner would need before relying on the watermark there.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "Slide 6 reports a simulated green share that falls from about 0.88 at low logit spread to 0.707 when one token dominates (sigma = 8). The result suggests that predictable spans carry little watermark signal. The owner would need measurements on the actual model and text type: the green share per text, the z statistic distribution on human and watermarked samples of that type, and the length needed to reach the chosen threshold. The slide uses Gaussian logits in a 1,000-token vocabulary and does not stand in for those measurements.",
+    "lectureReference": "Part 83: Green-List Bias and Green-Token Probability"
+  },
+  {
+    "num": 2244,
+    "type": "tf",
+    "question": "The detector's z-score is (s - gamma x T) / sqrt(T x gamma x (1 - gamma)).",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This is the one-proportion z-test given on slides 7 and 8.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2245,
+    "type": "tf",
+    "question": "A threshold of z = 4 corresponds to a one-sided p-value near 3.2e-3.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The one-sided p at z = 4 is 3.17e-5, which is 31.7 false alarms per million human texts.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2246,
+    "type": "tf",
+    "question": "At z = 4 the normal approximation gives about 31.7 false alarms per million human texts.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "p = 3.17e-5 and 3.17e-5 x 1,000,000 = 31.7.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2247,
+    "type": "tf",
+    "question": "At gamma = 0.5 and g = 0.70, an expected z of 4 needs about 100 tokens.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "T* = 4 / (0.20)^2 = 100.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2248,
+    "type": "tf",
+    "question": "Doubling the text length doubles the expected z.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The expected z grows with the square root of T, so doubling T multiplies it by about 1.41.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2249,
+    "type": "tf",
+    "question": "A run with s = 146 and T = 200 gives z of about 6.51.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "(146 - 100) / 7.071 = 6.51.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2250,
+    "type": "tf",
+    "question": "At T = 200, the exact false-positive rate of the z > 4 rule is larger than 3.17e-5.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The exact rate is 2.5e-5. The count is discrete, so the first passing count (129) sits at z = 4.03.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2251,
+    "type": "tf",
+    "question": "At T = 25 and g = 0.77 the true-positive rate of the z > 4 rule is about 5%.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Slide 10 reports 5.1%, because the expected z at T = 25 is only 2.7.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2252,
+    "type": "tf",
+    "question": "The detector scores T = n - 1 positions in an n-token text.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The first token has no previous token to seed a green list, so scoring starts at position 2.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2253,
+    "type": "tf",
+    "question": "The 17.7 ms detect() time on slide 7 was reproduced for this guide.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The timing depends on the machine. It is reported by the deck and was not rerun.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2254,
+    "type": "mcq",
+    "question": "A 200-position text has 175 green hits and gamma = 0.5. What is z?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "10.61",
+      "B": "7.64",
+      "C": "6.51",
+      "D": "12.50"
+    },
+    "answer": "A",
+    "explanation": "(175 - 100) / sqrt(50) = 75 / 7.071 = 10.61. The value 7.64 is the expected z at g = 0.77.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2255,
+    "type": "mcq",
+    "question": "At T = 200 and gamma = 0.5, what is the standard deviation of the green count under the null?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "50",
+      "B": "7.07",
+      "C": "14.14",
+      "D": "10"
+    },
+    "answer": "B",
+    "explanation": "sqrt(200 x 0.25) = sqrt(50) = 7.07. The value 50 is the variance.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2256,
+    "type": "mcq",
+    "question": "What is the one-sided p-value at z = 4?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "2.28e-2",
+      "B": "1.35e-3",
+      "C": "3.17e-5",
+      "D": "2.87e-7"
+    },
+    "answer": "C",
+    "explanation": "1 - Phi(4) = 3.17e-5. The other values belong to z = 2, 3, and 5.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2257,
+    "type": "mcq",
+    "question": "How many false alarms per million human texts does z = 3 give?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "About 0.29",
+      "B": "About 31.7",
+      "C": "About 22,750",
+      "D": "About 1,350"
+    },
+    "answer": "D",
+    "explanation": "p = 1.35e-3, so 1,350 per million. The values 31.7 and 22,750 belong to z = 4 and z = 2.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2258,
+    "type": "mcq",
+    "question": "What is the expected z at T = 100, g = 0.70, and gamma = 0.5?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "4.0",
+      "B": "2.0",
+      "C": "5.66",
+      "D": "8.0"
+    },
+    "answer": "A",
+    "explanation": "(0.20 x 10) / 0.5 = 4.0. The value 8.0 is the expected z at T = 400.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2259,
+    "type": "mcq",
+    "question": "How many tokens give an expected z of 4 when g = 0.60?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "100",
+      "B": "400",
+      "C": "200",
+      "D": "55"
+    },
+    "answer": "B",
+    "explanation": "T* = 4 / (0.10)^2 = 400.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2260,
+    "type": "mcq",
+    "question": "About how many tokens give an expected z of 4 when g = 0.77?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "100",
+      "B": "27",
+      "C": "55",
+      "D": "110"
+    },
+    "answer": "C",
+    "explanation": "T* = 4 / (0.27)^2 = 54.9, which rounds to 55.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2261,
+    "type": "mcq",
+    "question": "What is the exact true-positive rate at T = 100, g = 0.77, under the z > 4 rule?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "12.4%",
+      "B": "99.998%",
+      "C": "37.9%",
+      "D": "93.6%"
+    },
+    "answer": "D",
+    "explanation": "Slide 10 reports 93.6%, and a recomputed exact binomial tail gives 0.9357.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2262,
+    "type": "mcq",
+    "question": "What is the smallest green count that passes z > 4 at T = 100 and gamma = 0.5?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "71",
+      "B": "70",
+      "C": "75",
+      "D": "64"
+    },
+    "answer": "A",
+    "explanation": "s = 70 gives z = 4.0 exactly, which does not exceed 4. s = 71 gives z = 4.2.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2263,
+    "type": "mcq",
+    "question": "A 200-position human text has 99 green hits. What is z?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.14",
+      "B": "-0.14",
+      "C": "-1.0",
+      "D": "0.0"
+    },
+    "answer": "B",
+    "explanation": "(99 - 100) / 7.071 = -0.14. Below the null mean, z is negative.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2264,
+    "type": "mcq",
+    "question": "If T is multiplied by 4 with g unchanged, how does the expected z change?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "It quadruples",
+      "B": "It stays the same",
+      "C": "It doubles",
+      "D": "It rises by 4"
+    },
+    "answer": "C",
+    "explanation": "The expected z is proportional to the square root of T, and sqrt(4) = 2.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2265,
+    "type": "mcq",
+    "question": "Why is the exact false-positive rate at T = 200 (2.5e-5) below the normal-tail value (3.17e-5)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The exact test ignores the green list",
+      "B": "The detector uses a different threshold at T = 200",
+      "C": "The human text has fewer tokens",
+      "D": "The count is discrete, so the first passing count sits above z = 4"
+    },
+    "answer": "D",
+    "explanation": "s must be an integer, and the smallest passing count (129) has z = 4.03. The same threshold applies at every T, and the green list is still used.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2266,
+    "type": "mcq",
+    "question": "At T = 200 and g = 0.65 the expected z is 4.24, but the true-positive rate is 59.1%. Why?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The green count varies around its mean, so many texts fall below the cutoff",
+      "B": "The detector ignores watermarked text at g = 0.65",
+      "C": "The expected z is computed incorrectly",
+      "D": "The false-positive rate is 59.1%"
+    },
+    "answer": "A",
+    "explanation": "The expected z is a mean. The green count has a spread, and about 41% of texts fall below the flag count of 129.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2267,
+    "type": "mcq",
+    "question": "How many false alarms per million human texts does z = 2 give?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "About 1,350",
+      "B": "About 22,750",
+      "C": "About 31.7",
+      "D": "About 2.3"
+    },
+    "answer": "B",
+    "explanation": "p = 2.28e-2, so 22,750 per million.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2268,
+    "type": "mcq",
+    "question": "A text has 201 tokens. How many positions does the detector score?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "201",
+      "B": "199",
+      "C": "200",
+      "D": "100"
+    },
+    "answer": "C",
+    "explanation": "The code scores positions 2 to n, so T = n - 1 = 200.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2269,
+    "type": "sa",
+    "question": "Compare the z > 3 and z > 4 rules for a program that screens 1,000,000 human texts, using false alarms per million, and state the cost of the stricter rule.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "At z = 3 the rate is 1,350 false alarms per million, and at z = 4 it is 31.7, about 43 times fewer. The stricter rule needs more green hits, so it detects fewer watermarked texts at short lengths. At g = 0.77 and T = 50 the z > 4 rule detects 37.9% of watermarked texts, so a longer text or a lower threshold is needed for higher power. The choice trades review cost against missed detections and is a program decision.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2270,
+    "type": "sa",
+    "question": "Derive the formula for the number of tokens at which the expected z reaches 4, and use it to find the length for g = 0.55.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "Setting (g - gamma) sqrt(T) / sqrt(gamma (1 - gamma)) = 4 gives T = 16 x gamma (1 - gamma) / (g - gamma)^2. At gamma = 0.5 this is 4 / (g - 0.5)^2. For g = 0.55, T = 4 / 0.0025 = 1,600 tokens. A weak lean needs very long text, and at that length the expected z is only the mean, so detection is near 50% rather than near 100%.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2271,
+    "type": "sa",
+    "question": "A colleague wants to quote \"false alarms of 3.17e-5\" for the z > 4 detector on 100-token texts. State the exact figure from the deck, and say what the quoted value assumes.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The exact binomial rate at T = 100 is 1.6e-5 (flag at s >= 71), from slide 10. The value 3.17e-5 comes from the normal tail at z = 4, which assumes a continuous statistic. Because the count is discrete, the true rate is lower. Both treat each scored position as green with probability 0.5, independently, under the null.",
+    "lectureReference": "Part 84: Watermark Detection: The z-Test, Sample Size, and Power"
+  },
+  {
+    "num": 2272,
+    "type": "tf",
+    "question": "In the deck's dilution model, expected z at T = 200 falls as 7.64 x (1 - 2r) when a fraction r of tokens is replaced.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The slide values 6.11, 4.58, 3.05, 1.53, and 0.00 match this form.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2273,
+    "type": "tf",
+    "question": "At r = 0.3 the deck's dilution model still gives an expected z above 4.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The expected z is 3.05 at r = 0.3, below the threshold of 4.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2274,
+    "type": "tf",
+    "question": "The fraction of replaced tokens that defeats detection at T = 200 is about 0.24 in the deck's model.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "7.64 x (1 - 2r) = 4 gives r = 0.238.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2275,
+    "type": "tf",
+    "question": "One replaced token can spoil two positions because the next token's green list is seeded by the replaced token.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "With h = 1, the list for position i + 1 depends on token i.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2276,
+    "type": "tf",
+    "question": "The factor 1 - 2r is exact for independent random replacements.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The independent-swap fraction is (1 - r)^2 = 1 - 2r + r^2. The deck's factor is the first-order approximation.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2277,
+    "type": "tf",
+    "question": "The code check on slide 11 gives 0.6 x 0.875 + 0.4 x 0.5 = 0.725 for the expected green fraction at r = 0.2.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "0.525 + 0.200 = 0.725, against 0.730 measured.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2278,
+    "type": "tf",
+    "question": "Under the deck's simulation, the fixed-length test at alpha = beta = 0.001 needs only 46 tokens.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The fixed test needs 119 tokens. The 46.0 average belongs to the SPRT on watermarked text.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2279,
+    "type": "tf",
+    "question": "The SPRT's average of 46.0 tokens on watermarked text is about 61% lower than the fixed test's 119.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "1 - 46.0 / 119 = 0.613.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2280,
+    "type": "tf",
+    "question": "The SPRT boundaries for alpha = beta = 0.001 are about plus and minus 6.9 in log-likelihood ratio.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "ln(0.999 / 0.001) = 6.907.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2281,
+    "type": "tf",
+    "question": "The deck states the SPRT alternative hypothesis as a green fraction of 0.77.",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide does not state it. The value 0.77 is this guide's inference from slides 9 to 11, and the recomputed Wald averages (44.8 and 40.0) are close to the deck's simulated 46.0 and 42.2.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2282,
+    "type": "tf",
+    "question": "At r = 0.5 the deck's dilution model still gives an expected z above 4.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "7.64 x (1 - 1.0) = 0.00.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2283,
+    "type": "mcq",
+    "question": "In the deck's model, what is the expected z at T = 200 and r = 0.1?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "6.11",
+      "B": "7.64",
+      "C": "6.87",
+      "D": "4.58"
+    },
+    "answer": "A",
+    "explanation": "7.64 x 0.8 = 6.11. The value 6.87 would come from 1 - r instead of 1 - 2r.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2284,
+    "type": "mcq",
+    "question": "What is the expected z at r = 0.4?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "4.58",
+      "B": "1.53",
+      "C": "2.29",
+      "D": "3.05"
+    },
+    "answer": "B",
+    "explanation": "7.64 x (1 - 0.8) = 1.53.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2285,
+    "type": "mcq",
+    "question": "About what replacement fraction brings the expected z down to 4 at T = 200?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.12",
+      "B": "0.48",
+      "C": "0.24",
+      "D": "0.50"
+    },
+    "answer": "C",
+    "explanation": "1 - 2r = 4 / 7.64 = 0.523, so r = 0.238. The value 0.48 is 1 - 0.52, the surviving share, not r.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2286,
+    "type": "mcq",
+    "question": "Using g = 0.875 for watermarked text and 0.5 for replaced positions, what is the expected green fraction at r = 0.2 under the deck's formula?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.800",
+      "B": "0.775",
+      "C": "0.700",
+      "D": "0.725"
+    },
+    "answer": "D",
+    "explanation": "0.6 x 0.875 + 0.4 x 0.5 = 0.725.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2287,
+    "type": "mcq",
+    "question": "Why does the slide say one edit can spoil two positions?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "The next token's green list is seeded by the edited token",
+      "B": "The edited token is counted as red twice",
+      "C": "The detector scores each token twice",
+      "D": "Edits double the vocabulary size"
+    },
+    "answer": "A",
+    "explanation": "With context width 1, the green list for position i + 1 is a function of token i.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2288,
+    "type": "mcq",
+    "question": "How many tokens does the fixed exact-binomial test need at alpha = beta = 0.001?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "46",
+      "B": "119",
+      "C": "200",
+      "D": "61"
+    },
+    "answer": "B",
+    "explanation": "Slide 12 gives 119, and a recomputed search over T gives the same value with a flag count of 77.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2289,
+    "type": "mcq",
+    "question": "What is the SPRT's average number of tokens on watermarked text on slide 12?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "119",
+      "B": "42.2",
+      "C": "46.0",
+      "D": "61"
+    },
+    "answer": "C",
+    "explanation": "The slide reports 46.0. The value 42.2 is the average on human text.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2290,
+    "type": "mcq",
+    "question": "By what percentage does the SPRT reduce tokens relative to the fixed test (46.0 against 119)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "About 39%",
+      "B": "About 46%",
+      "C": "About 72%",
+      "D": "About 61%"
+    },
+    "answer": "D",
+    "explanation": "1 - 46.0 / 119 = 0.613. The value 39% is the SPRT's tokens as a share of the fixed test.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2291,
+    "type": "mcq",
+    "question": "What is the upper SPRT boundary for alpha = beta = 0.001?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "6.907",
+      "B": "0.999",
+      "C": "3.0",
+      "D": "9.21"
+    },
+    "answer": "A",
+    "explanation": "ln((1 - 0.001) / 0.001) = ln 999 = 6.907.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2292,
+    "type": "mcq",
+    "question": "With H0 = 0.5 and H1 = 0.77, what does a green token add to the log-likelihood ratio?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.770",
+      "B": "0.432",
+      "C": "-0.777",
+      "D": "1.54"
+    },
+    "answer": "B",
+    "explanation": "ln(0.77 / 0.5) = ln 1.54 = 0.432. The value -0.777 is the red-token increment.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2293,
+    "type": "mcq",
+    "question": "What does a red token add to the log-likelihood ratio?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "-0.23",
+      "B": "-0.432",
+      "C": "-0.777",
+      "D": "0.460"
+    },
+    "answer": "C",
+    "explanation": "ln(0.23 / 0.5) = -0.777.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2294,
+    "type": "mcq",
+    "question": "At alpha = beta = 0.001, about how many consecutive green tokens cross the upper boundary?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "11",
+      "B": "46",
+      "C": "23",
+      "D": "16"
+    },
+    "answer": "D",
+    "explanation": "16 x 0.432 = 6.91, just above 6.907. 15 tokens give 6.48, which falls short.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2295,
+    "type": "mcq",
+    "question": "What does slide 12 report as the SPRT's average tokens on human text?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "42.2",
+      "B": "119",
+      "C": "46.0",
+      "D": "0.05"
+    },
+    "answer": "A",
+    "explanation": "The slide reports 42.2 tokens. The value 0.05 is the false-positive percentage in the table.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2296,
+    "type": "mcq",
+    "question": "What does Wald's approximation give as the expected tokens under H1 for this guide's reading (0.5 versus 0.77, alpha = beta = 0.001)?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "About 119",
+      "B": "About 44.8",
+      "C": "About 16",
+      "D": "About 6.9"
+    },
+    "answer": "B",
+    "explanation": "The expected drift is 0.154 per token and the expected final sum is near 6.9, giving about 44.8. The deck's simulated 46.0 is higher because of overshoot.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2297,
+    "type": "mcq",
+    "question": "Under the linear model with g = 0.77 and r = 0.2, about how many tokens give an expected z of 4?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "100",
+      "B": "200",
+      "C": "153",
+      "D": "76"
+    },
+    "answer": "C",
+    "explanation": "The expected z is 0.324 x sqrt(T), and 4 / 0.324 = 12.35, so T = 152.4.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2298,
+    "type": "sa",
+    "question": "Compute the deck's expected z at T = 200 for r = 0.15 and r = 0.25, and say which of the two the z > 4 rule detects.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "z = 7.64 x (1 - 0.30) = 5.35 at r = 0.15, which is detected. z = 7.64 x (1 - 0.50) = 3.82 at r = 0.25, which falls below 4. The boundary lies at r = 0.238, between them.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2299,
+    "type": "sa",
+    "question": "Describe what the SPRT guarantees and what the fixed-length test guarantees, and name one assumption the SPRT result on slide 12 depends on.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "Both are designed to keep the false-positive rate near 0.1% and the power near 99.9%. The fixed test reads 119 tokens always. The SPRT reads a variable number, 46.0 on average for watermarked text and 42.2 for human text in the deck's simulation. The SPRT result depends on the alternative green fraction chosen in advance (this guide infers 0.77), so a lower real fraction, such as after dilution, changes the length and the power.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2300,
+    "type": "sa",
+    "question": "A program expects up to 20% of tokens to be replaced by paraphrasing. Using the deck's model, state the minimum text length that keeps the expected z at 4, and what the program should report for shorter texts.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "At r = 0.2 and g = 0.77 the expected z is 0.324 sqrt(T), so T = 153 tokens gives an expected z of 4. At that length detection is near 50%, so a higher z target needs more tokens (for an expected z of 5, T = 238). For texts shorter than the required length the program should report the z statistic with its length and mark the result inconclusive, since the deck's model gives an expected z below the threshold.",
+    "lectureReference": "Part 85: Paraphrase Dilution and the Sequential Probability Ratio Test"
+  },
+  {
+    "num": 2301,
+    "type": "tf",
+    "question": "LLM01 prompt injection scores 16 in the deck's example, with L = 4 and I = 4.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "4 x 4 = 16, and it ranks first (slide 14).",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2302,
+    "type": "tf",
+    "question": "The mean score across the ten risks is 9.3.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The scores sum to 93, and 93 / 10 = 9.3.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2303,
+    "type": "tf",
+    "question": "The two highest risks hold about 33% of the total risk score.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "(16 + 15) / 93 = 0.333.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2304,
+    "type": "tf",
+    "question": "On the 5 x 5 matrix, 8 cells have a product of at least 15.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Six cells do: 15, 16, 20, 15, 20, and 25.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2305,
+    "type": "tf",
+    "question": "A control with effectiveness 0.75 on LLM01 reduces its score from 16 to 4.0.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "16 x (1 - 0.75) = 4.0.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2306,
+    "type": "tf",
+    "question": "After the five controls on slide 16 the total risk score falls by 56%.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The total falls from 93 to about 52, a reduction of about 44%.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2307,
+    "type": "tf",
+    "question": "After the five controls, LLM03 supply chain (score 8) is the top uncontrolled risk.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The other uncontrolled risks score 6 each, so 8 is the highest.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2308,
+    "type": "tf",
+    "question": "The tool guard blocked 404 of 500 attacker-steered calls, which is 80.8%.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "119 + 76 + 115 + 94 = 404, and 404 / 500 = 0.808.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2309,
+    "type": "tf",
+    "question": "The 96 bulk crm_lookup calls were blocked by the allowlist check.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "They pass. Lookups are read-only and on the allowlist, so no check applies.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2310,
+    "type": "tf",
+    "question": "The guard blocked some of the 9,500 benign calls in the deck's simulation.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide reports 0 false blocks.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2311,
+    "type": "mcq",
+    "question": "What is the L x I score of LLM06 excessive agency (L = 3, I = 5)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "15",
+      "B": "16",
+      "C": "12",
+      "D": "8"
+    },
+    "answer": "A",
+    "explanation": "3 x 5 = 15, which is the second-highest score.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2312,
+    "type": "mcq",
+    "question": "What is the sum of the ten scores on slide 14?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "90",
+      "B": "93",
+      "C": "100",
+      "D": "9.3"
+    },
+    "answer": "B",
+    "explanation": "16 + 15 + 12 + 9 + 9 + 8 + 6 + 6 + 6 + 6 = 93. The value 9.3 is the mean.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2313,
+    "type": "mcq",
+    "question": "What is the mean score per risk category on slide 14?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "93",
+      "B": "10",
+      "C": "9.3",
+      "D": "8.0"
+    },
+    "answer": "C",
+    "explanation": "93 / 10 = 9.3.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2314,
+    "type": "mcq",
+    "question": "What share of the total risk score is held by the top two risks?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "About 17%",
+      "B": "About 50%",
+      "C": "About 25%",
+      "D": "About 33%"
+    },
+    "answer": "D",
+    "explanation": "(16 + 15) / 93 = 0.333.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2315,
+    "type": "mcq",
+    "question": "How many of the 25 matrix cells have a product of at least 15?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "6",
+      "B": "5",
+      "C": "8",
+      "D": "2"
+    },
+    "answer": "A",
+    "explanation": "The cells are 15, 16, 20, 15, 20, 25. The value 2 is the number of scored risks in the high band.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2316,
+    "type": "mcq",
+    "question": "How many of the 25 matrix cells have a product of 8 or below?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "5",
+      "B": "14",
+      "C": "11",
+      "D": "6"
+    },
+    "answer": "B",
+    "explanation": "25 - 6 high - 5 medium = 14. The value 5 is the number of scored low risks.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2317,
+    "type": "mcq",
+    "question": "What is the LLM01 residual after the allowlist control (e = 0.75)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "12.0",
+      "B": "3.0",
+      "C": "4.0",
+      "D": "0.75"
+    },
+    "answer": "C",
+    "explanation": "16 x 0.25 = 4.0. The value 12.0 is the points removed.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2318,
+    "type": "mcq",
+    "question": "What is the LLM06 residual after scoped tools (e = 0.6)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "9.0",
+      "B": "3.0",
+      "C": "1.5",
+      "D": "6.0"
+    },
+    "answer": "D",
+    "explanation": "15 x 0.4 = 6.0. The value 9.0 is the points removed.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2319,
+    "type": "mcq",
+    "question": "What is the LLM02 residual after the output filter (e = 0.6)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "4.8",
+      "B": "3.6",
+      "C": "6.0",
+      "D": "7.2"
+    },
+    "answer": "A",
+    "explanation": "12 x 0.4 = 4.8. The value 7.2 is the points removed.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2320,
+    "type": "mcq",
+    "question": "What is the LLM10 residual after budgets (e = 0.8)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "7.2",
+      "B": "1.8",
+      "C": "0.8",
+      "D": "3.6"
+    },
+    "answer": "B",
+    "explanation": "9 x 0.2 = 1.8. The value 7.2 is the points removed.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2321,
+    "type": "mcq",
+    "question": "What is the total risk score after the five controls on slide 16?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "About 40",
+      "B": "About 60",
+      "C": "About 52",
+      "D": "About 93"
+    },
+    "answer": "C",
+    "explanation": "4.0 + 6.0 + 4.8 + 3.6 + 1.8 + 32 = 52.2.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2322,
+    "type": "mcq",
+    "question": "What percentage reduction does slide 16 report for the total?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "About 56%",
+      "B": "About 33%",
+      "C": "About 80%",
+      "D": "About 44%"
+    },
+    "answer": "D",
+    "explanation": "(93 - 52.2) / 93 = 43.9%. The value 56% is the remaining share.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2323,
+    "type": "mcq",
+    "question": "What share of the 500 attacker-steered calls does the guard block on slide 17?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "80.8%",
+      "B": "100%",
+      "C": "19.2%",
+      "D": "95%"
+    },
+    "answer": "A",
+    "explanation": "404 / 500 = 0.808. The value 19.2% is the share that passes.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2324,
+    "type": "mcq",
+    "question": "How many attacker-steered calls pass the guard on slide 17?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "404",
+      "B": "96",
+      "C": "94",
+      "D": "119"
+    },
+    "answer": "B",
+    "explanation": "500 - 404 = 96, all of them bulk crm_lookup calls.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2325,
+    "type": "mcq",
+    "question": "After the five controls, which risk is the highest uncontrolled one?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "LLM01 prompt injection",
+      "B": "LLM07 system prompt leakage",
+      "C": "LLM03 supply chain",
+      "D": "LLM02 sensitive information disclosure"
+    },
+    "answer": "C",
+    "explanation": "LLM03 scores 8, above the 6 of each other uncontrolled risk. LLM01 and LLM02 have controls and residuals of 4.0 and 4.8.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2326,
+    "type": "sa",
+    "question": "Add an LLM03 control with e = 0.5 to the five controls on slide 16. Compute the new total and the percent reduction from 93, and name the next target.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "LLM03 goes from 8 to 4.0. The total was 52.2 with LLM03 at 8, so it becomes 52.2 - 8 + 4 = 48.2, a reduction of (93 - 48.2) / 93 = 48.2%. The uncontrolled risks are then LLM04, LLM07, LLM08, and LLM09 at 6 each, and the largest residual among all risks is LLM06 at 6.0, tied with those four.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2327,
+    "type": "sa",
+    "question": "The guard on slide 17 passes 96 bulk lookups. State why the deck says read-only is not harmless, and suggest one control that the guard does not contain, labelling it as a suggestion rather than a deck result.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "A lookup that is read-only cannot modify records, but many of them can copy a large part of the customer data, which is an information-disclosure risk (LLM02). The three checks in the guard test the tool name, the write scope, and the email template. None of them looks at call volume or data size. A per-session limit on the number or size of lookups is one suggestion that would address it. The deck does not include or test such a limit.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2328,
+    "type": "sa",
+    "question": "Explain two reasons the 44% reduction on slide 16 should not be quoted as a measured result.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "First, only three of the ten L x I scores come from the Deep Dive, and the other seven are labelled illustrative. Second, the control effectiveness values (0.6 to 0.8) are assumed, not measured, and a product of two ordinal 1 to 5 scores is a ranking aid, not a probability times a loss. The 44% describes the arithmetic of the assumptions.",
+    "lectureReference": "Part 86: Agent Risk Scoring, Control Effect, and the Tool Guard"
+  },
+  {
+    "num": 2329,
+    "type": "tf",
+    "question": "The Deep Dive's token threshold is 800 + 3 x 150 = 1,250 tokens.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This is mu + 3 sigma for Normal(800, 150) (slide 18).",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2330,
+    "type": "tf",
+    "question": "Normal theory predicts a false-alarm rate of 1.35% at mu + 3 sigma.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The tail beyond 3 standard deviations is 0.135%, which is 1.35 per thousand.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2331,
+    "type": "tf",
+    "question": "On lognormal traffic with standard deviation 400, mu + 3 sigma gives about 11 times the false alarms of normal traffic.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "1.479% against 0.139%, a ratio of 10.6.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2332,
+    "type": "tf",
+    "question": "On lognormal traffic with standard deviation 400, the mu + 3 sigma threshold of 2,001 catches slow abuse.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Slow abuse is at most 1,800 tokens, below 2,001, so none is caught.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2333,
+    "type": "tf",
+    "question": "Together, a 1,250-token cap and a 20-per-minute rate limit cut the attacker's daily cost from $3,600 to $180.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "20 x 1,250 x 1,440 tokens at $5 per million is $180.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2334,
+    "type": "tf",
+    "question": "The token cap alone brings the daily cost to $900.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "100 x 1,250 x 1,440 x $5 / 1,000,000 = $900.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2335,
+    "type": "tf",
+    "question": "At a 0.1% base rate with TPR 95% and FPR 1%, alert precision is about 95%.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Precision is 8.7%. The value 95% is the true-positive rate.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2336,
+    "type": "tf",
+    "question": "At a 1% base rate with TPR 95% and FPR 1%, there are 9,500 true and 9,900 false positives per million requests.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "True positives: 1% x 95% x 1,000,000. False positives: 99% x 1% x 1,000,000.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2337,
+    "type": "tf",
+    "question": "Lowering FPR to 0.1% at a 0.1% base rate raises precision to about 48.7%.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "950 / (950 + 999) = 0.487.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2338,
+    "type": "tf",
+    "question": "Slide 19 recommends fixing the mu + 3 sigma threshold once and not recomputing it.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "It recommends setting the threshold from the observed 99.9th percentile, recomputed weekly, with a rate limit for slow abuse.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2339,
+    "type": "mcq",
+    "question": "What threshold does mu + 3 sigma give for Normal(800, 150)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "1,250",
+      "B": "950",
+      "C": "1,350",
+      "D": "1,600"
+    },
+    "answer": "A",
+    "explanation": "800 + 3 x 150 = 1,250.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2340,
+    "type": "mcq",
+    "question": "What false-alarm rate does normal theory give at 3 standard deviations above the mean?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "1.35%",
+      "B": "0.135%",
+      "C": "0.0135%",
+      "D": "2.28%"
+    },
+    "answer": "B",
+    "explanation": "1 - Phi(3) = 0.00135, which is 0.135%.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2341,
+    "type": "mcq",
+    "question": "About how many times more false alarms does mu + 3 sigma give on lognormal traffic with standard deviation 400 than on normal traffic?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "About 2",
+      "B": "About 100",
+      "C": "About 11",
+      "D": "About 0.1"
+    },
+    "answer": "C",
+    "explanation": "1.479% / 0.139% = 10.6.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2342,
+    "type": "mcq",
+    "question": "With the MAD threshold of 1,325 on normal traffic, what share of slow abuse U(1,300, 1,800) is caught?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "100%",
+      "B": "80.1%",
+      "C": "5.0%",
+      "D": "95.0%"
+    },
+    "answer": "D",
+    "explanation": "(1,800 - 1,325) / 500 = 0.95. The value 5.0% is the share missed.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2343,
+    "type": "mcq",
+    "question": "On lognormal traffic with standard deviation 150, p99.9 is 1,399. What share of slow abuse U(1,300, 1,800) is above it?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "About 80%",
+      "B": "About 100%",
+      "C": "About 20%",
+      "D": "About 95%"
+    },
+    "answer": "A",
+    "explanation": "(1,800 - 1,399) / 500 = 80.2%. The slide reports 80.1%.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2344,
+    "type": "mcq",
+    "question": "What is the daily cost with no guard (100 requests per minute, 5,000 tokens, $5 per million tokens)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "$900",
+      "B": "$3,600",
+      "C": "$720",
+      "D": "$180"
+    },
+    "answer": "B",
+    "explanation": "100 x 5,000 x 1,440 = 720,000,000 tokens, and 720 x $5 = $3,600.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2345,
+    "type": "mcq",
+    "question": "What is the daily cost with only the 1,250-token cap at 100 requests per minute?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "$3,600",
+      "B": "$720",
+      "C": "$900",
+      "D": "$180"
+    },
+    "answer": "C",
+    "explanation": "100 x 1,250 x 1,440 = 180,000,000 tokens, which is $900.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2346,
+    "type": "mcq",
+    "question": "What is the daily cost with only the 20-per-minute rate limit and 5,000-token requests?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "$900",
+      "B": "$180",
+      "C": "$3,600",
+      "D": "$720"
+    },
+    "answer": "D",
+    "explanation": "20 x 5,000 x 1,440 = 144,000,000 tokens, which is $720.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2347,
+    "type": "mcq",
+    "question": "What is the daily cost with both limits?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "$180",
+      "B": "$720",
+      "C": "$900",
+      "D": "$18"
+    },
+    "answer": "A",
+    "explanation": "20 x 1,250 x 1,440 = 36,000,000 tokens, which is $180.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2348,
+    "type": "mcq",
+    "question": "What is the 30-day cost with both limits?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "$108,000",
+      "B": "$5,400",
+      "C": "$180",
+      "D": "$27,000"
+    },
+    "answer": "B",
+    "explanation": "$180 x 30 = $5,400. The value $108,000 is the no-guard 30-day cost for $3,600 per day.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2349,
+    "type": "mcq",
+    "question": "With TPR 95% and FPR 1%, what is precision at a 1% base rate?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "95%",
+      "B": "8.7%",
+      "C": "49.0%",
+      "D": "99%"
+    },
+    "answer": "C",
+    "explanation": "9,500 / (9,500 + 9,900) = 0.490.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2350,
+    "type": "mcq",
+    "question": "With TPR 95% and FPR 1%, what is precision at a 0.1% base rate?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "49.0%",
+      "B": "0.94%",
+      "C": "95%",
+      "D": "8.7%"
+    },
+    "answer": "D",
+    "explanation": "950 / (950 + 9,990) = 0.0868.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2351,
+    "type": "mcq",
+    "question": "With TPR 95% and FPR 1%, what is precision at a 0.01% base rate?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.94%",
+      "B": "8.7%",
+      "C": "9.4%",
+      "D": "49%"
+    },
+    "answer": "A",
+    "explanation": "95 / (95 + 9,999) = 0.0094.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2352,
+    "type": "mcq",
+    "question": "Per 1,000,000 requests at a 0.01% base rate with FPR 1%, how many false positives occur?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "100",
+      "B": "9,999",
+      "C": "9,990",
+      "D": "95"
+    },
+    "answer": "B",
+    "explanation": "999,900 benign requests x 0.01 = 9,999. The value 95 is the number of true positives.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2353,
+    "type": "mcq",
+    "question": "At a 0.1% base rate and TPR 95%, what is precision if FPR falls to 0.1%?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "8.7%",
+      "B": "95%",
+      "C": "48.7%",
+      "D": "50.0%"
+    },
+    "answer": "C",
+    "explanation": "950 / (950 + 999) = 0.487. It stays below 50% because false positives (999) exceed true positives (950).",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2354,
+    "type": "sa",
+    "question": "An attacker sends 40 requests per minute of 4,000 tokens at $5 per million tokens. Compute the daily cost with no guard, and with a 1,250-token cap and a 20-per-minute rate limit, and state the percentage cut.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "No guard: 40 x 4,000 x 1,440 = 230,400,000 tokens, which costs $1,152 per day. With both limits the maximum is 20 x 1,250 x 1,440 = 36,000,000 tokens, which costs $180 per day. The cut is 1 - 180 / 1,152 = 84%. The bound holds because the cap limits tokens per request and the rate limit limits requests per minute.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2355,
+    "type": "sa",
+    "question": "Explain why a detector with 95% true-positive rate and 1% false-positive rate has precision 8.7% when 0.1% of requests are attacks, and state which of the two rates matters more here.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "Per million requests there are 1,000 attacks and 999,000 benign requests. The detector flags 950 attacks and 9,990 benign requests, so 950 of 10,940 alerts are real (8.7%). Because benign requests outnumber attacks 999 to 1, even a small false-positive rate produces many more false alerts than true ones. Reducing FPR to 0.1% raises precision to 48.7%. Raising TPR to 99% at FPR 1% only reaches 9.0%. At low base rates, FPR matters more.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2356,
+    "type": "sa",
+    "question": "State why mu + 3 sigma is an unreliable threshold on heavy-tailed traffic, using the slide 18 numbers, and what the deck recommends.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "Normal theory expects 0.135% false alarms at mu + 3 sigma. On lognormal traffic with standard deviation 400 the threshold is 2,001 and the false-alarm rate is 1.479%, about 11 times higher, and it catches no slow abuse since that abuse tops out at 1,800 tokens. The mean and standard deviation do not describe a skewed tail. The deck recommends the observed 99.9th percentile, recomputed weekly, plus a rate limit for slow abuse.",
+    "lectureReference": "Part 87: Token-Budget Thresholds, Attack Cost, and Alert Precision"
+  },
+  {
+    "num": 2357,
+    "type": "tf",
+    "question": "If each hop strips credentials with probability s, survival after k hops is (1 - s)^k.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "Each hop is an independent chance to strip, so the survival probabilities multiply (slide 13).",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2358,
+    "type": "tf",
+    "question": "At s = 0.3, about 34% of images still carry credentials after 5 hops.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "0.7^5 = 0.168, about 17%. The value 34% is the survival after 3 hops.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2359,
+    "type": "tf",
+    "question": "With credentials 0.40, watermark 0.51, and forensics 0.70, the chance that at least one signal fires is about 0.91.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "1 - 0.60 x 0.49 x 0.30 = 0.912, assuming independence.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2360,
+    "type": "tf",
+    "question": "The slide's credential value of 0.40 is computed from the strip-rate table on the same slide.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "It is an assumed per-signal rate. The table gives survival for chosen s and k, and 0.40 does not correspond to a stated s and k.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2361,
+    "type": "tf",
+    "question": "With the slide's p = 0.03, the probability of at least one tamper in 20 attempts is about 0.46.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "1 - 0.97^20 = 0.456.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2362,
+    "type": "tf",
+    "question": "The per-attempt tamper probabilities on slide 22 are published SLSA figures.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The slide states they are illustrative teaching values.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2363,
+    "type": "tf",
+    "question": "Flipping one input bit changes about half of the 256 bits of a SHA-256 digest.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The number of changed bits is Binomial(256, 1/2) with mean 128.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2364,
+    "type": "tf",
+    "question": "The accidental collision probability for 10^12 SHA-256 digests is about 1e-15.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "It is about 4.3e-54. The value 1.5e-15 is for MD5.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2365,
+    "type": "tf",
+    "question": "An inclusion proof for a Merkle log of 10^9 entries has 30 hashes, or 960 bytes.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "ceil(log2 10^9) = 30 and 30 x 32 = 960.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2366,
+    "type": "tf",
+    "question": "One flipped bit in a 5,000,000-byte file is 0.00000025% of the file.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "1 / 40,000,000 bits = 0.0000025%. The slide's figure is a factor of 10 too small.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2367,
+    "type": "mcq",
+    "question": "With strip probability 0.1 per hop, what is the credential survival after 3 hops?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.73",
+      "B": "0.90",
+      "C": "0.81",
+      "D": "0.59"
+    },
+    "answer": "A",
+    "explanation": "0.9^3 = 0.729. The value 0.59 is the survival after 5 hops.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2368,
+    "type": "mcq",
+    "question": "With strip probability 0.5 per hop, what is the survival after 5 hops?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.25",
+      "B": "0.03",
+      "C": "0.13",
+      "D": "0.50"
+    },
+    "answer": "B",
+    "explanation": "0.5^5 = 0.031.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2369,
+    "type": "mcq",
+    "question": "With strip probability 0.3 per hop, what is the survival after 2 hops?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.70",
+      "B": "0.34",
+      "C": "0.49",
+      "D": "0.09"
+    },
+    "answer": "C",
+    "explanation": "0.7^2 = 0.49.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2370,
+    "type": "mcq",
+    "question": "What is the watermark layer's detection rate on slide 13 (0.6 x 0.85)?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "1.45",
+      "B": "0.60",
+      "C": "0.85",
+      "D": "0.51"
+    },
+    "answer": "D",
+    "explanation": "0.6 x 0.85 = 0.51.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2371,
+    "type": "mcq",
+    "question": "What is the probability that at least one of the three signals fires?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "About 0.91",
+      "B": "About 0.99",
+      "C": "About 0.70",
+      "D": "About 0.15"
+    },
+    "answer": "A",
+    "explanation": "1 - 0.60 x 0.49 x 0.30 = 0.912. The value 0.70 is the forensics layer alone.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2372,
+    "type": "mcq",
+    "question": "With p = 0.15 per attempt, what is the expected number of successful tampers in 20 attempts?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.15",
+      "B": "3.0",
+      "C": "15",
+      "D": "2.0"
+    },
+    "answer": "B",
+    "explanation": "20 x 0.15 = 3.0.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2373,
+    "type": "mcq",
+    "question": "With p = 0.03 over 20 attempts, what is the probability of at least one successful tamper?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.03",
+      "B": "0.60",
+      "C": "0.46",
+      "D": "0.96"
+    },
+    "answer": "C",
+    "explanation": "1 - 0.97^20 = 0.456. The value 0.60 is the expected number of successes.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2374,
+    "type": "mcq",
+    "question": "With p = 0.005 over 20 attempts, what is the probability of at least one successful tamper?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "About 1.00",
+      "B": "About 0.005",
+      "C": "About 0.50",
+      "D": "About 0.10"
+    },
+    "answer": "D",
+    "explanation": "1 - 0.995^20 = 0.095. The expected successes are 0.1.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2375,
+    "type": "mcq",
+    "question": "How many bits of a SHA-256 digest change on average when one input bit is flipped?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "128",
+      "B": "64",
+      "C": "256",
+      "D": "8"
+    },
+    "answer": "A",
+    "explanation": "Each of 256 bits flips with probability 1/2, so the mean is 128. The value 8 is the standard deviation.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2376,
+    "type": "mcq",
+    "question": "What is the standard deviation of the number of changed digest bits?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "128",
+      "B": "8",
+      "C": "16",
+      "D": "64"
+    },
+    "answer": "B",
+    "explanation": "sqrt(256 x 0.5 x 0.5) = 8.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2377,
+    "type": "mcq",
+    "question": "How long does a 14 GB (14,336 MB) model take to hash at 1,201 MB/s?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "About 1.2 s",
+      "B": "About 119 s",
+      "C": "About 11.9 s",
+      "D": "About 29 s"
+    },
+    "answer": "C",
+    "explanation": "14,336 / 1,201 = 11.94 s.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2378,
+    "type": "mcq",
+    "question": "About how many hash evaluations does a generic birthday attack on SHA-256 need?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "2^160",
+      "B": "2^256",
+      "C": "2^64",
+      "D": "2^128"
+    },
+    "answer": "D",
+    "explanation": "A birthday attack on a b-bit hash costs about 2^(b/2), which is 2^128 for b = 256.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2379,
+    "type": "mcq",
+    "question": "About what probability of an accidental MD5 collision does the birthday formula give for 10^12 files?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "1.5e-15",
+      "B": "4.3e-54",
+      "C": "3.4e-25",
+      "D": "0.5"
+    },
+    "answer": "A",
+    "explanation": "n^2 / 2^129 = 10^24 / 6.8e38 = 1.5e-15. The other values are for SHA-256 and SHA-1.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2380,
+    "type": "mcq",
+    "question": "How many hashes are in an inclusion proof for a log of 10^6 entries?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "10",
+      "B": "20",
+      "C": "30",
+      "D": "1,000,000"
+    },
+    "answer": "B",
+    "explanation": "ceil(log2 10^6) = 20.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2381,
+    "type": "mcq",
+    "question": "What is the proof size for 10^9 entries with 32-byte nodes?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "30 B",
+      "B": "32 GB",
+      "C": "960 B",
+      "D": "640 B"
+    },
+    "answer": "C",
+    "explanation": "30 hashes x 32 B = 960 B. The value 640 B is the size for 10^6 entries.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2382,
+    "type": "sa",
+    "question": "Credentials are stripped with probability 0.2 per hop. Compute the credential survival after 4 hops and the chance that at least one of the three signals survives, keeping the watermark (0.51) and forensics (0.70) values from slide 13.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "Survival is 0.8^4 = 0.410. The miss probabilities are 0.590, 0.49, and 0.30, with product 0.0868. At least one signal fires with probability 0.913. The result assumes independence between the signals, which the deck states. A re-save that damages several signals at once would lower it.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2383,
+    "type": "sa",
+    "question": "Using the slide's p = 0.03 per attempt, compute the probability of at least one successful tamper over 100 attempts, and explain what this says about judging a control over a short horizon.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "1 - 0.97^100 = 0.952. Over 20 attempts the value is 0.456. The chance of at least one success rises toward 1 with the number of attempts, so a control that looks acceptable over a short window can fail over a long one. The slide's p values are illustrative teaching values and not SLSA figures.",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2384,
+    "type": "sa",
+    "question": "A transparency log has 4,000,000 entries. Compute the inclusion-proof size and the ratio to the full log, and state what the 0x00 and 0x01 prefixes protect against.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The proof has ceil(log2 4,000,000) = 22 hashes, so 22 x 32 = 704 B. The full log is 128 MB, about 181,800 times larger. The prefixes make leaf hashes and inner-node hashes differ, so an attacker cannot present an inner node as a leaf (a second-preimage trick).",
+    "lectureReference": "Part 88: Provenance Survival, SLSA Tamper Odds, and Hash Mechanics"
+  },
+  {
+    "num": 2385,
+    "type": "tf",
+    "question": "Each extend step computes m_k = SHA-256(m_(k-1) concatenated with SHA-256(c_k)).",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "This is the measurement chain on slides 29 and 30.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2386,
+    "type": "tf",
+    "question": "Swapping the order of loaded components leaves the final measurement unchanged.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "Extend is order-sensitive. The slide shows a different measurement for a swapped boot order.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2387,
+    "type": "tf",
+    "question": "The key is released only when the signature is valid, the measurement is approved, and the nonce is the one just issued.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "A valid signature with an old nonce is denied as a replay (slide 29).",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2388,
+    "type": "tf",
+    "question": "A valid signature with an unapproved measurement releases the key and logs OK.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The action is deny, with an alert for a modified workload.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2389,
+    "type": "tf",
+    "question": "With 32-bit nonces and 10^6 challenges, about 116 repeated nonces are expected.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "N^2 / 2^33 = 10^12 / 8.59e9 = 116.4.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2390,
+    "type": "tf",
+    "question": "With 64-bit nonces and 10^9 challenges, the probability of a repeat is about 2.7e-21.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "It is about 2.7% (0.027). The value 1.5e-21 belongs to 128-bit nonces at 10^9.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2391,
+    "type": "tf",
+    "question": "With 128-bit nonces and 10^9 challenges, the expected number of repeats is about 1.5e-21.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "10^18 / 2^129 = 1.5e-21.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2392,
+    "type": "tf",
+    "question": "In the 100,000-attestation log, 99,361 observed OK events give z of about -1.6.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "(99,361 - 99,400) / 24.4 = -1.60.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2393,
+    "type": "tf",
+    "question": "Slide 33 reports that a TEE stops prompt injection.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The comparison table lists No for all three technologies.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2394,
+    "type": "tf",
+    "question": "On slide 34 the net annual value of the TEE turns positive at about a 1% reduction in breach probability.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The break-even is 48,000 / 5,000,000 = 0.96%, and the 1% row shows +$2k.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2395,
+    "type": "mcq",
+    "question": "What is the starting value m0 of the measurement chain?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "256 zero bits",
+      "B": "A random nonce",
+      "C": "The hash of the bootloader",
+      "D": "The signing key"
+    },
+    "answer": "A",
+    "explanation": "The slide 30 code starts with bytes(32), which is 256 zero bits.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2396,
+    "type": "mcq",
+    "question": "Rerunning the slide 30 code gives which first 16 hex characters for the approved workload?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "986afe6ac1a0ca1e",
+      "B": "8b5571b0e4b20476",
+      "C": "9f86d081884c7d65",
+      "D": "9a29c4918d979faf"
+    },
+    "answer": "B",
+    "explanation": "The approved list gives 8b55... as on the slide. The 986a... value is the changed-weights run, and 9a29... is the swapped-order run.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2397,
+    "type": "mcq",
+    "question": "What is the action for a valid signature with a measurement not on the approved list?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Deny and alert: forged report",
+      "B": "Release key and log OK",
+      "C": "Deny and alert: modified workload",
+      "D": "Deny: replay"
+    },
+    "answer": "C",
+    "explanation": "The signature is valid, so the report is genuine, but the workload differs from the approved one.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2398,
+    "type": "mcq",
+    "question": "What is the action for an invalid signature?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Deny: replay",
+      "B": "Deny and alert: modified workload",
+      "C": "Release key",
+      "D": "Deny and alert: forged report"
+    },
+    "answer": "D",
+    "explanation": "An invalid signature means the report did not come from the TEE.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2399,
+    "type": "mcq",
+    "question": "What is the action for a valid signature, an approved measurement, and an old nonce?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "Deny: replay",
+      "B": "Deny and alert: forged report",
+      "C": "Release key",
+      "D": "Log OK and release"
+    },
+    "answer": "A",
+    "explanation": "The nonce differs from the one just issued, so the report is a replay of an earlier genuine one.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2400,
+    "type": "mcq",
+    "question": "How many repeated nonces are expected for n = 32 and N = 10^6?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "About 1",
+      "B": "About 116",
+      "C": "About 10^6",
+      "D": "About 0.001"
+    },
+    "answer": "B",
+    "explanation": "N^2 / 2^(n+1) = 10^12 / 2^33 = 116.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2401,
+    "type": "mcq",
+    "question": "What is the probability of a nonce repeat for n = 64 and N = 10^9?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "About 1.5e-21",
+      "B": "About 2.7e-8",
+      "C": "About 2.7%",
+      "D": "About 50%"
+    },
+    "answer": "C",
+    "explanation": "10^18 / 2^65 = 0.027. The value 2.7e-8 is for N = 10^6.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2402,
+    "type": "mcq",
+    "question": "What is the expected number of nonce repeats for n = 128 and N = 10^6?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "About 1.5e-21",
+      "B": "About 116",
+      "C": "About 2.7e-8",
+      "D": "About 1.5e-27"
+    },
+    "answer": "D",
+    "explanation": "10^12 / 2^129 = 1.5e-27. The value 1.5e-21 is for N = 10^9.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2403,
+    "type": "mcq",
+    "question": "With forged rate 0.1% and modified rate 0.5%, how many of 100,000 attestations are expected to be OK?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "99,400",
+      "B": "99,900",
+      "C": "99,000",
+      "D": "99,361"
+    },
+    "answer": "A",
+    "explanation": "100,000 x (1 - 0.001 - 0.005) = 99,400. The value 99,361 is the observed count.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2404,
+    "type": "mcq",
+    "question": "With 500 expected and 542 observed mismatches (p = 0.005), what is z?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "About +0.4",
+      "B": "About +1.9",
+      "C": "About +42",
+      "D": "About +8"
+    },
+    "answer": "B",
+    "explanation": "sigma = 22.3 and z = 42 / 22.3 = 1.88.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2405,
+    "type": "mcq",
+    "question": "What is sigma for an expected count of 500 at p = 0.005 in 100,000 trials?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "About 50",
+      "B": "About 500",
+      "C": "About 22",
+      "D": "About 2.2"
+    },
+    "answer": "C",
+    "explanation": "sqrt(100,000 x 0.005 x 0.995) = 22.3.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2406,
+    "type": "mcq",
+    "question": "The log shows 639 denials in 100,000 requests. What share is that?",
+    "tier": "Tier 3 — Low Probability",
+    "options": {
+      "A": "6.4%",
+      "B": "1.0%",
+      "C": "0.064%",
+      "D": "0.64%"
+    },
+    "answer": "D",
+    "explanation": "639 / 100,000 = 0.639%. Expected is 600, or 0.60%.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2407,
+    "type": "mcq",
+    "question": "On slide 34, what is the net annual value for a 0.5% breach-probability cut?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "-$23k",
+      "B": "-$48k",
+      "C": "+$25k",
+      "D": "+$2k"
+    },
+    "answer": "A",
+    "explanation": "The benefit is 0.005 x $5M = $25k and the cost is $48k, so the net is -$23k.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2408,
+    "type": "mcq",
+    "question": "What is the annual TEE overhead cost on slide 34?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "$20,000",
+      "B": "$48,000",
+      "C": "$240,000",
+      "D": "$4,000"
+    },
+    "answer": "B",
+    "explanation": "20% of $20,000 per month is $4,000, and 12 x $4,000 = $48,000.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2409,
+    "type": "mcq",
+    "question": "What breach-probability cut breaks even on slide 34?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "About 3%",
+      "B": "About 0.5%",
+      "C": "About 0.96%",
+      "D": "About 9.6%"
+    },
+    "answer": "C",
+    "explanation": "48,000 / 5,000,000 = 0.0096.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2410,
+    "type": "sa",
+    "question": "A verifier uses 96-bit nonces and issues 10^9 challenges. Compute the expected number of repeated nonces and state how it compares with the 64-bit and 128-bit values on slide 31.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "N^2 / 2^97 = 10^18 / 1.58e29 = 6.3e-12. The 64-bit value at N = 10^9 is 0.027 and the 128-bit value is 1.5e-21. A 96-bit nonce is far safer than 64 bits at this volume and well above the 128-bit margin. The slide's rule is at least 128 bits, so 96 bits does not meet the rule even though the birthday estimate is small.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2411,
+    "type": "sa",
+    "question": "A program runs 5 million inferences per month at $0.002 each with a 20% TEE overhead and a $2 million breach loss. Compute the annual TEE cost, the net value for a 2% breach-probability cut, and the break-even cut.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The monthly inference cost is $10,000, the overhead is $2,000 per month, so $24,000 per year. The benefit is 0.02 x $2,000,000 = $40,000 and the net is +$16,000. The break-even cut is 24,000 / 2,000,000 = 1.2%. All inputs here are assumed, as on slide 34.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2412,
+    "type": "sa",
+    "question": "Explain why a replayed attestation report is rejected even though its signature and measurement are valid, and why nonce length matters.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The report contains the nonce that was issued earlier. The verifier compares the report's nonce with the one just issued and rejects a mismatch, so an old genuine report cannot be reused after the workload changes. If nonces repeat, a recorded report with a repeated nonce would match. The birthday bound gives about 116 expected repeats for 32-bit nonces at 10^6 challenges, so the nonce must be long and random, at least 128 bits per the slide.",
+    "lectureReference": "Part 89: Remote Attestation Numbers and the Economics of Confidential AI"
+  },
+  {
+    "num": 2413,
+    "type": "tf",
+    "question": "The weighted maturity score for the deck's scores (3, 2, 2, 1) with weights 0.30, 0.20, 0.25, 0.25 is 2.05.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "0.90 + 0.40 + 0.50 + 0.25 = 2.05.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2414,
+    "type": "tf",
+    "question": "MANAGE is the first priority gap on slide 35, with gap x weight 0.50.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The gap to target is 2 and the weight is 0.25.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2415,
+    "type": "tf",
+    "question": "The plain mean of (3, 2, 2, 1) is 2.05.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The plain mean is 2.0. The value 2.05 is the weighted score.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2416,
+    "type": "tf",
+    "question": "Organizations (2, 2, 2, 2) and (4, 3, 1, 0) have the same mean but different minimums.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "The mean is 2.0 for both, and the minimums are 2 and 0.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2417,
+    "type": "tf",
+    "question": "The slide's 1.91 for (3, 2, 2, 1) is the plain geometric mean.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The plain geometric mean is 1.86. The slide's value matches the geometric mean of (score + 1) minus 1.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2418,
+    "type": "tf",
+    "question": "The geometric mean of (score + 1) minus 1 reproduces both the slide's 1.91 and its 1.51.",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "72^(1/4) - 1 = 1.913 and 40^(1/4) - 1 = 1.515.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2419,
+    "type": "tf",
+    "question": "A 400B-parameter model trained on 15T tokens crosses 10^25 FLOPs under C = 6ND.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "6 x 4e11 x 1.5e13 = 3.6e25.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2420,
+    "type": "tf",
+    "question": "A 70B-parameter model trained on 15T tokens crosses 10^25 FLOPs under C = 6ND.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "C = 6.3e24, below 10^25.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2421,
+    "type": "tf",
+    "question": "The 10^25 FLOP threshold equals about 292,570 GPU-days, or about 29 days on 10,000 GPUs, at the slide's assumptions.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "A",
+    "explanation": "10^25 / (989e12 x 0.4 x 86,400) = 292,570, and 292,570 / 10,000 = 29.3.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2422,
+    "type": "tf",
+    "question": "With the slide 39 miss rates, about 2.5% of attacks survive all five layers.",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "True",
+      "B": "False"
+    },
+    "answer": "B",
+    "explanation": "The product is 0.00025, so 0.025% (250 per million) survive, under an independence assumption.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2423,
+    "type": "mcq",
+    "question": "What is 0.30 x 3 + 0.20 x 2 + 0.25 x 2 + 0.25 x 1?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "2.05",
+      "B": "1.90",
+      "C": "2.25",
+      "D": "2.00"
+    },
+    "answer": "A",
+    "explanation": "0.90 + 0.40 + 0.50 + 0.25 = 2.05.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2424,
+    "type": "mcq",
+    "question": "What is the gap x weight for MAP (now 2, target 3, weight 0.20)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.25",
+      "B": "0.20",
+      "C": "0.50",
+      "D": "0.40"
+    },
+    "answer": "B",
+    "explanation": "The gap is 1, and 1 x 0.20 = 0.20.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2425,
+    "type": "mcq",
+    "question": "What is the gap x weight for MANAGE (now 1, target 3, weight 0.25)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0.25",
+      "B": "0.75",
+      "C": "0.50",
+      "D": "1.00"
+    },
+    "answer": "C",
+    "explanation": "The gap is 2, and 2 x 0.25 = 0.50.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2426,
+    "type": "mcq",
+    "question": "What is the mean of (4, 3, 1, 0)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "1.5",
+      "B": "2.5",
+      "C": "0",
+      "D": "2.0"
+    },
+    "answer": "D",
+    "explanation": "(4 + 3 + 1 + 0) / 4 = 2.0.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2427,
+    "type": "mcq",
+    "question": "What is the minimum of (4, 3, 1, 0)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "0",
+      "B": "2",
+      "C": "4",
+      "D": "1"
+    },
+    "answer": "A",
+    "explanation": "The lowest score is 0, which exposes the missing function that the mean hides.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2428,
+    "type": "mcq",
+    "question": "Which calculation reproduces the slide's 1.91 for (3, 2, 2, 1)?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "12^(1/4)",
+      "B": "72^(1/4) - 1",
+      "C": "The arithmetic mean",
+      "D": "The minimum plus 0.91"
+    },
+    "answer": "B",
+    "explanation": "The geometric mean of (4, 3, 3, 2) minus 1 is 1.913. The plain geometric mean 12^(1/4) is 1.86.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2429,
+    "type": "mcq",
+    "question": "What is the plain geometric mean of (3, 2, 2, 1)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "About 1.91",
+      "B": "About 2.00",
+      "C": "About 1.86",
+      "D": "About 1.51"
+    },
+    "answer": "C",
+    "explanation": "12^(1/4) = 1.861.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2430,
+    "type": "mcq",
+    "question": "What is the mean of the GOVERN items [3, 3, 4, 2, 3]?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "2.0",
+      "B": "3.4",
+      "C": "2.5",
+      "D": "3.0"
+    },
+    "answer": "D",
+    "explanation": "15 / 5 = 3.0, and the minimum is 2.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2431,
+    "type": "mcq",
+    "question": "What are the mean and minimum of the MANAGE items [1, 2, 1, 0, 1]?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "Mean 1.0, minimum 0",
+      "B": "Mean 0.8, minimum 0",
+      "C": "Mean 2.0, minimum 0",
+      "D": "Mean 1.0, minimum 1"
+    },
+    "answer": "A",
+    "explanation": "The sum is 5, so the mean is 1.0. One item is 0, so the minimum is 0.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2432,
+    "type": "mcq",
+    "question": "What is the training compute of a 70B-parameter model on 15T tokens under C = 6ND?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "6.3e25",
+      "B": "6.3e24",
+      "C": "3.6e25",
+      "D": "8.4e22"
+    },
+    "answer": "B",
+    "explanation": "6 x 7e10 x 1.5e13 = 6.3e24.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2433,
+    "type": "mcq",
+    "question": "Which listed run crosses 10^25 FLOPs?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "175B x 3T",
+      "B": "70B x 15T",
+      "C": "400B x 15T",
+      "D": "7B x 2T"
+    },
+    "answer": "C",
+    "explanation": "Only 400B x 15T (3.6e25) and 1T x 20T (1.2e26) cross. The others are 3.2e24, 6.3e24, and 8.4e22.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2434,
+    "type": "mcq",
+    "question": "How many GPU-days is 10^25 FLOPs at 989 TFLOP/s and 40% utilization?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "About 29,257",
+      "B": "About 2,925,700",
+      "C": "About 1,053,252",
+      "D": "About 292,570"
+    },
+    "answer": "D",
+    "explanation": "10^25 / (3.956e14 x 86,400) = 292,570. The value 1,053,252 is for the 400B x 15T run.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2435,
+    "type": "mcq",
+    "question": "How many days does 10^25 FLOPs take on 10,000 GPUs at the same assumptions?",
+    "tier": "Tier 2 — Medium Probability",
+    "options": {
+      "A": "About 29",
+      "B": "About 2.9",
+      "C": "About 0.29",
+      "D": "About 292"
+    },
+    "answer": "A",
+    "explanation": "292,570 GPU-days / 10,000 GPUs = 29.3 days.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2436,
+    "type": "mcq",
+    "question": "How many attacks per million survive after the content layer (miss rate 0.40)?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "100,000",
+      "B": "400,000",
+      "C": "40,000",
+      "D": "600,000"
+    },
+    "answer": "B",
+    "explanation": "1,000,000 x 0.40 = 400,000.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2437,
+    "type": "mcq",
+    "question": "How many attacks per million survive all five layers on slide 39?",
+    "tier": "Tier 1 — High Probability",
+    "options": {
+      "A": "500",
+      "B": "2,500",
+      "C": "250",
+      "D": "25"
+    },
+    "answer": "C",
+    "explanation": "400,000 x 0.25 x 0.10 x 0.05 x 0.50 = 250. The value 500 is the count before the governance layer.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2438,
+    "type": "sa",
+    "question": "An organization has function scores (3, 3, 1, 1). Compute the mean, the minimum, and the shifted geometric mean, and say which of the three most directly exposes the weakness.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The mean is 2.0 and the minimum is 1. The shifted geometric mean is (4 x 4 x 2 x 2)^(1/4) - 1 = 64^(1/4) - 1 = 1.83. The minimum names the weakest level directly. The shifted geometric mean also drops below the mean, which signals imbalance. The slide's third method is this shifted form by inference, since the slide does not state the shift.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2439,
+    "type": "sa",
+    "question": "A run has 30 billion parameters and 10 trillion tokens. Using C = 6ND and the slide's hardware assumptions, state whether it crosses 10^25 FLOPs and how many GPU-days it needs.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "C = 6 x 3e10 x 1e13 = 1.8e24 FLOPs, 0.18 of the threshold, so it does not cross. GPU-days = 1.8e24 / (989e12 x 0.4 x 86,400) = 52,663. Reaching 10^25 would need 5.6 times the compute. The 6ND formula is inferred from the slide's numbers.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2440,
+    "type": "sa",
+    "question": "A prompt injection never crosses the signing or attestation layers. Compute the survivors per million for the layers it does cross, and explain the effect on the slide's headline number.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "The layers it crosses are content (0.40), guardrails (0.25), and governance (0.50), so 1,000,000 x 0.40 x 0.25 x 0.50 = 50,000 survive. The five-layer figure of 250 is 200 times lower. The headline number assumes every attack crosses every layer and that layers fail independently, so it overstates protection against attacks that skip layers.",
+    "lectureReference": "Part 90: Governance Numbers: Maturity Roll-Up, Compute Threshold, and Layered Defense"
+  },
+  {
+    "num": 2441,
+    "type": "sa",
+    "question": "Mock Final Q1: Group Metrics from Confusion Matrices\n\nA loan model is evaluated at tau = 0.5 on two groups. Test-set confusion counts:\nGroup A: TP = 150, FN = 50, FP = 40, TN = 260 (N = 500).\nGroup B: TP = 72, FN = 48, FP = 36, TN = 144 (N = 300).\n\n(a) Compute TPR, FPR, PPV, and selection rate (SR) for each group.\n(b) Compute the equal-opportunity difference (EOpp), equalized-odds difference (EOdds), demographic-parity difference (DP diff), and disparate-impact ratio (DI = SR_B / SR_A).\n(c) Does the model pass the four-fifths rule? Explain why passing it does not make the model fair under equal opportunity.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Group A: TPR_A = 150 / (150 + 50) = 150 / 200 = 0.750; FPR_A = 40 / (40 + 260) = 40 / 300 = 0.1333; PPV_A = 150 / (150 + 40) = 150 / 190 = 0.7895; SR_A = 190 / 500 = 0.380.\nGroup B: TPR_B = 72 / (72 + 48) = 72 / 120 = 0.600; FPR_B = 36 / (36 + 144) = 36 / 180 = 0.200; PPV_B = 72 / (72 + 36) = 72 / 108 = 0.6667; SR_B = 108 / 300 = 0.360.\n(b) EOpp = |0.750 - 0.600| = 0.150. FPR gap = |0.1333 - 0.200| = 0.0667. EOdds = max(0.150, 0.0667) = 0.150 (never the sum). DP diff = |0.380 - 0.360| = 0.020. DI = 0.360 / 0.380 = 0.9474.\n(c) Yes, DI = 0.9474 >= 0.80 passes the four-fifths rule. However, selection rates ignore ground-truth labels: qualified Group B applicants are still approved 15 percentage points less often than qualified Group A applicants (EOpp = 0.150), while unqualified Group B applicants receive more false approvals (FPR 0.200 vs. 0.133).",
+    "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness"
+  },
+  {
+    "num": 2442,
+    "type": "sa",
+    "question": "Mock Final Q2: Expected Calibration Error by Hand\n\nA risk model's 800 validation cases are binned by score:\nBin 0.0 to 0.2: n = 160, mean score = 0.10, observed rate = 0.15.\nBin 0.2 to 0.4: n = 240, mean score = 0.30, observed rate = 0.22.\nBin 0.4 to 0.6: n = 200, mean score = 0.50, observed rate = 0.48.\nBin 0.6 to 0.8: n = 120, mean score = 0.70, observed rate = 0.80.\nBin 0.8 to 1.0: n = 80, mean score = 0.90, observed rate = 0.85.\n\n(a) Compute each bin's weighted gap (n_b / N) * |observed - score| and the total ECE.\n(b) Label each bin over-confident or under-confident. Which bin contributes most to ECE?\n(c) If recalibration fixed bin 0.2 to 0.4 perfectly and left the rest unchanged, what is the new ECE and the percentage reduction?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Weighted gaps:\nBin 1 (0.0 to 0.2): (160/800) * |0.15 - 0.10| = 0.20 * 0.05 = 0.0100.\nBin 2 (0.2 to 0.4): (240/800) * |0.22 - 0.30| = 0.30 * 0.08 = 0.0240.\nBin 3 (0.4 to 0.6): (200/800) * |0.48 - 0.50| = 0.25 * 0.02 = 0.0050.\nBin 4 (0.6 to 0.8): (120/800) * |0.80 - 0.70| = 0.15 * 0.10 = 0.0150.\nBin 5 (0.8 to 1.0): (80/800) * |0.85 - 0.90| = 0.10 * 0.05 = 0.0050.\nTotal ECE = 0.0100 + 0.0240 + 0.0050 + 0.0150 + 0.0050 = 0.0590 (5.90 percentage points).\n(b) Over-confident (mean score > observed): bins 2, 3, and 5. Under-confident (mean score < observed): bins 1 and 4. Bin 2 (0.2 to 0.4) contributes the most at 0.0240 (40.7% of total ECE).\n(c) New ECE = 0.0590 - 0.0240 = 0.0350. Percentage reduction = (0.0240 / 0.0590) * 100 = 40.68% (about 40.7%).",
+    "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness"
+  },
+  {
+    "num": 2443,
+    "type": "sa",
+    "question": "Mock Final Q3: Chouldechova's Identity\n\nA recidivism score has TPR = 0.75 and PPV = 0.60 in both groups. Base rates differ: p_A = 0.40 and p_B = 0.25. Use FPR = [p / (1 - p)] * [(1 - PPV) / PPV] * TPR.\n\n(a) Compute each group's forced FPR.\n(b) By what factor does FPR_A exceed FPR_B? Which fairness criteria are satisfied and which is violated?\n(c) Keeping TPR_B = 0.75, what PPV would Group B need for FPR_B to equal FPR_A? Interpret the result.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Common factor: (1 - PPV) / PPV = 0.40 / 0.60 = 2/3 (0.6667).\nGroup A: p_A / (1 - p_A) = 0.40 / 0.60 = 2/3, so FPR_A = (2/3) * (2/3) * 0.75 = 1/3 = 0.3333.\nGroup B: p_B / (1 - p_B) = 0.25 / 0.75 = 1/3, so FPR_B = (1/3) * (2/3) * 0.75 = 1/6 = 0.1667.\n(b) Ratio FPR_A / FPR_B = 0.3333 / 0.1667 = 2.0x. Predictive parity (equal PPV = 0.60) and equal opportunity (equal TPR = 0.75) are satisfied, while equalized odds is violated because FPR differs by 2x (0.3333 vs. 0.1667).\n(c) Set 1/3 = (1/3) * [(1 - PPV_B) / PPV_B] * 0.75. Solving gives (1 - PPV_B) / PPV_B = 4/3, so 1 / PPV_B = 7/3 and PPV_B = 3/7 = 0.4286 (about 0.429). Equalizing FPR forces Group B's precision down from 0.60 to 0.429, breaking predictive parity.",
+    "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness"
+  },
+  {
+    "num": 2444,
+    "type": "sa",
+    "question": "Mock Final Q4: Kamiran-Calders Reweighing of a 2 x 2 Table\n\nA training set of 1,000 rows has these group x label counts:\n(A, Y=1) = 300; (A, Y=0) = 300; (B, Y=1) = 100; (B, Y=0) = 300.\n\n(a) Compute P(A), P(B), P(Y=1), P(Y=0), and the raw base rate of each group.\n(b) Compute the Kamiran-Calders weight w(a, y) = P(a) * P(y) / P(a, y) for all four cells.\n(c) Compute the weighted counts and weighted base rates. Verify total weight is still 1,000 and state what has become independent.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Marginals: P(A) = 600/1000 = 0.60, P(B) = 400/1000 = 0.40, P(Y=1) = 400/1000 = 0.40, P(Y=0) = 600/1000 = 0.60. Raw base rates: Group A = 300/600 = 0.50; Group B = 100/400 = 0.25.\n(b) Joint probabilities: P(A,1) = 0.30, P(A,0) = 0.30, P(B,1) = 0.10, P(B,0) = 0.30.\nWeights: w(A,1) = (0.60 * 0.40) / 0.30 = 0.80; w(A,0) = (0.60 * 0.60) / 0.30 = 1.20; w(B,1) = (0.40 * 0.40) / 0.10 = 1.60; w(B,0) = (0.40 * 0.60) / 0.30 = 0.80.\n(c) Weighted counts: (A,1) = 300 * 0.80 = 240; (A,0) = 300 * 1.20 = 360; (B,1) = 100 * 1.60 = 160; (B,0) = 300 * 0.80 = 240. Total weight = 240 + 360 + 160 + 240 = 1,000. Group totals remain 600 and 400. Weighted base rates: A = 240/600 = 0.40, B = 160/400 = 0.40 = P(Y=1). Group membership A and label Y are now statistically independent in the weighted data, without altering any labels.",
+    "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness"
+  },
+  {
+    "num": 2445,
+    "type": "sa",
+    "question": "Mock Final Q5: Randomized Threshold for Equal Opportunity\n\nGroup A operates at TPR = 0.80, FPR = 0.18. Group B's ROC has no threshold at exactly TPR = 0.80, only two neighbors:\ntau = 0.40 gives TPR_B = 0.84, FPR_B = 0.30.\ntau = 0.45 gives TPR_B = 0.76, FPR_B = 0.22.\n\n(a) Find the probability q of using tau = 0.40 (otherwise tau = 0.45) so that Group B's expected TPR is exactly 0.80. Compute FPR_B under the mix.\n(b) After mixing, compute the equal-opportunity and equalized-odds differences between A and B.\n(c) Group B has 500 qualified and 1,000 unqualified applicants. How many approvals are expected? State one ethical cost of randomizing.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) q = (TPR* - TPR_2) / (TPR_1 - TPR_2) = (0.80 - 0.76) / (0.84 - 0.76) = 0.04 / 0.08 = 0.50.\nFPR_mix = 0.50 * 0.30 + 0.50 * 0.22 = 0.26.\n(b) EOpp = |0.80 - 0.80| = 0.00. FPR gap = |0.18 - 0.26| = 0.08. EOdds = max(0.00, 0.08) = 0.08. Equal opportunity is achieved exactly, but equalized odds still has an 8-point FPR gap.\n(c) Expected approvals = 500 * 0.80 + 1,000 * 0.26 = 400 + 260 = 660 approvals. Ethical cost: two identical applicants with scores between 0.40 and 0.45 can receive opposite decisions purely by random draw, violating individual fairness and creating contestability challenges.",
+    "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness"
+  },
+  {
+    "num": 2446,
+    "type": "sa",
+    "question": "Mock Final Q6: The Impossibility Theorem in Numbers\n\nTwo groups of 200 people each are scored by a model whose flags are correct 75% of the time in both groups (PPV = 0.75).\nGroup A: base rate 40% (80 positives, 120 negatives), 96 people flagged.\nGroup B: base rate 15% (30 positives, 170 negatives), 32 people flagged.\n\n(a) Compute TP, FP, TPR, and FPR for each group.\n(b) Compute the equal-opportunity and equalized-odds differences.\n(c) Verify both FPRs with Chouldechova's identity. Why can no threshold change equalize TPR, FPR, and PPV together here?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Group A: TP = 0.75 * 96 = 72, FP = 96 - 72 = 24; TPR_A = 72 / 80 = 0.900; FPR_A = 24 / 120 = 0.200.\nGroup B: TP = 0.75 * 32 = 24, FP = 32 - 24 = 8; TPR_B = 24 / 30 = 0.800; FPR_B = 8 / 170 = 0.0471.\n(b) EOpp = |0.900 - 0.800| = 0.100. FPR gap = |0.200 - 0.0471| = 0.1529. EOdds = max(0.100, 0.1529) = 0.1529 (about 0.153).\n(c) Identity check:\nGroup A: (0.40/0.60) * (0.25/0.75) * 0.90 = (2/3) * (1/3) * 0.90 = 0.200 (exact match).\nGroup B: (0.15/0.85) * (0.25/0.75) * 0.80 = (3/17) * (1/3) * 0.80 = 0.80/17 = 0.0471 (exact match).\nBecause base rates differ (40% vs. 15%) and the classifier is imperfect, Chouldechova's identity algebraically forbids equal PPV, equal TPR, and equal FPR from holding simultaneously under any threshold choice.",
+    "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness"
+  },
+  {
+    "num": 2447,
+    "type": "sa",
+    "question": "HW3 Q9: Group Metrics, Fairness Gaps, and Difference vs. Ratio Framing\n\nA hiring model produces the following per-group performance rates (Group A: N = 1,000, Group B: N = 600):\nBase rate: A = 0.5000, B = 0.5000.\nTPR: A = 0.8400, B = 0.7000.\nFPR: A = 0.3000, B = 0.2000.\nPPV: A = 0.7368, B = 0.7778.\nSelection rate: A = 0.5700, B = 0.4500.\n\n(a) Compute DP difference, DI ratio (SR_B / SR_A), Equal Opportunity difference, FPR gap, and Equalized Odds difference. State clearly whether DI passes the 80% rule.\n(b) Compare two separate programs that both have a 4 percentage-point selection-rate difference: a Scholarship (SR_A = 0.12, SR_B = 0.08) and a Loan (SR_A = 0.70, SR_B = 0.66). Compute each DI ratio, test against 0.80, and explain why both difference and ratio must be reported.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) DP diff = 0.5700 - 0.4500 = 0.1200.\nDI ratio = 0.4500 / 0.5700 = 0.7895. Because 0.7895 < 0.80, it FAILS the four-fifths (80%) rule. (Note: the HW3 solution slide mistakenly wrote \">= 0.80 PASSES\", which is an arithmetic inequality typo on that slide; strictly 0.7895 < 0.80 fails.)\nEqual Opportunity diff = 0.8400 - 0.7000 = 0.1400.\nFPR gap = 0.3000 - 0.2000 = 0.1000.\nEqualized Odds diff = max(0.1400, 0.1000) = 0.1400.\n(b) Scholarship: diff = 0.0400, DI = 0.08 / 0.12 = 0.6667 < 0.80 (FAIL). Loan: diff = 0.0400, DI = 0.66 / 0.70 = 0.9429 >= 0.80 (PASS). At low selection rates a 4 pp gap cuts Group B's relative chance by one-third, whereas at high selection rates it is relatively minor. Reporting difference shows people affected; reporting ratio shows relative opportunity.",
+    "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness"
+  },
+  {
+    "num": 2448,
+    "type": "sa",
+    "question": "HW3 Q10: Chouldechova Forced FPR Across Base Rates and 5-Bin ECE\n\nPart 1: A classifier maintains TPR = 0.75 and PPV = 0.65 across three groups with base rates p = 0.60, 0.40, and 0.25.\nPart 2: A model's 1,000 validation predictions are binned as:\n(0 to 0.2: n=100, score=0.10, obs=0.08), (0.2 to 0.4: n=250, score=0.30, obs=0.22), (0.4 to 0.6: n=300, score=0.50, obs=0.55), (0.6 to 0.8: n=200, score=0.70, obs=0.62), (0.8 to 1.0: n=150, score=0.90, obs=0.95).\n\n(a) Compute the forced FPR at each of the three base rates and the ratio between p = 0.60 and p = 0.25.\n(b) Compute each bin's ECE contribution, total ECE, and label each bin over- or under-confident.\n(c) Explain why within-group calibration does not yield equal error rates.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Factor (1 - PPV) / PPV = 0.35 / 0.65 = 7/13 = 0.5385.\np = 0.60: p/(1-p) = 1.5000 -> FPR = 1.5000 * (7/13) * 0.75 = 0.6058.\np = 0.40: p/(1-p) = 0.6667 -> FPR = (2/3) * (7/13) * 0.75 = 0.2692.\np = 0.25: p/(1-p) = 0.3333 -> FPR = (1/3) * (7/13) * 0.75 = 0.1346.\nRatio: 0.6058 / 0.1346 = 4.50x (equal to the odds ratio 1.50 / 0.3333 = 4.5).\n(b) Contributions: Bin 1 = 0.10 * 0.02 = 0.0020 (over-confident); Bin 2 = 0.25 * 0.08 = 0.0200 (over-confident); Bin 3 = 0.30 * 0.05 = 0.0150 (under-confident); Bin 4 = 0.20 * 0.08 = 0.0160 (over-confident); Bin 5 = 0.15 * 0.05 = 0.0075 (under-confident).\nTotal ECE = 0.0020 + 0.0200 + 0.0150 + 0.0160 + 0.0075 = 0.0605 (6.05 percentage points; note the HW3 slide banner had a \"~5.6 pp\" typo while its table summed to 0.0605).\n(c) Within-group calibration fixes PPV in each group. If TPR is also held equal, Chouldechova's identity forces FPR to scale proportionally with group base-rate odds p/(1-p), so higher-base-rate groups necessarily absorb more false positives unless the model is perfect.",
+    "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness"
+  },
+  {
+    "num": 2449,
+    "type": "sa",
+    "question": "HW3 Q11: Kamiran-Calders Reweighing and Randomized Thresholds\n\nPart 1: A dataset of N = 1,000 has counts (A, Y=1) = 450, (A, Y=0) = 150, (B, Y=1) = 160, (B, Y=0) = 240.\nPart 2: To reach target TPR_B = 0.70, Group B mixes tau = 0.40 (TPR = 0.74, FPR = 0.28) with tau = 0.50 (TPR = 0.66, FPR = 0.22).\n\n(a) Compute all four Kamiran-Calders weights w(a, y) and weighted cell counts.\n(b) Compute Group A and Group B base rates before and after reweighing.\n(c) Solve for mixing probability q and resulting FPR_B, and state the main ethical concern.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) P(A) = 0.60, P(B) = 0.40, P(Y=1) = 610/1000 = 0.61, P(Y=0) = 0.39.\nw(A,1) = (0.60 * 0.61) / 0.45 = 0.8133 -> weighted count = 450 * 0.8133 = 366.0.\nw(A,0) = (0.60 * 0.39) / 0.15 = 1.5600 -> weighted count = 150 * 1.5600 = 234.0.\nw(B,1) = (0.40 * 0.61) / 0.16 = 1.5250 -> weighted count = 160 * 1.5250 = 244.0.\nw(B,0) = (0.40 * 0.39) / 0.24 = 0.6500 -> weighted count = 240 * 0.6500 = 156.0.\n(b) Before: Group A = 450/600 = 0.7500, Group B = 160/400 = 0.4000. After: Group A = 366.0/600 = 0.6100, Group B = 244.0/400 = 0.6100 = P(Y=1), preserving group sizes 600 and 400.\n(c) q = (0.70 - 0.66) / (0.74 - 0.66) = 0.04 / 0.08 = 0.5000. FPR_B = 0.50 * 0.28 + 0.50 * 0.22 = 0.2500. Ethical concern: identical borderline applicants can get different outcomes by coin flip, violating individual consistency and contestability.",
+    "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness"
+  },
+  {
+    "num": 2450,
+    "type": "sa",
+    "question": "HW3 Q12: Simulated Lending Fairness Audit and Mitigation Trade-Offs\n\nIn HW3's simulated lending audit (N = 10,000, 50/50 split, label bias flipping 20% of B's positives plus proxy feature x3), the test-set baseline at tau = 0.50 yields:\nGroup A: TP = 1,452, FN = 357, FP = 427, TN = 1,004 (N_A = 3,240).\nGroup B: TP = 325, FN = 262, FP = 185, TN = 988 (N_B = 1,760).\nMitigation comparison results:\nBaseline (tau=0.5): Acc = 0.7538, DP = 0.2902, DI = 0.4997, EOdds = 0.2490.\nDrop proxy x3: Acc = 0.7504, DP = 0.2372, DI = 0.5742, EOdds = 0.1888.\nReweighing: Acc = 0.7464, DP = 0.1442, DI = 0.7264, EOdds = 0.0879.\nMax-acc group thresholds (0.50, 0.56): Acc = 0.7558, DP = 0.3356, DI = 0.4213, EOdds = 0.3086.\nConstrained thresholds EOdds < 0.03 (0.54, 0.36): Acc = 0.7472, DP = 0.1098, DI = 0.7956, EOdds = 0.0292.\n\n(a) Verify Group A and Group B TPR, FPR, selection rate, DI ratio, and EOdds from the baseline confusion counts.\n(b) Compute the accuracy cost (in percentage points) of moving from max-accuracy group thresholds to the EOdds < 0.03 constrained thresholds.\n(c) Explain why dropping proxy x3 (\"fairness through unawareness\") fails to eliminate the disparity.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "(a) Group A: TPR = 1452/1809 = 0.8027, FPR = 427/1431 = 0.2984, SR = 1879/3240 = 0.5799.\nGroup B: TPR = 325/587 = 0.5537, FPR = 185/1173 = 0.1577, SR = 510/1760 = 0.2898.\nDP gap = 0.5799 - 0.2898 = 0.2901 (0.2902 unrounded). DI = 0.2898 / 0.5799 = 0.4997 (fails 0.80). TPR gap = 0.2490, FPR gap = 0.1407, so EOdds = max(0.2490, 0.1407) = 0.2490.\n(b) Accuracy cost = 0.7558 - 0.7472 = 0.0086, or 0.86 percentage points, in exchange for cutting EOdds from 0.3086 down to 0.0292 and raising DI from 0.4213 to 0.7956.\n(c) Dropping proxy x3 only moves DI from 0.500 to 0.574 and EOdds from 0.249 to 0.189 because feature x1 still differs in distribution across groups and historical training labels for Group B suffer 20% downward label bias. Removing one correlated proxy never removes bias embedded in remaining features and labels.",
+    "lectureReference": "Part 91: Final Review Ch 1: Algorithmic Fairness"
+  },
+  {
+    "num": 2451,
+    "type": "sa",
+    "question": "Mock Final Q7: LIME Kernel and Weighted Surrogate\n\nA tabular LIME explanation uses p = 9 features, kernel pi(d) = exp(-d^2 / omega^2) at LIME's default width omega = 0.75 * sqrt(p), and a one-feature surrogate on DTI fitted to four perturbed points:\n(DTI = 0.20, f = 0.30, w = 0.4); (0.40, 0.45, 1.0); (0.60, 0.70, 1.0); (0.80, 0.80, 0.6).\n\n(a) Compute omega and the kernel weights pi(d) at standardized distances d = 0.5, 1.5, and 3.0.\n(b) Fit the weighted least-squares (WLS) surrogate f_hat(DTI) = beta_0 + beta_1 * DTI to the four points.\n(c) The explained instance has DTI = 0.50 and black-box prediction f(x) = 0.60. Compute f_hat(0.50), the fidelity gap, and Fidelity = 100 - |gap| / f(x) * 100.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) omega = 0.75 * sqrt(9) = 2.25; omega^2 = 5.0625.\npi(0.5) = exp(-0.25 / 5.0625) = exp(-0.04938) = 0.9518 (0.952).\npi(1.5) = exp(-2.25 / 5.0625) = exp(-0.4444) = 0.6412 (0.641).\npi(3.0) = exp(-9.00 / 5.0625) = exp(-1.7778) = 0.1690 (0.169).\n(b) Weighted sums:\nsum(w) = 0.4 + 1.0 + 1.0 + 0.6 = 3.00.\nsum(wx) = 0.08 + 0.40 + 0.60 + 0.48 = 1.56.\nsum(wy) = 0.12 + 0.45 + 0.70 + 0.48 = 1.75.\nsum(wxy) = 0.024 + 0.180 + 0.420 + 0.384 = 1.008.\nsum(wx^2) = 0.016 + 0.160 + 0.360 + 0.384 = 0.920.\nbeta_1 = (3.00 * 1.008 - 1.56 * 1.75) / (3.00 * 0.920 - 1.56^2) = (3.024 - 2.730) / (2.760 - 2.4336) = 0.294 / 0.3264 = 0.9007 (0.901).\nbeta_0 = (1.75 - 0.9007 * 1.56) / 3.00 = (1.75 - 1.4051) / 3.00 = 0.1150 (0.115).\nSurrogate: f_hat(DTI) = 0.115 + 0.901 * DTI.\n(c) f_hat(0.50) = 0.1150 + 0.9007 * 0.50 = 0.5653 (0.565).\nGap = |0.5653 - 0.60| = 0.0347 (0.035).\nFidelity = 100 - (0.0347 / 0.60) * 100 = 94.22 (94.2). Near this instance, +0.10 DTI raises the deny score by about +0.090.",
+    "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)"
+  },
+  {
+    "num": 2452,
+    "type": "sa",
+    "question": "Mock Final Q8: Exact Shapley Values for Three Features\n\nA credit model with features A = DTI, B = delinquencies, and C = income has coalition values v(S) (absent features set to baseline):\nv(empty) = 0.40, v({A}) = 0.55, v({B}) = 0.46, v({C}) = 0.36, v({A,B}) = 0.66, v({A,C}) = 0.50, v({B,C}) = 0.44, v({A,B,C}) = 0.68.\n\n(a) State the Shapley weight |S|!(n - |S| - 1)! / n! for coalitions of size |S| = 0, 1, and 2 when n = 3.\n(b) Compute phi_A, phi_B, and phi_C exactly.\n(c) Verify local accuracy (efficiency) and rank the features as adverse-action reasons.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) For n = 3 (n! = 6): |S| = 0 -> 0!2!/6 = 1/3; |S| = 1 -> 1!1!/6 = 1/6 (two subsets); |S| = 2 -> 2!0!/6 = 1/3.\n(b) Marginals and Shapley values:\nphi_A = (1/3)*(0.55 - 0.40) + (1/6)*(0.66 - 0.46) + (1/6)*(0.50 - 0.36) + (1/3)*(0.68 - 0.44)\n= (1/3)(0.15) + (1/6)(0.20) + (1/6)(0.14) + (1/3)(0.24) = 0.0500 + 0.0333 + 0.0233 + 0.0800 = +0.1867 (+0.187).\nphi_B = (1/3)*(0.46 - 0.40) + (1/6)*(0.66 - 0.55) + (1/6)*(0.44 - 0.36) + (1/3)*(0.68 - 0.50)\n= (1/3)(0.06) + (1/6)(0.11) + (1/6)(0.08) + (1/3)(0.18) = 0.0200 + 0.0183 + 0.0133 + 0.0600 = +0.1117 (+0.112).\nphi_C = (1/3)*(0.36 - 0.40) + (1/6)*(0.50 - 0.55) + (1/6)*(0.44 - 0.46) + (1/3)*(0.68 - 0.66)\n= (1/3)(-0.04) + (1/6)(-0.05) + (1/6)(-0.02) + (1/3)(0.02) = -0.0133 - 0.0083 - 0.0033 + 0.0067 = -0.0183 (-0.018).\n(c) Efficiency check: phi_A + phi_B + phi_C = 0.1867 + 0.1117 - 0.0183 = 0.2800 = 0.68 - 0.40 = v(N) - v(empty). Adverse-action reasons (positive drivers of denial): (1) DTI (+0.187), (2) delinquencies (+0.112). Income lowers the deny score (-0.018), so it is not cited as a denial reason.",
+    "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)"
+  },
+  {
+    "num": 2453,
+    "type": "sa",
+    "question": "Mock Final Q9: Linear SHAP and an Interaction Game\n\nPart 1: A linear model f(x) = beta_0 + sum(beta_i * x_i) has:\nDTI: beta = 0.50, x = 0.60, E[x] = 0.40.\nIncome ($k): beta = -0.02, x = 80, E[x] = 65.\nDelinquencies: beta = 1.20, x = 2, E[x] = 0.8.\nPart 2: Interaction game f = 2 * x_1 * x_2 + 3 * x_3 at x = (2, 3, 1), with absent features set to 0.\n\n(a) Compute phi_i = beta_i * (x_i - E[x_i]) for each feature and their sum. If E[f(x)] = 0.30, what is f(x)?\n(b) For the interaction game, list v(S) for all 8 coalitions and compute phi_1, phi_2, and phi_3.\n(c) Check efficiency for part (b). Which Shapley axioms explain phi_1 = phi_2 and the value of phi_3?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) phi_DTI = 0.50 * (0.60 - 0.40) = +0.100.\nphi_Income = -0.02 * (80 - 65) = -0.300.\nphi_Delinq = 1.20 * (2 - 0.8) = +1.440.\nSum = 0.100 - 0.300 + 1.440 = +1.240. Thus f(x) = E[f(x)] + sum(phi) = 0.30 + 1.24 = 1.54.\n(b) Coalition values: v(empty) = 0, v({1}) = 0, v({2}) = 0, v({3}) = 3, v({1,2}) = 12, v({1,3}) = 3, v({2,3}) = 3, v({1,2,3}) = 15.\nphi_1 = (1/3)(0 - 0) + (1/6)(12 - 0) + (1/6)(3 - 3) + (1/3)(15 - 3) = 0 + 2 + 0 + 4 = 6.\nphi_2 = (1/3)(0 - 0) + (1/6)(12 - 0) + (1/6)(3 - 3) + (1/3)(15 - 3) = 6.\nphi_3 = (1/3)(3 - 0) + (1/6)(3 - 0) + (1/6)(3 - 0) + (1/3)(15 - 12) = 1 + 0.5 + 0.5 + 1 = 3.\n(c) Efficiency: 6 + 6 + 3 = 15 = v({1,2,3}) - v(empty). Symmetry explains phi_1 = phi_2 = 6 (features 1 and 2 enter the product 2*x_1*x_2 identically in coalition values, splitting the interaction value 12 equally). Additivity explains phi_3 = 3 (x_3 enters purely additively, receiving exactly its own term 3*x_3 = 3).",
+    "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)"
+  },
+  {
+    "num": 2454,
+    "type": "sa",
+    "question": "Mock Final Q10: Explanation Assurance Score (EAS)\n\nThree LIME reruns give top-3 sets: R1 = {DTI, Income, Util}, R2 = {DTI, Util, Delinq}, R3 = {Income, DTI, Age}. The surrogate predicts 0.74 where the black box predicts 0.80.\nDeletion test (features removed k = 0, 1, 2, 3, 4):\nAttribution order: 0.80, 0.58, 0.50, 0.46, 0.42.\nRandom order: 0.80, 0.74, 0.66, 0.55, 0.42.\n\n(a) Compute the three pairwise Jaccard similarities and the Stability score, and classify it.\n(b) Compute both trapezoid AUCs and the Faithfulness score, and classify it.\n(c) Compute Fidelity and EAS = 0.35 * Stability + 0.40 * Faithfulness + 0.25 * Fidelity. May this explanation be cited alone as audit evidence?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Pairwise Jaccards:\nJ(R1, R2) = |{DTI, Util}| / |{DTI, Income, Util, Delinq}| = 2/4 = 0.50.\nJ(R1, R3) = |{DTI, Income}| / |{DTI, Income, Util, Age}| = 2/4 = 0.50.\nJ(R2, R3) = |{DTI}| / |{DTI, Util, Delinq, Income, Age}| = 1/5 = 0.20.\nStability = ((0.50 + 0.50 + 0.20) / 3) * 100 = 40.0% (< 50 -> unstable).\n(b) Trapezoid AUCs (step 1):\nAUC_attr = (0.80+0.58)/2 + (0.58+0.50)/2 + (0.50+0.46)/2 + (0.46+0.42)/2 = 0.69 + 0.54 + 0.48 + 0.44 = 2.150.\nAUC_rand = (0.80+0.74)/2 + (0.74+0.66)/2 + (0.66+0.55)/2 + (0.55+0.42)/2 = 0.77 + 0.70 + 0.605 + 0.485 = 2.560.\nFaithfulness = ((2.560 - 2.150) / 2.560) * 100 = 16.02% (10 to 19 -> weakly faithful).\n(c) Fidelity = 100 - (|0.74 - 0.80| / 0.80) * 100 = 100 - 7.50 = 92.50.\nEAS = 0.35 * 40.0 + 0.40 * 16.02 + 0.25 * 92.50 = 14.00 + 6.41 + 23.13 = 43.53 (< 60 -> low-assurance).\nNo, it cannot be cited alone as evidence: high single-point fidelity does not rescue unstable reruns and weak deletion faithfulness.",
+    "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)"
+  },
+  {
+    "num": 2455,
+    "type": "sa",
+    "question": "Mock Final Q11: Attribution Drift Index and Spearman Rank Agreement\n\nMonthly attribution monitoring compares each feature's percentage share of total |attribution|:\nDTI: 40% -> 33%; Delinquencies: 30% -> 20%; Income: 20% -> 15%; Tenure: 10% -> 5%; ZipCode: 0% -> 27%.\nSeparately, LIME ranks six features 1-2-3-4-5-6 while SHAP ranks the same six features 2-1-3-5-4-6.\n\n(a) Compute ADI = 0.5 * sum(|p_i - q_i|) and classify the drift.\n(b) Compute Spearman's rank correlation rho = 1 - 6 * sum(d_i^2) / (n * (n^2 - 1)).\n(c) Which feature accounts for the largest share of the total change (in %)? What governance action follows, and why is a high rho not enough?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Absolute shifts |p_i - q_i|: DTI 7, Delinquencies 10, Income 5, Tenure 5, ZipCode 27. Sum = 54.\nADI = 0.5 * 54 = 27.0 (> 25 -> significant drift / investigate).\n(b) Rank differences d_i: (-1, +1, 0, -1, +1, 0), so d_i^2 = (1, 1, 0, 1, 1, 0) and sum(d_i^2) = 4.\nWith n = 6: rho = 1 - (6 * 4) / (6 * 35) = 1 - 24/210 = 1 - 0.1143 = 0.8857 (0.886).\n(c) ZipCode accounts for 27 / 54 = 50% of the total absolute attribution shift. Because ZipCode is a likely protected-attribute proxy that jumped from 0% to 27%, governance must freeze/flag the model and open a fairness and data-pipeline audit. Even though rho = 0.886 looks high, LIME and SHAP disagree on the #1 ranked feature, which is the exact feature cited on an adverse-action notice.",
+    "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)"
+  },
+  {
+    "num": 2456,
+    "type": "sa",
+    "question": "Mock Final Q12: Minimal and Actionable Counterfactuals\n\nA logistic deny-model has w = (2.5 for DTI, 0.8 for delinquencies) and b = -1.5. The applicant has DTI = 0.70 and 1 delinquency. Approval requires P(deny) <= 0.5, i.e., logit <= 0.\n\n(a) Compute the logit w^T x + b and P(deny).\n(b) Compute the minimal-L2 counterfactual Delta* = (logit(tau) - w^T x - b) * w / ||w||^2 for tau = 0.5 and verify it lands on the boundary.\n(c) Past delinquencies are immutable. Compute the DTI-only recourse and compare it with (b). What does this show about unconstrained counterfactuals?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) logit = 2.5 * 0.70 + 0.8 * 1 - 1.5 = 1.75 + 0.80 - 1.50 = 1.05.\nP(deny) = 1 / (1 + exp(-1.05)) = 1 / (1 + 0.3499) = 0.7408 (0.741).\n(b) ||w||^2 = 2.5^2 + 0.8^2 = 6.25 + 0.64 = 6.89.\nScalar = (0 - 1.05) / 6.89 = -0.1524.\nDelta* = -0.1524 * (2.5, 0.8) = (-0.3810, -0.1219).\nNew point x' = (0.70 - 0.3810, 1 - 0.1219) = (0.3190, 0.8781). Boundary check: 2.5 * 0.3190 + 0.8 * 0.8781 - 1.5 = 0.7975 + 0.7025 - 1.5 = 0.000.\n(c) Holding delinquencies = 1: 2.5 * DTI + 0.8(1) - 1.5 = 0 -> 2.5 * DTI = 0.7 -> DTI = 0.28, so Delta DTI = 0.28 - 0.70 = -0.420.\nUnconstrained L2 asks for -0.122 fewer past delinquencies, which is impossible (immutable and integer-valued). Enforcing immutability requires a 10.2% larger DTI reduction (-0.420 vs. -0.381), but gives actionable recourse.",
+    "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)"
+  },
+  {
+    "num": 2457,
+    "type": "sa",
+    "question": "HW3 Q5: LIME Weighted Sums, WLS Surrogate, and Fidelity\n\nFive perturbed samples around DTI = 0.40 (where black-box f(0.40) = 0.52) have:\n(x = 0.20, y = 0.22, w = 0.4); (0.30, 0.31, 0.7); (0.40, 0.52, 1.0); (0.50, 0.66, 0.8); (0.60, 0.74, 0.5).\n\n(a) Compute sum(w), sum(wx), sum(wy), sum(wxy), and sum(wx^2).\n(b) Solve for the WLS surrogate f_hat(DTI) = beta_0 + beta_1 * DTI.\n(c) Compute f_hat(0.40), Fidelity, and interpret beta_1 for a +0.10 increase in DTI.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) sum(w) = 0.4 + 0.7 + 1.0 + 0.8 + 0.5 = 3.4000.\nsum(wx) = 0.0800 + 0.2100 + 0.4000 + 0.4000 + 0.3000 = 1.3900.\nsum(wy) = 0.0880 + 0.2170 + 0.5200 + 0.5280 + 0.3700 = 1.7230.\nsum(wxy) = 0.0176 + 0.0651 + 0.2080 + 0.2640 + 0.2220 = 0.7767.\nsum(wx^2) = 0.0160 + 0.0630 + 0.1600 + 0.2000 + 0.1800 = 0.6190.\n(b) Numerator = 3.4000 * 0.7767 - 1.3900 * 1.7230 = 2.64078 - 2.39497 = 0.24581.\nDenominator = 3.4000 * 0.6190 - 1.3900^2 = 2.10460 - 1.93210 = 0.17250.\nbeta_1 = 0.24581 / 0.17250 = 1.4250.\nbeta_0 = (1.7230 - 1.4250 * 1.3900) / 3.4000 = -0.0758.\nSurrogate: f_hat(DTI) = -0.0758 + 1.4250 * DTI.\n(c) f_hat(0.40) = -0.0758 + 1.4250 * 0.40 = 0.4942. Gap = 0.4942 - 0.5200 = -0.0258.\nFidelity = 100 - (0.0258 / 0.5200) * 100 = 95.04%. Interpretation: locally around DTI = 0.40, a +0.10 increase in DTI adds +0.1425 (+14.25 percentage points) to DENY probability.",
+    "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)"
+  },
+  {
+    "num": 2458,
+    "type": "sa",
+    "question": "HW3 Q6: Exact 3-Feature Shapley Values and Attribution Drift Index\n\nPart 1: Credit model features A (utilization), B, and C have coalition values:\nv(empty) = 0.30, v({A}) = 0.42, v({B}) = 0.36, v({C}) = 0.25, v({A,B}) = 0.55, v({A,C}) = 0.38, v({B,C}) = 0.33, v({A,B,C}) = 0.50.\nPart 2: Attribution shares shift from last month (A 40%, B 30%, C 20%, D 10%, E 0%) to this month (A 25%, B 20%, C 15%, D 10%, E 30%).\n\n(a) Compute exact Shapley values phi_A, phi_B, and phi_C.\n(b) Verify local accuracy v(empty) + sum(phi) = v({A,B,C}).\n(c) Compute ADI, classify the drift, and state the recommended governance response to feature E.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Using weights (1/3, 1/6, 1/6, 1/3):\nphi_A = (1/3)(0.42 - 0.30) + (1/6)(0.55 - 0.36) + (1/6)(0.38 - 0.25) + (1/3)(0.50 - 0.33)\n= (1/3)(0.12) + (1/6)(0.19) + (1/6)(0.13) + (1/3)(0.17) = 0.0400 + 0.0317 + 0.0217 + 0.0567 = +0.1500.\nphi_B = (1/3)(0.06) + (1/6)(0.13) + (1/6)(0.08) + (1/3)(0.12) = 0.0200 + 0.0217 + 0.0133 + 0.0400 = +0.0950.\nphi_C = (1/3)(-0.05) + (1/6)(-0.04) + (1/6)(-0.03) + (1/3)(-0.05) = -0.0167 - 0.0067 - 0.0050 - 0.0167 = -0.0450.\n(b) Local accuracy: 0.30 + (0.1500 + 0.0950 - 0.0450) = 0.30 + 0.2000 = 0.5000 = v({A,B,C}).\n(c) |p - q| = (15, 10, 5, 0, 30), sum = 60. ADI = 0.5 * 60 = 30.0 (> 25 -> significant drift). Feature E jumped from 0% to 30% (half of all change): freeze or flag the model and investigate E for data leakage, pipeline corruption, or a newly active protected proxy.",
+    "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)"
+  },
+  {
+    "num": 2459,
+    "type": "sa",
+    "question": "HW3 Q7: Four-Run Stability, Deletion Faithfulness, and EAS\n\nFour LIME reruns have pairwise Jaccard similarities: R1-R2 = 2/4 = 0.50, R1-R3 = 2/4 = 0.50, R1-R4 = 3/3 = 1.00, R2-R3 = 1/5 = 0.20, R2-R4 = 2/4 = 0.50, R3-R4 = 2/4 = 0.50.\nDeletion curves for k = 0, 1, 2, 3, 4 removed features:\nAttribution order: 0.84, 0.58, 0.47, 0.42, 0.40.\nRandom order: 0.84, 0.80, 0.71, 0.58, 0.40.\nUse Fidelity = 95.04 from HW3 Q5.\n\n(a) Compute Stability (%) and classify it.\n(b) Compute AUC_attr, AUC_rand, Faithfulness (%), and classify it.\n(c) Compute EAS = 0.35 * Stability + 0.40 * Faithfulness + 0.25 * Fidelity, classify it, and identify which component loses the most points relative to 100.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Mean Jaccard = (0.50 + 0.50 + 1.00 + 0.20 + 0.50 + 0.50) / 6 = 3.20 / 6 = 0.5333 -> Stability = 53.33% (50 to 79 -> moderate).\n(b) AUC_attr = (0.84+0.58)/2 + (0.58+0.47)/2 + (0.47+0.42)/2 + (0.42+0.40)/2 = 0.710 + 0.525 + 0.445 + 0.410 = 2.0900.\nAUC_rand = (0.84+0.80)/2 + (0.80+0.71)/2 + (0.71+0.58)/2 + (0.58+0.40)/2 = 0.820 + 0.755 + 0.645 + 0.490 = 2.7100.\nFaithfulness = ((2.7100 - 2.0900) / 2.7100) * 100 = 22.88% (>= 20 -> faithful).\n(c) EAS = 0.35 * 53.3333 + 0.40 * 22.8782 + 0.25 * 95.0385 = 18.67 + 9.15 + 23.76 = 51.58 (< 60 -> low-assurance).\nLost points vs. 100: Faithfulness costs 0.40 * (100 - 22.88) = 30.85 pts (largest drag), Stability costs 0.35 * (100 - 53.33) = 16.33 pts, Fidelity costs only 0.25 * (100 - 95.04) = 1.24 pts.",
+    "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)"
+  },
+  {
+    "num": 2460,
+    "type": "sa",
+    "question": "HW3 Q8: PDP vs. ALE and Interventional Shapley Under Correlation\n\nData are generated from y = 3*x1 + 2*x2^2 + eps with (x1, x2) bivariate normal, unit variance, and correlation rho in {0, 0.5, 0.9}. A 200-tree Random Forest gives the following x1 slopes and RMSE against true effect 3*x1:\nrho = 0: PDP slope 2.9802 (RMSE 0.0695), ALE slope 2.9284 (RMSE 0.0766).\nrho = 0.5: PDP slope 2.8861 (RMSE 0.1171), ALE slope 2.9166 (RMSE 0.0888).\nrho = 0.9: PDP slope 2.3977 (RMSE 0.6137), ALE slope 2.9097 (RMSE 0.0971).\nAt rho = 0.9 and x* = (1.5, 1.2), interventional Shapley gives Base = 2.2592, phi(x1) = 3.2090, phi(x2) = 1.8585, model f(x*) = 7.3267, while the true centered additive effects are 4.481 for x1 and 0.833 for x2.\n\n(a) Compare how PDP RMSE and ALE RMSE scale from rho = 0 to rho = 0.9, and explain mechanically why PDP breaks down.\n(b) Verify Shapley local accuracy at x* and compute how much attribution shifted from x1 to x2 relative to the true additive split.\n(c) Explain why interventional Shapley still misallocates credit at rho = 0.9 despite satisfying local accuracy.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "(a) PDP RMSE jumps 8.83x (0.0695 to 0.6137) and its slope drops from 2.98 to 2.40, whereas ALE RMSE grows only 1.27x (0.0766 to 0.0971) with slope staying at 2.91 (close to 3.0). PDP substitutes x1 = g into every row, creating impossible off-manifold pairs like (x1 = 2, x2 = -2) when rho = 0.9 where trees extrapolate poorly and leak x2^2's effect into x1. ALE averages local differences strictly inside narrow quantile bins of real observations.\n(b) Local accuracy: 2.2592 + 3.2090 + 1.8585 = 7.3267 = f(x*) (exact). Credit shift from x1: 4.481 - 3.209 = 1.272 units moved off x1 (and +1.026 units added to x2, from 0.833 to 1.859).\n(c) Local accuracy guarantees only that attributions sum to f(x*) - E[f(X)], not that correlated features are disentangled. At rho = 0.9, the random forest splits interchangeably on x1 and x2, and interventional v(S) still queries off-manifold points (x1*, x2_bg) where tree leaves extrapolate badly.",
+    "lectureReference": "Part 92: Final Review Ch 2: Explainable AI (xAI)"
+  },
+  {
+    "num": 2461,
+    "type": "sa",
+    "question": "Mock Final Q13: PSI as a Symmetric KL Divergence\n\nA credit score's five bins have expected (training) shares e = [0.15, 0.25, 0.30, 0.20, 0.10] and actual (production) shares a = [0.10, 0.20, 0.28, 0.25, 0.17].\n\n(a) Compute each PSI term (a_i - e_i) * ln(a_i / e_i) and the total PSI. Classify the shift (< 0.10 none, 0.10 to 0.25 moderate, > 0.25 major).\n(b) Compute KL(a || e) and KL(e || a) and show that their sum equals PSI.\n(c) Using PSI approx delta^2 for a normal mean shift, estimate delta in standard deviations. Roughly what delta corresponds to the 0.25 major threshold?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Bin terms:\nBin 1: (0.10 - 0.15) * ln(0.10/0.15) = (-0.05) * (-0.4055) = 0.0203.\nBin 2: (0.20 - 0.25) * ln(0.20/0.25) = (-0.05) * (-0.2231) = 0.0112.\nBin 3: (0.28 - 0.30) * ln(0.28/0.30) = (-0.02) * (-0.0690) = 0.0014.\nBin 4: (0.25 - 0.20) * ln(0.25/0.20) = (+0.05) * (+0.2231) = 0.0112.\nBin 5: (0.17 - 0.10) * ln(0.17/0.10) = (+0.07) * (+0.5306) = 0.0371.\nTotal PSI = 0.0811 (< 0.10 -> no significant shift / stable, though Bin 5 alone accounts for 45.8% of PSI and should be watched).\n(b) KL(a || e) = sum(a * ln(a/e)) = -0.04055 - 0.04463 - 0.01932 + 0.05579 + 0.09021 = 0.0415.\nKL(e || a) = sum(e * ln(e/a)) = +0.06082 + 0.05579 + 0.02070 - 0.04463 - 0.05306 = 0.0396.\nSum: 0.0415 + 0.0396 = 0.0811 = PSI (exact).\n(c) delta approx sqrt(0.0811) = 0.285 SD (about 0.28 SD). The 0.25 major band corresponds to delta approx sqrt(0.25) = 0.50 SD.",
+    "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability"
+  },
+  {
+    "num": 2462,
+    "type": "sa",
+    "question": "Mock Final Q14: Disparate Impact, Significance, and Audit Sample Size\n\nA hiring screen selected 180 of 400 reference-group applicants and 51 of 150 protected-group applicants.\n\n(a) Compute both selection rates and the disparate-impact ratio. Does it pass the four-fifths rule?\n(b) Run a two-proportion z-test using the pooled rate. Is the gap significant at alpha = 0.05 (two-sided)?\n(c) An auditor samples decisions with expected error rate 8%, margin +-2.5%, and 95% confidence (z = 1.96): compute n, then adjust for finite population N = 4,000. If 500 sampled decisions show 0 errors, give the approximate 95% upper bound on true error rate.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) p_ref = 180 / 400 = 0.450; p_prot = 51 / 150 = 0.340.\nDI = 0.340 / 0.450 = 0.7556 (0.756 < 0.80 -> fails four-fifths rule).\n(b) Pooled rate p_hat = (180 + 51) / (400 + 150) = 231 / 550 = 0.420.\nSE = sqrt(0.420 * 0.580 * (1/400 + 1/150)) = sqrt(0.2436 * 0.009167) = 0.04725 (0.0473).\nz = (0.450 - 0.340) / 0.04725 = 2.328 (2.33); two-sided p = 0.0199 (0.020 < 0.05). Yes, statistically significant; both ratio and significance agree, so escalate to full adverse-impact review.\n(c) n = (1.96^2 * 0.08 * 0.92) / 0.025^2 = 0.28274 / 0.000625 = 452.39 -> round UP to n = 453.\nFinite-population correction: n' = 453 / (1 + 452 / 4000) = 453 / 1.113 = 407.01 (407, or 408 if strictly rounding up).\nRule of three (0 errors in 500): approximate 95% upper bound = 3 / 500 = 0.006 = 0.6%.",
+    "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability"
+  },
+  {
+    "num": 2463,
+    "type": "sa",
+    "question": "Mock Final Q15: Robust Z-Scores and Heavy-Tailed MTTD\n\nDaily query volume on a scoring endpoint for 8 baseline days (day 8 was an earlier attack): 40, 44, 38, 46, 42, 36, 48, 150. Today's volume is 85.\nSeparately, eight incidents took 10, 15, 22, 28, 35, 40, 55, and 480 minutes to detect.\n\n(a) Compute the classical z-score of today's volume using the baseline mean and population sigma. Is it flagged at |z| > 3?\n(b) Compute the robust z = (x - median) / (1.4826 * MAD). Is it flagged? Why do the two scores disagree?\n(c) For the incident times, compute the mean, median, and 90th percentile (linear interpolation at index 0.9 * (n - 1)). Which numbers should be reported?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Baseline sum = 444, mu = 444 / 8 = 55.5.\nPopulation variance = sum((x_i - 55.5)^2) / 8 = 10,318 / 8 = 1,289.75, so sigma = 35.913 (35.9).\nClassical z = (85 - 55.5) / 35.913 = 0.821 (0.82 <= 3 -> NOT flagged / missed).\n(b) Sorted baseline: [36, 38, 40, 42, 44, 46, 48, 150]. Median = (42 + 44) / 2 = 43.0.\nAbsolute deviations |x - 43|: [7, 5, 3, 1, 1, 3, 5, 107] -> sorted [1, 1, 3, 3, 5, 5, 7, 107].\nMAD = (3 + 5) / 2 = 4.0. Robust sigma = 1.4826 * 4.0 = 5.9304.\nz_rob = (85 - 43) / 5.9304 = 7.082 (7.08 > 3 -> ALERT). The earlier attack of 150 massively inflates classical sigma (35.9 vs. 5.93), masking today's spike.\n(c) Mean MTTD = 685 / 8 = 85.625 (85.6 min). Median = (28 + 35) / 2 = 31.5 min.\np90: index = 0.9 * (8 - 1) = 6.3 (0-indexed: between value[6] = 55 and value[7] = 480). p90 = 55 + 0.3 * (480 - 55) = 55 + 127.5 = 182.5 min.\nReport the median (31.5 min) for typical performance and p90 (182.5 min) for tail exposure; the mean (85.6 min) is distorted by the single 480-minute outlier.",
+    "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability"
+  },
+  {
+    "num": 2464,
+    "type": "sa",
+    "question": "Mock Final Q16: CUSUM versus EWMA on a Slow Creep\n\nA fraud model's daily false-positive rate (%) over days 1 to 7 is: 2.0, 2.2, 2.5, 2.9, 3.2, 3.6, 4.0. The in-control target is mu_0 = 2.0% with sigma = 0.5.\n\n(a) Run CUSUM C_t = max(0, C_{t-1} + x_t - 2.0 - k) with k = 0.5 and h = 3.0. On which day does it alarm?\n(b) Compute the EWMA upper control limit UCL = mu_0 + L * sigma * sqrt(lambda / (2 - lambda)) with lambda = 0.25 and L = 3.\n(c) Run EWMA z_t = lambda * x_t + (1 - lambda) * z_{t-1} from z_0 = 2.0. On which day does it alarm, and which chart detects the creep first?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) CUSUM increments x_t - 2.5:\nDay 1: 2.0 - 2.5 = -0.5 -> C_1 = 0.0.\nDay 2: 2.2 - 2.5 = -0.3 -> C_2 = 0.0.\nDay 3: 2.5 - 2.5 = 0.0 -> C_3 = 0.0.\nDay 4: 2.9 - 2.5 = +0.4 -> C_4 = 0.4.\nDay 5: 3.2 - 2.5 = +0.7 -> C_5 = 1.1.\nDay 6: 3.6 - 2.5 = +1.1 -> C_6 = 2.2.\nDay 7: 4.0 - 2.5 = +1.5 -> C_7 = 3.7 > 3.0 -> ALARM on Day 7.\n(b) UCL = 2.0 + 3 * 0.5 * sqrt(0.25 / 1.75) = 2.0 + 1.5 * 0.37796 = 2.5669 (2.567).\n(c) EWMA series (z_0 = 2.000):\nDay 1: 0.25(2.0) + 0.75(2.000) = 2.0000.\nDay 2: 0.25(2.2) + 0.75(2.000) = 2.0500.\nDay 3: 0.25(2.5) + 0.75(2.050) = 2.1625.\nDay 4: 0.25(2.9) + 0.75(2.1625) = 2.3469.\nDay 5: 0.25(3.2) + 0.75(2.3469) = 2.5602 (just below 2.5669).\nDay 6: 0.25(3.6) + 0.75(2.5602) = 2.8201 > 2.5669 -> ALARM on Day 6.\nDay 7: 3.1151.\nEWMA detects the slow creep first (Day 6 vs. Day 7).",
+    "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability"
+  },
+  {
+    "num": 2465,
+    "type": "sa",
+    "question": "Mock Final Q17: Continuous Audit Score (CAS) and Accountability (RAS)\n\nTwo candidate models are scored 0 to 100 on Performance (P), Fairness (F), Drift stability (D), and Governance (G). CAS weights are 0.30 / 0.25 / 0.25 / 0.20, with a floor of 50 on every dimension.\nM1: P = 84, F = 72, D = 78, G = 60.\nM2: P = 92, F = 45, D = 88, G = 85.\n\n(a) Compute CAS for M1 and M2 and give the composite band (>= 85 audit-ready, 65 to 84 conditional, < 65 not ready).\n(b) Apply the floor rule. Which model may be deployed, and on what condition?\n(c) M1's incident chain: Triage (w = 0.25, owner + ticket), Containment (w = 0.35, owner only), Root cause (w = 0.20, owner + template), Remediation (w = 0.20, no owner). Compute RAS and classify it (>= 85 strong, 60 to 84 adequate, < 60 weak).",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) CAS(M1) = 0.30(84) + 0.25(72) + 0.25(78) + 0.20(60) = 25.20 + 18.00 + 19.50 + 12.00 = 74.70 (conditional).\nCAS(M2) = 0.30(92) + 0.25(45) + 0.25(88) + 0.20(85) = 27.60 + 11.25 + 22.00 + 17.00 = 77.85 (conditional on composite).\n(b) Floor rule: M2 fails with F = 45 < 50, so M2 is BLOCKED (Not Ready) despite having the higher composite score. Only M1 may be deployed, under conditional deployment with active monitoring and remediation of governance.\n(c) Completeness c_i: Triage = 1.0, Containment = 0.5, Root cause = 1.0, Remediation = 0.0.\nRAS = (0.25 * 1.0 + 0.35 * 0.5 + 0.20 * 1.0 + 0.20 * 0.0) * 100 = (0.25 + 0.175 + 0.20 + 0) * 100 = 62.5 (adequate, 60 to 84; assign an owner to Remediation first).",
+    "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability"
+  },
+  {
+    "num": 2466,
+    "type": "sa",
+    "question": "Mock Final Q18: Documentation Debt Index (DDI) and Escalation Priority Score (EPS)\n\nModel-card field weights: model_details 3, intended_use 3, out_of_scope 3, training_data 2, eval_metrics 3, eval_slices 2, ethical_considerations 2, limitations 3, monitoring_triggers 2, owner_contact 1.\nMissing fields: intended_use, eval_slices, monitoring_triggers, owner_contact.\n\n(a) Compute DDI = (sum missing weights / sum all weights) * 100 and classify it (< 10% low, 10 to 30% moderate, > 30% high / block).\n(b) This week PSI = 0.18, query z = 4.5, and RAS = 62.5. Compute EPS = 100 * [0.35*min(PSI/0.25, 1) + 0.35*min(|z|/6, 1) + 0.15*(100 - RAS)/100 + 0.15*DDI/100] and state the escalation tier (>= 70 P1, 40 to 69 P2, < 40 P3).\n(c) Which signal contributes most to EPS? If intended_use is documented, compute the new DDI and EPS.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Sum of all weights = 3+3+3+2+3+2+2+3+2+1 = 24. Missing weights = 3 + 2 + 2 + 1 = 8.\nDDI = (8 / 24) * 100 = 33.33% (> 30% -> High / block).\n(b) EPS terms:\nPSI term: 0.35 * min(0.18 / 0.25, 1) = 0.35 * 0.72 = 0.2520.\nz term: 0.35 * min(4.5 / 6, 1) = 0.35 * 0.75 = 0.2625.\nRAS term: 0.15 * (100 - 62.5) / 100 = 0.15 * 0.375 = 0.05625.\nDDI term: 0.15 * (33.3333 / 100) = 0.0500.\nEPS = 100 * (0.2520 + 0.2625 + 0.05625 + 0.0500) = 62.08 (62.1 -> Tier P2, 24 h response).\n(c) The query z-score contributes the most (26.25 points out of 62.08). Documenting intended_use removes weight 3: new missing = 5, new DDI = (5 / 24) * 100 = 20.83% (drops from High/block to Moderate). New DDI term = 0.15 * 0.20833 = 0.03125, so new EPS = 62.08 - 1.875 = 60.20 (still P2 because operational drift/spike signals dominate).",
+    "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability"
+  },
+  {
+    "num": 2467,
+    "type": "sa",
+    "question": "HW3 Q1: Risk Register, Residual Risk, and the 80% Rule\n\nFour risks at a loan pre-screening deployment gate (Risk = L x I; bands: 1 to 7 LOW, 8 to 14 MEDIUM, 15 to 25 HIGH):\nR1 Fairness drift: inherent (L=3, I=5), residual after control (L=1, I=5).\nR2 Stale training data: inherent (L=4, I=3), residual (L=2, I=3).\nR3 Prompt injection (explanation API): inherent (L=2, I=4), no control (L=2, I=4).\nR4 Out-of-scope employment use: inherent (L=5, I=5), residual (L=2, I=4).\nSelection counts: Reference group 180 of 450 approved; Protected group 75 of 250 approved.\n\n(a) Compute inherent risk scores and bands; identify which risks block deployment.\n(b) Compute residual risk scores and bands; explain why cutting likelihood alone on R4 would still leave it worse than cutting both likelihood and impact.\n(c) Compute SR_ref, SR_prot, and DI. How many protected-group approvals (minimum integer) are needed out of 250 to satisfy DI >= 0.80?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Inherent: R1 = 15 (HIGH, blocks), R2 = 12 (MEDIUM), R3 = 8 (MEDIUM), R4 = 25 (HIGH, blocks).\n(b) Residual: R1 = 5 (LOW), R2 = 6 (LOW), R3 = 8 (MEDIUM), R4 = 8 (MEDIUM). No HIGH risks remain, though R3 and R4 remain MEDIUM. Cutting likelihood alone on R4 (2 x 5 = 10) still leaves higher residual risk; cutting impact (hard scope limits, human review) caps harm even when misuse occurs.\n(c) SR_ref = 180 / 450 = 0.4000; SR_prot = 75 / 250 = 0.3000; DI = 0.3000 / 0.4000 = 0.7500 < 0.80 (FAILS).\nPassing requires SR_prot >= 0.80 * 0.4000 = 0.3200, which is 0.3200 * 250 = 80 approvals exact (5 more than 75, giving DI = 80/250 / 0.40 = 0.8000 exact). (Note: the HW3 slide wrote 81 due to strict ceiling rounding while also noting \"5 more\".)",
+    "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability"
+  },
+  {
+    "num": 2468,
+    "type": "sa",
+    "question": "HW3 Q2: 5-Bin PSI and Two-Sided Weekly Volume Z-Scores\n\nPart 1: Expected shares E = [0.15, 0.25, 0.30, 0.20, 0.10]; actual shares A = [0.08, 0.18, 0.30, 0.26, 0.18].\nPart 2: Baseline 7-day query volumes: 310, 290, 305, 295, 300, 320, 280. This week's Mon to Fri volumes: 305, 318, 352, 296, 262.\n\n(a) Compute PSI and classify the shift.\n(b) Compute the baseline mean mu and population standard deviation sigma.\n(c) Compute Mon to Fri z-scores, flag any |z| > 3, and interpret both high and low alerts.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Terms: Bin 1 = (-0.07)*ln(0.08/0.15) = 0.0440; Bin 2 = (-0.07)*ln(0.18/0.25) = 0.0230; Bin 3 = 0.0000; Bin 4 = (+0.06)*ln(0.26/0.20) = 0.0157; Bin 5 = (+0.08)*ln(0.18/0.10) = 0.0470.\nTotal PSI = 0.1298 (0.10 to 0.25 -> MODERATE shift; mass moved into high-score bins 4 and 5; open audit ticket and schedule revalidation).\n(b) mu = 2,100 / 7 = 300.0000. Squared deviations: 100 + 100 + 25 + 25 + 0 + 400 + 400 = 1,050. Population sigma^2 = 1,050 / 7 = 150.0, so sigma = sqrt(150) = 12.2474.\n(c) Mon: +5 / 12.2474 = +0.4082 (ok); Tue: +18 / 12.2474 = +1.4697 (ok); Wed: +52 / 12.2474 = +4.2458 (ALERT; note HW3 slide banner had a \"+4.29\" typo while its table correctly gave +4.2458); Thu: -4 / 12.2474 = -0.3266 (ok); Fri: -38 / 12.2474 = -3.1027 (ALERT).\nWednesday's spike signals possible scraping or extraction probing; Friday's drop signals an outage, broken integration, or diverted traffic.",
+    "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability"
+  },
+  {
+    "num": 2469,
+    "type": "sa",
+    "question": "HW3 Q3: CUSUM vs. Z-Score, CAS Floor Rule, and EPS\n\nPart 1: Daily FP% over days 1 to 8: 1.8, 2.4, 2.9, 3.1, 2.7, 3.3, 3.6, 3.2; target = 2.0%, sigma = 0.6%, CUSUM k = 0.4, h = 3.0.\nPart 2: CAS scores (0.30P + 0.25F + 0.25D + 0.20G, floor 50):\nX: (P=92, F=58, D=80, G=75); Y: (P=84, F=79, D=76, G=72); Z: (P=90, F=85, D=45, G=88).\nPart 3: PSI = 0.18, |z| = 4.2, RAS = 62, DDI = 35%.\n\n(a) Run CUSUM and compare against single-day |z| > 3. When does CUSUM alarm?\n(b) Compute CAS for X, Y, and Z and apply the floor rule.\n(c) Compute EPS and state the escalation tier.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) CUSUM increments x_t - 2.4: -0.6, 0.0, +0.5, +0.7, +0.3, +0.9, +1.2, +0.8.\nC_t: Day 1 = 0.0, Day 2 = 0.0, Day 3 = 0.5, Day 4 = 1.2, Day 5 = 1.5, Day 6 = 2.4, Day 7 = 3.6 > 3.0 (ALARM), Day 8 = 4.4.\nMax single-day z = (3.6 - 2.0) / 0.6 = +2.667 (< 3), so |z| > 3 never fires while CUSUM catches the creep on Day 7.\n(b) CAS(X) = 27.60 + 14.50 + 20.00 + 15.00 = 77.10 (Conditional, floor pass).\nCAS(Y) = 25.20 + 19.75 + 19.00 + 14.40 = 78.35 (Conditional, floor pass).\nCAS(Z) = 27.00 + 21.25 + 11.25 + 17.60 = 77.10, but D = 45 < 50 -> NOT READY (floor fail).\n(c) EPS = 100 * [0.35*(0.18/0.25) + 0.35*(4.2/6) + 0.15*(100 - 62)/100 + 0.15*(35/100)]\n= 100 * [0.2520 + 0.2450 + 0.0570 + 0.0525] = 60.65 -> Tier P2 (40 to 69).",
+    "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability"
+  },
+  {
+    "num": 2470,
+    "type": "sa",
+    "question": "HW3 Q4: 60-Day Continuous Audit Monitor (Three-Detector Comparison)\n\nIn HW3's 60-day production audit simulation (seed 42):\nDrift begins on day 21 (credit mean -1.2/day, SD +0.4/day); PSI crosses 0.10 on day 36, crosses 0.25 on day 51, and reaches 0.3897 on day 60.\nVolume baseline (days 1 to 14) has mu = 51.71, sigma = 7.89; day 37 spikes to 98 queries.\nFP% starts at 2.0 + N(0, 0.15) and creeps +0.02 pp/day from day 25; CUSUM (k = 0.5*sigma, h = 5*sigma) fires on day 36 while |z| > 3 fires on day 43.\n\n(a) Compute the day-37 volume z-score and verify it exceeds |z| > 3.\n(b) Explain quantitatively why CUSUM detects the FP-rate creep 7 days earlier than |z| > 3.\n(c) Map each of the three detectors (PSI, volume z-score, FP CUSUM) to the specific failure mode it covers and explain why all three are needed.",
+    "tier": "Tier 2 — Medium Probability",
+    "answerText": "(a) Day-37 z = (98 - 51.71) / 7.89 = 46.29 / 7.89 = +5.867 (5.87 > 3 -> clear single-day spike alert).\n(b) A creep of +0.02 pp/day is only about 0.13*sigma per day. A single-day |z| > 3 rule has no memory and must wait until the cumulative drift reaches 3*sigma (~0.45 pp above 2.0%, taking ~18 days after day 25 -> day 43). CUSUM accumulates the small daily excess (x_t - mu - k) and crosses h = 5*sigma on day 36, 7 days earlier.\n(c) PSI detects distributional shift across score/input histograms (blind to total volume); two-sided volume z-score detects sudden single-day spikes (abuse/scraping) or drops (outages); CUSUM detects slow sustained error-rate creep. Each covers a distinct failure mode that the other two miss.",
+    "lectureReference": "Part 93: Final Review Ch 3: AI Auditing & Accountability"
+  },
+  {
+    "num": 2471,
+    "type": "sa",
+    "question": "Mock Final Q19: Confidence Bands and Uncertainty Routing\n\nA screening model routes cases using this priority order: if 95% CI width > 0.20 -> ABSTAIN; else if score < 0.35 -> AUTO; else if score > 0.65 -> FLAG; otherwise REVIEW. The 95% CI is score +- 1.96 * SE.\nCase A: score = 0.68, SE = 0.05.\nCase B: score = 0.30, SE = 0.06.\nCase C: score = 0.50, SE = 0.03.\n\n(a) Compute each case's 95% CI and width, and route each case.\n(b) For a proportion near p = 0.70, how many cases n are needed for a 95% CI width no wider than 0.08?\n(c) Policy will flag a case only when the lower bound exceeds 0.60. What maximum SE would Case A need?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Case A: 0.68 +- 1.96(0.05) = 0.68 +- 0.098 -> [0.582, 0.778], width = 0.196 (<= 0.20, score > 0.65) -> FLAG.\nCase B: 0.30 +- 1.96(0.06) = 0.30 +- 0.1176 -> [0.182, 0.418], width = 0.235 (> 0.20) -> ABSTAIN (width is checked first, preventing unsafe auto-clearing).\nCase C: 0.50 +- 1.96(0.03) = 0.50 +- 0.0588 -> [0.441, 0.559], width = 0.118 (<= 0.20, 0.35 <= score <= 0.65) -> REVIEW.\n(b) n >= 3.92^2 * p * (1 - p) / W^2 = 15.3664 * 0.70 * 0.30 / 0.08^2 = 3.2269 / 0.0064 = 504.21 -> round UP to n = 505 cases.\n(c) Need 0.68 - 1.96 * SE > 0.60 -> 1.96 * SE < 0.08 -> SE < 0.08 / 1.96 = 0.0408 (about 0.041).",
+    "lectureReference": "Part 94: Final Review Ch 4: Human-Centered AI Design"
+  },
+  {
+    "num": 2472,
+    "type": "sa",
+    "question": "Mock Final Q20: Trust Calibration versus Team Accuracy\n\nAn AI recommender is correct r = 85% of the time. Team 1 overrides 15% of recommendations regardless of correctness (a = b = 0.15). Team 2 overrides 60% of wrong recommendations and 4% of correct recommendations (a = 0.60, b = 0.04). An override flips the outcome.\n\n(a) For each team compute override rate = r*b + (1 - r)*a, trust = 1 - override rate, and TCS = 1 - |trust - r|.\n(b) Compute team accuracy = r*(1 - b) + (1 - r)*a and discrimination a - b for each team.\n(c) Derive the condition on a/b for a team to beat the AI alone and evaluate it at r = 0.85. Which team does TCS favour, and is that right?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Team 1: override = 0.85(0.15) + 0.15(0.15) = 0.150 -> trust = 0.850 -> TCS = 1 - |0.850 - 0.850| = 1.000.\nTeam 2: override = 0.85(0.04) + 0.15(0.60) = 0.034 + 0.090 = 0.124 -> trust = 0.876 -> TCS = 1 - |0.876 - 0.850| = 0.974.\n(b) Team 1: Acc = 0.85(0.85) + 0.15(0.15) = 0.7225 + 0.0225 = 0.745 (74.5%, worse than AI alone); a - b = 0.00.\nTeam 2: Acc = 0.85(0.96) + 0.15(0.60) = 0.816 + 0.090 = 0.906 (90.6%, beats AI by +5.6 pp); a - b = 0.56 (a/b = 15).\n(c) Team beats AI iff r(1 - b) + (1 - r)a > r, which simplifies to (1 - r)a > r*b, or a/b > r / (1 - r). At r = 0.85, a/b > 0.85 / 0.15 = 5.67.\nTCS favours blind Team 1 (1.000 vs. 0.974) because TCS only compares aggregate compliance rate to AI accuracy, ignoring whether overrides target errors. That is wrong; always report discrimination a - b beside TCS.",
+    "lectureReference": "Part 94: Final Review Ch 4: Human-Centered AI Design"
+  },
+  {
+    "num": 2473,
+    "type": "sa",
+    "question": "Mock Final Q21: Control Pattern, Reviewer Workload, and Cost Threshold\n\nA benefits-fraud screen makes 2,000 decisions/day. The AI is wrong on 15% of cases. A human review takes 3 minutes and catches 50% of the errors it sees. The top-20% risk slice holds 45% of AI errors. A missed high-risk case costs 10 units; a review costs 2 units.\n\n(a) With Impact = 4 and Uncertainty = 4, compute the control score and pattern (>= 15 in-the-loop, 6 to 14 on-the-loop, < 6 out-of-loop). What changes if better data cuts Uncertainty to 3?\n(b) Compare in-the-loop (review all 2,000) with on-the-loop (review top 20% = 400): compute reviewer hours/day, errors caught/day, and errors caught per hour.\n(c) Using the cost rule \"review if s > c_review / c_harm\", what risk-score threshold minimises expected cost?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Score = 4 * 4 = 16 >= 15 -> human-in-the-loop. If Uncertainty drops to 3, score = 4 * 3 = 12 (6 to 14 -> human-on-the-loop, though an impact-4 floor policy may still mandate review on the highest-stakes subset).\n(b) Total AI errors/day = 0.15 * 2,000 = 300.\nIn-the-loop: 2,000 * 3 / 60 = 100 reviewer-hours/day; errors caught = 0.50 * 300 = 150/day; efficiency = 150 / 100 = 1.50 errors/hour.\nOn-the-loop (top 20%): 400 * 3 / 60 = 20 reviewer-hours/day; errors in slice = 0.45 * 300 = 135; errors caught = 0.50 * 135 = 67.5/day; efficiency = 67.5 / 20 = 3.375 (3.38) errors/hour (2.25x higher efficiency, keeping 45% of catches at 20% of workload).\n(c) Optimal threshold t* = c_review / c_harm = 2 / 10 = 0.20 (review whenever estimated error/harm probability exceeds 20%).",
+    "lectureReference": "Part 94: Final Review Ch 4: Human-Centered AI Design"
+  },
+  {
+    "num": 2474,
+    "type": "sa",
+    "question": "Mock Final Q22: MAD-Scaled Recourse with a Retraining Safety Margin\n\nA loan score is s = 0.03 * income_k - 0.6 * debt_ratio - 0.8 * late_payments + 0.2; approve if s >= 0. An applicant has income = $28k, debt_ratio = 0.50, and 1 late payment.\n\n(a) Compute the current score. For each feature alone, compute the change needed to reach s = 0 and judge feasibility.\n(b) Using MAD-scaled L1 distance (MAD = $10k for income, 0.20 for debt ratio), which single-feature recourse is cheaper?\n(c) After retraining the score shifts with sigma_s = 0.12, so P(valid) = Phi(m / sigma_s). Compute P(valid) at margin m = 0.01, and find the margin and total income increase needed for 95% validity.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) s = 0.03(28) - 0.6(0.50) - 0.8(1) + 0.2 = 0.84 - 0.30 - 0.80 + 0.20 = -0.06 (denied).\nSingle-feature changes to reach s = 0 (need +0.06):\nIncome: Delta income = +0.06 / 0.03 = +$2.0k (feasible).\nDebt ratio: Delta debt = -0.06 / 0.6 = -0.10, lowering debt ratio from 0.50 to 0.40 (feasible).\nLate payments: Delta late = -0.06 / 0.8 = -0.075 (infeasible: past history is immutable and integer-valued).\n(b) MAD-scaled L1 costs: Income = 2.0 / 10 = 0.20; Debt ratio = 0.10 / 0.20 = 0.50. Income increase is cheaper (0.20 < 0.50).\n(c) At m = 0.01: z = 0.01 / 0.12 = 0.0833 -> P(valid) = Phi(0.0833) = 53.3% (barely better than a coin flip).\nFor 95% validity: m_95 = 1.645 * 0.12 = 0.1974. Extra income for margin = 0.1974 / 0.03 = +$6.58k. Total income increase = $2.0k + $6.58k = +$8.58k (about +$8.6k).",
+    "lectureReference": "Part 94: Final Review Ch 4: Human-Centered AI Design"
+  },
+  {
+    "num": 2475,
+    "type": "sa",
+    "question": "Mock Final Q23: Monitoring False Alarms, Check Cadence, and Input Drift\n\nAn accuracy SLO is 80% and true accuracy is r = 83%; a monthly alarm fires when observed accuracy on n cases falls below 80%. Separately, a drift adds 5 percentage points of error on 600 cases/day; expected detection delay is half the check interval and response takes 1 day.\n\n(a) Compute the false-alarm probability P = Phi((0.80 - r) / sqrt(r*(1 - r) / n)) for n = 400 and n = 1,600.\n(b) Compute the excess errors before containment for weekly checks (7-day interval) and for daily checks (1-day interval).\n(c) Input quintiles had expected shares e = 0.20 each; production shares are 0.26, 0.22, 0.19, 0.18, 0.15. Compute PSI and classify it.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) At n = 400: SE = sqrt(0.83 * 0.17 / 400) = 0.01878; z = (0.80 - 0.83) / 0.01878 = -1.597 (-1.60) -> P = Phi(-1.60) = 5.51% (5.5%).\nAt n = 1,600: SE = sqrt(0.83 * 0.17 / 1,600) = 0.00939; z = -0.03 / 0.00939 = -3.195 (-3.19) -> P = Phi(-3.195) = 0.070% (0.07%).\n(b) Extra errors/day = 0.05 * 600 = 30 errors/day.\nWeekly checks: total exposure = 7/2 + 1 = 4.5 days -> 30 * 4.5 = 135 excess errors.\nDaily checks: total exposure = 1/2 + 1 = 1.5 days -> 30 * 1.5 = 45 excess errors (3x less harm).\n(c) PSI terms against e = 0.20:\n(+0.06)*ln(0.26/0.20) = 0.0157; (+0.02)*ln(0.22/0.20) = 0.0019; (-0.01)*ln(0.19/0.20) = 0.0005; (-0.02)*ln(0.18/0.20) = 0.0021; (-0.05)*ln(0.15/0.20) = 0.0144.\nTotal PSI = 0.0347 (0.035 < 0.10 -> stable / no significant drift).",
+    "lectureReference": "Part 94: Final Review Ch 4: Human-Centered AI Design"
+  },
+  {
+    "num": 2476,
+    "type": "sa",
+    "question": "Mock Final Q24: Stakeholder Impact, Show/Hide/Guard Utility, and RST Maturity\n\nA staff-facing child-welfare risk score has stakeholder ratings (Severity, Likelihood on 1 to 5):\nFamilies (5, 3); Call screeners (3, 4); Investigators (3, 3); Advocacy groups (2, 2).\nUI options:\nShow: benefit 12, anchoring rate 0.25 x harm 24.\nHide: benefit 0, harm 1.5.\nGuard: benefit 11, anchoring rate 0.08 x harm 24, implementation cost c.\nRST maturity scores (0 to 4): Reliable = 3, Safe = 2, Trustworthy = 2.\n\n(a) Compute each stakeholder's impact score (Severity x Likelihood) and tier (>= 15 High, 6 to 14 Medium, < 6 Low).\n(b) Compute each UI option's net utility and find the largest cost c for which Guard wins.\n(c) Compute the average RST maturity and the gap to \"Defined\" (level 3).",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Families: 5 * 3 = 15 -> High (boundary score counts as High).\nCall screeners: 3 * 4 = 12 -> Medium.\nInvestigators: 3 * 3 = 9 -> Medium.\nAdvocacy groups: 2 * 2 = 4 -> Low.\n(b) Net utilities:\nShow = 12 - 0.25 * 24 = 12 - 6.0 = +6.0.\nHide = 0 - 1.5 = -1.5.\nGuard = 11 - 0.08 * 24 - c = 11 - 1.92 - c = 9.08 - c.\nGuard wins over Show (the best alternative) whenever 9.08 - c > 6.0, i.e., c < 3.08.\n(c) Average RST = (3 + 2 + 2) / 3 = 2.33. Gap to Defined (3.0) = 3.0 - 2.33 = 0.67 points.",
+    "lectureReference": "Part 94: Final Review Ch 4: Human-Centered AI Design"
+  },
+  {
+    "num": 2477,
+    "type": "sa",
+    "question": "Mock Final Q25: Green-List Watermark Probabilities and Biased Softmax\n\nA green-list watermark adds bias delta = 1.5 to green-token logits. With equal raw logits, P(green) = gamma * e^delta / (gamma * e^delta + 1 - gamma). Three candidate tokens have raw logits:\n\"risk\": 2.0 (Green); \"threat\": 1.8 (Red); \"hazard\": 1.5 (Green).\n\n(a) For delta = 1.5 compute e^delta and P(green) under equal logits for gamma = 0.25 and gamma = 0.50.\n(b) Compute softmax probabilities of the three tokens before and after adding delta = 1.5 to the green tokens. Give the total green mass before and after.\n(c) By what factor do the odds of a green token rise? Why does the red token's probability fall even though its logit is unchanged?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) e^1.5 = 4.4817 (4.482).\nAt gamma = 0.25: P(green) = (0.25 * 4.4817) / (0.25 * 4.4817 + 0.75) = 1.1204 / 1.8704 = 0.5990 (0.599).\nAt gamma = 0.50: P(green) = (0.50 * 4.4817) / (0.50 * 4.4817 + 0.50) = 4.4817 / 5.4817 = 0.8176 (0.818).\n(b) Before bias: exp(2.0) = 7.3891, exp(1.8) = 6.0496, exp(1.5) = 4.4817; sum = 17.9204.\nProbabilities before: \"risk\" = 0.4123 (41.2%), \"threat\" = 0.3376 (33.8%), \"hazard\" = 0.2501 (25.0%). Green mass before = 0.4123 + 0.2501 = 0.6624 (0.662).\nAfter bias (green logits +1.5 -> 3.5, 1.8, 3.0): exp(3.5) = 33.1155, exp(1.8) = 6.0496, exp(3.0) = 20.0855; sum = 59.2506.\nProbabilities after: \"risk\" = 0.5589 (55.9%), \"threat\" = 0.1021 (10.2%), \"hazard\" = 0.3390 (33.9%). Green mass after = 0.5589 + 0.3390 = 0.8979 (0.898).\n(c) Odds of a green token multiply by e^delta = 4.482. Red token \"threat\" drops from 33.8% to 10.2% because adding bias to green tokens expands the softmax denominator by 59.25 / 17.92 = 3.31x while the red numerator stays fixed.",
+    "lectureReference": "Part 95: Final Review Ch 5: Emerging Topics in AI TI"
+  },
+  {
+    "num": 2478,
+    "type": "sa",
+    "question": "Mock Final Q26: Watermark Detection Z-Test, Sample Size, and Paraphrasing\n\nA detector scores T = 300 tokens with gamma = 0.5 using z = (s - gamma * T) / sqrt(T * gamma * (1 - gamma)) and flags watermarked text at z > 4.\n\n(a) Compute z for a suspect text with s = 195 green tokens and a human text with s = 146 green tokens. State both verdicts.\n(b) Using expected z = (g - gamma) * sqrt(T) / sqrt(gamma * (1 - gamma)), how many tokens T* are needed to reach z = 4 when the true green fraction is g = 0.70? And when g = 0.65?\n(c) A paraphraser replaces r = 25% of tokens; each swap spoils two positions, so g' = (1 - 2r) * g + 2r * gamma. For g = 0.75 and T = 300, compute g' and the expected z. Is it still detected?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Expected green count gamma * T = 150; SD = sqrt(300 * 0.5 * 0.5) = sqrt(75) = 8.6603.\nSuspect (s = 195): z = (195 - 150) / 8.6603 = 5.196 (5.20 > 4 -> FLAGGED as watermarked, p approx 1e-7).\nHuman (s = 146): z = (146 - 150) / 8.6603 = -0.462 (-0.46 <= 4 -> not watermarked).\n(b) T* = [z * sqrt(gamma*(1 - gamma)) / (g - gamma)]^2 = [4 * 0.5 / (g - 0.5)]^2 = [2 / (g - 0.5)]^2.\nAt g = 0.70: T* = (2 / 0.20)^2 = 10^2 = 100 tokens.\nAt g = 0.65: T* = (2 / 0.15)^2 = 13.333^2 = 177.8 -> 178 tokens.\n(c) g' = (1 - 2*0.25) * 0.75 + 2*0.25 * 0.50 = 0.50 * 0.75 + 0.50 * 0.50 = 0.625.\nExpected z = (0.625 - 0.50) * sqrt(300) / 0.50 = 0.125 * 17.3205 / 0.50 = 4.330 (4.33 > 4 -> YES, still detected).",
+    "lectureReference": "Part 95: Final Review Ch 5: Emerging Topics in AI TI"
+  },
+  {
+    "num": 2479,
+    "type": "sa",
+    "question": "Mock Final Q27: Provenance Survival, Bayes Alert Precision, and Layered Defense\n\nA threat-intelligence team screens images and agent requests with layered signals.\n\n(a) Content credentials are stripped with probability s = 0.20 per re-share. What share keeps credentials after k = 4 re-shares? If credentials (0.41), watermark (0.55), and forensics (0.65) fire independently, what is P(at least one fires)?\n(b) A prompt-attack detector has TPR = 90% and FPR = 0.5%. Attacks are 0.2% of 1,000,000 requests. Compute TP, FP, and alert precision.\n(c) Four defensive layers miss an attack with probabilities 0.40, 0.30, 0.10, and 0.05. How many of 1,000,000 attacks survive all layers? State the key assumption behind this product.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Survival = (1 - 0.20)^4 = 0.80^4 = 0.4096 (about 41.0%).\nP(at least one fires) = 1 - (1 - 0.41) * (1 - 0.55) * (1 - 0.65) = 1 - 0.59 * 0.45 * 0.35 = 1 - 0.0929 = 0.9071 (90.7%).\n(b) Attacks = 0.002 * 1,000,000 = 2,000 -> TP = 0.90 * 2,000 = 1,800.\nBenign = 998,000 -> FP = 0.005 * 998,000 = 4,990.\nPrecision = 1,800 / (1,800 + 4,990) = 1,800 / 6,790 = 26.51% (26.5%; almost 3 in 4 alerts are false positives because the base rate is low).\n(c) Survivors = 1,000,000 * 0.40 * 0.30 * 0.10 * 0.05 = 600 attacks per million.\nKey assumption: layers fail independently AND every attack crosses every layer (false in practice for attacks like prompt injection that never touch signing or attestation).",
+    "lectureReference": "Part 95: Final Review Ch 5: Emerging Topics in AI TI"
+  },
+  {
+    "num": 2480,
+    "type": "sa",
+    "question": "Mock Final Q28: Agent Risk Reduction, Token Budgets, and Daily Attack Cost\n\nA support agent with CRM and email tools is scored with L x I; controls cut likelihood by share e, so residual = L * (1 - e) * I:\nLLM01 Prompt injection: L=4, I=5, e=0.70.\nLLM06 Excessive agency: L=3, I=4, e=0.50.\nLLM10 Unbounded consumption: L=4, I=3, e=0.75.\nLLM02 Sensitive disclosure: L=2, I=4, no control (e=0).\n\n(a) Compute every risk score before and after controls, both totals, and the % reduction. Which risk ranks first after controls?\n(b) Request tokens have mean mu = 900, SD sigma = 200. Compute the mu + 3*sigma threshold. Why can it give far more than 0.135% false alarms on real traffic?\n(c) An attacker sends 120 requests/min of 6,000 tokens at $4 per million tokens. Compute the daily cost with no guard, the 1,500-token cap only, a 30/min rate limit only, and both guards together.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Before: LLM01 = 20, LLM06 = 12, LLM10 = 12, LLM02 = 8 -> Total = 52.\nAfter: LLM01 = 4*(0.30)*5 = 6.0; LLM06 = 3*(0.50)*4 = 6.0; LLM10 = 4*(0.25)*3 = 3.0; LLM02 = 8.0 -> Total = 23.0.\nReduction = (52 - 23) / 52 = 29 / 52 = 55.77% (55.8%). LLM02 (8.0) now ranks first because it has no control.\n(b) Threshold = 900 + 3 * 200 = 1,500 tokens. The 0.135% tail rate assumes a Gaussian distribution, whereas real prompt traffic is right-skewed and heavy-tailed; a percentile threshold (such as p99) is required instead.\n(c) Daily cost = req/min * tokens/req * 1,440 min/day * ($4 / 10^6):\nNo guard: 120 * 6,000 * 1,440 * 4e-6 = $4,147.20 ($4,147).\nToken cap only (1,500 tokens, 4x cut): $1,036.80 ($1,037).\nRate limit only (30/min, 4x cut): $1,036.80 ($1,037).\nBoth guards together (16x cut): 30 * 1,500 * 1,440 * 4e-6 = $259.20 ($259).",
+    "lectureReference": "Part 95: Final Review Ch 5: Emerging Topics in AI TI"
+  },
+  {
+    "num": 2481,
+    "type": "sa",
+    "question": "Mock Final Q29: Supply-Chain Tampering, Merkle Proofs, and Hash Collisions\n\nAn ML team hardens its artifact pipeline.\n\n(a) Per-attempt tamper success probability is p = 0.15 at SLSA L2 and p = 0.03 at SLSA L3. Compute P(at least one success in 10 attempts) at each level.\n(b) A transparency log holds 5,000,000 entries with 32-byte SHA-256 nodes. How many hashes and bytes does an inclusion proof require?\n(c) Using birthday bound P approx n^2 / 2^(b+1), compute accidental collision probability for n = 10^9 artifacts with MD5 (b = 128) and SHA-256 (b = 256). How long does SHA-256 take for a 20 GB model (20,480 MB) at 1,200 MB/s? Why are MD5 and SHA-1 still rejected?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) SLSA L2: 1 - (1 - 0.15)^10 = 1 - 0.85^10 = 1 - 0.1969 = 0.8031 (80.3%).\nSLSA L3: 1 - (1 - 0.03)^10 = 1 - 0.97^10 = 1 - 0.7374 = 0.2626 (26.3%).\n(b) Hashes = ceil(log2(5,000,000)) = ceil(22.253) = 23 hashes (since 2^22 = 4,194,304 < 5M <= 8,388,608 = 2^23).\nSize = 23 * 32 = 736 bytes.\n(c) MD5: (10^9)^2 / 2^129 = 10^18 / 6.806e38 = 1.47e-21 (1.5e-21).\nSHA-256: 10^18 / 2^257 = 10^18 / 2.316e77 = 4.32e-60 (4.3e-60).\nHash time = 20,480 MB / 1,200 MB/s = 17.07 s (17.1 s; or 16.7 s under decimal 20,000 MB).\nEven though accidental collisions are negligible for MD5, MD5 and SHA-1 are rejected because deliberate cryptanalytic attacks construct chosen-prefix collisions in seconds to hours.",
+    "lectureReference": "Part 95: Final Review Ch 5: Emerging Topics in AI TI"
+  },
+  {
+    "num": 2482,
+    "type": "sa",
+    "question": "Mock Final Q30: Attestation Nonces, TEE ROI, and EU AI Act Compute\n\nA healthcare provider evaluates confidential inference in a TEE and checks a frontier-model obligation.\n\n(a) Expected nonce repeats approx N^2 / 2^(n+1). For N = 10^8 attestation challenges, compute expected repeats for 32-bit and 64-bit nonces. Which is acceptable?\n(b) 5,000,000 inferences/month cost $0.004 each; a TEE adds 25% overhead; a breach costs $8,000,000. Compute the annual TEE cost, break-even risk reduction Delta_p, and net annual value at Delta_p = 2%.\n(c) A model has N = 200B parameters trained on D = 10T tokens. Using C approx 6ND, does it cross the 10^25 FLOPs threshold? How many GPU-days does it require at 989 TFLOP/s and 40% utilization?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) 32-bit: 10^16 / 2^33 = 1.164e6 (about 1.16 million repeats -> UNSAFE, vulnerable to replay).\n64-bit: 10^16 / 2^65 = 2.71e-4 -> acceptable at N = 10^8, though 128-bit nonces are standard best practice.\n(b) Annual TEE overhead = 5,000,000 * $0.004 * 0.25 * 12 = $60,000/year.\nBreak-even Delta_p = $60,000 / $8,000,000 = 0.0075 = 0.75%.\nNet value at Delta_p = 2%: 0.02 * $8,000,000 - $60,000 = $160,000 - $60,000 = +$100,000/year.\n(c) C = 6 * (2e11) * (1e13) = 1.2e25 FLOPs -> YES, crosses the EU AI Act 10^25 FLOPs systemic-risk presumption.\nEffective GPU throughput = 989e12 * 0.40 = 3.956e14 FLOP/s; per day = 3.956e14 * 86,400 = 3.418e19 FLOP/GPU-day.\nGPU-days = 1.2e25 / 3.418e19 = 351,084 GPU-days (about 351,000 GPU-days).",
+    "lectureReference": "Part 95: Final Review Ch 5: Emerging Topics in AI TI"
+  },
+  {
+    "num": 2483,
+    "type": "sa",
+    "question": "Mock Final Q31: Signal Funnel and Priority Scoring with Recency Floor\n\nAn AI TI program ingests 15,000 signals/month: 2.4% become alerts, 30% of alerts reach triage, and 20% of triaged alerts become confirmed incidents.\nPriority = Reliability * Relevance * Recency, where Recency = max(0.5, 1 - 0.05 * age_days).\nSignals:\nInternal eval regression: Reliab 4, Relev 5, Age 6 d.\nISAC injection report: Reliab 3, Relev 5, Age 0 d.\nVendor disclosure: Reliab 5, Relev 3, Age 12 d.\nAnonymous jailbreak claim: Reliab 2, Relev 2, Age 1 d.\n\n(a) Compute alerts, triaged alerts, and confirmed incidents per month, plus \"1 in how many\" signals becomes an incident.\n(b) Compute each signal's recency factor and priority, and rank them.\n(c) At what age does the internal signal fall below the fresh ISAC report? Why can ageing never overturn a 2x raw-score gap?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Alerts = 15,000 * 0.024 = 360. Triaged = 360 * 0.30 = 108. Confirmed incidents = 108 * 0.20 = 21.6/month.\nConversion ratio: 15,000 / 21.6 = 694.4 -> about 1 in 694 signals becomes a confirmed incident.\n(b) Recency and priority:\nInternal: max(0.5, 1 - 0.30) = 0.70 -> 4 * 5 * 0.70 = 14.0.\nISAC: max(0.5, 1 - 0) = 1.00 -> 3 * 5 * 1.00 = 15.0.\nVendor: max(0.5, 1 - 0.60) = max(0.5, 0.40) = 0.50 (floor!) -> 5 * 3 * 0.50 = 7.5.\nAnonymous: max(0.5, 1 - 0.05) = 0.95 -> 2 * 2 * 0.95 = 3.8.\nRanking: ISAC (15.0) > Internal (14.0) > Vendor (7.5) > Anonymous (3.8).\n(c) Internal (raw 20) drops below fresh ISAC (15) when 20 * (1 - 0.05 * d) < 15 -> 1 - 0.05 * d < 0.75 -> d > 5 days.\nBecause Recency floors at 0.5, ageing can at most halve a signal's raw score; therefore it can never invert a 2x raw-score gap.",
+    "lectureReference": "Part 96: Final Review Ch 6: Operationalizing AI Threat Intelligence"
+  },
+  {
+    "num": 2484,
+    "type": "sa",
+    "question": "Mock Final Q32: SLA Latency Buffer and Triage Severity Grid\n\nHigh-severity containment has a 240-min SLA; low severity has a 90-min SLA. Role latencies: SecOps 25 min, ML engineering 50 min, owner sign-off 35 min.\nTriage Severity = Impact * Likelihood (1 to 5 each): 1 to 6 monitor, 7 to 14 review, 15 to 25 escalate + sign-off.\nFour alerts: Latency blip (I=2, L=3); Probing from one IP (I=3, L=3); Training-data leak (I=4, L=4); Safety-critical misfire (I=5, L=2).\n\n(a) Compute the high-severity critical path, SLA buffer, and buffer as % of SLA. What share of the low-severity SLA does one owner sign-off consume?\n(b) Score and route the four alerts.\n(c) Across the full 5 x 5 grid (25 cells), how many cells (and %) fall in each band? Comment on the safety-critical alert.",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Critical path = 25 + 50 + 35 = 110 min.\nHigh-severity buffer = 240 - 110 = 130 min, which is 130 / 240 = 54.17% (54.2%) of SLA.\nLow-severity sign-off share = 35 / 90 = 38.89% (38.9%) of the entire SLA consumed by one sign-off.\n(b) Latency blip: 2 * 3 = 6 -> monitor.\nProbing from one IP: 3 * 3 = 9 -> review.\nTraining-data leak: 4 * 4 = 16 -> escalate + sign-off.\nSafety-critical misfire: 5 * 2 = 10 -> review.\n(c) On the 5 x 5 multiplication table (25 cells):\nMonitor (1 to 6): 12 cells (48%).\nReview (7 to 14): 7 cells (28%).\nEscalate (15 to 25): 6 cells (24%).\nComment: Impact 5 x Likelihood 2 = 10 lands only in \"review\", which is risky for safety-critical systems; such deployments often add an impact-only escalation override for I = 5.",
+    "lectureReference": "Part 96: Final Review Ch 6: Operationalizing AI Threat Intelligence"
+  },
+  {
+    "num": 2485,
+    "type": "sa",
+    "question": "Mock Final Q33: Choosing the Cheapest Safe Containment\n\nA data-leak alert (severity 20) has three containment options where Total cost = downtime cost + residual-risk cost:\nFull rollback: 1.5 h x $24,000/h downtime + $800 residual risk.\nFeature-flag disable: $6,000 downtime + $2,500 residual risk.\nRate-limit only: $600 downtime + p x $50,000 residual risk (currently p = 0.6).\n\n(a) Compute each option's total cost and choose the cheapest.\n(b) How short (in minutes) must the rollback outage be for full rollback to beat the feature flag?\n(c) Below what attack-continuation probability p would rate-limiting beat the feature flag? What evidence could justify such a low p?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Full rollback = 1.5 * $24,000 + $800 = $36,000 + $800 = $36,800.\nFeature-flag disable = $6,000 + $2,500 = $8,500 (CHEAPEST).\nRate-limit only = $600 + 0.6 * $50,000 = $600 + $30,000 = $30,600.\nChoose Feature-flag disable ($8,500).\n(b) Solve 24,000 * h + 800 < 8,500 -> 24,000 * h < 7,700 -> h < 0.3208 hours = 19.25 minutes (about 19.3 min).\n(c) Solve 600 + 50,000 * p < 8,500 -> 50,000 * p < 7,900 -> p < 0.158 (15.8%). Evidence justifying p < 15.8% would be historical attacker abandonment rates under rate-limiting from prior comparable incidents.",
+    "lectureReference": "Part 96: Final Review Ch 6: Operationalizing AI Threat Intelligence"
+  },
+  {
+    "num": 2486,
+    "type": "sa",
+    "question": "Mock Final Q34: KPI Dashboard and Evidence Coverage\n\nFive incidents this month have TTD (minutes) = [10, 14, 18, 22, 36] and TTC (minutes) = [28, 40, 50, 62, 45].\nIn addition, 12 of 96 triaged alerts were overridden, and 19 of 21 confirmed incidents have complete evidence bundles (target: 95%).\n\n(a) Compute the mean, median, and sample standard deviation s (dividing by n - 1) of TTD and TTC.\n(b) Compute mean TTC / mean TTD and the override rate. Which step is less predictable in absolute terms?\n(c) Compute current evidence coverage. How many complete bundles are needed to meet the 95% target, and what coverage does that give?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) TTD [10, 14, 18, 22, 36]: mean = 100 / 5 = 20.0 min; median = 18 min; squared deviations from 20 are [100, 36, 4, 4, 256] (sum = 400); s = sqrt(400 / 4) = 10.0 min.\nTTC sorted [28, 40, 45, 50, 62]: mean = 225 / 5 = 45.0 min; median = 45 min; squared deviations from 45 are [289, 25, 0, 25, 289] (sum = 628); s = sqrt(628 / 4) = sqrt(157) = 12.53 min (12.5 min).\n(b) Mean TTC / Mean TTD = 45.0 / 20.0 = 2.25x. Override rate = 12 / 96 = 12.5%. Containment (TTC) is less predictable in absolute terms (s = 12.5 vs. 10.0 min), while TTD's spread is largely driven by the single 36-minute outlier.\n(c) Current coverage = 19 / 21 = 90.48% (90.5%).\nBundles needed for 95%: 0.95 * 21 = 19.95 -> round UP to 20 complete bundles, giving 20 / 21 = 95.24% (95.2%).",
+    "lectureReference": "Part 96: Final Review Ch 6: Operationalizing AI Threat Intelligence"
+  },
+  {
+    "num": 2487,
+    "type": "sa",
+    "question": "Mock Final Q35: TEVV Composite and Red-Team Residual Risk\n\nA release review collects TEVV checklists and red-team findings (FSS = Impact * Exploitability * Blast radius; acceptable residual risk <= 7.0):\nTEVV: Testing 18/20, Evaluation 41/50, Verification 17/20, Validation 14/20.\nFindings: F1 prompt-injection leak (I=4, E=3, R=1.5); F2 jailbreak bypass (I=5, E=4, R=1.6); F3 model extraction (I=3, E=2, R=1.0).\n\n(a) Convert each TEVV pillar to 0 to 100, compute the TEVV composite and gate (>= 80 go, 60 to 79 conditional, < 60 no-go), and name the weakest pillar.\n(b) Compute each finding's FSS, rank them, and compute the minimum mitigation efficacy needed for each to reach residual risk <= 7.0.\n(c) The mitigation for F2 has 85% efficacy. Compute F2's residual risk. Can the release proceed on this finding?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) Pillars: Testing = 18/20 = 90, Evaluation = 41/50 = 82, Verification = 17/20 = 85, Validation = 14/20 = 70.\nTEVV composite = (90 + 82 + 85 + 70) / 4 = 327 / 4 = 81.75 (>= 80 -> Go). Weakest pillar: Validation at 70, sitting right on the < 70 remediation threshold.\n(b) FSS values:\nF1 = 4 * 3 * 1.5 = 18.0 -> efficacy >= 1 - 7/18 = 61.11% (61.1%).\nF2 = 5 * 4 * 1.6 = 32.0 -> efficacy >= 1 - 7/32 = 78.13% (78.1%).\nF3 = 3 * 2 * 1.0 = 6.0 <= 7.0 -> efficacy needed = 0%.\nRanking: F2 (32.0) > F1 (18.0) > F3 (6.0).\n(c) F2 residual risk = 32.0 * (1 - 0.85) = 32.0 * 0.15 = 4.80 <= 7.0 -> YES, release can proceed on F2.",
+    "lectureReference": "Part 96: Final Review Ch 6: Operationalizing AI Threat Intelligence"
+  },
+  {
+    "num": 2488,
+    "type": "sa",
+    "question": "Mock Final Q36: PMRI Release Gate and AWTCS Coverage Headroom\n\nUsing Q35's TEVV = 81.75, F2 residual risk = 4.8 (of max 50), and KPI health = 78:\nPMRI = 0.40 * TEVV + 0.35 * (100 - RiskNorm) + 0.25 * KPI, with RiskNorm = (residual / 50) * 100.\nATLAS threat coverage table (Prevalence p, Severity s, Coverage c):\nPrompt injection (5, 4, 0.7); Model extraction (3, 3, 0.5); Data poisoning (2, 5, 0.4); Evasion (4, 4, 0.6); Supply chain (4, 5, 0.2).\n\n(a) Compute RiskNorm, Safety (100 - RiskNorm), and PMRI. Does the release clear the commercial (80) and government (90) gates?\n(b) Holding Safety and KPI fixed, what TEVV score would reach PMRI = 90? Is that realistic?\n(c) Compute AWTCS = sum(c*p*s) / sum(p*s) and each category's headroom (1 - c)*p*s / sum(p*s). Where should investment go, and what is the new AWTCS if that category's coverage rises to 0.6?",
+    "tier": "Tier 1 — High Probability",
+    "answerText": "(a) RiskNorm = (4.8 / 50) * 100 = 9.6; Safety = 100 - 9.6 = 90.4.\nPMRI = 0.40(81.75) + 0.35(90.4) + 0.25(78) = 32.70 + 31.64 + 19.50 = 83.84.\nVerdict: clears commercial gate (>= 80), FAILS government gate (>= 90).\n(b) Solve 0.40 * TEVV + 31.64 + 19.50 = 90 -> 0.40 * TEVV = 38.86 -> TEVV = 97.15. That is unrealistic via TEVV alone; reaching 90 requires improving KPI health and reducing residual risk alongside TEVV.\n(c) Weights p*s: PI = 20, ME = 9, DP = 10, EV = 16, SC = 20 -> sum(p*s) = 75.\nCovered weights c*p*s: PI = 14.0, ME = 4.5, DP = 4.0, EV = 9.6, SC = 4.0 -> sum(c*p*s) = 36.1.\nAWTCS = 36.1 / 75 = 0.4813 (0.481).\nHeadrooms (1 - c)*p*s / 75:\nSupply chain: 0.8 * 20 / 75 = 16 / 75 = 0.2133 (LARGEST).\nEvasion: 0.4 * 16 / 75 = 6.4 / 75 = 0.0853.\nPrompt injection: 0.3 * 20 / 75 = 6 / 75 = 0.0800.\nData poisoning: 0.6 * 10 / 75 = 6 / 75 = 0.0800.\nModel extraction: 0.5 * 9 / 75 = 4.5 / 75 = 0.0600.\nInvest in Supply chain. Raising its coverage from 0.2 to 0.6 adds (0.4 * 20) = 8.0 to the numerator: new AWTCS = (36.1 + 8.0) / 75 = 44.1 / 75 = 0.5880 (0.588).",
+    "lectureReference": "Part 96: Final Review Ch 6: Operationalizing AI Threat Intelligence"
   }
 ]

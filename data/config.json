@@ -30,11 +30,48 @@
       "id": "cmpe253",
       "code": "CMPE 253",
       "name": "AI Threat Intelligence",
-      "description": "FGSM/PGD, DP-SGD, Membership Inference, RAG Poisoning, Fairness, Drift Detection, Risk Scoring",
+      "description": "Final Exam Focus · Fairness, xAI, Auditing, Human-Centered AI, Emerging AI TI, Operationalizing AI TI",
       "questionFile": "data/cmpe253.json",
       "formulaFile": "data/formulas-cmpe253.json",
+      "examFile": "data/exams-cmpe253.json",
       "enableShuffle": true,
-      "studyGuides": []
+      "studyGuides": [
+        {
+          "id": "all",
+          "file": "guides/cmpe253/overview.md",
+          "label": "📋 Final Study Guide Overview & Thresholds"
+        },
+        {
+          "id": "ch1",
+          "file": "guides/cmpe253/ch1-algorithmic-fairness.md",
+          "label": "Ch 1 · Algorithmic Fairness (Q1 to Q6)"
+        },
+        {
+          "id": "ch2",
+          "file": "guides/cmpe253/ch2-explainable-ai.md",
+          "label": "Ch 2 · Explainable AI / xAI (Q7 to Q12)"
+        },
+        {
+          "id": "ch3",
+          "file": "guides/cmpe253/ch3-ai-auditing-accountability.md",
+          "label": "Ch 3 · AI Auditing & Accountability (Q13 to Q18)"
+        },
+        {
+          "id": "ch4",
+          "file": "guides/cmpe253/ch4-human-centered-ai.md",
+          "label": "Ch 4 · Human-Centered AI Design (Q19 to Q24)"
+        },
+        {
+          "id": "ch5",
+          "file": "guides/cmpe253/ch5-emerging-topics-ai-ti.md",
+          "label": "Ch 5 · Emerging Topics in AI TI (Q25 to Q30)"
+        },
+        {
+          "id": "ch6",
+          "file": "guides/cmpe253/ch6-operationalizing-ai-ti.md",
+          "label": "Ch 6 · Operationalizing AI TI (Q31 to Q36)"
+        }
+      ]
     },
     {
       "id": "cmpe260",
